@@ -9,8 +9,7 @@ class GameEngine {
     GameEngineRef.instance = this;
   }
 
-  void update(double dt) {
-  }
+  void update(double dt) {}
 }
 
 mixin GameEngineRef {
