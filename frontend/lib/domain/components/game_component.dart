@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/domain/components/level_component.dart';
 import 'package:cavedash/domain/state/game/game_engine.dart';
@@ -9,6 +8,8 @@ import 'package:cavedash/utils/navigation.dart';
 import 'package:cavedash/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 
 class GameComponent extends Forge2DGame with GameEngineRef {
   final MatchState matchState;
@@ -37,6 +38,12 @@ class GameComponent extends Forge2DGame with GameEngineRef {
       camera.viewport.add(FpsTextComponent(
         position: Vector2(0, 0),
         anchor: Anchor.topLeft,
+        textRenderer: TextPaint(
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 3,
+          ),
+        ),
       ));
     }
 
