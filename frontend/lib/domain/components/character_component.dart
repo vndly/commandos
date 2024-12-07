@@ -1,5 +1,4 @@
-import 'dart:ui';
-import 'package:cavedash/app/constants.dart';
+import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class CharacterComponent extends BodyComponent {
@@ -14,10 +13,7 @@ class CharacterComponent extends BodyComponent {
   @override
   Future onLoad() async {
     await super.onLoad();
-    renderBody = Constants.RENDER_BODIES;
-
-    paint.color = const Color(0xff00ff00);
-    paint.style = PaintingStyle.stroke;
+    setup();
   }
 
   @override
