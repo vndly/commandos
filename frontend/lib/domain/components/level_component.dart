@@ -13,8 +13,8 @@ class LevelComponent extends Forge2DWorld {
     add(LevelBackgroundComponent());
 
     add(CharacterComponent(
-      initialPosition: Vector2(10, 115),
-      size: Vector2(5, 5),
+      initialPosition: Vector2(83, 917),
+      size: Vector2(40, 40),
     ));
 
     return super.onLoad();
@@ -24,7 +24,7 @@ class LevelComponent extends Forge2DWorld {
 class LevelBackgroundComponent extends SpriteComponent {
   LevelBackgroundComponent()
       : super(
-          size: Vector2(250, 125),
+          size: Vector2(2000, 1000),
           position: Vector2(0, 0),
           anchor: Anchor.topLeft,
         );

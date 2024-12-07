@@ -1,5 +1,5 @@
 class Constants {
-  static const double SCREEN_WIDTH = 300;
+  static const double SCREEN_WIDTH = 1000;
 
   static const int NEON_EFFECT = 2;
 
