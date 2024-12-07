@@ -20,7 +20,10 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     await super.onLoad();
     setup();
 
-    camera.follow(this);
+    camera.follow(
+      this,
+      maxSpeed: Constants.CHARACTER_SPEED * 0.8,
+    );
   }
 
   @override
