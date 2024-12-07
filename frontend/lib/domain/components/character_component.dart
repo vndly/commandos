@@ -14,6 +14,8 @@ class CharacterComponent extends BodyComponent {
   Future onLoad() async {
     await super.onLoad();
     setup();
+
+    camera.follow(this);
   }
 
   @override
