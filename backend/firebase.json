@@ -11,7 +11,7 @@
         "source": "functions"
     },
     "hosting": {
-        "site": "tension-path",
+        "site": "atomic-prototype",
         "public": "public",
         "ignore": [
             "firebase.json",

@@ -1,13 +1,13 @@
+import 'package:cavedash/environments/environment.dart';
+import 'package:cavedash/utils/navigation.dart';
+import 'package:cavedash/utils/platform.dart';
+import 'package:cavedash/utils/set_url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:cavedash/environments/environment.dart';
-import 'package:cavedash/utils/navigation.dart';
-import 'package:cavedash/utils/platform.dart';
-import 'package:cavedash/utils/set_url_strategy.dart';
 
 final GetIt locator = GetIt.instance;
 
@@ -18,13 +18,13 @@ class Locator {
     if (Platform.isWeb) {
       await Firebase.initializeApp(
         options: const FirebaseOptions(
-          apiKey: 'AIzaSyBpGR88tMBiVA1Tvk48qQXqs1es7FaS2ac',
-          authDomain: 'tension-path.firebaseapp.com',
-          projectId: 'tension-path',
-          storageBucket: 'tension-path.appspot.com',
-          messagingSenderId: '183502893220',
-          appId: '1:183502893220:web:2b1cc8c9b1378b23ecb631',
-          measurementId: 'G-XBSE04LEGT',
+          apiKey: 'AIzaSyBbB_8eQFJx2Ah4YBKcB6roM8gqRb9Z_Lw',
+          authDomain: 'atomic-prototype.firebaseapp.com',
+          projectId: 'atomic-prototype',
+          storageBucket: 'atomic-prototype.firebasestorage.app',
+          messagingSenderId: '1079322227234',
+          appId: '1:1079322227234:web:3a79e55e7d553f5abed07b',
+          measurementId: 'G-ZRTPXKKG5Y',
         ),
       );
     } else {
