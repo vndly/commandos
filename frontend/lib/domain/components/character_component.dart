@@ -14,16 +14,18 @@ class CharacterComponent extends BodyComponent {
   Future onLoad() async {
     await super.onLoad();
     renderBody = debugMode;
+
+    paint = Paint()..color = const Color(0x44ffffff);
   }
 
   @override
   Body createBody() {
-    final shape = PolygonShape();
+    final PolygonShape shape = PolygonShape();
     shape.set([
-      Vector2(-size.x / 2, size.y / 2),
-      Vector2(size.x / 2, size.y / 2),
-      Vector2(0, -size.y / 2),
-      Vector2(0, -size.y / 2),
+      Vector2(size.x / 2, 0),
+      Vector2(size.x, size.y / 2),
+      Vector2(size.x / 2, size.y),
+      Vector2(0, size.y / 2),
     ]);
 
     final FixtureDef fixtureDef = FixtureDef(
@@ -49,12 +51,18 @@ class CharacterComponent extends BodyComponent {
   void render(Canvas canvas) {
     super.render(canvas);
 
-    canvas.drawRect(
+    /*canvas.drawRect(
       Rect.fromCenter(
         center: Offset(position.x, position.y),
         width: size.x,
         height: size.y,
       ),
+      Paint()..color = const Color(0xFFFF0000),
+    );*/
+
+    canvas.drawCircle(
+      Offset.zero,
+      1,
       Paint()..color = const Color(0xFFFF0000),
     );
   }
