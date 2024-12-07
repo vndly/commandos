@@ -11,8 +11,14 @@ class CharacterComponent extends BodyComponent {
   });
 
   @override
+  Future onLoad() async {
+    await super.onLoad();
+    renderBody = debugMode;
+  }
+
+  @override
   Body createBody() {
-    final PolygonShape shape = PolygonShape();
+    final shape = PolygonShape();
     shape.set([
       Vector2(-size.x / 2, size.y / 2),
       Vector2(size.x / 2, size.y / 2),
@@ -28,7 +34,7 @@ class CharacterComponent extends BodyComponent {
     );
 
     final BodyDef bodyDef = BodyDef(
-      position: position,
+      position: initialPosition.clone(),
       angle: 0,
       type: BodyType.dynamic,
     );

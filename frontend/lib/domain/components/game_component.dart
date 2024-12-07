@@ -1,9 +1,11 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:cavedash/domain/components/level_component.dart';
 import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:cavedash/domain/state/match/match_state.dart';
 import 'package:cavedash/presentation/dialogs/confirmation_dialog.dart';
 import 'package:cavedash/utils/navigation.dart';
+import 'package:cavedash/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -40,8 +42,8 @@ class GameComponent extends Forge2DGame with GameEngineRef {
     return super.onLoad();
   }
 
-  //@override
-  //Color backgroundColor() => Palette.GAME_BACKGROUND;
+  @override
+  Color backgroundColor() => Palette.GAME_BACKGROUND;
 
   @override
   void update(double dt) {
