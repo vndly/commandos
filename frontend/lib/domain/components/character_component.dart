@@ -46,13 +46,12 @@ class CharacterComponent extends BodyComponent {
   void render(Canvas canvas) {
     super.render(canvas);
 
-    /*final Paint paint = Paint();
+    final Paint paint = Paint();
     paint.color = const Color(0xffff0000);
     paint.strokeWidth = 1;
     paint.style = PaintingStyle.stroke;
 
-    final Rect visibleRect = camera.visibleWorldRect;
-    canvas.drawRect(visibleRect, paint);*/
+    canvas.drawRect(camera.visibleWorldRect, paint);
 
     /*canvas.drawCircle(
       Offset.zero,

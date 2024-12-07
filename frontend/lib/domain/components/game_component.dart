@@ -5,11 +5,9 @@ import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:cavedash/domain/state/match/match_state.dart';
 import 'package:cavedash/presentation/dialogs/confirmation_dialog.dart';
 import 'package:cavedash/utils/navigation.dart';
-import 'package:cavedash/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class GameComponent extends Forge2DGame with GameEngineRef {
   final MatchState matchState;
@@ -24,9 +22,15 @@ class GameComponent extends Forge2DGame with GameEngineRef {
   FutureOr onLoad() {
     debugMode = false;
 
+    final Size size = MediaQuery.of(Navigation.context()).size;
+    final double screenRatio = size.height / size.width;
+
+    const double width = Constants.SCREEN_WIDTH;
+    final double height = Constants.SCREEN_WIDTH * screenRatio;
+
     camera = CameraComponent.withFixedResolution(
-      height: Constants.SCREEN_HEIGHT,
-      width: Constants.SCREEN_WIDTH,
+      width: width,
+      height: height,
     );
 
     /*camera.moveTo(Vector2(
@@ -51,7 +55,7 @@ class GameComponent extends Forge2DGame with GameEngineRef {
   }
 
   @override
-  Color backgroundColor() => Palette.GAME_BACKGROUND;
+  Color backgroundColor() => Colors.blue; //Palette.GAME_BACKGROUND;
 
   @override
   void update(double dt) {
