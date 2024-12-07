@@ -15,7 +15,8 @@ class CharacterComponent extends BodyComponent {
     await super.onLoad();
     renderBody = debugMode;
 
-    paint = Paint()..color = const Color(0x44ffffff);
+    paint.color = const Color(0xff00ff00);
+    paint.style = PaintingStyle.stroke;
   }
 
   @override
@@ -31,13 +32,10 @@ class CharacterComponent extends BodyComponent {
     final FixtureDef fixtureDef = FixtureDef(
       shape,
       userData: this,
-      restitution: 0.4,
-      friction: 0.5,
     );
 
     final BodyDef bodyDef = BodyDef(
       position: initialPosition.clone(),
-      angle: 0,
       type: BodyType.dynamic,
     );
 

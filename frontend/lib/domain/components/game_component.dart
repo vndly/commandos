@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:ui';
+import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/domain/components/level_component.dart';
 import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:cavedash/domain/state/match/match_state.dart';
@@ -22,10 +23,10 @@ class GameComponent extends Forge2DGame with GameEngineRef {
   FutureOr onLoad() {
     debugMode = true;
 
-    /*camera = CameraComponent.withFixedResolution(
+    camera = CameraComponent.withFixedResolution(
       height: Constants.SCREEN_HEIGHT,
       width: Constants.SCREEN_WIDTH,
-    );*/
+    );
 
     /*camera.moveTo(Vector2(
       Constants.SCREEN_WIDTH / 2,
