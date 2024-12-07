@@ -1,6 +1,6 @@
+import 'package:cavedash/utils/navigation.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:cavedash/utils/navigation.dart';
 
 class InfoDialog extends StatelessWidget {
   final String text;

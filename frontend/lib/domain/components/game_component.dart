@@ -1,29 +1,20 @@
 import 'dart:async';
-import 'package:flame/components.dart';
-import 'package:flame/extensions.dart';
-import 'package:flame/game.dart';
 import 'package:cavedash/app/constants.dart';
-import 'package:cavedash/domain/components/lane_component.dart';
-import 'package:cavedash/domain/components/match_component.dart';
-import 'package:cavedash/domain/components/nodes/node_checkpoint_component.dart';
-import 'package:cavedash/domain/components/nodes/node_component.dart';
-import 'package:cavedash/domain/components/unit_component.dart';
+import 'package:cavedash/domain/components/level_component.dart';
 import 'package:cavedash/domain/state/game/game_engine.dart';
-import 'package:cavedash/domain/state/game/lane.dart';
-import 'package:cavedash/domain/state/game/nodes/node.dart';
-import 'package:cavedash/domain/state/game/units/unit.dart';
 import 'package:cavedash/domain/state/match/match_state.dart';
 import 'package:cavedash/presentation/dialogs/confirmation_dialog.dart';
 import 'package:cavedash/utils/navigation.dart';
 import 'package:cavedash/utils/palette.dart';
+import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
+import 'package:flame/game.dart';
 
 class GameComponent extends FlameGame
     with HasCollisionDetection, GameEngineRef {
   final MatchState matchState;
-  final List<LaneComponent> cachedLaneComponents = [];
-  final List<NodeComponent> cachedNodeComponents = [];
 
-  GameComponent(this.matchState) : super(world: MatchComponent());
+  GameComponent(this.matchState) : super(world: LevelComponent());
 
   @override
   FutureOr onLoad() {
@@ -46,79 +37,6 @@ class GameComponent extends FlameGame
 
   @override
   Color backgroundColor() => Palette.GAME_BACKGROUND;
-
-  Iterable<LaneComponent> get laneComponents {
-    if (cachedLaneComponents.isEmpty) {
-      cachedLaneComponents.addAll(world.children.whereType<LaneComponent>());
-    }
-
-    return cachedLaneComponents;
-  }
-
-  Iterable<NodeComponent> get nodeComponents {
-    if (cachedNodeComponents.isEmpty) {
-      cachedNodeComponents
-          .addAll(world.children.whereType<NodeCheckpointComponent>());
-    }
-
-    return cachedNodeComponents;
-  }
-
-  Iterable<UnitComponent> get unitComponents =>
-      world.children.whereType<UnitComponent>();
-
-  Lane? checkLaneHover(Vector2 position) {
-    Lane? result;
-
-    for (final LaneComponent lane in laneComponents) {
-      final Lane? laneResult = lane.checkHover(position);
-
-      if (laneResult != null) {
-        result = laneResult;
-      }
-    }
-
-    return result;
-  }
-
-  Node? checkNodeHover(Vector2 position) {
-    Node? result;
-
-    for (final NodeComponent node in nodeComponents) {
-      final Node? nodeResult = node.checkHover(position);
-
-      if (nodeResult != null) {
-        result = nodeResult;
-      }
-    }
-
-    return result;
-  }
-
-  void cleanLaneHover() {
-    for (final LaneComponent lane in laneComponents) {
-      lane.cleanHover();
-    }
-  }
-
-  void cleanNodeHover() {
-    for (final NodeComponent node in nodeComponents) {
-      node.cleanHover();
-    }
-  }
-
-  void onUnitCreated(UnitComponent unitComponent) {
-    world.add(unitComponent);
-  }
-
-  void onUnitDestroyed(Unit unit) {
-    for (final UnitComponent unitComponent in unitComponents) {
-      if (unitComponent.unit == unit) {
-        world.remove(unitComponent);
-        break;
-      }
-    }
-  }
 
   @override
   void update(double dt) {

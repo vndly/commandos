@@ -1,8 +1,8 @@
 import 'dart:math';
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
 import 'package:cavedash/utils/palette.dart';
 import 'package:cavedash/utils/platform.dart';
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
 
 class GameContainer extends StatelessWidget {
   final Widget child;

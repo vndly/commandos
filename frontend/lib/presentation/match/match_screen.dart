@@ -1,15 +1,15 @@
+import 'package:cavedash/domain/state/match/match_state.dart';
+import 'package:cavedash/widgets/game_container.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:cavedash/domain/state/match/match_state.dart';
-import 'package:cavedash/widgets/game_container.dart';
 
-class MatchScreen extends StatelessWidget {
+class LevelScreen extends StatelessWidget {
   final MatchState state;
 
-  const MatchScreen._(this.state);
+  const LevelScreen._(this.state);
 
-  factory MatchScreen.instance() => MatchScreen._(MatchState());
+  factory LevelScreen.instance() => LevelScreen._(MatchState());
 
   @override
   Widget build(BuildContext context) {

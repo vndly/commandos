@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:cavedash/utils/locator.dart';
 import 'package:cavedash/utils/platform.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class Environment {
   String get name;

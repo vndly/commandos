@@ -1,7 +1,7 @@
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/widgets.dart';
 import 'package:cavedash/presentation/match/match_screen.dart';
 import 'package:cavedash/utils/locator.dart';
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/widgets.dart';
 
 class Navigation {
   final Routes routes = Routes();
@@ -14,7 +14,7 @@ class Navigation {
 
   static void matchScreen() => get.routes.push(
         BasicRoute(
-          MatchScreen.instance(),
+          LevelScreen.instance(),
           name: 'match',
         ),
       );

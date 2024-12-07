@@ -1,6 +1,6 @@
 import 'dart:html';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:cavedash/platform/platform_base.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 class PlatformMethods extends PlatformMethodsBase {
   @override

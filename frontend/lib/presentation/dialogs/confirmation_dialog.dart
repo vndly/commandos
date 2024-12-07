@@ -1,6 +1,6 @@
+import 'package:cavedash/utils/navigation.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
-import 'package:cavedash/utils/navigation.dart';
 
 class ConfirmationDialog extends StatelessWidget {
   final String message;

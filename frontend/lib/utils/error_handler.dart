@@ -1,7 +1,7 @@
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/material.dart';
 import 'package:cavedash/utils/log.dart';
 import 'package:cavedash/utils/platform.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/material.dart';
 
 class ErrorHandler {
   static Future process(Object exception) async {

@@ -1,8 +1,6 @@
-import 'package:dafluta/dafluta.dart';
 import 'package:cavedash/domain/components/game_component.dart';
-import 'package:cavedash/domain/state/game/battlefield.dart';
 import 'package:cavedash/domain/state/game/game_engine.dart';
-import 'package:cavedash/domain/state/game/players/player.dart';
+import 'package:dafluta/dafluta.dart';
 
 class MatchState extends BaseState {
   late GameComponent gameComponent;
@@ -14,19 +12,7 @@ class MatchState extends BaseState {
 
   void restart() {
     gameComponent = GameComponent(this);
-
-    final Player self = Player.self();
-    final Player enemy = Player.enemy();
-
-    engine = GameEngine(
-      gameComponent: gameComponent,
-      self: self,
-      enemy: enemy,
-      battlefield: Battlefield.vector(
-        self: self,
-        enemy: enemy,
-      ),
-    );
+    engine = GameEngine(gameComponent: gameComponent);
 
     notify();
   }

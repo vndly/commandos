@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:cavedash/domain/state/splash/splash_state.dart';
 import 'package:cavedash/widgets/game_container.dart';
+import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
   final SplashState state;

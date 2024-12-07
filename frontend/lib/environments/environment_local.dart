@@ -1,6 +1,6 @@
+import 'package:cavedash/environments/environment.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cavedash/environments/environment.dart';
 
 class LocalEnvironment extends Environment {
   @override
