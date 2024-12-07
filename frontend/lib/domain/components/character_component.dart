@@ -20,6 +20,8 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     await super.onLoad();
     setup();
 
+    camera.moveTo(initialPosition);
+
     camera.follow(
       this,
       maxSpeed: Constants.CAMERA_SPEED * 0.8,
