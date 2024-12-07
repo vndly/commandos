@@ -30,9 +30,12 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   @override
   void update(double dt) {
     super.update(dt);
-    final Vector2 deltaPosition =
-        _velocity(dt) * Constants.CHARACTER_SPEED * dt;
-    position.add(deltaPosition);
+
+    if (movingState != MovingState.still) {
+      final Vector2 deltaPosition =
+          _velocity(dt) * Constants.CHARACTER_SPEED * dt;
+      position.add(deltaPosition);
+    }
   }
 
   Vector2 _velocity(double dt) {
