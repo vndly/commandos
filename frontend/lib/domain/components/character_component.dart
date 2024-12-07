@@ -45,22 +45,22 @@ class CharacterComponent extends BodyComponent {
     return body;
   }
 
-  @override
+  /*@override
   void render(Canvas canvas) {
     super.render(canvas);
 
-    final Paint paint = Paint();
+    /*final Paint paint = Paint();
     paint.color = const Color(0xffff0000);
     paint.strokeWidth = 1;
     paint.style = PaintingStyle.stroke;
 
     final Rect visibleRect = camera.visibleWorldRect;
-    canvas.drawRect(visibleRect, paint);
+    canvas.drawRect(visibleRect, paint);*/
 
     /*canvas.drawCircle(
       Offset.zero,
       1,
       Paint()..color = const Color(0xFFFF0000),
     );*/
-  }
+  }*/
 }
