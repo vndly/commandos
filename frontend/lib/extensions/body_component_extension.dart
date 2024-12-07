@@ -6,7 +6,9 @@ extension ComponentExtension on BodyComponent {
   void setup() {
     renderBody = Constants.RENDER_BODIES;
 
-    paint.color = const Color(0xff00ff00);
-    paint.style = PaintingStyle.stroke;
+    if (renderBody) {
+      paint.color = const Color(0xff00ff00);
+      paint.style = PaintingStyle.stroke;
+    }
   }
 }
