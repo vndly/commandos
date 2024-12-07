@@ -7,10 +7,12 @@ import 'package:cavedash/presentation/dialogs/confirmation_dialog.dart';
 import 'package:cavedash/utils/navigation.dart';
 import 'package:cavedash/utils/palette.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class GameComponent extends Forge2DGame with GameEngineRef {
+class GameComponent extends Forge2DGame
+    with GameEngineRef, HasKeyboardHandlerComponents {
   final MatchState matchState;
 
   GameComponent(this.matchState)

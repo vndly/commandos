@@ -1,9 +1,14 @@
+import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
+import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/services.dart';
 
-class CharacterComponent extends BodyComponent {
+class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Vector2 initialPosition;
   final Vector2 size;
+  final Vector2 velocity = Vector2.zero();
+  MovingState movingState = MovingState.still;
 
   CharacterComponent({
     required this.initialPosition,
@@ -16,6 +21,29 @@ class CharacterComponent extends BodyComponent {
     setup();
 
     camera.follow(this);
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+    final Vector2 deltaPosition =
+        _velocity(dt) * Constants.CHARACTER_SPEED * dt;
+    position.add(deltaPosition);
+  }
+
+  Vector2 _velocity(double dt) {
+    switch (movingState) {
+      case MovingState.left:
+        return Vector2(-1, 0);
+      case MovingState.right:
+        return Vector2(1, 0);
+      case MovingState.up:
+        return Vector2(0, -1);
+      case MovingState.down:
+        return Vector2(0, 1);
+      default:
+        return Vector2.zero();
+    }
   }
 
   @override
@@ -44,6 +72,64 @@ class CharacterComponent extends BodyComponent {
     return body;
   }
 
+  @override
+  bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
+    //final bool isKeyDown = event is KeyDownEvent;
+    bool handled = false;
+
+    /*if (isKeyDown) {
+      if ((event.logicalKey == LogicalKeyboardKey.keyA) ||
+          (event.logicalKey == LogicalKeyboardKey.arrowLeft)) {
+        movingState = MovingState.left;
+        //velocity.x = isKeyDown ? -1 : 0;
+        handled = true;
+      } else if ((event.logicalKey == LogicalKeyboardKey.keyD) ||
+          (event.logicalKey == LogicalKeyboardKey.arrowRight)) {
+        movingState = MovingState.right;
+        //velocity.x = isKeyDown ? 1 : 0;
+        handled = true;
+      } else if ((event.logicalKey == LogicalKeyboardKey.keyW) ||
+          (event.logicalKey == LogicalKeyboardKey.arrowUp)) {
+        movingState = MovingState.up;
+        //velocity.y = isKeyDown ? -1 : 0;
+        handled = true;
+      } else if ((event.logicalKey == LogicalKeyboardKey.keyS) ||
+          (event.logicalKey == LogicalKeyboardKey.arrowDown)) {
+        movingState = MovingState.left;
+        //velocity.y = isKeyDown ? 1 : 0;
+        handled = true;
+      }
+    } else {
+      movingState = MovingState.still;
+    }*/
+
+    if (keysPressed.contains(LogicalKeyboardKey.keyA) ||
+        keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
+      movingState = MovingState.left;
+      handled = true;
+    } else if (keysPressed.contains(LogicalKeyboardKey.keyD) ||
+        keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+      movingState = MovingState.right;
+      handled = true;
+    } else if (keysPressed.contains(LogicalKeyboardKey.keyW) ||
+        keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+      movingState = MovingState.up;
+      handled = true;
+    } else if (keysPressed.contains(LogicalKeyboardKey.keyS) ||
+        keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+      movingState = MovingState.down;
+      handled = true;
+    } else {
+      movingState = MovingState.still;
+    }
+
+    if (handled) {
+      return false;
+    } else {
+      return super.onKeyEvent(event, keysPressed);
+    }
+  }
+
   /*@override
   void render(Canvas canvas) {
     super.render(canvas);
@@ -61,4 +147,12 @@ class CharacterComponent extends BodyComponent {
       Paint()..color = const Color(0xFFFF0000),
     );*/
   }*/
+}
+
+enum MovingState {
+  still,
+  left,
+  right,
+  up,
+  down,
 }
