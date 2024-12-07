@@ -22,7 +22,7 @@ class GameComponent extends Forge2DGame with GameEngineRef {
 
   @override
   FutureOr onLoad() {
-    debugMode = true;
+    debugMode = false;
 
     camera = CameraComponent.withFixedResolution(
       height: Constants.SCREEN_HEIGHT,
