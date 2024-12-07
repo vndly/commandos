@@ -23,10 +23,10 @@ class CharacterComponent extends BodyComponent {
   Body createBody() {
     final PolygonShape shape = PolygonShape();
     shape.set([
+      Vector2(0, -size.y / 2),
       Vector2(size.x / 2, 0),
-      Vector2(size.x, size.y / 2),
-      Vector2(size.x / 2, size.y),
       Vector2(0, size.y / 2),
+      Vector2(-size.x / 2, 0),
     ]);
 
     final FixtureDef fixtureDef = FixtureDef(
