@@ -10,7 +10,7 @@ class LevelComponent extends Forge2DWorld {
     //final GameEngine engine = GameEngineRef.instance;
     add(CharacterComponent(
       initialPosition: Vector2(0, 0),
-      size: Vector2(10, 10),
+      size: Vector2(200, 100),
     ));
 
     return super.onLoad();

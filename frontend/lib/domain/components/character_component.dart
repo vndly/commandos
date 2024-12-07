@@ -45,23 +45,14 @@ class CharacterComponent extends BodyComponent {
     return body;
   }
 
-  @override
+  /*@override
   void render(Canvas canvas) {
     super.render(canvas);
-
-    /*canvas.drawRect(
-      Rect.fromCenter(
-        center: Offset(position.x, position.y),
-        width: size.x,
-        height: size.y,
-      ),
-      Paint()..color = const Color(0xFFFF0000),
-    );*/
 
     canvas.drawCircle(
       Offset.zero,
       1,
       Paint()..color = const Color(0xFFFF0000),
     );
-  }
+  }*/
 }
