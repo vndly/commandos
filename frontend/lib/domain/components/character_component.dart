@@ -47,14 +47,12 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
           _velocity(movingState) * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
 
-      print(grid.remainingDistance(position));
-
-      if (position.y > 60) {
-        grid.stop();
-      }
+      //print(grid.remainingDistance(position));
 
       // Detect stop moving
-      if (grid.remainingDistance(position) < 1) {
+      if (grid.remainingDistance(position) < 5) {
+        position.setFrom(grid.nextNode!.position);
+        movingState = MovingState.still;
         grid.stop();
       }
     }

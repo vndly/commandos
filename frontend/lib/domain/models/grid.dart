@@ -51,39 +51,39 @@ class Grid {
   factory Grid.create() {
     final Node node1 = Node(
       id: '1',
-      position: Vector2(10, 110),
+      position: Vector2(80, 920),
     );
     final Node node2 = Node(
       id: '2',
-      position: Vector2(30, 110),
+      position: Vector2(250, 920),
     );
     final Node node3 = Node(
       id: '3',
-      position: Vector2(50, 110),
+      position: Vector2(420, 920),
     );
     final Node node4 = Node(
       id: '4',
-      position: Vector2(70, 110),
+      position: Vector2(590, 920),
     );
     final Node node5 = Node(
       id: '5',
-      position: Vector2(90, 110),
+      position: Vector2(760, 920),
     );
     final Node node6 = Node(
       id: '6',
-      position: Vector2(170, 110),
+      position: Vector2(1440, 920),
     );
     final Node node7 = Node(
       id: '7',
-      position: Vector2(190, 110),
+      position: Vector2(1610, 920),
     );
     final Node node8 = Node(
       id: '8',
-      position: Vector2(210, 110),
+      position: Vector2(1780, 920),
     );
     final Node node9 = Node(
       id: '9',
-      position: Vector2(230, 110),
+      position: Vector2(1950, 920),
     );
 
     node1.connect(right: node2);
