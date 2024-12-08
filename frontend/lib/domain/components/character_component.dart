@@ -51,7 +51,8 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       // print(grid.remainingDistance(position));
 
       // Detect stop moving
-      if (grid.remainingDistance(position) < 5) {
+      if (grid.remainingDistance(position) <
+          Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         position.setFrom(grid.currentNode.position);
         movingState = MovingState.still;
