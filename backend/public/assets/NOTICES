@@ -4623,6 +4623,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------------
 built_collection
 built_value
+forge2d
 
 Copyright 2015, Google Inc. All rights reserved.
 
@@ -7714,6 +7715,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 flame
+flame_forge2d
 
 MIT License
 

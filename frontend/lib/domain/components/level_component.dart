@@ -10,7 +10,9 @@ class LevelComponent extends Forge2DWorld {
   @override
   FutureOr onLoad() {
     //final GameEngine engine = GameEngineRef.instance;
-    add(LevelBackgroundComponent());
+    add(LevelBackgroundComponent(
+      size: Vector2(2000, 1000),
+    ));
 
     add(CharacterComponent(
       initialPosition: Vector2(83, 917),
@@ -22,9 +24,9 @@ class LevelComponent extends Forge2DWorld {
 }
 
 class LevelBackgroundComponent extends SpriteComponent {
-  LevelBackgroundComponent()
-      : super(
-          size: Vector2(2000, 1000),
+  LevelBackgroundComponent({
+    super.size,
+  }) : super(
           position: Vector2(0, 0),
           anchor: Anchor.topLeft,
         );
