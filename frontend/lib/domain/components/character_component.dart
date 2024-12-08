@@ -12,6 +12,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
+  MovingState movingState = MovingState.still;
 
   CharacterComponent({
     required this.initialPosition,
@@ -35,22 +36,39 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   void update(double dt) {
     super.update(dt);
 
-    if (!input.state.isNone) {
+    // Detect start moving
+    if (!input.state.isNone && movingState.isStill) {
+      movingState = grid.move(input.state);
+    }
+
+    // Move
+    if (grid.isMoving) {
       final Vector2 deltaPosition =
-          _velocity(input.state) * Constants.CHARACTER_SPEED * dt;
+          _velocity(movingState) * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
+
+      print(grid.remainingDistance(position));
+
+      if (position.y > 60) {
+        grid.stop();
+      }
+
+      // Detect stop moving
+      if (grid.remainingDistance(position) < 1) {
+        grid.stop();
+      }
     }
   }
 
-  Vector2 _velocity(InputState state) {
+  Vector2 _velocity(MovingState state) {
     switch (state) {
-      case InputState.left:
+      case MovingState.left:
         return Vector2(-1, 0);
-      case InputState.right:
+      case MovingState.right:
         return Vector2(1, 0);
-      case InputState.up:
+      case MovingState.up:
         return Vector2(0, -1);
-      case InputState.down:
+      case MovingState.down:
         return Vector2(0, 1);
       default:
         return Vector2.zero();
@@ -109,4 +127,14 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       Paint()..color = const Color(0xFFFF0000),
     );*/
   }*/
+}
+
+enum MovingState {
+  still,
+  left,
+  right,
+  up,
+  down;
+
+  bool get isStill => this == MovingState.still;
 }
