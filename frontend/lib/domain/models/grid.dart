@@ -51,43 +51,39 @@ class Grid {
   factory Grid.create() {
     final Node node1 = Node(
       id: '1',
-      position: Vector2(80, 920),
+      position: Vector2(100, 900),
     );
     final Node node2 = Node(
       id: '2',
-      position: Vector2(250, 920),
+      position: Vector2(300, 900),
     );
     final Node node3 = Node(
       id: '3',
-      position: Vector2(420, 920),
+      position: Vector2(500, 900),
     );
     final Node node4 = Node(
       id: '4',
-      position: Vector2(590, 920),
+      position: Vector2(700, 900),
     );
     final Node node5 = Node(
       id: '5',
-      position: Vector2(760, 920),
+      position: Vector2(900, 900),
     );
     final Node node6 = Node(
       id: '6',
-      position: Vector2(930, 920),
+      position: Vector2(1300, 900),
     );
     final Node node7 = Node(
       id: '7',
-      position: Vector2(1440, 920),
+      position: Vector2(1500, 900),
     );
     final Node node8 = Node(
       id: '8',
-      position: Vector2(1610, 920),
+      position: Vector2(1700, 900),
     );
     final Node node9 = Node(
       id: '9',
-      position: Vector2(1780, 920),
-    );
-    final Node node10 = Node(
-      id: '10',
-      position: Vector2(1950, 920),
+      position: Vector2(1900, 900),
     );
 
     node1.connect(right: node2);
@@ -98,7 +94,6 @@ class Grid {
     node6.connect(right: node7);
     node7.connect(right: node8);
     node8.connect(right: node9);
-    node9.connect(right: node10);
 
     final List<Node> nodes = [
       node1,
@@ -110,7 +105,6 @@ class Grid {
       node7,
       node8,
       node9,
-      node10,
     ];
 
     return Grid(nodes: nodes);

@@ -16,7 +16,6 @@ class LevelComponent extends Forge2DWorld {
     ));
 
     add(CharacterComponent(
-      initialPosition: Vector2(83, 917),
       size: Vector2(40, 40),
       grid: Grid.create(),
     ));

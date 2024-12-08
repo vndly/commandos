@@ -7,7 +7,7 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
 class CharacterComponent extends BodyComponent with KeyboardHandler {
-  final Vector2 initialPosition;
+  final Vector2 initialPosition = Vector2.zero();
   final Vector2 size;
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
@@ -15,10 +15,11 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   MovingState movingState = MovingState.still;
 
   CharacterComponent({
-    required this.initialPosition,
     required this.size,
     required this.grid,
-  });
+  }) {
+    initialPosition.setFrom(grid.currentNode.position);
+  }
 
   @override
   Future onLoad() async {
@@ -30,8 +31,6 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       this,
       maxSpeed: Constants.CAMERA_SPEED,
     );
-
-    position.setFrom(grid.currentNode.position);
   }
 
   @override
@@ -49,7 +48,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
           _velocity(movingState) * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
 
-      //print(grid.remainingDistance(position));
+      // print(grid.remainingDistance(position));
 
       // Detect stop moving
       if (grid.remainingDistance(position) < 5) {
