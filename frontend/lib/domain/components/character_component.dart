@@ -1,4 +1,5 @@
 import 'package:cavedash/app/constants.dart';
+import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:flame/components.dart';
@@ -8,12 +9,14 @@ import 'package:flutter/services.dart';
 class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Vector2 initialPosition;
   final Vector2 size;
+  final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
 
   CharacterComponent({
     required this.initialPosition,
     required this.size,
+    required this.grid,
   });
 
   @override
