@@ -20,16 +20,16 @@ class Grid {
     switch (state) {
       case InputState.left:
         nextNode = currentNode.left;
-        return MovingState.left;
+        return (nextNode != null) ? MovingState.left : MovingState.still;
       case InputState.right:
         nextNode = currentNode.right;
-        return MovingState.right;
+        return (nextNode != null) ? MovingState.right : MovingState.still;
       case InputState.up:
         nextNode = currentNode.up;
-        return MovingState.up;
+        return (nextNode != null) ? MovingState.up : MovingState.still;
       case InputState.down:
         nextNode = currentNode.down;
-        return MovingState.down;
+        return (nextNode != null) ? MovingState.down : MovingState.still;
       default:
         return MovingState.still;
     }
@@ -71,18 +71,22 @@ class Grid {
     );
     final Node node6 = Node(
       id: '6',
-      position: Vector2(1440, 920),
+      position: Vector2(930, 920),
     );
     final Node node7 = Node(
       id: '7',
-      position: Vector2(1610, 920),
+      position: Vector2(1440, 920),
     );
     final Node node8 = Node(
       id: '8',
-      position: Vector2(1780, 920),
+      position: Vector2(1610, 920),
     );
     final Node node9 = Node(
       id: '9',
+      position: Vector2(1780, 920),
+    );
+    final Node node10 = Node(
+      id: '10',
       position: Vector2(1950, 920),
     );
 
@@ -94,6 +98,7 @@ class Grid {
     node6.connect(right: node7);
     node7.connect(right: node8);
     node8.connect(right: node9);
+    node9.connect(right: node10);
 
     final List<Node> nodes = [
       node1,
@@ -105,6 +110,7 @@ class Grid {
       node7,
       node8,
       node9,
+      node10,
     ];
 
     return Grid(nodes: nodes);

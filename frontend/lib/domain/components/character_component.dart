@@ -30,6 +30,8 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       this,
       maxSpeed: Constants.CAMERA_SPEED,
     );
+
+    position.setFrom(grid.currentNode.position);
   }
 
   @override
@@ -51,9 +53,9 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
 
       // Detect stop moving
       if (grid.remainingDistance(position) < 5) {
-        position.setFrom(grid.nextNode!.position);
-        movingState = MovingState.still;
         grid.stop();
+        position.setFrom(grid.currentNode.position);
+        movingState = MovingState.still;
       }
     }
   }
