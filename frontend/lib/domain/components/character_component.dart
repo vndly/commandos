@@ -1,4 +1,5 @@
 import 'package:cavedash/app/constants.dart';
+import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -8,7 +9,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Vector2 initialPosition;
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
-  MovingState movingState = MovingState.still;
+  final Input input = Input();
 
   CharacterComponent({
     required this.initialPosition,
@@ -31,22 +32,22 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   void update(double dt) {
     super.update(dt);
 
-    if (movingState != MovingState.still) {
+    if (!input.state.isNone) {
       final Vector2 deltaPosition =
-          _velocity(dt) * Constants.CHARACTER_SPEED * dt;
+          _velocity(input.state) * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
     }
   }
 
-  Vector2 _velocity(double dt) {
-    switch (movingState) {
-      case MovingState.left:
+  Vector2 _velocity(InputState state) {
+    switch (state) {
+      case InputState.left:
         return Vector2(-1, 0);
-      case MovingState.right:
+      case InputState.right:
         return Vector2(1, 0);
-      case MovingState.up:
+      case InputState.up:
         return Vector2(0, -1);
-      case MovingState.down:
+      case InputState.down:
         return Vector2(0, 1);
       default:
         return Vector2.zero();
@@ -81,56 +82,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
 
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    //final bool isKeyDown = event is KeyDownEvent;
-    bool handled = false;
-
-    /*if (isKeyDown) {
-      if ((event.logicalKey == LogicalKeyboardKey.keyA) ||
-          (event.logicalKey == LogicalKeyboardKey.arrowLeft)) {
-        movingState = MovingState.left;
-        //velocity.x = isKeyDown ? -1 : 0;
-        handled = true;
-      } else if ((event.logicalKey == LogicalKeyboardKey.keyD) ||
-          (event.logicalKey == LogicalKeyboardKey.arrowRight)) {
-        movingState = MovingState.right;
-        //velocity.x = isKeyDown ? 1 : 0;
-        handled = true;
-      } else if ((event.logicalKey == LogicalKeyboardKey.keyW) ||
-          (event.logicalKey == LogicalKeyboardKey.arrowUp)) {
-        movingState = MovingState.up;
-        //velocity.y = isKeyDown ? -1 : 0;
-        handled = true;
-      } else if ((event.logicalKey == LogicalKeyboardKey.keyS) ||
-          (event.logicalKey == LogicalKeyboardKey.arrowDown)) {
-        movingState = MovingState.left;
-        //velocity.y = isKeyDown ? 1 : 0;
-        handled = true;
-      }
-    } else {
-      movingState = MovingState.still;
-    }*/
-
-    if (keysPressed.contains(LogicalKeyboardKey.keyA) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
-      movingState = MovingState.left;
-      handled = true;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyD) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
-      movingState = MovingState.right;
-      handled = true;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyW) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
-      movingState = MovingState.up;
-      handled = true;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyS) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
-      movingState = MovingState.down;
-      handled = true;
-    } else {
-      movingState = MovingState.still;
-    }
-
-    if (handled) {
+    if (input.onKeyEvent(keysPressed)) {
       return false;
     } else {
       return super.onKeyEvent(event, keysPressed);
@@ -154,12 +106,4 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       Paint()..color = const Color(0xFFFF0000),
     );*/
   }*/
-}
-
-enum MovingState {
-  still,
-  left,
-  right,
-  up,
-  down,
 }
