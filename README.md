@@ -1,3 +1,3 @@
 # Cave Dash
 
-[atomic-prototype.web.app](atomic-prototype.web.app)
+[atomic-prototype.web.app](https://atomic-prototype.web.app)
