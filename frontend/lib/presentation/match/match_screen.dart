@@ -29,11 +29,8 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: GameWidget(
-        game: state.gameComponent,
-      ),
+    return GameWidget(
+      game: state.gameComponent,
     );
   }
 }

@@ -1,10 +1,13 @@
 import 'package:cavedash/domain/components/game_component.dart';
+import 'package:cavedash/domain/models/grid.dart';
 
 class GameEngine {
   final GameComponent gameComponent;
+  final Grid grid;
 
   GameEngine({
     required this.gameComponent,
+    required this.grid,
   }) {
     GameEngineRef.instance = this;
   }

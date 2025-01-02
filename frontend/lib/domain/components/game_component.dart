@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/domain/components/level_component.dart';
+import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:cavedash/domain/state/match/match_state.dart';
 import 'package:cavedash/presentation/dialogs/confirmation_dialog.dart';
@@ -25,21 +25,19 @@ class GameComponent extends Forge2DGame
   FutureOr onLoad() {
     debugMode = false;
 
+    final Grid grid = matchState.engine.grid;
+
     final Size size = MediaQuery.of(Navigation.context()).size;
     final double screenRatio = size.height / size.width;
 
-    const double width = Constants.SCREEN_WIDTH;
-    final double height = Constants.SCREEN_WIDTH * screenRatio;
+    final double height = grid.size.y * 1.1;
+    final double width = height / screenRatio;
 
     camera = CameraComponent.withFixedResolution(
       width: width,
       height: height,
     );
-
-    /*camera.moveTo(Vector2(
-      Constants.SCREEN_WIDTH / 2,
-      (Constants.SCREEN_HEIGHT / 2) - Constants.UI_BASE_HEIGHT,
-    ));*/
+    camera.moveTo(grid.startPosition);
 
     if (debugMode) {
       camera.viewport.add(FpsTextComponent(
@@ -58,7 +56,7 @@ class GameComponent extends Forge2DGame
   }
 
   @override
-  Color backgroundColor() => Colors.pink; // Palette.GAME_BACKGROUND;
+  Color backgroundColor() => Palette.GAME_BACKGROUND;
 
   @override
   void update(double dt) {

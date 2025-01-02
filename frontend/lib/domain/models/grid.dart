@@ -16,7 +16,9 @@ class Grid {
     currentNode = nodes.first;
   }
 
-  Vector2 get startPosition => Vector2(size.x / 2, size.y / 2);
+  Vector2 get center => Vector2(size.x / 2, size.y / 2);
+
+  Vector2 get startPosition => center;
 
   bool get isMoving => nextNode != null;
 
