@@ -7,54 +7,30 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
 class CharacterComponent extends BodyComponent with KeyboardHandler {
-  final Vector2 initialPosition = Vector2.zero();
   final Vector2 size;
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
-  //MovingState movingState = MovingState.still;
 
   CharacterComponent({
     required this.size,
     required this.grid,
-  }) {
-    initialPosition.setFrom(grid.startPosition);
-  }
+  });
 
   @override
   Future onLoad() async {
     await super.onLoad();
     setup();
-
-    //camera.moveTo(initialPosition);
-    /*camera.follow(
-      this,
-      maxSpeed: Constants.CAMERA_SPEED,
-    );*/
   }
 
   @override
   void update(double dt) {
     super.update(dt);
 
-    // Detect start moving
-    /*if (!input.state.isNone && movingState.isStill) {
-      movingState = grid.move(input.state);
-    }*/
-
-    // Move
-    if (!input.state.isNone) {
+    if (input.isMoving) {
       final Vector2 deltaPosition =
           _velocity(input.state) * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
-
-      // Detect stop moving
-      /*if (grid.remainingDistance(position) <
-          Constants.NODE_DISTANCE_THRESHOLD) {
-        grid.stop();
-        position.setFrom(grid.currentNode.position);
-        movingState = MovingState.still;
-      }*/
     }
   }
 
@@ -89,7 +65,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     );
 
     final BodyDef bodyDef = BodyDef(
-      position: initialPosition.clone(),
+      position: grid.startPosition.clone(),
       type: BodyType.dynamic,
     );
 
@@ -125,14 +101,4 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       Paint()..color = const Color(0xFFFF0000),
     );*/
   }*/
-}
-
-enum MovingState {
-  still,
-  left,
-  right,
-  up,
-  down;
-
-  bool get isStill => this == MovingState.still;
 }

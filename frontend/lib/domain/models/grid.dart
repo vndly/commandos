@@ -1,5 +1,3 @@
-import 'package:cavedash/domain/components/character_component.dart';
-import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/domain/models/node.dart';
 import 'package:flame/components.dart';
 
@@ -21,25 +19,6 @@ class Grid {
   Vector2 get startPosition => center;
 
   bool get isMoving => nextNode != null;
-
-  MovingState move(InputState state) {
-    switch (state) {
-      case InputState.left:
-        nextNode = currentNode.left;
-        return (nextNode != null) ? MovingState.left : MovingState.still;
-      case InputState.right:
-        nextNode = currentNode.right;
-        return (nextNode != null) ? MovingState.right : MovingState.still;
-      case InputState.up:
-        nextNode = currentNode.up;
-        return (nextNode != null) ? MovingState.up : MovingState.still;
-      case InputState.down:
-        nextNode = currentNode.down;
-        return (nextNode != null) ? MovingState.down : MovingState.still;
-      default:
-        return MovingState.still;
-    }
-  }
 
   double remainingDistance(Vector2 position) {
     if (nextNode == null) {

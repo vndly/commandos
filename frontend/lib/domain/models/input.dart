@@ -3,6 +3,8 @@ import 'package:flutter/services.dart';
 class Input {
   InputState state = InputState.none;
 
+  bool get isMoving => !state.isNone;
+
   bool onKeyEvent(Set<LogicalKeyboardKey> keysPressed) {
     bool handled = false;
 
