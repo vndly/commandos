@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:cavedash/domain/components/character_component.dart';
+import 'package:cavedash/domain/components/map_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
-import 'package:cavedash/utils/assets.dart';
-import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
@@ -10,31 +9,17 @@ class LevelComponent extends Forge2DWorld {
 
   @override
   FutureOr onLoad() {
+    final Grid grid = Grid.create();
+
     //final GameEngine engine = GameEngineRef.instance;
-    add(LevelBackgroundComponent(
-      size: Vector2(2000, 1000),
+    add(MapBackgroundComponent(
+      grid: grid,
     ));
 
     add(CharacterComponent(
       size: Vector2(40, 40),
-      grid: Grid.create(),
+      grid: grid,
     ));
-
-    return super.onLoad();
-  }
-}
-
-class LevelBackgroundComponent extends SpriteComponent {
-  LevelBackgroundComponent({
-    super.size,
-  }) : super(
-          position: Vector2(0, 0),
-          anchor: Anchor.topLeft,
-        );
-
-  @override
-  FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_LEVELS_LEVEL0);
 
     return super.onLoad();
   }

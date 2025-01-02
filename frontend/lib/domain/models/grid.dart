@@ -4,15 +4,19 @@ import 'package:cavedash/domain/models/node.dart';
 import 'package:flame/components.dart';
 
 class Grid {
+  final Vector2 size;
   final List<Node> nodes;
   late Node currentNode;
   Node? nextNode;
 
   Grid({
+    required this.size,
     required this.nodes,
   }) {
     currentNode = nodes.first;
   }
+
+  Vector2 get startPosition => Vector2(size.x / 2, size.y / 2);
 
   bool get isMoving => nextNode != null;
 
@@ -107,6 +111,9 @@ class Grid {
       node9,
     ];
 
-    return Grid(nodes: nodes);
+    return Grid(
+      size: Vector2(1000, 1000),
+      nodes: nodes,
+    );
   }
 }

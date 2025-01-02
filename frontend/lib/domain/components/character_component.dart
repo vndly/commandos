@@ -12,13 +12,13 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
-  MovingState movingState = MovingState.still;
+  //MovingState movingState = MovingState.still;
 
   CharacterComponent({
     required this.size,
     required this.grid,
   }) {
-    initialPosition.setFrom(grid.currentNode.position);
+    initialPosition.setFrom(grid.startPosition);
   }
 
   @override
@@ -27,10 +27,10 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     setup();
 
     camera.moveTo(initialPosition);
-    camera.follow(
+    /*camera.follow(
       this,
       maxSpeed: Constants.CAMERA_SPEED,
-    );
+    );*/
   }
 
   @override
@@ -38,37 +38,35 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     super.update(dt);
 
     // Detect start moving
-    if (!input.state.isNone && movingState.isStill) {
+    /*if (!input.state.isNone && movingState.isStill) {
       movingState = grid.move(input.state);
-    }
+    }*/
 
     // Move
-    if (grid.isMoving) {
+    if (!input.state.isNone) {
       final Vector2 deltaPosition =
-          _velocity(movingState) * Constants.CHARACTER_SPEED * dt;
+          _velocity(input.state) * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
 
-      // print(grid.remainingDistance(position));
-
       // Detect stop moving
-      if (grid.remainingDistance(position) <
+      /*if (grid.remainingDistance(position) <
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         position.setFrom(grid.currentNode.position);
         movingState = MovingState.still;
-      }
+      }*/
     }
   }
 
-  Vector2 _velocity(MovingState state) {
+  Vector2 _velocity(InputState state) {
     switch (state) {
-      case MovingState.left:
+      case InputState.left:
         return Vector2(-1, 0);
-      case MovingState.right:
+      case InputState.right:
         return Vector2(1, 0);
-      case MovingState.up:
+      case InputState.up:
         return Vector2(0, -1);
-      case MovingState.down:
+      case InputState.down:
         return Vector2(0, 1);
       default:
         return Vector2.zero();

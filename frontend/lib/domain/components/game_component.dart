@@ -58,7 +58,7 @@ class GameComponent extends Forge2DGame
   }
 
   @override
-  Color backgroundColor() => Palette.GAME_BACKGROUND;
+  Color backgroundColor() => Colors.pink; // Palette.GAME_BACKGROUND;
 
   @override
   void update(double dt) {
