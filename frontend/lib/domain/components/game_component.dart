@@ -60,12 +60,22 @@ class GameComponent extends Forge2DGame
     required Grid grid,
   }) {
     final Size screenSize = MediaQuery.of(Navigation.context()).size;
-    final double screenRatio = screenSize.height / screenSize.width;
 
-    final double height = grid.size.y * 1.1;
-    final double width = height / screenRatio;
+    if (screenSize.width > screenSize.height) {
+      final double screenRatio = screenSize.height / screenSize.width;
 
-    return Size(width, height);
+      final double height = grid.size.y * 1.1;
+      final double width = height / screenRatio;
+
+      return Size(width, height);
+    } else {
+      final double screenRatio = screenSize.width / screenSize.height;
+
+      final double width = grid.size.x * 1.1;
+      final double height = width / screenRatio;
+
+      return Size(width, height);
+    }
   }
 
   @override
