@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/node.dart';
-import 'package:cavedash/extensions/canvas_extension.dart';
 import 'package:flame/components.dart';
 
 class GridComponent extends PositionComponent {
