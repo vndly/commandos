@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:cavedash/domain/components/character_component.dart';
 import 'package:cavedash/domain/components/grid_component.dart';
 import 'package:cavedash/domain/components/map_component.dart';
+import 'package:cavedash/domain/components/wall_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -23,6 +24,28 @@ class LevelComponent extends Forge2DWorld {
     add(CharacterComponent(
       size: Vector2(40, 40),
       grid: grid,
+    ));
+
+    const double wallWidth1 = 125;
+    add(WallComponent(
+      location: Vector2(250, 750),
+      vertices: [
+        Vector2(wallWidth1, wallWidth1),
+        Vector2(wallWidth1, -wallWidth1),
+        Vector2(-wallWidth1, -wallWidth1),
+        Vector2(-wallWidth1, wallWidth1),
+      ],
+    ));
+
+    const double wallWidth2 = 41.6;
+    add(WallComponent(
+      location: Vector2(666, 333),
+      vertices: [
+        Vector2(wallWidth2, wallWidth2),
+        Vector2(wallWidth2, -wallWidth2),
+        Vector2(-wallWidth2, -wallWidth2),
+        Vector2(-wallWidth2, wallWidth2),
+      ],
     ));
 
     return super.onLoad();
