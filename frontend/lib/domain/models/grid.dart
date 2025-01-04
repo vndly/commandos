@@ -3,12 +3,14 @@ import 'package:flame/components.dart';
 
 class Grid {
   final Vector2 size;
+  final Vector2 dimensions;
   final List<Node> nodes;
   late Node currentNode;
   Node? nextNode;
 
   Grid({
     required this.size,
+    required this.dimensions,
     required this.nodes,
   }) {
     currentNode = nodes.first;
@@ -94,6 +96,7 @@ class Grid {
 
     return Grid(
       size: Vector2(1000, 1000),
+      dimensions: Vector2(7, 7),
       nodes: nodes,
     );
   }
