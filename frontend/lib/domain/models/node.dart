@@ -2,6 +2,7 @@ import 'package:flame/components.dart';
 
 class Node {
   final String id;
+  final Vector2 index;
   final Vector2 position;
   Node? up;
   Node? down;
@@ -10,6 +11,7 @@ class Node {
 
   Node({
     required this.id,
+    required this.index,
     required this.position,
   });
 

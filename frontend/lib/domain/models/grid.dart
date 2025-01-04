@@ -21,6 +21,10 @@ class Grid {
 
   Vector2 get startPosition => center;
 
+  double get gapX => size.x / (dimensions.x - 1);
+
+  double get gapY => size.y / (dimensions.y - 1);
+
   bool get isMoving => nextNode != null;
 
   MovingState move(InputState state) {
@@ -67,6 +71,10 @@ class Grid {
       for (int y = 0; y < dimensions.y; y++) {
         final Node node = Node(
           id: '$x,$y',
+          index: Vector2(
+            x.toDouble(),
+            y.toDouble(),
+          ),
           position: Vector2(
             x * gapX,
             y * gapY,
