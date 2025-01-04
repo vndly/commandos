@@ -8,7 +8,7 @@ class GridMarkersComponent extends PositionComponent {
   GridMarkersComponent({
     required this.grid,
   }) : super(
-          position: Vector2(500, 500),
+          position: grid.center,
           anchor: Anchor.center,
           size: grid.size,
         );

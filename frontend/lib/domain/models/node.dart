@@ -21,16 +21,18 @@ class Node {
   }) {
     if (up != null) {
       this.up = up;
-      up.down = this;
-    } else if (down != null) {
+    }
+
+    if (down != null) {
       this.down = down;
-      down.up = this;
-    } else if (left != null) {
+    }
+
+    if (left != null) {
       this.left = left;
-      left.right = this;
-    } else if (right != null) {
+    }
+
+    if (right != null) {
       this.right = right;
-      right.left = this;
     }
   }
 

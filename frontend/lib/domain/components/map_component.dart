@@ -9,7 +9,7 @@ class MapBackgroundComponent extends SpriteComponent {
   MapBackgroundComponent({
     required this.grid,
   }) : super(
-          position: Vector2(500, 500),
+          position: grid.center,
           anchor: Anchor.center,
           size: grid.size * 1.070833333,
         );
