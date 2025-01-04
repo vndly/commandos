@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/node.dart';
+import 'package:cavedash/extensions/canvas_extension.dart';
 import 'package:flame/components.dart';
 
 class GridComponent extends PositionComponent {
@@ -20,10 +21,7 @@ class GridComponent extends PositionComponent {
     for (final node in grid.nodes) {
       add(NodeComponent(
         node: node,
-        position: Vector2(
-          node.index.x * (grid.gapX / 2),
-          node.index.y * (grid.gapY / 2),
-        ),
+        position: node.position,
       ));
     }
 
@@ -43,18 +41,6 @@ class GridComponent extends PositionComponent {
       Rect.fromLTWH(0, 0, width, height),
       paintBorder,
     );
-
-    final Paint paintNode = Paint();
-    paintNode.color = const Color(0xffffff00);
-    paintNode.style = PaintingStyle.stroke;
-
-    for (final node in grid.nodes) {
-      canvas.drawCircle(
-        Offset(node.position.x, node.position.y),
-        7,
-        paintNode,
-      );
-    }
   }
 }
 
@@ -77,9 +63,16 @@ class NodeComponent extends PositionComponent {
     paintNode.style = PaintingStyle.fill;
 
     canvas.drawCircle(
-      center.toOffset(),
+      const Offset(0, 0),
       5,
       paintNode,
     );
+
+    /*canvas.drawText(
+      text: node.id,
+      position: Vector2(15, 15),
+      size: 15,
+      color: const Color(0xffff0000),
+    );*/
   }
 }

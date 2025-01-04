@@ -12,7 +12,6 @@ class LevelComponent extends Forge2DWorld {
   FutureOr onLoad() {
     final Grid grid = Grid.create();
 
-    //final GameEngine engine = GameEngineRef.instance;
     add(MapBackgroundComponent(
       grid: grid,
     ));
