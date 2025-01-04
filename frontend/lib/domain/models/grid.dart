@@ -7,6 +7,7 @@ class Grid {
   final Vector2 size;
   final Vector2 dimensions;
   final List<Node> nodes;
+  late final Vector2 startPosition;
   Node currentNode;
   Node? nextNode;
 
@@ -15,11 +16,11 @@ class Grid {
     required this.dimensions,
     required this.nodes,
     required this.currentNode,
-  });
+  }) {
+    startPosition = currentNode.position;
+  }
 
   Vector2 get center => Vector2(size.x / 2, size.y / 2);
-
-  Vector2 get startPosition => center;
 
   double get gapX => size.x / (dimensions.x - 1);
 
