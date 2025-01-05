@@ -4,6 +4,7 @@ import 'package:cavedash/domain/components/grid_component.dart';
 import 'package:cavedash/domain/components/map_component.dart';
 import 'package:cavedash/domain/components/wall_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
+import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
@@ -11,7 +12,7 @@ class LevelComponent extends Forge2DWorld {
 
   @override
   FutureOr onLoad() {
-    final Grid grid = Grid.create();
+    final Grid grid = GameEngineRef.instance.grid;
 
     add(MapBackgroundComponent(
       grid: grid,
