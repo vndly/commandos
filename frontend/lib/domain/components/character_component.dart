@@ -29,7 +29,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     super.update(dt);
 
     // Detect start moving
-    if (!input.state.isNone && movingState.isStill) {
+    if (input.isMoving && movingState.isStill) {
       movingState = grid.move(input.state);
     }
 
