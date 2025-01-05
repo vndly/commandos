@@ -38,7 +38,7 @@ class LevelComponent extends Forge2DWorld {
       ],
     ));
 
-    const double wallWidth2 = 41.6;
+    const double wallWidth2 = 50;
     add(WallComponent(
       location: Vector2(666, 333),
       vertices: [
