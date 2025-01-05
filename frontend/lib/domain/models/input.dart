@@ -5,23 +5,28 @@ class Input {
 
   bool get isMoving => !state.isNone;
 
-  bool onKeyEvent(Set<LogicalKeyboardKey> keysPressed) {
+  bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     bool handled = false;
+    final bool isKeyDown = event is KeyDownEvent;
 
-    if (keysPressed.contains(LogicalKeyboardKey.keyA) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowLeft)) {
+    if (isKeyDown &&
+        (keysPressed.contains(LogicalKeyboardKey.keyA) ||
+            keysPressed.contains(LogicalKeyboardKey.arrowLeft))) {
       state = InputState.left;
       handled = true;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyD) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowRight)) {
+    } else if (isKeyDown &&
+        (keysPressed.contains(LogicalKeyboardKey.keyD) ||
+            keysPressed.contains(LogicalKeyboardKey.arrowRight))) {
       state = InputState.right;
       handled = true;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyW) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowUp)) {
+    } else if (isKeyDown &&
+        (keysPressed.contains(LogicalKeyboardKey.keyW) ||
+            keysPressed.contains(LogicalKeyboardKey.arrowUp))) {
       state = InputState.up;
       handled = true;
-    } else if (keysPressed.contains(LogicalKeyboardKey.keyS) ||
-        keysPressed.contains(LogicalKeyboardKey.arrowDown)) {
+    } else if (isKeyDown &&
+        (keysPressed.contains(LogicalKeyboardKey.keyS) ||
+            keysPressed.contains(LogicalKeyboardKey.arrowDown))) {
       state = InputState.down;
       handled = true;
     } else {

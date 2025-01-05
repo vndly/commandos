@@ -31,6 +31,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     // Detect start moving
     if (input.isMoving && movingState.isStill) {
       movingState = grid.move(input.state);
+      input.state = InputState.none;
     }
 
     // Move
@@ -93,7 +94,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
 
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    if (input.onKeyEvent(keysPressed)) {
+    if (input.onKeyEvent(event, keysPressed)) {
       return false;
     } else {
       return super.onKeyEvent(event, keysPressed);
