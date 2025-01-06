@@ -1,4 +1,3 @@
-import 'package:cavedash/domain/components/character_component.dart';
 import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/domain/models/node.dart';
 import 'package:flame/components.dart';
@@ -28,22 +27,25 @@ class Grid {
 
   bool get isMoving => nextNode != null;
 
-  MovingState move(InputState state) {
+  Vector2? move({
+    required InputState state,
+    required Vector2 position,
+  }) {
     switch (state) {
       case InputState.left:
         nextNode = currentNode.left;
-        return (nextNode != null) ? MovingState.left : MovingState.still;
+        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
       case InputState.right:
         nextNode = currentNode.right;
-        return (nextNode != null) ? MovingState.right : MovingState.still;
+        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
       case InputState.up:
         nextNode = currentNode.up;
-        return (nextNode != null) ? MovingState.up : MovingState.still;
+        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
       case InputState.down:
         nextNode = currentNode.down;
-        return (nextNode != null) ? MovingState.down : MovingState.still;
+        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
       default:
-        return MovingState.still;
+        return null;
     }
   }
 

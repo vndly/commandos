@@ -11,7 +11,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
-  MovingState movingState = MovingState.still;
+  Vector2? direction;
 
   CharacterComponent({
     required this.size,
@@ -29,15 +29,17 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     super.update(dt);
 
     // Detect start moving
-    if (input.isMoving && movingState.isStill) {
-      movingState = grid.move(input.state);
+    if (input.isMoving && (direction == null)) {
+      direction = grid.move(
+        state: input.state,
+        position: position,
+      );
       input.state = InputState.none;
     }
 
-    // Move
-    if (grid.isMoving) {
-      final Vector2 deltaPosition =
-          _velocity(movingState) * Constants.CHARACTER_SPEED * dt;
+    // Detect moving
+    if (grid.isMoving && (direction != null)) {
+      final Vector2 deltaPosition = direction! * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
 
       // print(grid.remainingDistance(position));
@@ -46,23 +48,8 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         position.setFrom(grid.currentNode.position);
-        movingState = MovingState.still;
+        direction = null;
       }
-    }
-  }
-
-  Vector2 _velocity(MovingState state) {
-    switch (state) {
-      case MovingState.left:
-        return Vector2(-1, 0);
-      case MovingState.right:
-        return Vector2(1, 0);
-      case MovingState.up:
-        return Vector2(0, -1);
-      case MovingState.down:
-        return Vector2(0, 1);
-      default:
-        return Vector2.zero();
     }
   }
 
@@ -118,14 +105,4 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       Paint()..color = const Color(0xFFFF0000),
     );*/
   }*/
-}
-
-enum MovingState {
-  still,
-  left,
-  right,
-  up,
-  down;
-
-  bool get isStill => this == MovingState.still;
 }
