@@ -8,6 +8,8 @@ import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
+  late final CharacterComponent characterComponent;
+
   LevelComponent();
 
   @override
@@ -22,10 +24,12 @@ class LevelComponent extends Forge2DWorld {
       grid: grid,
     ));
 
-    add(CharacterComponent(
+    characterComponent = CharacterComponent(
       size: Vector2(40, 40),
       grid: grid,
-    ));
+    );
+
+    add(characterComponent);
 
     const double wallWidth1 = 125;
     add(WallComponent(

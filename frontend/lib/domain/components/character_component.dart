@@ -3,6 +3,7 @@ import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
@@ -33,7 +34,6 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
         state: input.state,
         position: position,
       );
-      input.state = InputState.none;
     }
 
     // Detect moving
@@ -48,6 +48,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         position.setFrom(grid.currentNode.position);
+        input.state = InputState.none;
       }
     }
   }
@@ -86,6 +87,8 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
       return super.onKeyEvent(event, keysPressed);
     }
   }
+
+  void onPanUpdate(DragUpdateInfo info) => input.onPanUpdate(info.raw.delta);
 
   /*@override
   void render(Canvas canvas) {

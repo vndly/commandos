@@ -11,8 +11,8 @@ import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class GameComponent extends Forge2DGame
-    with GameEngineRef, HasKeyboardHandlerComponents {
+class GameComponent extends Forge2DGame<LevelComponent>
+    with GameEngineRef, HasKeyboardHandlerComponents, PanDetector {
   final MatchState matchState;
 
   GameComponent(this.matchState)
@@ -103,6 +103,10 @@ class GameComponent extends Forge2DGame
       );
     }
   }
+
+  @override
+  void onPanUpdate(DragUpdateInfo info) =>
+      world.characterComponent.onPanUpdate(info);
 
   void _onMatchReset() => matchState.restart();
 

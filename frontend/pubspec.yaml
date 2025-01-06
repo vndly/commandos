@@ -8,11 +8,11 @@ environment:
 
 dependencies:
   get_it: ^8.0.3
-  flame: ^1.22.0
+  flame: ^1.23.0
   logger: ^2.5.0
   dafluta: ^5.4.0
   url_strategy: ^0.3.0
-  flame_forge2d: ^0.18.2+3
+  flame_forge2d: ^0.18.2+4
   json_annotation: ^4.9.0
   shared_preferences: ^2.3.5
 

@@ -1,3 +1,4 @@
+import 'package:cavedash/app/constants.dart';
 import 'package:flutter/services.dart';
 
 class Input {
@@ -34,6 +35,22 @@ class Input {
     }
 
     return handled;
+  }
+
+  void onPanUpdate(Offset delta) {
+    if (delta.dx.abs() > Constants.PAN_THRESHOLD) {
+      if (delta.dx > 0) {
+        state = InputState.right;
+      } else {
+        state = InputState.left;
+      }
+    } else if (delta.dy.abs() > Constants.PAN_THRESHOLD) {
+      if (delta.dy > 0) {
+        state = InputState.down;
+      } else {
+        state = InputState.up;
+      }
+    }
   }
 }
 
