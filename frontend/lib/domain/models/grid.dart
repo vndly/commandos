@@ -70,6 +70,12 @@ class Grid {
     currentNode = nextNode!;
     nextNode = null;
     direction = null;
+
+    if (currentNode.canTeleport) {
+      nextNode = currentNode.teleportContinuation!;
+      currentNode = currentNode.teleportsTo!;
+      direction = (nextNode!.position - currentNode.position).normalized();
+    }
   }
 
   factory Grid.create() {
@@ -114,6 +120,24 @@ class Grid {
       }
     }
 
+    final Node node40 = nodes['4,0']!;
+    final Node node46 = nodes['4,6']!;
+
+    node40.teleportsTo = node46;
+    node40.teleportContinuation = node46.up;
+
+    node46.teleportsTo = node40;
+    node46.teleportContinuation = node40.down;
+
+    final Node node03 = nodes['0,3']!;
+    final Node node63 = nodes['6,3']!;
+
+    node03.teleportsTo = node63;
+    node03.teleportContinuation = node63.left;
+
+    node63.teleportsTo = node03;
+    node63.teleportContinuation = node03.right;
+
     return Grid(
       size: size,
       dimensions: dimensions,
@@ -121,4 +145,14 @@ class Grid {
       currentNode: nodes['3,3']!,
     );
   }
+}
+
+class Portal {
+  final Node nodeA;
+  final Node nodeB;
+
+  const Portal({
+    required this.nodeA,
+    required this.nodeB,
+  });
 }

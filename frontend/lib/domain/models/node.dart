@@ -8,12 +8,19 @@ class Node {
   Node? down;
   Node? left;
   Node? right;
+  Node? teleportsTo;
+  Node? teleportContinuation;
 
   Node({
     required this.id,
     required this.index,
     required this.position,
+    this.teleportsTo,
+    this.teleportContinuation,
   });
+
+  bool get canTeleport =>
+      (teleportsTo != null) && (teleportContinuation != null);
 
   void connect({
     Node? up,
