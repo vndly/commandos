@@ -34,7 +34,6 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
         state: input.state,
         position: position,
       );
-      input.state = InputState.none;
     }
 
     // Detect moving
@@ -49,6 +48,7 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         position.setFrom(grid.currentNode.position);
+        input.state = InputState.none;
       }
     }
   }
