@@ -9,6 +9,7 @@ class Grid {
   late final Vector2 startPosition;
   Node currentNode;
   Node? nextNode;
+  Vector2? direction;
 
   Grid({
     required this.size,
@@ -25,27 +26,35 @@ class Grid {
 
   double get gapY => size.y / (dimensions.y - 1);
 
-  bool get isMoving => nextNode != null;
+  bool get isMoving => (nextNode != null) && (direction != null);
 
-  Vector2? move({
+  void move({
     required InputState state,
     required Vector2 position,
   }) {
     switch (state) {
       case InputState.left:
         nextNode = currentNode.left;
-        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
+        direction = (nextNode != null)
+            ? (nextNode!.position - position).normalized()
+            : null;
       case InputState.right:
         nextNode = currentNode.right;
-        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
+        direction = (nextNode != null)
+            ? (nextNode!.position - position).normalized()
+            : null;
       case InputState.up:
         nextNode = currentNode.up;
-        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
+        direction = (nextNode != null)
+            ? (nextNode!.position - position).normalized()
+            : null;
       case InputState.down:
         nextNode = currentNode.down;
-        return (nextNode != null) ? (nextNode!.position - position).normalized() : null;
+        direction = (nextNode != null)
+            ? (nextNode!.position - position).normalized()
+            : null;
       default:
-        return null;
+        return;
     }
   }
 
@@ -60,6 +69,7 @@ class Grid {
   void stop() {
     currentNode = nextNode!;
     nextNode = null;
+    direction = null;
   }
 
   factory Grid.create() {

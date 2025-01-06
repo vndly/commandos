@@ -11,7 +11,6 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
-  Vector2? direction;
 
   CharacterComponent({
     required this.size,
@@ -29,8 +28,8 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     super.update(dt);
 
     // Detect start moving
-    if (input.isMoving && (direction == null)) {
-      direction = grid.move(
+    if (input.isMoving && !grid.isMoving) {
+      grid.move(
         state: input.state,
         position: position,
       );
@@ -38,8 +37,9 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
     }
 
     // Detect moving
-    if (grid.isMoving && (direction != null)) {
-      final Vector2 deltaPosition = direction! * Constants.CHARACTER_SPEED * dt;
+    if (grid.isMoving) {
+      final Vector2 deltaPosition =
+          grid.direction! * Constants.CHARACTER_SPEED * dt;
       position.add(deltaPosition);
 
       // print(grid.remainingDistance(position));
@@ -48,7 +48,6 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         position.setFrom(grid.currentNode.position);
-        direction = null;
       }
     }
   }
