@@ -38,14 +38,17 @@ class Input {
   }
 
   void onPanUpdate(Offset delta) {
-    if (delta.dx.abs() > Constants.PAN_THRESHOLD) {
-      if (delta.dx > 0) {
+    final double dx = delta.dx;
+    final double dy = delta.dy;
+
+    if ((dx.abs() > dy.abs()) && (dx.abs() > Constants.PAN_THRESHOLD)) {
+      if (dx > 0) {
         state = InputState.right;
       } else {
         state = InputState.left;
       }
-    } else if (delta.dy.abs() > Constants.PAN_THRESHOLD) {
-      if (delta.dy > 0) {
+    } else if ((dy.abs() > dx.abs()) && (dy.abs() > Constants.PAN_THRESHOLD)) {
+      if (dy > 0) {
         state = InputState.down;
       } else {
         state = InputState.up;
