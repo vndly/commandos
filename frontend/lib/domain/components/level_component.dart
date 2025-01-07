@@ -28,7 +28,6 @@ class LevelComponent extends Forge2DWorld {
       size: Vector2(40, 40),
       grid: grid,
     );
-
     add(characterComponent);
 
     const double wallWidth1 = 125;

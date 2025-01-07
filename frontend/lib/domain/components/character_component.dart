@@ -40,15 +40,15 @@ class CharacterComponent extends BodyComponent
 
     // Detect moving
     if (grid.isMoving) {
-      final Vector2 deltaPosition =
-          grid.direction! * Constants.CHARACTER_SPEED * dt;
-      position.add(deltaPosition);
+      //final Vector2 deltaPosition = grid.direction! * Constants.CHARACTER_SPEED;
+      body.linearVelocity = Vector2(0, -10);
 
       // print(grid.remainingDistance(position));
       // Detect stop moving
       if (grid.remainingDistance(position) <
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
+        body.linearVelocity = Vector2.zero();
         position.setFrom(grid.currentNode.position);
         input.state = InputState.none;
       }
