@@ -1,4 +1,5 @@
 import 'package:cavedash/app/constants.dart';
+import 'package:cavedash/domain/components/wall_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
@@ -7,7 +8,8 @@ import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
-class CharacterComponent extends BodyComponent with KeyboardHandler {
+class CharacterComponent extends BodyComponent
+    with KeyboardHandler, ContactCallbacks {
   final Vector2 size;
   final Grid grid;
   final Vector2 velocity = Vector2.zero();
@@ -89,6 +91,15 @@ class CharacterComponent extends BodyComponent with KeyboardHandler {
   }
 
   void onPanUpdate(DragUpdateInfo info) => input.onPanUpdate(info.raw.delta);
+
+  @override
+  void beginContact(Object other, Contact contact) {
+    super.beginContact(other, contact);
+
+    if (other is WallComponent) {
+      print('beginContact');
+    }
+  }
 
   /*@override
   void render(Canvas canvas) {

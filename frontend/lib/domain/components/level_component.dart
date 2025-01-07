@@ -53,6 +53,26 @@ class LevelComponent extends Forge2DWorld {
       ],
     ));
 
+    add(WallComponent(
+      location: Vector2(0, 0),
+      vertices: [
+        Vector2(-5, -5),
+        Vector2(-5, 5),
+        Vector2(585, 5),
+        Vector2(585, -5),
+      ],
+    ));
+
+    add(WallComponent(
+      location: Vector2(0, 0),
+      vertices: [
+        Vector2(-5, -5),
+        Vector2(5, -5),
+        Vector2(5, 420),
+        Vector2(-5, 420),
+      ],
+    ));
+
     return super.onLoad();
   }
 }
