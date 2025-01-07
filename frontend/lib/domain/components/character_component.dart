@@ -40,8 +40,8 @@ class CharacterComponent extends BodyComponent
 
     // Detect moving
     if (grid.isMoving) {
-      //final Vector2 deltaPosition = grid.direction! * Constants.CHARACTER_SPEED;
-      body.linearVelocity = Vector2(0, -10);
+      final Vector2 deltaPosition = grid.direction! * Constants.CHARACTER_SPEED;
+      body.linearVelocity = deltaPosition;
 
       // print(grid.remainingDistance(position));
       // Detect stop moving
