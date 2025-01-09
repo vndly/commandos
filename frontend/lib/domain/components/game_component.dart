@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:cavedash/domain/components/level_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
-import 'package:cavedash/domain/state/game/game_engine.dart';
 import 'package:cavedash/domain/state/match/match_state.dart';
-import 'package:cavedash/presentation/dialogs/confirmation_dialog.dart';
 import 'package:cavedash/utils/navigation.dart';
 import 'package:cavedash/utils/palette.dart';
 import 'package:flame/components.dart';
@@ -12,20 +10,21 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
 class GameComponent extends Forge2DGame<LevelComponent>
-    with GameEngineRef, HasKeyboardHandlerComponents, PanDetector {
+    with HasKeyboardHandlerComponents, PanDetector {
   final MatchState matchState;
+  final Grid grid;
 
-  GameComponent(this.matchState)
-      : super(
-          world: LevelComponent(),
+  GameComponent({
+    required this.matchState,
+    required this.grid,
+  }) : super(
+          world: LevelComponent(grid: grid),
           gravity: Vector2(0, 0),
         );
 
   @override
   FutureOr onLoad() {
     debugMode = false;
-
-    final Grid grid = matchState.engine.grid;
 
     final Size screenSize = MediaQuery.of(Navigation.context()).size;
     final Size gameSize = _gameSize(
@@ -82,33 +81,8 @@ class GameComponent extends Forge2DGame<LevelComponent>
   Color backgroundColor() => Palette.GAME_BACKGROUND;
 
   @override
-  void update(double dt) {
-    engine.update(dt);
-
-    super.update(dt);
-  }
-
-  void onMatchFinished(bool won) {
-    pauseEngine();
-
-    if (won) {
-      ConfirmationDialog.won(
-        onAccept: _onMatchReset,
-        onCancel: _onMatchQuit,
-      );
-    } else {
-      ConfirmationDialog.lost(
-        onAccept: _onMatchReset,
-        onCancel: _onMatchQuit,
-      );
-    }
-  }
-
-  @override
   void onPanUpdate(DragUpdateInfo info) =>
       world.characterComponent.onPanUpdate(info);
 
-  void _onMatchReset() => matchState.restart();
-
-  void _onMatchQuit() => Navigation.pop();
+  void onMatchReset() => matchState.restart();
 }

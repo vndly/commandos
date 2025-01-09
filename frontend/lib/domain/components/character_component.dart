@@ -1,4 +1,5 @@
 import 'package:cavedash/app/constants.dart';
+import 'package:cavedash/domain/components/game_component.dart';
 import 'package:cavedash/domain/components/wall_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/input.dart';
@@ -8,7 +9,7 @@ import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
-class CharacterComponent extends BodyComponent
+class CharacterComponent extends BodyComponent<GameComponent>
     with KeyboardHandler, ContactCallbacks {
   final Vector2 size;
   final Grid grid;
@@ -97,25 +98,7 @@ class CharacterComponent extends BodyComponent
     super.beginContact(other, contact);
 
     if (other is WallComponent) {
-      print('beginContact');
+      game.onMatchReset();
     }
   }
-
-  /*@override
-  void render(Canvas canvas) {
-    super.render(canvas);
-
-    final Paint paint = Paint();
-    paint.color = const Color(0xffff0000);
-    paint.strokeWidth = 1;
-    paint.style = PaintingStyle.stroke;
-
-    canvas.drawRect(camera.visibleWorldRect, paint);
-
-    /*canvas.drawCircle(
-      Offset.zero,
-      1,
-      Paint()..color = const Color(0xFFFF0000),
-    );*/
-  }*/
 }
