@@ -1,4 +1,3 @@
-import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class WallComponent extends BodyComponent {
@@ -10,11 +9,11 @@ class WallComponent extends BodyComponent {
     required this.vertices,
   });
 
-  @override
+  /*@override
   Future onLoad() async {
     await super.onLoad();
     setup();
-  }
+  }*/
 
   @override
   Body createBody() {

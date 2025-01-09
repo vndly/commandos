@@ -9,6 +9,7 @@ extension ComponentExtension on BodyComponent {
     if (renderBody) {
       paint.color = const Color(0xff00ff00);
       paint.style = PaintingStyle.stroke;
+      paint.strokeWidth = 0.3;
     }
   }
 }
