@@ -79,7 +79,7 @@ class Grid {
   }
 
   factory Grid.create() {
-    final Vector2 size = Vector2(1000, 1000);
+    final Vector2 size = Vector2(100, 100);
     final Vector2 dimensions = Vector2(7, 7);
 
     final Map<String, Node> nodes = {};

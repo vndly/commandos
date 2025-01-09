@@ -25,12 +25,12 @@ class LevelComponent extends Forge2DWorld {
     ));
 
     characterComponent = CharacterComponent(
-      size: Vector2(40, 40),
+      size: Vector2(4, 4),
       grid: grid,
     );
     add(characterComponent);
 
-    const double wallWidth1 = 125;
+    const double wallWidth1 = 12.5;
     add(WallComponent(
       location: Vector2(250, 750),
       vertices: [
@@ -41,7 +41,7 @@ class LevelComponent extends Forge2DWorld {
       ],
     ));
 
-    const double wallWidth2 = 50;
+    const double wallWidth2 = 5;
     add(WallComponent(
       location: Vector2(666, 333),
       vertices: [
@@ -55,20 +55,20 @@ class LevelComponent extends Forge2DWorld {
     add(WallComponent(
       location: Vector2(0, 0),
       vertices: [
-        Vector2(-5, -5),
-        Vector2(-5, 5),
-        Vector2(585, 5),
-        Vector2(585, -5),
+        Vector2(-0.5, -0.5),
+        Vector2(-0.5, 0.5),
+        Vector2(58.5, 0.5),
+        Vector2(58.5, -0.5),
       ],
     ));
 
     add(WallComponent(
       location: Vector2(0, 0),
       vertices: [
-        Vector2(-5, -5),
-        Vector2(5, -5),
-        Vector2(5, 420),
-        Vector2(-5, 420),
+        Vector2(-0.5, -0.5),
+        Vector2(0.5, -0.5),
+        Vector2(0.5, 42),
+        Vector2(-0.5, 42),
       ],
     ));
 

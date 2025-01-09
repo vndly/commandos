@@ -49,7 +49,7 @@ class CharacterComponent extends BodyComponent
           Constants.NODE_DISTANCE_THRESHOLD) {
         grid.stop();
         body.linearVelocity = Vector2.zero();
-        position.setFrom(grid.currentNode.position);
+        body.setTransform(grid.currentNode.position, angle);
         input.state = InputState.none;
       }
     }

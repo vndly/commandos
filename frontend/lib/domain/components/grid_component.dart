@@ -33,7 +33,7 @@ class GridComponent extends PositionComponent {
 
     final Paint paintBorder = Paint();
     paintBorder.color = const Color(0xffff0000);
-    paintBorder.strokeWidth = 1;
+    paintBorder.strokeWidth = 0.1;
     paintBorder.style = PaintingStyle.stroke;
 
     canvas.drawRect(
@@ -63,7 +63,7 @@ class NodeComponent extends PositionComponent {
 
     canvas.drawCircle(
       const Offset(0, 0),
-      5,
+      0.5,
       paintNode,
     );
 
