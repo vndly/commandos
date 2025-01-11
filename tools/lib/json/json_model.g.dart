@@ -11,7 +11,9 @@ JsonModel _$JsonModelFromJson(Map<String, dynamic> json) => JsonModel(
       fixture: json['fixture'] as bool,
       graphic: json['graphic'] as bool,
       type: $enumDecode(_$ModelTypeEnumMap, json['type']),
-      vertices: (json['vertices'] as List<dynamic>).map((e) => (e as List<dynamic>).map((e) => e as num).toList()).toList(),
+      vertices: (json['vertices'] as List<dynamic>)
+          .map((e) => (e as List<dynamic>).map((e) => e as num).toList())
+          .toList(),
       radius: json['radius'] as num,
       width: json['width'] as num,
       height: json['height'] as num,

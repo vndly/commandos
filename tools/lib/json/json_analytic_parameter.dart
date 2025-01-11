@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/json/json_analytic_value.dart';
+import 'package:cavedash_tools/json/json_analytic_value.dart';
 
 part 'json_analytic_parameter.g.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:io';
-import 'package:tension_tunnel_tools/extensions/xml_element_extension.dart';
-import 'package:tension_tunnel_tools/generators/base_generator.dart';
-import 'package:tension_tunnel_tools/json/json_icon.dart';
+import 'package:cavedash_tools/extensions/xml_element_extension.dart';
+import 'package:cavedash_tools/generators/base_generator.dart';
+import 'package:cavedash_tools/json/json_icon.dart';
 import 'package:xml/xml.dart';
 
 class IconsGenerator extends BaseGenerator {

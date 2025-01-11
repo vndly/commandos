@@ -14,7 +14,8 @@ class JsonStars {
     required this.star3,
   });
 
-  factory JsonStars.fromJson(Map<String, dynamic> json) => _$JsonStarsFromJson(json);
+  factory JsonStars.fromJson(Map<String, dynamic> json) =>
+      _$JsonStarsFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonStarsToJson(this);
 }

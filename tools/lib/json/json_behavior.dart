@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/types/behavior_type.dart';
-import 'package:tension_tunnel_tools/types/intermittent_state.dart';
+import 'package:cavedash_tools/types/behavior_type.dart';
+import 'package:cavedash_tools/types/intermittent_state.dart';
 
 part 'json_behavior.g.dart';
 

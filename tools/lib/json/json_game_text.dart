@@ -18,7 +18,8 @@ class JsonGameText {
     required this.size,
   });
 
-  factory JsonGameText.fromJson(Map<String, dynamic> json) => _$JsonGameTextFromJson(json);
+  factory JsonGameText.fromJson(Map<String, dynamic> json) =>
+      _$JsonGameTextFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonGameTextToJson(this);
 }

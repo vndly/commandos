@@ -14,7 +14,8 @@ JsonGameText _$JsonGameTextFromJson(Map<String, dynamic> json) => JsonGameText(
       size: json['size'] as num,
     );
 
-Map<String, dynamic> _$JsonGameTextToJson(JsonGameText instance) => <String, dynamic>{
+Map<String, dynamic> _$JsonGameTextToJson(JsonGameText instance) =>
+    <String, dynamic>{
       'x': instance.x,
       'y': instance.y,
       'text': instance.text,

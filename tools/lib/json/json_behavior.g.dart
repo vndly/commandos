@@ -29,10 +29,12 @@ JsonBehavior _$JsonBehaviorFromJson(Map<String, dynamic> json) => JsonBehavior(
       timeOn: json['timeOn'] as num?,
       timeOff: json['timeOff'] as num?,
       initialTime: json['initialTime'] as num?,
-      intermittentState: $enumDecodeNullable(_$IntermittentStateEnumMap, json['intermittentState']),
+      intermittentState: $enumDecodeNullable(
+          _$IntermittentStateEnumMap, json['intermittentState']),
     );
 
-Map<String, dynamic> _$JsonBehaviorToJson(JsonBehavior instance) => <String, dynamic>{
+Map<String, dynamic> _$JsonBehaviorToJson(JsonBehavior instance) =>
+    <String, dynamic>{
       'type': _$BehaviorTypeEnumMap[instance.type],
       'trigger': instance.trigger,
       'startX': instance.startX,
@@ -55,7 +57,8 @@ Map<String, dynamic> _$JsonBehaviorToJson(JsonBehavior instance) => <String, dyn
       'timeOn': instance.timeOn,
       'timeOff': instance.timeOff,
       'initialTime': instance.initialTime,
-      'intermittentState': _$IntermittentStateEnumMap[instance.intermittentState],
+      'intermittentState':
+          _$IntermittentStateEnumMap[instance.intermittentState],
     };
 
 const _$BehaviorTypeEnumMap = {

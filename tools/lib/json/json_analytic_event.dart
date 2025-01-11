@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/json/json_analytic_parameter.dart';
+import 'package:cavedash_tools/json/json_analytic_parameter.dart';
 
 part 'json_analytic_event.g.dart';
 

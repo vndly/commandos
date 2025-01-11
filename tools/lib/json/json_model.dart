@@ -1,8 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/extensions/num_extension.dart';
-import 'package:tension_tunnel_tools/json/json_style.dart';
-import 'package:tension_tunnel_tools/types/model_type.dart';
-import 'package:tension_tunnel_tools/types/types.dart';
+import 'package:cavedash_tools/extensions/num_extension.dart';
+import 'package:cavedash_tools/json/json_style.dart';
+import 'package:cavedash_tools/types/model_type.dart';
+import 'package:cavedash_tools/types/types.dart';
 
 part 'json_model.g.dart';
 

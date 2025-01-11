@@ -20,7 +20,8 @@ extension XmlElementExtension on XmlElement {
 
   T getEnumAttribute<T>(String name, List<T> enumValues, T defaultValue) {
     try {
-      return EnumToString.fromString(enumValues, getAttribute(name) ?? '') ?? defaultValue;
+      return EnumToString.fromString(enumValues, getAttribute(name) ?? '') ??
+          defaultValue;
     } catch (e) {
       return defaultValue;
     }

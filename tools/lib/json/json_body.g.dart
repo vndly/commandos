@@ -13,7 +13,8 @@ JsonBody _$JsonBodyFromJson(Map<String, dynamic> json) => JsonBody(
       y: json['y'] as num,
       angle: json['angle'] as num,
       speed: json['speed'] as num,
-      powerUpType: $enumDecodeNullable(_$PowerUpTypeEnumMap, json['powerUpType']),
+      powerUpType:
+          $enumDecodeNullable(_$PowerUpTypeEnumMap, json['powerUpType']),
     );
 
 Map<String, dynamic> _$JsonBodyToJson(JsonBody instance) => <String, dynamic>{

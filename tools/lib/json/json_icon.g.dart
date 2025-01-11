@@ -10,7 +10,9 @@ JsonIcon _$JsonIconFromJson(Map<String, dynamic> json) => JsonIcon(
       name: json['name'] as String,
       width: json['width'] as num,
       height: json['height'] as num,
-      layers: (json['layers'] as List<dynamic>).map((e) => JsonLayer.fromJson(e as Map<String, dynamic>)).toList(),
+      layers: (json['layers'] as List<dynamic>)
+          .map((e) => JsonLayer.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$JsonIconToJson(JsonIcon instance) => <String, dynamic>{

@@ -18,7 +18,8 @@ class JsonAnalyticValue {
     required this.double_value,
   });
 
-  factory JsonAnalyticValue.fromJson(Map<String, dynamic> json) => _$JsonAnalyticValueFromJson(json);
+  factory JsonAnalyticValue.fromJson(Map<String, dynamic> json) =>
+      _$JsonAnalyticValueFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonAnalyticValueToJson(this);
 }

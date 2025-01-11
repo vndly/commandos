@@ -1,9 +1,9 @@
 import 'dart:io';
-import 'package:tension_tunnel_tools/generators/base_generator.dart';
-import 'package:tension_tunnel_tools/json/json_game_object.dart';
-import 'package:tension_tunnel_tools/json/json_game_text.dart';
-import 'package:tension_tunnel_tools/json/json_level.dart';
-import 'package:tension_tunnel_tools/json/json_stars.dart';
+import 'package:cavedash_tools/generators/base_generator.dart';
+import 'package:cavedash_tools/json/json_game_object.dart';
+import 'package:cavedash_tools/json/json_game_text.dart';
+import 'package:cavedash_tools/json/json_level.dart';
+import 'package:cavedash_tools/json/json_stars.dart';
 import 'package:xml/xml.dart';
 
 class LevelGenerator extends BaseGenerator {

@@ -1,9 +1,9 @@
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/extensions/num_extension.dart';
-import 'package:tension_tunnel_tools/types/painting_style.dart';
-import 'package:tension_tunnel_tools/types/stroke_cap.dart';
-import 'package:tension_tunnel_tools/types/stroke_join.dart';
+import 'package:cavedash_tools/extensions/num_extension.dart';
+import 'package:cavedash_tools/types/painting_style.dart';
+import 'package:cavedash_tools/types/stroke_cap.dart';
+import 'package:cavedash_tools/types/stroke_join.dart';
 
 part 'json_style.g.dart';
 

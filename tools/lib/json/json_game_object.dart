@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/json/json_behavior.dart';
-import 'package:tension_tunnel_tools/json/json_body.dart';
-import 'package:tension_tunnel_tools/json/json_model.dart';
+import 'package:cavedash_tools/json/json_behavior.dart';
+import 'package:cavedash_tools/json/json_body.dart';
+import 'package:cavedash_tools/json/json_model.dart';
 
 part 'json_game_object.g.dart';
 

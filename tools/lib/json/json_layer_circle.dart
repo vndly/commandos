@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:tension_tunnel_tools/json/json_style.dart';
+import 'package:cavedash_tools/json/json_style.dart';
 
 part 'json_layer_circle.g.dart';
 
