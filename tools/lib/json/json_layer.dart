@@ -1,6 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:cavedash_tools/json/json_layer_circle.dart';
 import 'package:cavedash_tools/json/json_layer_polygon.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'json_layer.g.dart';
 

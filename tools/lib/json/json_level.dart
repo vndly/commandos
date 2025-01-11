@@ -1,7 +1,7 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:cavedash_tools/json/json_game_object.dart';
 import 'package:cavedash_tools/json/json_game_text.dart';
 import 'package:cavedash_tools/json/json_stars.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'json_level.g.dart';
 

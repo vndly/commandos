@@ -1,5 +1,5 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:cavedash_tools/json/json_model.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'json_display.g.dart';
 

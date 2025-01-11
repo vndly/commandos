@@ -1,6 +1,6 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:cavedash_tools/types/body_type.dart';
 import 'package:cavedash_tools/types/power_up_type.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 part 'json_body.g.dart';
 
