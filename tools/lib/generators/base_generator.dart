@@ -96,7 +96,7 @@ $json
     final BodyType bodyType = element.getEnumAttribute(
       'bodyType',
       BodyType.values,
-      BodyType.kinematic,
+      BodyType.static,
     );
     final num angle = element.getNumAttribute('angle');
 

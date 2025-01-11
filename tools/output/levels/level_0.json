@@ -1,86 +1,355 @@
 {
-  "body": {
-    "id": "g1016",
-    "type": "kinematic",
-    "x": 0.0,
-    "y": 0.1,
-    "angle": 0,
-    "speed": 0,
-    "powerUpType": null
-  },
-  "models": [
+  "id": 0,
+  "walls": [
     {
-      "id": "path829",
-      "fixture": false,
-      "graphic": true,
-      "type": "polygon",
-      "vertices": [
-        [
-          0.0,
-          4.9
-        ],
-        [
-          4.0,
-          -2.1
-        ],
-        [
-          0.0,
-          -5.1
-        ],
-        [
-          -4.0,
-          -2.1
-        ]
+      "body": {
+        "id": "rect2",
+        "type": "static",
+        "x": 76.51,
+        "y": 0.0,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -77.83,
+              1.32
+            ],
+            [
+              77.83,
+              1.32
+            ],
+            [
+              77.83,
+              -1.32
+            ],
+            [
+              -77.83,
+              -1.32
+            ]
+          ],
+          "radius": 0
+        }
       ],
-      "radius": 0,
-      "width": 0,
-      "height": 0,
-      "style": {
-        "color": "ffffffff",
-        "paintingStyle": "stroke",
-        "strokeWidth": 0.5,
-        "strokeJoin": "round",
-        "strokeCap": "butt",
-        "fontWeight": null,
-        "fontSize": null
-      }
+      "behaviors": []
     },
     {
-      "id": "path833-7",
-      "fixture": true,
-      "graphic": false,
-      "type": "polygon",
-      "vertices": [
-        [
-          -4.35,
-          -2.2
-        ],
-        [
-          0.0,
-          5.4
-        ],
-        [
-          4.35,
-          -2.2
-        ],
-        [
-          0.0,
-          -5.4
-        ]
+      "body": {
+        "id": "rect2-24",
+        "type": "static",
+        "x": 232.17,
+        "y": 0.0,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-24",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -33.73,
+              1.32
+            ],
+            [
+              33.73,
+              1.32
+            ],
+            [
+              33.73,
+              -1.32
+            ],
+            [
+              -33.73,
+              -1.32
+            ]
+          ],
+          "radius": 0
+        }
       ],
-      "radius": 0,
-      "width": 0,
-      "height": 0,
-      "style": {
-        "color": "7fff0000",
-        "paintingStyle": "fill",
-        "strokeWidth": null,
-        "strokeJoin": null,
-        "strokeCap": null,
-        "fontWeight": null,
-        "fontSize": null
-      }
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-24-8",
+        "type": "static",
+        "x": 176.51,
+        "y": -88.38,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-24-8",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -13.11,
+              13.11
+            ],
+            [
+              13.11,
+              13.11
+            ],
+            [
+              13.11,
+              -13.11
+            ],
+            [
+              -13.11,
+              -13.11
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-24-8-1",
+        "type": "static",
+        "x": 66.44,
+        "y": -198.13,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-24-8-1",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -32.77,
+              32.77
+            ],
+            [
+              32.78,
+              32.77
+            ],
+            [
+              32.78,
+              -32.77
+            ],
+            [
+              -32.77,
+              -32.77
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-24-5",
+        "type": "static",
+        "x": 232.17,
+        "y": -264.58,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-24-5",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -33.73,
+              1.32
+            ],
+            [
+              33.73,
+              1.32
+            ],
+            [
+              33.73,
+              -1.32
+            ],
+            [
+              -33.73,
+              -1.32
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-5",
+        "type": "static",
+        "x": 0.0,
+        "y": -54.45,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-5",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              1.32,
+              55.77
+            ],
+            [
+              1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              55.77
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-5-1",
+        "type": "static",
+        "x": 0.0,
+        "y": -210.13,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-5-1",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              1.32,
+              55.77
+            ],
+            [
+              1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              55.77
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-5-1-9",
+        "type": "static",
+        "x": 264.58,
+        "y": -210.13,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-5-1-9",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              1.32,
+              55.77
+            ],
+            [
+              1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              55.77
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-5-6",
+        "type": "static",
+        "x": 264.58,
+        "y": -54.45,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-5-6",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              1.32,
+              55.77
+            ],
+            [
+              1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              -55.77
+            ],
+            [
+              -1.32,
+              55.77
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "body": {
+        "id": "rect2-2",
+        "type": "static",
+        "x": 76.51,
+        "y": -264.58,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "rect2-2",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -77.83,
+              1.32
+            ],
+            [
+              77.83,
+              1.32
+            ],
+            [
+              77.83,
+              -1.32
+            ],
+            [
+              -77.83,
+              -1.32
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
     }
-  ],
-  "behaviors": []
+  ]
 }

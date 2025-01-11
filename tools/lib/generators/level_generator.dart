@@ -22,7 +22,6 @@ class LevelGenerator extends BaseGenerator {
     }
 
     ids.sort((a, b) => a - b);
-    _generateMapper(ids);
   }
 
   JsonLevel getLevel(XmlDocument document, int id) {
@@ -41,48 +40,5 @@ class LevelGenerator extends BaseGenerator {
       id: id,
       walls: walls,
     );
-  }
-
-  void _generateMapper(List<int> ids) {
-    final List<String> imports = [];
-    String mapperContent = '';
-
-    for (final int id in ids) {
-      imports
-          .add("import 'package:tension_tunnel/assets/levels/level_$id.dart';");
-
-      if (mapperContent.isEmpty) {
-        mapperContent += '''
-if (level == $id) {
-  return ModelsLevelsLevel$id.JSON;
-}
-''';
-      } else {
-        mapperContent += '''
- else if (level == $id) {
-  return ModelsLevelsLevel$id.JSON;
-}
-''';
-      }
-    }
-
-    imports.sort((a, b) => a.compareTo(b));
-
-    final String content = '''
-${imports.join('\n')}
-
-class LevelMapper {
-  static String byId(int level) {
-    $mapperContent
-    else {
-      throw Error();
-    }
-  }
-}
-''';
-
-    final File outputDart =
-        File('../frontend/lib/assets/$folder/level_mapper.dart');
-    outputDart.writeAsStringSync(content);
   }
 }
