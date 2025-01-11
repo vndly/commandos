@@ -1,0 +1,36 @@
+{
+  "name": "check",
+  "width": 100,
+  "height": 100,
+  "layers": [
+    {
+      "circle": null,
+      "polygon": {
+        "style": {
+          "color": "ffffffff",
+          "paintingStyle": "stroke",
+          "strokeWidth": 4.97,
+          "strokeJoin": null,
+          "strokeCap": "square",
+          "fontWeight": null,
+          "fontSize": null
+        },
+        "vertices": [
+          [
+            71.51,
+            -34.56
+          ],
+          [
+            42.82,
+            -65.23
+          ],
+          [
+            28.48,
+            -48.47
+          ]
+        ],
+        "open": true
+      }
+    }
+  ]
+}

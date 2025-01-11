@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+     width="100"
+     height="100"
+     viewBox="0 0 100 100"
+     fill="none"
+     version="1.1"
+     id="crashes"
+     sodipodi:docname="crashes.svg"
+     inkscape:version="1.1.2 (b8e25be8, 2022-02-05)"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg">
+    <defs
+         id="defs829" />
+    <sodipodi:namedview
+         id="namedview827"
+         pagecolor="#ffffff"
+         bordercolor="#666666"
+         borderopacity="1.0"
+         inkscape:pageshadow="2"
+         inkscape:pageopacity="0.0"
+         inkscape:pagecheckerboard="0"
+         showgrid="false"
+         inkscape:zoom="3.9403"
+         inkscape:cx="14.466"
+         inkscape:cy="17.131"
+         inkscape:window-width="1920"
+         inkscape:window-height="1027"
+         inkscape:window-x="0"
+         inkscape:window-y="25"
+         inkscape:window-maximized="1"
+         inkscape:current-layer="crashes" />
+    <path
+         style="fill:none;stroke:#ff4a4a;stroke-width:6.14291;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="M 42.701,30.004 L 50.264,8.6806 L 59.041,30.637 L 77.108,22.303 L 70.225,40.163 L 93.201,52.044 L 69.546,64.487 L 79.316,86.468 L 53.234,75.626 L 41.364,93.414 L 34.076,74.732 L 10.346,77.652 L 23.68,56.122 L 7.6341,41.043 L 28.327,40.318 L 23.795,21.926 Z"
+         id="path1085" />
+</svg>

@@ -1,0 +1,182 @@
+{
+  "body": {
+    "id": "g2119",
+    "type": "kinematic",
+    "x": 0.0,
+    "y": 0.0,
+    "angle": 0,
+    "speed": 0,
+    "powerUpType": null
+  },
+  "models": [
+    {
+      "id": "path829",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          0.0,
+          1.0
+        ],
+        [
+          1.0,
+          -2.0
+        ],
+        [
+          0.0,
+          -3.0
+        ],
+        [
+          -1.0,
+          -2.0
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path831",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          0.6,
+          5.0
+        ],
+        [
+          4.0,
+          -2.0
+        ],
+        [
+          1.0,
+          -5.0
+        ],
+        [
+          1.0,
+          -3.3
+        ],
+        [
+          2.0,
+          -2.0
+        ],
+        [
+          0.6,
+          2.0
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path833",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          -2.0,
+          -2.0
+        ],
+        [
+          -1.0,
+          -3.3
+        ],
+        [
+          -1.0,
+          -5.0
+        ],
+        [
+          -4.0,
+          -2.0
+        ],
+        [
+          -0.6,
+          5.0
+        ],
+        [
+          -0.6,
+          2.0
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path900",
+      "fixture": true,
+      "graphic": false,
+      "type": "polygon",
+      "vertices": [
+        [
+          -1.1,
+          -5.3
+        ],
+        [
+          -4.35,
+          -2.0
+        ],
+        [
+          -0.75,
+          5.3
+        ],
+        [
+          0.75,
+          5.3
+        ],
+        [
+          4.35,
+          -2.0
+        ],
+        [
+          1.1,
+          -5.3
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "7fff0000",
+        "paintingStyle": "fill",
+        "strokeWidth": null,
+        "strokeJoin": null,
+        "strokeCap": null,
+        "fontWeight": null,
+        "fontSize": null
+      }
+    }
+  ],
+  "behaviors": []
+}

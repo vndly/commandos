@@ -1,0 +1,66 @@
+{
+  "body": {
+    "id": "portal",
+    "type": "kinematic",
+    "x": 50.0,
+    "y": 0.0,
+    "angle": 0,
+    "speed": 0,
+    "powerUpType": null
+  },
+  "models": [
+    {
+      "id": "portal_fixture",
+      "fixture": true,
+      "graphic": false,
+      "type": "line",
+      "vertices": [
+        [
+          -50.0,
+          0.0
+        ],
+        [
+          50.0,
+          0.0
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffff00",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "round",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "portal_graphic",
+      "fixture": false,
+      "graphic": true,
+      "type": "ellipse",
+      "vertices": [
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "radius": 0,
+      "width": 30,
+      "height": 4,
+      "style": {
+        "color": "ff8cffac",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": null,
+        "strokeCap": null,
+        "fontWeight": null,
+        "fontSize": null
+      }
+    }
+  ],
+  "behaviors": []
+}

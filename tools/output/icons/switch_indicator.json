@@ -1,0 +1,40 @@
+{
+  "name": "switch_indicator",
+  "width": 100,
+  "height": 100,
+  "layers": [
+    {
+      "circle": null,
+      "polygon": {
+        "style": {
+          "color": "ffff4a4a",
+          "paintingStyle": "fill",
+          "strokeWidth": null,
+          "strokeJoin": null,
+          "strokeCap": null,
+          "fontWeight": null,
+          "fontSize": null
+        },
+        "vertices": [
+          [
+            50,
+            -30
+          ],
+          [
+            50,
+            -70
+          ],
+          [
+            10,
+            -70
+          ],
+          [
+            10,
+            -30
+          ]
+        ],
+        "open": false
+      }
+    }
+  ]
+}

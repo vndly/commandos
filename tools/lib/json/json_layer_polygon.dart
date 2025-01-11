@@ -1,0 +1,22 @@
+import 'package:json_annotation/json_annotation.dart';
+import 'package:tension_tunnel_tools/json/json_style.dart';
+import 'package:tension_tunnel_tools/types/types.dart';
+
+part 'json_layer_polygon.g.dart';
+
+@JsonSerializable()
+class JsonLayerPolygon {
+  final JsonStyle style;
+  final List<Vertex> vertices;
+  final bool open;
+
+  const JsonLayerPolygon({
+    required this.style,
+    required this.vertices,
+    required this.open,
+  });
+
+  factory JsonLayerPolygon.fromJson(Map<String, dynamic> json) => _$JsonLayerPolygonFromJson(json);
+
+  Map<String, dynamic> toJson() => _$JsonLayerPolygonToJson(this);
+}

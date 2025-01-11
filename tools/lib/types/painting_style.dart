@@ -1,0 +1,4 @@
+enum PaintingStyle {
+  fill,
+  stroke,
+}

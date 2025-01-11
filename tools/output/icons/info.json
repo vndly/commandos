@@ -1,0 +1,57 @@
+{
+  "name": "info",
+  "width": 100,
+  "height": 100,
+  "layers": [
+    {
+      "circle": null,
+      "polygon": {
+        "style": {
+          "color": "ffffffff",
+          "paintingStyle": "fill",
+          "strokeWidth": null,
+          "strokeJoin": null,
+          "strokeCap": null,
+          "fontWeight": null,
+          "fontSize": null
+        },
+        "vertices": [
+          [
+            45,
+            -40.02
+          ],
+          [
+            55,
+            -39.98
+          ],
+          [
+            55,
+            -75
+          ],
+          [
+            45,
+            -75
+          ]
+        ],
+        "open": false
+      }
+    },
+    {
+      "circle": {
+        "style": {
+          "color": "ffffffff",
+          "paintingStyle": "fill",
+          "strokeWidth": null,
+          "strokeJoin": null,
+          "strokeCap": null,
+          "fontWeight": null,
+          "fontSize": null
+        },
+        "cx": 50,
+        "cy": 30,
+        "r": 5
+      },
+      "polygon": null
+    }
+  ]
+}

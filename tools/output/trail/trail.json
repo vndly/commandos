@@ -1,0 +1,50 @@
+{
+  "body": {
+    "id": "trail",
+    "type": "kinematic",
+    "x": 0.0,
+    "y": -1.0,
+    "angle": 0,
+    "speed": 0,
+    "powerUpType": null
+  },
+  "models": [
+    {
+      "id": "trail",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          0.0,
+          2.0
+        ],
+        [
+          -3.0,
+          4.0
+        ],
+        [
+          0.0,
+          -4.0
+        ],
+        [
+          3.0,
+          4.0
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "7fffff00",
+        "paintingStyle": "fill",
+        "strokeWidth": null,
+        "strokeJoin": null,
+        "strokeCap": null,
+        "fontWeight": null,
+        "fontSize": null
+      }
+    }
+  ],
+  "behaviors": []
+}

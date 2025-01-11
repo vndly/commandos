@@ -1,0 +1,64 @@
+{
+  "name": "star_full",
+  "width": 100,
+  "height": 100,
+  "layers": [
+    {
+      "circle": null,
+      "polygon": {
+        "style": {
+          "color": "ffffffff",
+          "paintingStyle": "fill",
+          "strokeWidth": null,
+          "strokeJoin": null,
+          "strokeCap": null,
+          "fontWeight": null,
+          "fontSize": null
+        },
+        "vertices": [
+          [
+            49.95,
+            -2.43
+          ],
+          [
+            34.54,
+            -33.76
+          ],
+          [
+            0.0,
+            -38.83
+          ],
+          [
+            25.04,
+            -63.16
+          ],
+          [
+            19.19,
+            -97.58
+          ],
+          [
+            50.07,
+            -81.28
+          ],
+          [
+            80.99,
+            -97.48
+          ],
+          [
+            75.04,
+            -63.08
+          ],
+          [
+            100,
+            -38.68
+          ],
+          [
+            65.44,
+            -33.71
+          ]
+        ],
+        "open": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+typedef Vertex = List<num>;

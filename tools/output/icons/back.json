@@ -1,0 +1,36 @@
+{
+  "name": "back",
+  "width": 100,
+  "height": 100,
+  "layers": [
+    {
+      "circle": null,
+      "polygon": {
+        "style": {
+          "color": "ffffffff",
+          "paintingStyle": "stroke",
+          "strokeWidth": 4.97,
+          "strokeJoin": null,
+          "strokeCap": "square",
+          "fontWeight": null,
+          "fontSize": null
+        },
+        "vertices": [
+          [
+            60.74,
+            -28.52
+          ],
+          [
+            39.26,
+            -50.0
+          ],
+          [
+            60.74,
+            -71.48
+          ]
+        ],
+        "open": true
+      }
+    }
+  ]
+}

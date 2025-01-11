@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+     width="1000"
+     height="1000"
+     viewBox="0 0 1000 1000"
+     version="1.1"
+     id="level_21"
+     sodipodi:docname="level_21.svg"
+     inkscape:version="1.2.1 (2ed6d7ae0b, 2022-08-22, custom)"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:cc="http://creativecommons.org/ns#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <metadata
+         id="metadata388">
+        <rdf:RDF>
+            <cc:Work
+                 rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                     rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <defs
+         id="defs386" />
+    <sodipodi:namedview
+         id="namedview141"
+         pagecolor="#000000"
+         bordercolor="#666666"
+         borderopacity="1.0"
+         inkscape:pageshadow="2"
+         inkscape:pageopacity="0"
+         inkscape:pagecheckerboard="false"
+         showgrid="true"
+         inkscape:showpageshadow="false"
+         showborder="false"
+         inkscape:zoom="2.0001"
+         inkscape:cx="33.499"
+         inkscape:cy="-1380.2"
+         inkscape:window-width="1920"
+         inkscape:window-height="1016"
+         inkscape:window-x="0"
+         inkscape:window-y="0"
+         inkscape:window-maximized="1"
+         inkscape:current-layer="portal"
+         showguides="true"
+         inkscape:guide-bbox="true"
+         inkscape:document-rotation="0"
+         inkscape:deskcolor="#000000">
+        <inkscape:grid
+             type="xygrid"
+             id="grid225" />
+        <sodipodi:guide
+             position="0,1000"
+             orientation="0,-1"
+             id="guide410"
+             inkscape:locked="false" />
+        <sodipodi:guide
+             position="0,1000"
+             orientation="1,0"
+             id="guide845"
+             inkscape:locked="false" />
+        <sodipodi:guide
+             position="100,1000"
+             orientation="1,0"
+             id="guide847"
+             inkscape:locked="false" />
+    </sodipodi:namedview>
+    <g
+         inkscape:groupmode="layer"
+         id="enemies"
+         inkscape:label="enemies">
+        <g
+             bodyType="kinematic"
+             id="e30"
+             transform="translate(0,-26)">
+            <path
+                 bodyType="kinematic"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 100,-1420 H 0 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="line"
+                 id="path3135" />
+            <path
+                 bodyType="kinematic"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 100,-1422 H 0 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="line"
+                 id="path3135-7" />
+            <path
+                 bodyType="kinematic"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 100,-1424 H 0 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="line"
+                 id="path3135-7-9" />
+            <behavior
+                 type="intermittent"
+                 timeOn="0.5"
+                 timeOff="1"
+                 intermittentState="on" />
+        </g>
+        <g
+             id="e29"
+             bodyType="kinematic"
+             transform="translate(-49.75,-1014.5)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-8"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="-80"
+                 startAngle="270" />
+        </g>
+        <g
+             id="e28"
+             bodyType="kinematic"
+             transform="translate(-49.75,-1014.5)">
+            <path
+                 id="path3139"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="-80"
+                 startAngle="180" />
+        </g>
+        <g
+             id="e27"
+             bodyType="kinematic"
+             transform="translate(-49.75,-1014.5)">
+            <path
+                 id="path3142"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="-80"
+                 startAngle="90" />
+        </g>
+        <g
+             id="e26"
+             bodyType="kinematic"
+             transform="translate(-49.75,-1014.5)">
+            <path
+                 id="path3145"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="-80"
+                 startAngle="0" />
+        </g>
+        <g
+             id="e25"
+             bodyType="kinematic"
+             transform="translate(50.25,-964.75)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-6-6"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="90"
+                 startAngle="240" />
+        </g>
+        <g
+             id="e24"
+             bodyType="kinematic"
+             transform="translate(50.25,-964.75)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-9-6"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="90"
+                 startAngle="120" />
+        </g>
+        <g
+             id="e23"
+             bodyType="kinematic"
+             transform="translate(50.25,-964.75)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-6"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="90"
+                 startAngle="0" />
+        </g>
+        <g
+             id="e22"
+             bodyType="kinematic"
+             transform="translate(-49.75,-914.5)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-9"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="-100"
+                 startAngle="-90" />
+        </g>
+        <g
+             id="e21"
+             bodyType="kinematic"
+             transform="translate(-49.75,-914.5)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 34.75,-235.25 H 64.75 V -225.25 H 34.75 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="50"
+                 speed="-100"
+                 startAngle="90" />
+        </g>
+        <g
+             id="e20"
+             bodyType="kinematic"
+             transform="translate(63.441,-743.06)">
+            <path
+                 id="path2243-3"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 8.559,-286.94 H 63.559 V -276.94 H 8.559 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="harmonic"
+                 periodX="1"
+                 amplitudeX="-22" />
+        </g>
+        <g
+             id="e19"
+             bodyType="kinematic"
+             transform="translate(-35.559,-743.06)">
+            <path
+                 id="path2243"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 8.559,-286.94 H 63.559 V -276.94 H 8.559 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="harmonic"
+                 periodX="1"
+                 amplitudeX="22" />
+        </g>
+        <g
+             bodyType="kinematic"
+             id="e18"
+             transform="translate(0,-211)">
+            <path
+                 id="path160-6"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 5,-615 H 45 V -610 H 5 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path162-2"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 10,-615 V -534 H 5 V -615 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path164-9"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 5,-539 H 45 V -534 H 5 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path166-1"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-534 H 5 V -615 H 45 V -610 H 10 V -539 H 45 Z"
+                 fixture="false"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="harmonic"
+                 periodX="3"
+                 amplitudeX="30" />
+        </g>
+        <g
+             bodyType="kinematic"
+             id="e17">
+            <path
+                 id="path4771"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 55,-720 H 95 V -715 H 55 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path9317-5-3"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 95,-720 V -640 H 90 V -720 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path9317-5-3-5"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 55,-645 H 95 V -640 H 55 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path9317-5-3-56"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 55,-640 H 95 V -720 H 55 V -715 H 90 V -645 H 55 Z"
+                 fixture="false"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="harmonic"
+                 periodX="3"
+                 amplitudeX="-30" />
+        </g>
+        <g
+             bodyType="kinematic"
+             id="e16">
+            <path
+                 id="path160"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 5,-615 H 45 V -610 H 5 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path162"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 10,-615 V -534 H 5 V -615 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path164"
+                 style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 5,-539 H 45 V -534 H 5 Z"
+                 fixture="true"
+                 graphic="false"
+                 modelType="polygon" />
+            <path
+                 id="path166"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-534 H 5 V -615 H 45 V -610 H 10 V -539 H 45 Z"
+                 fixture="false"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="harmonic"
+                 periodX="3"
+                 amplitudeX="30" />
+        </g>
+        <g
+             id="e15"
+             bodyType="kinematic"
+             transform="translate(0.25,-164.75)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-1-6"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="300" />
+        </g>
+        <g
+             id="e14"
+             bodyType="kinematic"
+             transform="translate(0.25,-164.75)">
+            <path
+                 id="path1344"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="240" />
+        </g>
+        <g
+             id="e13"
+             bodyType="kinematic"
+             transform="translate(0.25,-164.75)">
+            <path
+                 id="path1347"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="180" />
+        </g>
+        <g
+             id="e12"
+             bodyType="kinematic"
+             transform="translate(0.25,-164.75)">
+            <path
+                 id="path1350"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="120" />
+        </g>
+        <g
+             id="e11"
+             bodyType="kinematic"
+             transform="translate(0.25,-164.75)">
+            <path
+                 id="path1353"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="60" />
+        </g>
+        <g
+             id="e10"
+             bodyType="kinematic"
+             transform="translate(0.25,-164.75)">
+            <path
+                 id="path1356"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="0" />
+        </g>
+        <g
+             id="e9"
+             bodyType="kinematic"
+             transform="translate(0.25,-64.75)">
+            <path
+                 id="path1239"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="90"
+                 startAngle="288" />
+        </g>
+        <g
+             id="e8"
+             bodyType="kinematic"
+             transform="translate(0.25,-64.75)">
+            <path
+                 id="path1242"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="90"
+                 startAngle="216" />
+        </g>
+        <g
+             id="e7"
+             bodyType="kinematic"
+             transform="translate(0.25,-64.75)">
+            <path
+                 id="path1143"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="90"
+                 startAngle="144" />
+        </g>
+        <g
+             id="e6"
+             bodyType="kinematic"
+             transform="translate(0.25,-64.75)">
+            <path
+                 id="path1047"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="90"
+                 startAngle="72" />
+        </g>
+        <g
+             id="e5"
+             bodyType="kinematic"
+             transform="translate(0.25,-64.75)">
+            <path
+                 id="path1050"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="90"
+                 startAngle="0" />
+        </g>
+        <g
+             id="e4"
+             bodyType="kinematic"
+             transform="translate(0.25,35.25)">
+            <path
+                 id="path1053"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="270" />
+        </g>
+        <g
+             id="e3"
+             bodyType="kinematic"
+             transform="translate(0.25,35.25)">
+            <path
+                 id="path1056"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="180" />
+        </g>
+        <g
+             id="e2"
+             bodyType="kinematic"
+             transform="translate(0.25,35.25)">
+            <path
+                 id="path1059"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="90" />
+        </g>
+        <g
+             id="e1"
+             bodyType="kinematic"
+             transform="translate(0.25,35.25)">
+            <path
+                 id="e3a-6-6-5-2-7-6-5-3-2-1"
+                 style="fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linejoin:round;stroke-opacity:1;paint-order:stroke markers fill"
+                 d="M 45,-230 L 50,-235 L 55,-230 L 50,-225 Z"
+                 fixture="true"
+                 graphic="true"
+                 modelType="polygon" />
+            <behavior
+                 type="orbiting"
+                 radius="35"
+                 speed="100"
+                 startAngle="0" />
+        </g>
+    </g>
+    <g
+         inkscape:groupmode="layer"
+         id="portal"
+         inkscape:label="portal">
+        <path
+             bodyType="kinematic"
+             style="fill:none;fill-opacity:1;stroke:#00b4ff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+             d="M 100,-1557.8 H 0 Z"
+             fixture="true"
+             graphic="true"
+             id="portalpath" />
+    </g>
+    <g
+         inkscape:groupmode="layer"
+         id="powerups"
+         inkscape:label="powerups">
+        <g
+             id="g12343"
+             powerUpType="timeSlow"
+             bodyType="kinematic"
+             style="fill:#0099ff;fill-opacity:1"
+             transform="translate(0,-810)">
+            <circle
+                 style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:57.735;stroke-linejoin:round;paint-order:stroke markers fill"
+                 id="path899"
+                 cx="50"
+                 cy="-170"
+                 r="5"
+                 fixture="true"
+                 modelType="circle" />
+        </g>
+    </g>
+    <g
+         inkscape:groupmode="layer"
+         id="coins"
+         inkscape:label="coins">
+        <g
+             bodyType="kinematic"
+             transform="translate(0,-634.75)"
+             id="c1">
+            <circle
+                 style="fill:none;fill-rule:evenodd;stroke:#ffff00;stroke-width:0.5;stroke-opacity:1"
+                 modelType="circle"
+                 cx="50"
+                 cy="-280"
+                 r="3"
+                 id="c1path" />
+            <behavior
+                 type="harmonic"
+                 periodX="3.5"
+                 periodY="2"
+                 amplitudeX="35"
+                 amplitudeY="20" />
+        </g>
+    </g>
+    <g
+         inkscape:groupmode="layer"
+         id="spikes"
+         inkscape:label="spikes">
+        <path
+             id="spikes_object"
+             bodyType="kinematic"
+             speed="39"
+             style="fill:none;fill-opacity:1;stroke:#ffff00;stroke-width:0.5;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke markers fill"
+             d="M 100,20 H 0 Z" />
+    </g>
+    <g
+         inkscape:groupmode="layer"
+         id="stars"
+         inkscape:label="stars"
+         star1="40"
+         star2="39"
+         star3="38" />
+</svg>

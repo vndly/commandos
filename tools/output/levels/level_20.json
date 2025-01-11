@@ -1,0 +1,3426 @@
+{
+  "id": 20,
+  "portal": {
+    "body": {
+      "id": "portalpath",
+      "type": "kinematic",
+      "x": 50.0,
+      "y": 2839.8,
+      "angle": 0,
+      "speed": 0,
+      "powerUpType": null
+    },
+    "models": [
+      {
+        "id": "portalpath",
+        "fixture": true,
+        "graphic": true,
+        "type": "polygon",
+        "vertices": [
+          [
+            50.0,
+            0.0
+          ],
+          [
+            -50.0,
+            0.0
+          ]
+        ],
+        "radius": 0,
+        "width": 0,
+        "height": 0,
+        "style": {
+          "color": "ff00b4ff",
+          "paintingStyle": "stroke",
+          "strokeWidth": 0.5,
+          "strokeJoin": "round",
+          "strokeCap": "butt",
+          "fontWeight": null,
+          "fontSize": null
+        }
+      }
+    ],
+    "behaviors": []
+  },
+  "spikes": {
+    "body": {
+      "id": "spikes_object",
+      "type": "kinematic",
+      "x": 50.0,
+      "y": -20.0,
+      "angle": 0,
+      "speed": 40,
+      "powerUpType": null
+    },
+    "models": [
+      {
+        "id": "spikes_object",
+        "fixture": false,
+        "graphic": false,
+        "type": "polygon",
+        "vertices": [
+          [
+            50.0,
+            0.0
+          ],
+          [
+            -50.0,
+            0.0
+          ]
+        ],
+        "radius": 0,
+        "width": 0,
+        "height": 0,
+        "style": {
+          "color": "ffffff00",
+          "paintingStyle": "stroke",
+          "strokeWidth": 0.5,
+          "strokeJoin": "round",
+          "strokeCap": null,
+          "fontWeight": null,
+          "fontSize": null
+        }
+      }
+    ],
+    "behaviors": []
+  },
+  "enemies": [
+    {
+      "body": {
+        "id": "e21",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 2634.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-7-6-3-5",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.0,
+              -5.0
+            ],
+            [
+              -15.0,
+              5.0
+            ],
+            [
+              -25.0,
+              5.0
+            ],
+            [
+              -25.0,
+              -5.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-8-1-2-4",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              25.0,
+              5.0
+            ],
+            [
+              25.0,
+              -5.0
+            ],
+            [
+              15.0,
+              -5.0
+            ],
+            [
+              15.0,
+              5.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 2634.75,
+          "startAngle": 0,
+          "speed": 80,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 2634.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 2634.75,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 2634.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e20",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 2414.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-7-6-3-6",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.0,
+              -5.0
+            ],
+            [
+              -15.0,
+              5.0
+            ],
+            [
+              -25.0,
+              5.0
+            ],
+            [
+              -25.0,
+              -5.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-8-1-2-1",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              25.0,
+              5.0
+            ],
+            [
+              25.0,
+              -5.0
+            ],
+            [
+              15.0,
+              -5.0
+            ],
+            [
+              15.0,
+              5.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 2414.75,
+          "startAngle": 0,
+          "speed": -100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 2414.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 2414.75,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 2414.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e19",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 2194.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-7-6-3",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.0,
+              -5.0
+            ],
+            [
+              -15.0,
+              5.0
+            ],
+            [
+              -25.0,
+              5.0
+            ],
+            [
+              -25.0,
+              -5.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-8-1-2",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              25.0,
+              5.0
+            ],
+            [
+              25.0,
+              -5.0
+            ],
+            [
+              15.0,
+              -5.0
+            ],
+            [
+              15.0,
+              5.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 2194.75,
+          "startAngle": 0,
+          "speed": 80,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 2194.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 2194.75,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 2194.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e18",
+        "type": "kinematic",
+        "x": 102.75,
+        "y": 1992.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-7-2",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -57.5,
+              2.5
+            ],
+            [
+              57.5,
+              2.5
+            ],
+            [
+              57.5,
+              -2.5
+            ],
+            [
+              -57.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-8-0",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              57.5
+            ],
+            [
+              2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              57.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-82-2",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              57.5
+            ],
+            [
+              2.49,
+              2.5
+            ],
+            [
+              57.5,
+              2.5
+            ],
+            [
+              57.5,
+              -2.5
+            ],
+            [
+              2.5,
+              -2.5
+            ],
+            [
+              2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              -57.5
+            ],
+            [
+              -2.52,
+              -2.5
+            ],
+            [
+              -57.5,
+              -2.5
+            ],
+            [
+              -57.5,
+              2.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              -2.5,
+              57.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 102.75,
+          "startY": 1992.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 102.75,
+          "centerY": 1992.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": -60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 102.75,
+          "startY": 1992.25,
+          "startAngle": 0,
+          "speed": 130,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 102.75,
+          "centerY": 1992.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e17",
+        "type": "kinematic",
+        "x": -2.25,
+        "y": 1792.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-7-1",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -57.5,
+              2.5
+            ],
+            [
+              57.5,
+              2.5
+            ],
+            [
+              57.5,
+              -2.5
+            ],
+            [
+              -57.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-8-8",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              57.5
+            ],
+            [
+              2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              57.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-82-7",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              57.5
+            ],
+            [
+              2.49,
+              2.5
+            ],
+            [
+              57.5,
+              2.5
+            ],
+            [
+              57.5,
+              -2.5
+            ],
+            [
+              2.5,
+              -2.5
+            ],
+            [
+              2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              -57.5
+            ],
+            [
+              -2.52,
+              -2.5
+            ],
+            [
+              -57.5,
+              -2.5
+            ],
+            [
+              -57.5,
+              2.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              -2.5,
+              57.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": -2.25,
+          "startY": 1792.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": -2.25,
+          "centerY": 1792.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": 1,
+          "intermittentState": null
+        },
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": -2.25,
+          "startY": 1792.25,
+          "startAngle": 0,
+          "speed": -140,
+          "speedX": null,
+          "speedY": null,
+          "centerX": -2.25,
+          "centerY": 1792.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e16",
+        "type": "kinematic",
+        "x": 102.75,
+        "y": 1592.2,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-7",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -57.5,
+              2.5
+            ],
+            [
+              57.5,
+              2.5
+            ],
+            [
+              57.5,
+              -2.5
+            ],
+            [
+              -57.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-8",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              57.5
+            ],
+            [
+              2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              57.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path11458-82",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              57.5
+            ],
+            [
+              2.49,
+              2.5
+            ],
+            [
+              57.5,
+              2.5
+            ],
+            [
+              57.5,
+              -2.5
+            ],
+            [
+              2.5,
+              -2.5
+            ],
+            [
+              2.5,
+              -57.5
+            ],
+            [
+              -2.5,
+              -57.5
+            ],
+            [
+              -2.52,
+              -2.5
+            ],
+            [
+              -57.5,
+              -2.5
+            ],
+            [
+              -57.5,
+              2.5
+            ],
+            [
+              -2.5,
+              2.5
+            ],
+            [
+              -2.5,
+              57.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 102.75,
+          "startY": 1592.2,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 102.75,
+          "centerY": 1592.2,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 102.75,
+          "startY": 1592.2,
+          "startAngle": 0,
+          "speed": 120,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 102.75,
+          "centerY": 1592.2,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e15",
+        "type": "kinematic",
+        "x": 72.75,
+        "y": 1407.3,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "e2a-1-9",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -2.5,
+              12.5
+            ],
+            [
+              2.5,
+              12.5
+            ],
+            [
+              2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              -12.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 72.75,
+          "startY": 1407.3,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 72.75,
+          "centerY": 1407.3,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 1.5,
+          "periodY": 6,
+          "amplitudeX": 20,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e14",
+        "type": "kinematic",
+        "x": 27.75,
+        "y": 1407.3,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path501",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              12.5
+            ],
+            [
+              2.5,
+              12.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 27.75,
+          "startY": 1407.3,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 27.75,
+          "centerY": 1407.3,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 1.5,
+          "periodY": 6,
+          "amplitudeX": -20,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e13",
+        "type": "kinematic",
+        "x": 72.75,
+        "y": 1257.3,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "e2a-1-3",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -2.5,
+              12.5
+            ],
+            [
+              2.5,
+              12.5
+            ],
+            [
+              2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              -12.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 72.75,
+          "startY": 1257.3,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 72.75,
+          "centerY": 1257.3,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 1.75,
+          "periodY": 6,
+          "amplitudeX": 20,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e12",
+        "type": "kinematic",
+        "x": 27.75,
+        "y": 1257.3,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path506",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              12.5
+            ],
+            [
+              2.5,
+              12.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 27.75,
+          "startY": 1257.3,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 27.75,
+          "centerY": 1257.3,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 1.75,
+          "periodY": 6,
+          "amplitudeX": -20,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e11",
+        "type": "kinematic",
+        "x": 72.75,
+        "y": 1107.3,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "e2a-1",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -2.5,
+              12.5
+            ],
+            [
+              2.5,
+              12.5
+            ],
+            [
+              2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              -12.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 72.75,
+          "startY": 1107.3,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 72.75,
+          "centerY": 1107.3,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 2,
+          "periodY": 6,
+          "amplitudeX": 20,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e10",
+        "type": "kinematic",
+        "x": 27.75,
+        "y": 1107.3,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path511",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              -12.5
+            ],
+            [
+              -2.5,
+              12.5
+            ],
+            [
+              2.5,
+              12.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 27.75,
+          "startY": 1107.3,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 27.75,
+          "centerY": 1107.3,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 2,
+          "periodY": 6,
+          "amplitudeX": -20,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e9",
+        "type": "kinematic",
+        "x": 59.5,
+        "y": 797.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-9",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.5,
+              2.5
+            ],
+            [
+              15.5,
+              2.5
+            ],
+            [
+              15.5,
+              -2.5
+            ],
+            [
+              -15.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 59.5,
+          "startY": 797.25,
+          "startAngle": 0,
+          "speed": 100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 59.5,
+          "centerY": 797.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 59.5,
+          "startY": 797.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 59.5,
+          "centerY": 797.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e8",
+        "type": "kinematic",
+        "x": 40.5,
+        "y": 797.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11458-2",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.5,
+              2.5
+            ],
+            [
+              15.5,
+              2.5
+            ],
+            [
+              15.5,
+              -2.5
+            ],
+            [
+              -15.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 40.5,
+          "startY": 797.25,
+          "startAngle": 0,
+          "speed": -100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 40.5,
+          "centerY": 797.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 40.5,
+          "startY": 797.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 40.5,
+          "centerY": 797.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e7",
+        "type": "kinematic",
+        "x": 59.5,
+        "y": 647.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455-2",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.5,
+              2.5
+            ],
+            [
+              15.5,
+              2.5
+            ],
+            [
+              15.5,
+              -2.5
+            ],
+            [
+              -15.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 59.5,
+          "startY": 647.25,
+          "startAngle": 0,
+          "speed": 100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 59.5,
+          "centerY": 647.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 59.5,
+          "startY": 647.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 59.5,
+          "centerY": 647.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": -60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e6",
+        "type": "kinematic",
+        "x": 40.5,
+        "y": 647.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11458-7",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.5,
+              2.5
+            ],
+            [
+              15.5,
+              2.5
+            ],
+            [
+              15.5,
+              -2.5
+            ],
+            [
+              -15.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 40.5,
+          "startY": 647.25,
+          "startAngle": 0,
+          "speed": -100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 40.5,
+          "centerY": 647.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 40.5,
+          "startY": 647.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 40.5,
+          "centerY": 647.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": -60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e5",
+        "type": "kinematic",
+        "x": 59.5,
+        "y": 497.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11455",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.5,
+              2.5
+            ],
+            [
+              15.5,
+              2.5
+            ],
+            [
+              15.5,
+              -2.5
+            ],
+            [
+              -15.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 59.5,
+          "startY": 497.25,
+          "startAngle": 0,
+          "speed": 100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 59.5,
+          "centerY": 497.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 59.5,
+          "startY": 497.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 59.5,
+          "centerY": 497.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e4",
+        "type": "kinematic",
+        "x": 40.5,
+        "y": 497.25,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path11458",
+          "fixture": true,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.5,
+              2.5
+            ],
+            [
+              15.5,
+              2.5
+            ],
+            [
+              15.5,
+              -2.5
+            ],
+            [
+              -15.5,
+              -2.5
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 40.5,
+          "startY": 497.25,
+          "startAngle": 0,
+          "speed": -100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 40.5,
+          "centerY": 497.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        },
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 40.5,
+          "startY": 497.25,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 40.5,
+          "centerY": 497.25,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": 6,
+          "amplitudeX": null,
+          "amplitudeY": 60,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e3",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 339.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path9317-5-3-0-1-6",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              20.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -10.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-0",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -20.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-7-6",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -10.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ],
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -20.0,
+              10.0
+            ],
+            [
+              -20.0,
+              20.0
+            ],
+            [
+              -10.0,
+              20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-5-2",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              10.0,
+              20.0
+            ],
+            [
+              20.0,
+              20.0
+            ],
+            [
+              20.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              15.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-61",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -10.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-3-8",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -20.0,
+              10.0
+            ],
+            [
+              -20.0,
+              20.0
+            ],
+            [
+              -10.0,
+              20.0
+            ],
+            [
+              -10.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-1-7",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              10.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-6-92",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              20.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              15.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              10.0,
+              20.0
+            ],
+            [
+              20.0,
+              20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 339.75,
+          "startAngle": 0,
+          "speed": 100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 339.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e2",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 249.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path9317-5-3-0-1-5",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              20.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -10.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-6",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -20.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-7-2",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -10.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ],
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -20.0,
+              10.0
+            ],
+            [
+              -20.0,
+              20.0
+            ],
+            [
+              -10.0,
+              20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-5-9",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              10.0,
+              20.0
+            ],
+            [
+              20.0,
+              20.0
+            ],
+            [
+              20.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              15.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-12",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -10.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-3-7",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -20.0,
+              10.0
+            ],
+            [
+              -20.0,
+              20.0
+            ],
+            [
+              -10.0,
+              20.0
+            ],
+            [
+              -10.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-1-0",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              10.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-6-9",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              20.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              15.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              10.0,
+              20.0
+            ],
+            [
+              20.0,
+              20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 249.75,
+          "startAngle": 0,
+          "speed": -100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 249.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    },
+    {
+      "body": {
+        "id": "e1",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 159.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "path9317-5-3-0-1",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              20.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -10.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -20.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-7",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              -10.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ],
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -20.0,
+              10.0
+            ],
+            [
+              -20.0,
+              20.0
+            ],
+            [
+              -10.0,
+              20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-5-2-2-5",
+          "fixture": true,
+          "graphic": false,
+          "type": "polygon",
+          "vertices": [
+            [
+              10.0,
+              20.0
+            ],
+            [
+              20.0,
+              20.0
+            ],
+            [
+              20.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              15.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ff00ff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -10.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -20.0
+            ],
+            [
+              -20.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -10.0
+            ],
+            [
+              -15.0,
+              -15.0
+            ],
+            [
+              -10.0,
+              -15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-3",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              -15.0,
+              10.0
+            ],
+            [
+              -20.0,
+              10.0
+            ],
+            [
+              -20.0,
+              20.0
+            ],
+            [
+              -10.0,
+              20.0
+            ],
+            [
+              -10.0,
+              15.0
+            ],
+            [
+              -15.0,
+              15.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-1",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              10.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -15.0
+            ],
+            [
+              15.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -10.0
+            ],
+            [
+              20.0,
+              -20.0
+            ],
+            [
+              10.0,
+              -20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        },
+        {
+          "id": "path9317-5-3-56-3-9-6",
+          "fixture": false,
+          "graphic": true,
+          "type": "polygon",
+          "vertices": [
+            [
+              20.0,
+              10.0
+            ],
+            [
+              15.0,
+              10.0
+            ],
+            [
+              15.0,
+              15.0
+            ],
+            [
+              10.0,
+              15.0
+            ],
+            [
+              10.0,
+              20.0
+            ],
+            [
+              20.0,
+              20.0
+            ]
+          ],
+          "radius": 0,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffff0000",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": "round",
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 159.75,
+          "startAngle": 0,
+          "speed": 100,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 159.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": null,
+          "periodY": null,
+          "amplitudeX": null,
+          "amplitudeY": null,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    }
+  ],
+  "powerUps": [],
+  "coins": [
+    {
+      "body": {
+        "id": "c1",
+        "type": "kinematic",
+        "x": 50.0,
+        "y": 946.75,
+        "angle": 0,
+        "speed": 0,
+        "powerUpType": null
+      },
+      "models": [
+        {
+          "id": "c1path",
+          "fixture": false,
+          "graphic": false,
+          "type": "circle",
+          "vertices": [
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "radius": 3,
+          "width": 0,
+          "height": 0,
+          "style": {
+            "color": "ffffff00",
+            "paintingStyle": "stroke",
+            "strokeWidth": 0.5,
+            "strokeJoin": null,
+            "strokeCap": null,
+            "fontWeight": null,
+            "fontSize": null
+          }
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "harmonic",
+          "trigger": null,
+          "startX": 50.0,
+          "startY": 946.75,
+          "startAngle": null,
+          "speed": null,
+          "speedX": null,
+          "speedY": null,
+          "centerX": 50.0,
+          "centerY": 946.75,
+          "radius": null,
+          "minX": null,
+          "maxX": null,
+          "minY": null,
+          "maxY": null,
+          "periodX": 3.5,
+          "periodY": 2,
+          "amplitudeX": 35,
+          "amplitudeY": 20,
+          "timeOn": null,
+          "timeOff": null,
+          "initialTime": null,
+          "intermittentState": null
+        }
+      ]
+    }
+  ],
+  "texts": [],
+  "stars": {
+    "star1": 68,
+    "star2": 67,
+    "star3": 66
+  }
+}

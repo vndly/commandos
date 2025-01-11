@@ -1,0 +1,254 @@
+{
+  "body": {
+    "id": "g1355",
+    "type": "kinematic",
+    "x": 0.0,
+    "y": -0.05,
+    "angle": 0,
+    "speed": 0,
+    "powerUpType": null
+  },
+  "models": [
+    {
+      "id": "path829",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          0.0,
+          0.45
+        ],
+        [
+          1.0,
+          -1.55
+        ],
+        [
+          0.0,
+          -2.55
+        ],
+        [
+          -1.0,
+          -1.55
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path831",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          0.9,
+          4.95
+        ],
+        [
+          2.6,
+          2.95
+        ],
+        [
+          2.6,
+          0.15
+        ],
+        [
+          1.8,
+          -0.65
+        ],
+        [
+          0.9,
+          0.95
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path831-79",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          2.6,
+          -1.15
+        ],
+        [
+          2.6,
+          -2.95
+        ],
+        [
+          1.0,
+          -4.95
+        ],
+        [
+          1.0,
+          -3.15
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path831-7",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          -2.6,
+          2.95
+        ],
+        [
+          -0.9,
+          4.95
+        ],
+        [
+          -0.9,
+          0.95
+        ],
+        [
+          -1.8,
+          -0.65
+        ],
+        [
+          -2.6,
+          0.15
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path833",
+      "fixture": false,
+      "graphic": true,
+      "type": "polygon",
+      "vertices": [
+        [
+          -1.0,
+          -3.15
+        ],
+        [
+          -1.0,
+          -4.95
+        ],
+        [
+          -2.6,
+          -2.95
+        ],
+        [
+          -2.6,
+          -1.15
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "ffffffff",
+        "paintingStyle": "stroke",
+        "strokeWidth": 0.5,
+        "strokeJoin": "round",
+        "strokeCap": "butt",
+        "fontWeight": null,
+        "fontSize": null
+      }
+    },
+    {
+      "id": "path900",
+      "fixture": true,
+      "graphic": false,
+      "type": "polygon",
+      "vertices": [
+        [
+          -1.1,
+          -5.25
+        ],
+        [
+          -2.9,
+          -2.95
+        ],
+        [
+          -2.9,
+          3.05
+        ],
+        [
+          -0.95,
+          5.25
+        ],
+        [
+          0.95,
+          5.25
+        ],
+        [
+          2.9,
+          3.05
+        ],
+        [
+          2.9,
+          -2.95
+        ],
+        [
+          1.1,
+          -5.25
+        ]
+      ],
+      "radius": 0,
+      "width": 0,
+      "height": 0,
+      "style": {
+        "color": "7fff0000",
+        "paintingStyle": "fill",
+        "strokeWidth": null,
+        "strokeJoin": null,
+        "strokeCap": null,
+        "fontWeight": null,
+        "fontSize": null
+      }
+    }
+  ],
+  "behaviors": []
+}
