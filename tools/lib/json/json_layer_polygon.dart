@@ -16,7 +16,8 @@ class JsonLayerPolygon {
     required this.open,
   });
 
-  factory JsonLayerPolygon.fromJson(Map<String, dynamic> json) => _$JsonLayerPolygonFromJson(json);
+  factory JsonLayerPolygon.fromJson(Map<String, dynamic> json) =>
+      _$JsonLayerPolygonFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonLayerPolygonToJson(this);
 }

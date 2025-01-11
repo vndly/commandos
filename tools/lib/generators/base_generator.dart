@@ -6,20 +6,19 @@ import 'package:cavedash_tools/extensions/xml_element_extension.dart';
 import 'package:cavedash_tools/json/json_behavior.dart';
 import 'package:cavedash_tools/json/json_body.dart';
 import 'package:cavedash_tools/json/json_display.dart';
+import 'package:cavedash_tools/json/json_fixture.dart';
 import 'package:cavedash_tools/json/json_game_object.dart';
 import 'package:cavedash_tools/json/json_game_text.dart';
 import 'package:cavedash_tools/json/json_icon.dart';
 import 'package:cavedash_tools/json/json_layer.dart';
 import 'package:cavedash_tools/json/json_layer_circle.dart';
 import 'package:cavedash_tools/json/json_layer_polygon.dart';
-import 'package:cavedash_tools/json/json_model.dart';
 import 'package:cavedash_tools/json/json_stars.dart';
 import 'package:cavedash_tools/json/json_style.dart';
 import 'package:cavedash_tools/types/behavior_type.dart';
 import 'package:cavedash_tools/types/body_type.dart';
 import 'package:cavedash_tools/types/intermittent_state.dart';
-import 'package:cavedash_tools/types/model_type.dart';
-import 'package:cavedash_tools/types/power_up_type.dart';
+import 'package:cavedash_tools/types/shape_type.dart';
 import 'package:cavedash_tools/types/types.dart';
 import 'package:xml/xml.dart';
 
@@ -99,15 +98,9 @@ $json
       BodyType.values,
       BodyType.kinematic,
     );
-    final PowerUpType? powerUpType = element.getEnumAttribute(
-      'powerUpType',
-      PowerUpType.values,
-      null,
-    );
     final num angle = element.getNumAttribute('angle');
-    final num speed = element.getNumAttribute('speed');
 
-    final List<JsonModel> models = [];
+    final List<JsonFixture> models = [];
     final List<JsonBehavior> behaviors = [];
 
     if (element.childElements.isEmpty) {
@@ -125,7 +118,7 @@ $json
     num minY = double.infinity;
     num maxY = -double.infinity;
 
-    for (final JsonModel model in models) {
+    for (final JsonFixture model in models) {
       final num localMinX = model.minX;
       final num localMaxX = model.maxX;
       final num localMinY = model.minY;
@@ -151,7 +144,7 @@ $json
     final num x = (minX + maxX) / 2;
     final num y = (minY + maxY) / 2;
 
-    for (final JsonModel model in models) {
+    for (final JsonFixture model in models) {
       model.adjustVertices(x, y);
     }
 
@@ -168,38 +161,26 @@ $json
         x: x.rounded(),
         y: y.rounded(),
         angle: angle.rounded(),
-        speed: speed.rounded(),
-        powerUpType: powerUpType,
       ),
-      models: models,
+      fixtures: models,
       behaviors: behaviors,
     );
   }
 
-  JsonModel getModel(XmlElement element, Vertex translation) {
+  JsonFixture getModel(XmlElement element, Vertex translation) {
     final String id = element.getAttribute('id')!;
-    final bool fixture = element.getBoolAttribute('fixture');
-    final bool graphic = element.getBoolAttribute('graphic');
-    final ModelType modelType = element.getEnumAttribute(
+    final ShapeType modelType = element.getEnumAttribute(
       'modelType',
-      ModelType.values,
-      ModelType.polygon,
+      ShapeType.values,
+      ShapeType.polygon,
     );
     final num radius = element.getNumAttribute('r');
-    final num width = element.getNumAttribute('rx');
-    final num height = element.getNumAttribute('ry');
-    final JsonStyle style = JsonStyle.create(element.getAttribute('style'))!;
 
-    return JsonModel(
+    return JsonFixture(
       id: id,
-      fixture: fixture,
-      graphic: graphic,
-      type: modelType,
+      shapeType: modelType,
       vertices: getVertices(element, translation, modelType),
       radius: radius.rounded(),
-      width: width.rounded(),
-      height: height.rounded(),
-      style: style,
     );
   }
 
@@ -363,7 +344,7 @@ $json
   }
 
   JsonDisplay getDisplay(XmlElement element) {
-    final List<JsonModel> models = [];
+    final List<JsonFixture> models = [];
     num offset = 0;
 
     if (element.hasAttribute('offset')) {
@@ -414,11 +395,11 @@ $json
   List<Vertex> getVertices(
     XmlElement element,
     Vertex translation,
-    ModelType modelType,
+    ShapeType modelType,
   ) {
-    if ((modelType == ModelType.polygon) || (modelType == ModelType.line)) {
+    if (modelType == ShapeType.polygon) {
       return getVerticesPolygon(element.getAttribute('d')!, translation);
-    } else if ((modelType == ModelType.circle) || (modelType == ModelType.ellipse)) {
+    } else if (modelType == ShapeType.circle) {
       return getVerticesCircle(element, translation);
     } else {
       return [];

@@ -35,7 +35,7 @@ JsonBehavior _$JsonBehaviorFromJson(Map<String, dynamic> json) => JsonBehavior(
 
 Map<String, dynamic> _$JsonBehaviorToJson(JsonBehavior instance) =>
     <String, dynamic>{
-      'type': _$BehaviorTypeEnumMap[instance.type],
+      'type': _$BehaviorTypeEnumMap[instance.type]!,
       'trigger': instance.trigger,
       'startX': instance.startX,
       'startY': instance.startY,

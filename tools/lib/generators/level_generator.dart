@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'package:cavedash_tools/generators/base_generator.dart';
 import 'package:cavedash_tools/json/json_game_object.dart';
-import 'package:cavedash_tools/json/json_game_text.dart';
 import 'package:cavedash_tools/json/json_level.dart';
-import 'package:cavedash_tools/json/json_stars.dart';
 import 'package:xml/xml.dart';
 
 class LevelGenerator extends BaseGenerator {
@@ -28,44 +26,20 @@ class LevelGenerator extends BaseGenerator {
   }
 
   JsonLevel getLevel(XmlDocument document, int id) {
-    final List<JsonGameObject> enemies = [];
-    final List<JsonGameObject> portal = [];
-    final List<JsonGameObject> spikes = [];
-    final List<JsonGameObject> powerUps = [];
-    final List<JsonGameObject> coins = [];
-    final List<JsonGameText> texts = [];
-    final List<JsonStars> stars = [];
+    final List<JsonGameObject> walls = [];
     final Iterable<XmlElement> layers = document.findAllElements('g');
 
     for (final XmlElement layer in layers) {
       final String id = layer.getAttribute('id')!;
 
-      if (id == 'enemies') {
-        enemies.addAll(getGameObjects(layer));
-      } else if (id == 'powerups') {
-        powerUps.addAll(getGameObjects(layer));
-      } else if (id == 'portal') {
-        portal.addAll(getGameObjects(layer));
-      } else if (id == 'spikes') {
-        spikes.addAll(getGameObjects(layer));
-      } else if (id == 'coins') {
-        coins.addAll(getGameObjects(layer));
-      } else if (id == 'texts') {
-        texts.addAll(getGameTexts(layer));
-      } else if (id == 'stars') {
-        stars.addAll(getStars(layer));
+      if (id == 'walls') {
+        walls.addAll(getGameObjects(layer));
       }
     }
 
     return JsonLevel(
       id: id,
-      portal: portal[0],
-      spikes: spikes[0],
-      enemies: enemies,
-      powerUps: powerUps,
-      texts: texts,
-      coins: coins,
-      stars: stars[0],
+      walls: walls,
     );
   }
 
@@ -74,7 +48,8 @@ class LevelGenerator extends BaseGenerator {
     String mapperContent = '';
 
     for (final int id in ids) {
-      imports.add("import 'package:tension_tunnel/assets/levels/level_$id.dart';");
+      imports
+          .add("import 'package:tension_tunnel/assets/levels/level_$id.dart';");
 
       if (mapperContent.isEmpty) {
         mapperContent += '''
@@ -106,7 +81,8 @@ class LevelMapper {
 }
 ''';
 
-    final File outputDart = File('../frontend/lib/assets/$folder/level_mapper.dart');
+    final File outputDart =
+        File('../frontend/lib/assets/$folder/level_mapper.dart');
     outputDart.writeAsStringSync(content);
   }
 }

@@ -56,7 +56,8 @@ class JsonBehavior {
     required this.intermittentState,
   });
 
-  factory JsonBehavior.fromJson(Map<String, dynamic> json) => _$JsonBehaviorFromJson(json);
+  factory JsonBehavior.fromJson(Map<String, dynamic> json) =>
+      _$JsonBehaviorFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonBehaviorToJson(this);
 }

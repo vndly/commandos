@@ -8,7 +8,7 @@ part of 'json_display.dart';
 
 JsonDisplay _$JsonDisplayFromJson(Map<String, dynamic> json) => JsonDisplay(
       models: (json['models'] as List<dynamic>)
-          .map((e) => JsonModel.fromJson(e as Map<String, dynamic>))
+          .map((e) => JsonFixture.fromJson(e as Map<String, dynamic>))
           .toList(),
       offset: json['offset'] as num,
     );

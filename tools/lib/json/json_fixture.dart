@@ -1,33 +1,22 @@
 import 'package:cavedash_tools/extensions/num_extension.dart';
-import 'package:cavedash_tools/json/json_style.dart';
-import 'package:cavedash_tools/types/model_type.dart';
+import 'package:cavedash_tools/types/shape_type.dart';
 import 'package:cavedash_tools/types/types.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'json_model.g.dart';
+part 'json_fixture.g.dart';
 
 @JsonSerializable()
-class JsonModel {
+class JsonFixture {
   final String id;
-  final bool fixture;
-  final bool graphic;
-  final ModelType type;
+  final ShapeType shapeType;
   final List<Vertex> vertices;
   final num radius;
-  final num width;
-  final num height;
-  final JsonStyle style;
 
-  const JsonModel({
+  const JsonFixture({
     required this.id,
-    required this.fixture,
-    required this.graphic,
-    required this.type,
+    required this.shapeType,
     required this.vertices,
     required this.radius,
-    required this.width,
-    required this.height,
-    required this.style,
   });
 
   void adjustVertices(num x, num y) {
@@ -46,7 +35,7 @@ class JsonModel {
       }
     }
 
-    if (type == ModelType.circle) {
+    if (shapeType == ShapeType.circle) {
       return result - radius;
     } else {
       return result;
@@ -62,7 +51,7 @@ class JsonModel {
       }
     }
 
-    if (type == ModelType.circle) {
+    if (shapeType == ShapeType.circle) {
       return result + radius;
     } else {
       return result;
@@ -78,7 +67,7 @@ class JsonModel {
       }
     }
 
-    if (type == ModelType.circle) {
+    if (shapeType == ShapeType.circle) {
       return result - radius;
     } else {
       return result;
@@ -94,14 +83,15 @@ class JsonModel {
       }
     }
 
-    if (type == ModelType.circle) {
+    if (shapeType == ShapeType.circle) {
       return result + radius;
     } else {
       return result;
     }
   }
 
-  factory JsonModel.fromJson(Map<String, dynamic> json) => _$JsonModelFromJson(json);
+  factory JsonFixture.fromJson(Map<String, dynamic> json) =>
+      _$JsonFixtureFromJson(json);
 
-  Map<String, dynamic> toJson() => _$JsonModelToJson(this);
+  Map<String, dynamic> toJson() => _$JsonFixtureToJson(this);
 }

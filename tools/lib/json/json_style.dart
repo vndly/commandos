@@ -47,28 +47,39 @@ class JsonStyle {
       num? fontSize;
 
       if (map.containsKey('fill') && (map['fill'] != 'none')) {
-        final num opacity = map.containsKey('fill-opacity') ? num.parse(map['fill-opacity']!) : 1;
-        final String fill = map.containsKey('fill') ? map['fill']!.replaceAll('#', '') : '000000';
+        final num opacity = map.containsKey('fill-opacity')
+            ? num.parse(map['fill-opacity']!)
+            : 1;
+        final String fill = map.containsKey('fill')
+            ? map['fill']!.replaceAll('#', '')
+            : '000000';
 
         color = '${numToHex(opacity)}$fill';
         paintingStyle = PaintingStyle.fill;
       } else if (map.containsKey('stroke-opacity')) {
-        final num opacity = map.containsKey('stroke-opacity') ? num.parse(map['stroke-opacity']!) : 1;
-        final String stroke = map.containsKey('stroke') ? map['stroke']!.replaceAll('#', '') : '000000';
+        final num opacity = map.containsKey('stroke-opacity')
+            ? num.parse(map['stroke-opacity']!)
+            : 1;
+        final String stroke = map.containsKey('stroke')
+            ? map['stroke']!.replaceAll('#', '')
+            : '000000';
 
         color = '${numToHex(opacity)}$stroke';
         paintingStyle = PaintingStyle.stroke;
 
-        if (map.containsKey('stroke-opacity') && map.containsKey('stroke-width')) {
+        if (map.containsKey('stroke-opacity') &&
+            map.containsKey('stroke-width')) {
           strokeWidth = num.parse(map['stroke-width']!);
         }
 
         if (map.containsKey('stroke-linejoin')) {
-          strokeJoin = EnumToString.fromString(StrokeJoin.values, map['stroke-linejoin']!);
+          strokeJoin = EnumToString.fromString(
+              StrokeJoin.values, map['stroke-linejoin']!);
         }
 
         if (map.containsKey('stroke-linecap')) {
-          strokeCap = EnumToString.fromString(StrokeCap.values, map['stroke-linecap']!);
+          strokeCap =
+              EnumToString.fromString(StrokeCap.values, map['stroke-linecap']!);
         }
       }
 
@@ -97,7 +108,8 @@ class JsonStyle {
 
   static String numToHex(num value) => (value * 255).toInt().toRadixString(16);
 
-  factory JsonStyle.fromJson(Map<String, dynamic> json) => _$JsonStyleFromJson(json);
+  factory JsonStyle.fromJson(Map<String, dynamic> json) =>
+      _$JsonStyleFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonStyleToJson(this);
 }

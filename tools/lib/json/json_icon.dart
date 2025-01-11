@@ -17,7 +17,8 @@ class JsonIcon {
     required this.layers,
   });
 
-  factory JsonIcon.fromJson(Map<String, dynamic> json) => _$JsonIconFromJson(json);
+  factory JsonIcon.fromJson(Map<String, dynamic> json) =>
+      _$JsonIconFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonIconToJson(this);
 }

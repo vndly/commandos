@@ -18,7 +18,7 @@ JsonStyle _$JsonStyleFromJson(Map<String, dynamic> json) => JsonStyle(
 
 Map<String, dynamic> _$JsonStyleToJson(JsonStyle instance) => <String, dynamic>{
       'color': instance.color,
-      'paintingStyle': _$PaintingStyleEnumMap[instance.paintingStyle],
+      'paintingStyle': _$PaintingStyleEnumMap[instance.paintingStyle]!,
       'strokeWidth': instance.strokeWidth,
       'strokeJoin': _$StrokeJoinEnumMap[instance.strokeJoin],
       'strokeCap': _$StrokeCapEnumMap[instance.strokeCap],

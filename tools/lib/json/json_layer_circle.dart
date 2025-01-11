@@ -17,7 +17,8 @@ class JsonLayerCircle {
     required this.r,
   });
 
-  factory JsonLayerCircle.fromJson(Map<String, dynamic> json) => _$JsonLayerCircleFromJson(json);
+  factory JsonLayerCircle.fromJson(Map<String, dynamic> json) =>
+      _$JsonLayerCircleFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonLayerCircleToJson(this);
 }

@@ -7,9 +7,9 @@ part of 'json_stars.dart';
 // **************************************************************************
 
 JsonStars _$JsonStarsFromJson(Map<String, dynamic> json) => JsonStars(
-      star1: json['star1'] as int,
-      star2: json['star2'] as int,
-      star3: json['star3'] as int,
+      star1: (json['star1'] as num).toInt(),
+      star2: (json['star2'] as num).toInt(),
+      star3: (json['star3'] as num).toInt(),
     );
 
 Map<String, dynamic> _$JsonStarsToJson(JsonStars instance) => <String, dynamic>{

@@ -1,6 +1,6 @@
 import 'package:cavedash_tools/json/json_behavior.dart';
 import 'package:cavedash_tools/json/json_body.dart';
-import 'package:cavedash_tools/json/json_model.dart';
+import 'package:cavedash_tools/json/json_fixture.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_game_object.g.dart';
@@ -8,16 +8,17 @@ part 'json_game_object.g.dart';
 @JsonSerializable()
 class JsonGameObject {
   final JsonBody body;
-  final List<JsonModel> models;
+  final List<JsonFixture> fixtures;
   final List<JsonBehavior> behaviors;
 
   const JsonGameObject({
     required this.body,
-    required this.models,
+    required this.fixtures,
     required this.behaviors,
   });
 
-  factory JsonGameObject.fromJson(Map<String, dynamic> json) => _$JsonGameObjectFromJson(json);
+  factory JsonGameObject.fromJson(Map<String, dynamic> json) =>
+      _$JsonGameObjectFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonGameObjectToJson(this);
 }
