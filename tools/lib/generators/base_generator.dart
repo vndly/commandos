@@ -100,15 +100,15 @@ $json
     );
     final num angle = element.getNumAttribute('angle');
 
-    final List<JsonFixture> models = [];
+    final List<JsonFixture> fixtures = [];
     final List<JsonBehavior> behaviors = [];
 
     if (element.childElements.isEmpty) {
-      models.add(getModel(element, [0, 0]));
+      fixtures.add(getModel(element, [0, 0]));
     } else {
       for (final XmlElement child in element.childElements) {
-        if ((child.name.local == 'path') || (child.name.local == 'circle') || (child.name.local == 'ellipse')) {
-          models.add(getModel(child, getTranslation(element)));
+        if ((child.name.local == 'path') || (child.name.local == 'circle')) {
+          fixtures.add(getModel(child, getTranslation(element)));
         }
       }
     }
@@ -118,11 +118,11 @@ $json
     num minY = double.infinity;
     num maxY = -double.infinity;
 
-    for (final JsonFixture model in models) {
-      final num localMinX = model.minX;
-      final num localMaxX = model.maxX;
-      final num localMinY = model.minY;
-      final num localMaxY = model.maxY;
+    for (final JsonFixture fixture in fixtures) {
+      final num localMinX = fixture.minX;
+      final num localMaxX = fixture.maxX;
+      final num localMinY = fixture.minY;
+      final num localMaxY = fixture.maxY;
 
       if (localMinX < minX) {
         minX = localMinX;
@@ -144,7 +144,7 @@ $json
     final num x = (minX + maxX) / 2;
     final num y = (minY + maxY) / 2;
 
-    for (final JsonFixture model in models) {
+    for (final JsonFixture model in fixtures) {
       model.adjustVertices(x, y);
     }
 
@@ -162,7 +162,7 @@ $json
         y: y.rounded(),
         angle: angle.rounded(),
       ),
-      fixtures: models,
+      fixtures: fixtures,
       behaviors: behaviors,
     );
   }
