@@ -37,6 +37,12 @@ class BaseGenerator {
     writeDart(entry, json);
   }
 
+  void copyToAssets(FileSystemEntity entry) {
+    final File file = File(entry.path);
+    final String newPath = '../frontend/assets/images/${entry.path.replaceFirst('input/', '')}';
+    file.copy(newPath);
+  }
+
   void writeJson(FileSystemEntity entry, String json) {
     final String fileName = entry.uri.pathSegments.last.split('.')[0];
     final File output = File('output/$folder/$fileName.json');

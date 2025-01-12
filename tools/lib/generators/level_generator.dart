@@ -17,6 +17,7 @@ class LevelGenerator extends BaseGenerator {
       final XmlDocument xml = document(entry);
       final JsonLevel level = getLevel(xml, id);
       write(entry, level);
+      copyToAssets(entry);
     }
   }
 
