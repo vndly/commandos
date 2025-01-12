@@ -5,7 +5,6 @@ import 'package:cavedash_tools/extensions/string_extension.dart';
 import 'package:cavedash_tools/extensions/xml_element_extension.dart';
 import 'package:cavedash_tools/json/json_behavior.dart';
 import 'package:cavedash_tools/json/json_body.dart';
-import 'package:cavedash_tools/json/json_display.dart';
 import 'package:cavedash_tools/json/json_fixture.dart';
 import 'package:cavedash_tools/json/json_game_object.dart';
 import 'package:cavedash_tools/json/json_game_text.dart';
@@ -104,11 +103,11 @@ $json
     final List<JsonBehavior> behaviors = [];
 
     if (element.childElements.isEmpty) {
-      fixtures.add(getModel(element, [0, 0]));
+      fixtures.add(getFixture(element, [0, 0]));
     } else {
       for (final XmlElement child in element.childElements) {
         if ((child.name.local == 'path') || (child.name.local == 'circle')) {
-          fixtures.add(getModel(child, getTranslation(element)));
+          fixtures.add(getFixture(child, getTranslation(element)));
         }
       }
     }
@@ -144,8 +143,8 @@ $json
     final num x = (minX + maxX) / 2;
     final num y = (minY + maxY) / 2;
 
-    for (final JsonFixture model in fixtures) {
-      model.adjustVertices(x, y);
+    for (final JsonFixture fixture in fixtures) {
+      fixture.adjustVertices(x, y);
     }
 
     for (final XmlElement child in element.childElements) {
@@ -167,10 +166,10 @@ $json
     );
   }
 
-  JsonFixture getModel(XmlElement element, Vertex translation) {
+  JsonFixture getFixture(XmlElement element, Vertex translation) {
     final String id = element.getAttribute('id')!;
-    final ShapeType modelType = element.getEnumAttribute(
-      'modelType',
+    final ShapeType shapeType = element.getEnumAttribute(
+      'shapeType',
       ShapeType.values,
       ShapeType.polygon,
     );
@@ -178,8 +177,8 @@ $json
 
     return JsonFixture(
       id: id,
-      shapeType: modelType,
-      vertices: getVertices(element, translation, modelType),
+      shapeType: shapeType,
+      vertices: getVertices(element, translation, shapeType),
       radius: radius.rounded(),
     );
   }
@@ -333,40 +332,6 @@ $json
     );
   }
 
-  List<JsonDisplay> getDisplays(XmlElement xml) {
-    final List<JsonDisplay> result = [];
-
-    for (final XmlElement element in xml.childElements) {
-      result.add(getDisplay(element));
-    }
-
-    return result;
-  }
-
-  JsonDisplay getDisplay(XmlElement element) {
-    final List<JsonFixture> models = [];
-    num offset = 0;
-
-    if (element.hasAttribute('offset')) {
-      offset = element.getNumAttribute('offset');
-    }
-
-    if (element.childElements.isEmpty) {
-      models.add(getModel(element, [0, 0]));
-    } else {
-      for (final XmlElement child in element.childElements) {
-        if ((child.name.local == 'path') || (child.name.local == 'circle')) {
-          models.add(getModel(child, getTranslation(element)));
-        }
-      }
-    }
-
-    return JsonDisplay(
-      models: models,
-      offset: offset,
-    );
-  }
-
   List<JsonGameText> getGameTexts(XmlElement xml) {
     final List<JsonGameText> result = [];
 
@@ -395,11 +360,11 @@ $json
   List<Vertex> getVertices(
     XmlElement element,
     Vertex translation,
-    ShapeType modelType,
+    ShapeType shapeType,
   ) {
-    if (modelType == ShapeType.polygon) {
+    if (shapeType == ShapeType.polygon) {
       return getVerticesPolygon(element.getAttribute('d')!, translation);
-    } else if (modelType == ShapeType.circle) {
+    } else if (shapeType == ShapeType.circle) {
       return getVerticesCircle(element, translation);
     } else {
       return [];
