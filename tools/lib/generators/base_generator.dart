@@ -12,7 +12,6 @@ import 'package:cavedash_tools/json/json_icon.dart';
 import 'package:cavedash_tools/json/json_layer.dart';
 import 'package:cavedash_tools/json/json_layer_circle.dart';
 import 'package:cavedash_tools/json/json_layer_polygon.dart';
-import 'package:cavedash_tools/json/json_stars.dart';
 import 'package:cavedash_tools/json/json_style.dart';
 import 'package:cavedash_tools/types/behavior_type.dart';
 import 'package:cavedash_tools/types/body_type.dart';
@@ -64,20 +63,6 @@ $json
 
     final File outputDart = File('../frontend/lib/assets/$folder/$fileName.dart');
     outputDart.writeAsStringSync(content);
-  }
-
-  List<JsonStars> getStars(XmlElement xml) => [getStar(xml)];
-
-  JsonStars getStar(XmlElement element) {
-    final int star1 = element.getNumAttribute('star1').toInt();
-    final int star2 = element.getNumAttribute('star2').toInt();
-    final int star3 = element.getNumAttribute('star3').toInt();
-
-    return JsonStars(
-      star1: star1,
-      star2: star2,
-      star3: star3,
-    );
   }
 
   List<JsonGameObject> getGameObjects(XmlElement xml) {

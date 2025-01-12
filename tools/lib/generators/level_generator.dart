@@ -9,19 +9,15 @@ class LevelGenerator extends BaseGenerator {
 
   void run() {
     final List<FileSystemEntity> entries = getFiles();
-    final List<int> ids = [];
 
     for (final FileSystemEntity entry in entries) {
       final String fileName = entry.uri.pathSegments.last.split('.')[0];
       final int id = int.parse(fileName.split('_')[1]);
-      ids.add(id);
 
       final XmlDocument xml = document(entry);
       final JsonLevel level = getLevel(xml, id);
       write(entry, level);
     }
-
-    ids.sort((a, b) => a - b);
   }
 
   JsonLevel getLevel(XmlDocument document, int id) {
