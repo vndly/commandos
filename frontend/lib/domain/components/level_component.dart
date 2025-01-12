@@ -33,8 +33,6 @@ class LevelComponent extends Forge2DWorld {
     );
     add(characterComponent);
 
-    // ---------------------- Walls ----------------------
-
     final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
     final JsonLevel jsonLevel = JsonLevel.fromJson(json);
 
@@ -44,108 +42,6 @@ class LevelComponent extends Forge2DWorld {
         jsonFixtures: jsonWall.fixtures,
       ));
     }
-
-    /*const double wallWidth1 = 12.5;
-    add(WallComponent(
-      location: Vector2(25, 75),
-      vertices: [
-        Vector2(wallWidth1, wallWidth1),
-        Vector2(wallWidth1, -wallWidth1),
-        Vector2(-wallWidth1, -wallWidth1),
-        Vector2(-wallWidth1, wallWidth1),
-      ],
-    ));
-
-    const double wallWidth2 = 5;
-    add(WallComponent(
-      location: Vector2(66.6, 33.3),
-      vertices: [
-        Vector2(wallWidth2, wallWidth2),
-        Vector2(wallWidth2, -wallWidth2),
-        Vector2(-wallWidth2, -wallWidth2),
-        Vector2(-wallWidth2, wallWidth2),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(0, 0),
-      vertices: [
-        Vector2(-0.5, -0.5),
-        Vector2(-0.5, 0.5),
-        Vector2(58.5, 0.5),
-        Vector2(58.5, -0.5),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(0, 0),
-      vertices: [
-        Vector2(-0.5, -0.5),
-        Vector2(0.5, -0.5),
-        Vector2(0.5, 42),
-        Vector2(-0.5, 42),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(100, 0),
-      vertices: [
-        Vector2(-0.5, -0.5),
-        Vector2(0.5, -0.5),
-        Vector2(0.5, 42),
-        Vector2(-0.5, 42),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(100, 0),
-      vertices: [
-        Vector2(0.5, -0.5),
-        Vector2(0.5, 0.5),
-        Vector2(-25.5, 0.5),
-        Vector2(-25.5, -0.5),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(0, 100),
-      vertices: [
-        Vector2(-0.5, -0.5),
-        Vector2(-0.5, 0.5),
-        Vector2(58.5, 0.5),
-        Vector2(58.5, -0.5),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(0, 100),
-      vertices: [
-        Vector2(-0.5, 0.5),
-        Vector2(0.5, 0.5),
-        Vector2(0.5, -42),
-        Vector2(-0.5, -42),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(100, 100),
-      vertices: [
-        Vector2(-0.5, 0.5),
-        Vector2(0.5, 0.5),
-        Vector2(0.5, -42),
-        Vector2(-0.5, -42),
-      ],
-    ));
-
-    add(WallComponent(
-      location: Vector2(100, 100),
-      vertices: [
-        Vector2(0.5, -0.5),
-        Vector2(0.5, 0.5),
-        Vector2(-25.5, 0.5),
-        Vector2(-25.5, -0.5),
-      ],
-    ));*/
 
     return super.onLoad();
   }

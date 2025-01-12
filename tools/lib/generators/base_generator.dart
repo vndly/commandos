@@ -327,7 +327,7 @@ $json
 
   List<Vertex> getVerticesCircle(XmlElement element, Vertex translation) {
     final num x = element.getNumAttribute('cx');
-    final num y = -element.getNumAttribute('cy');
+    final num y = element.getNumAttribute('cy');
 
     return [
       [
@@ -352,7 +352,7 @@ $json
       } else if ((command == 'M') || (command == 'L')) {
         final List<String> coordinates = current.split(',');
         final num x = num.parse(coordinates[0]);
-        final num y = -num.parse(coordinates[1]);
+        final num y = num.parse(coordinates[1]);
         result.add([
           (x + translation[0]).rounded(),
           (y + translation[1]).rounded(),
@@ -369,7 +369,7 @@ $json
 
         lastX = value;
       } else if (command == 'V') {
-        final num value = -num.parse(current);
+        final num value = num.parse(current);
         result.add([
           (lastX + translation[0]).rounded(),
           (value + translation[1]).rounded(),
@@ -396,7 +396,7 @@ $json
       }
 
       if (coordinates.length > 1) {
-        translateY = -double.parse(coordinates[1]);
+        translateY = double.parse(coordinates[1]);
       }
     }
 
