@@ -17,7 +17,7 @@ class MapBackgroundComponent extends SpriteComponent {
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_LEVELS_LEVEL0);
+    sprite = await Sprite.load(Assets.IMAGES_LEVELS_LEVEL_0);
     size = sprite!.image.size / Constants.MAP_GRID_RATIO;
 
     return super.onLoad();
