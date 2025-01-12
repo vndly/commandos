@@ -3,8 +3,8 @@ import 'package:cavedash_tools/generators/base_generator.dart';
 import 'package:cavedash_tools/json/json_game_object.dart';
 import 'package:xml/xml.dart';
 
-class EnemiesGenerator extends BaseGenerator {
-  const EnemiesGenerator() : super('enemies');
+class EnemyGenerator extends BaseGenerator {
+  const EnemyGenerator() : super('enemies');
 
   void run() {
     final List<FileSystemEntity> entries = getFiles();

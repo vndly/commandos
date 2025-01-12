@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+     width="100mm"
+     height="100mm"
+     viewBox="0 0 100 100"
+     version="1.1"
+     id="svg1"
+     inkscape:version="1.4 (1:1.4+202410161351+e7c3feb100)"
+     sodipodi:docname="character.svg"
+     inkscape:export-filename="character.png"
+     inkscape:export-xdpi="25.41"
+     inkscape:export-ydpi="25.41"
+     xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+     xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:svg="http://www.w3.org/2000/svg">
+    <sodipodi:namedview
+         id="namedview1"
+         pagecolor="#000000"
+         bordercolor="#000000"
+         borderopacity="1"
+         inkscape:showpageshadow="2"
+         inkscape:pageopacity="0.0"
+         inkscape:pagecheckerboard="0"
+         inkscape:deskcolor="#000000"
+         inkscape:document-units="mm"
+         showborder="false"
+         showgrid="true"
+         inkscape:zoom="1"
+         inkscape:cx="200"
+         inkscape:cy="160.5"
+         inkscape:window-width="1920"
+         inkscape:window-height="1016"
+         inkscape:window-x="0"
+         inkscape:window-y="27"
+         inkscape:window-maximized="1"
+         inkscape:current-layer="layer1">
+        <inkscape:grid
+             id="grid1"
+             units="mm"
+             originx="0"
+             originy="0"
+             spacingx="50"
+             spacingy="50"
+             empcolor="#0099e5"
+             empopacity="0.30196"
+             color="#0099e5"
+             opacity="0.14902"
+             empspacing="5"
+             enabled="true"
+             visible="true" />
+    </sodipodi:namedview>
+    <defs
+         id="defs1">
+        <filter
+             inkscape:collect="always"
+             style="color-interpolation-filters:sRGB"
+             id="filter1"
+             x="-0.147"
+             y="-0.147"
+             width="1.294"
+             height="1.294">
+            <feGaussianBlur
+                 inkscape:collect="always"
+                 stdDeviation="6.125"
+                 id="feGaussianBlur1" />
+        </filter>
+    </defs>
+    <g
+         inkscape:label="Layer 1"
+         inkscape:groupmode="layer"
+         id="layer1">
+        <path
+             id="rect1"
+             style="opacity:1;fill:#ffffff;stroke-width:2.99997;stroke-linecap:round;paint-order:markers fill stroke;fill-opacity:1"
+             d="M 50,0 L 100,50 L 50,100 L 0,50 Z"
+             sodipodi:nodetypes="ccccc" />
+        <path
+             id="rect1-5"
+             style="fill:#ffffff;fill-opacity:1;stroke-width:2.99997;stroke-linecap:round;paint-order:markers fill stroke;filter:url(#filter1)"
+             d="M 50,2.7083e-4 L 100,50 L 50,100 L 0,50 Z"
+             sodipodi:nodetypes="ccccc" />
+    </g>
+</svg>

@@ -1,11 +1,14 @@
+import 'dart:async';
 import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/domain/components/game_component.dart';
 import 'package:cavedash/domain/components/wall_component.dart';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
+import 'package:cavedash/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/extensions.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
@@ -25,6 +28,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
   Future onLoad() async {
     await super.onLoad();
     setup();
+    add(CharacterSpriteComponent());
   }
 
   @override
@@ -100,5 +104,20 @@ class CharacterComponent extends BodyComponent<GameComponent>
     if (other is WallComponent) {
       game.onMatchReset();
     }
+  }
+}
+
+class CharacterSpriteComponent extends SpriteComponent {
+  CharacterSpriteComponent()
+      : super(
+          anchor: Anchor.center,
+        );
+
+  @override
+  FutureOr onLoad() async {
+    sprite = await Sprite.load(Assets.IMAGES_CHARACTERS_CHARACTER);
+    size = sprite!.image.size / Constants.CHARACTER_GRID_RATIO;
+
+    return super.onLoad();
   }
 }

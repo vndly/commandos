@@ -10,4 +10,5 @@ class Constants {
   static const bool RENDER_BODIES = true;
 
   static const double MAP_GRID_RATIO = 10;
+  static const double CHARACTER_GRID_RATIO = 25;
 }

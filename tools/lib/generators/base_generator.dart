@@ -40,16 +40,13 @@ class BaseGenerator {
   Future generatePNG(FileSystemEntity entry) async {
     final String input = entry.path;
     final String output = '../frontend/assets/images/${entry.path.replaceFirst('input/', '').replaceAll('svg', 'png')}';
-    final ProcessResult result = await Process.run('inkscape', [
+    await Process.run('inkscape', [
       input,
       '--export-type=png',
       '--export-dpi=25.41',
       '--export-area-drawing',
       '--export-filename=$output',
     ]);
-    print('stdout: ${result.stdout}');
-    print('stderr: ${result.stderr}');
-    print('Exit code: ${result.exitCode}');
   }
 
   void writeJson(FileSystemEntity entry, String json) {
