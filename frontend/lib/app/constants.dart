@@ -8,4 +8,6 @@ class Constants {
   static const double NODE_DISTANCE_THRESHOLD = 0.5;
 
   static const bool RENDER_BODIES = true;
+
+  static const double MAP_GRID_RATIO = 10;
 }

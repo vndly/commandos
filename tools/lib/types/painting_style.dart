@@ -1,4 +1,0 @@
-enum PaintingStyle {
-  fill,
-  stroke,
-}

@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:convert';
+import 'package:cavedash/assets/levels/level_0.dart';
 import 'package:cavedash/domain/components/character_component.dart';
 import 'package:cavedash/domain/components/map_component.dart';
 import 'package:cavedash/domain/components/wall_component.dart';
+import 'package:cavedash/domain/json/json_game_object.dart';
+import 'package:cavedash/domain/json/json_level.dart';
 import 'package:cavedash/domain/models/grid.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -29,7 +33,19 @@ class LevelComponent extends Forge2DWorld {
     );
     add(characterComponent);
 
-    const double wallWidth1 = 12.5;
+    // ---------------------- Walls ----------------------
+
+    final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
+    final JsonLevel jsonLevel = JsonLevel.fromJson(json);
+
+    for (final JsonGameObject jsonWall in jsonLevel.walls) {
+      add(WallComponent(
+        jsonBody: jsonWall.body,
+        jsonFixtures: jsonWall.fixtures,
+      ));
+    }
+
+    /*const double wallWidth1 = 12.5;
     add(WallComponent(
       location: Vector2(25, 75),
       vertices: [
@@ -129,7 +145,7 @@ class LevelComponent extends Forge2DWorld {
         Vector2(-25.5, 0.5),
         Vector2(-25.5, -0.5),
       ],
-    ));
+    ));*/
 
     return super.onLoad();
   }
