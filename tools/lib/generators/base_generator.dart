@@ -7,12 +7,6 @@ import 'package:cavedash_tools/json/json_behavior.dart';
 import 'package:cavedash_tools/json/json_body.dart';
 import 'package:cavedash_tools/json/json_fixture.dart';
 import 'package:cavedash_tools/json/json_game_object.dart';
-import 'package:cavedash_tools/json/json_game_text.dart';
-import 'package:cavedash_tools/json/json_icon.dart';
-import 'package:cavedash_tools/json/json_layer.dart';
-import 'package:cavedash_tools/json/json_layer_circle.dart';
-import 'package:cavedash_tools/json/json_layer_polygon.dart';
-import 'package:cavedash_tools/json/json_style.dart';
 import 'package:cavedash_tools/types/behavior_type.dart';
 import 'package:cavedash_tools/types/body_type.dart';
 import 'package:cavedash_tools/types/intermittent_state.dart';
@@ -317,31 +311,6 @@ $json
     );
   }
 
-  List<JsonGameText> getGameTexts(XmlElement xml) {
-    final List<JsonGameText> result = [];
-
-    for (final XmlElement element in xml.childElements) {
-      result.add(getGameText(element));
-    }
-
-    return result;
-  }
-
-  JsonGameText getGameText(XmlElement element) {
-    final num x = element.getNumAttribute('x');
-    final num y = element.getNumAttribute('y');
-    final String text = element.getAttribute('id')!;
-    final JsonStyle style = JsonStyle.create(element.getAttribute('style'))!;
-
-    return JsonGameText(
-      x: x.rounded(),
-      y: -y.rounded(),
-      text: text,
-      color: style.color,
-      size: style.fontSize!,
-    );
-  }
-
   List<Vertex> getVertices(
     XmlElement element,
     Vertex translation,
@@ -435,55 +404,5 @@ $json
       translateX.rounded(),
       translateY.rounded(),
     ];
-  }
-
-  JsonIcon getIcon(XmlElement element, num width, num height) {
-    final String name = element.getAttribute('id')!;
-    final List<JsonLayer> layers = [];
-
-    for (final XmlElement child in element.childElements) {
-      if (child.name.local == 'circle') {
-        layers.add(getLayerCircle(child));
-      } else if (child.name.local == 'path') {
-        layers.add(getLayerPolygon(child));
-      }
-    }
-
-    return JsonIcon(
-      name: name,
-      layers: layers,
-      width: width,
-      height: height,
-    );
-  }
-
-  JsonLayer getLayerCircle(XmlElement element) {
-    final JsonStyle style = JsonStyle.create(element.getAttribute('style'))!;
-    final num cx = element.getNumAttribute('cx');
-    final num cy = element.getNumAttribute('cy');
-    final num r = element.getNumAttribute('r');
-
-    return JsonLayer(
-      circle: JsonLayerCircle(
-        style: style,
-        cx: cx.rounded(),
-        cy: cy.rounded(),
-        r: r.rounded(),
-      ),
-    );
-  }
-
-  JsonLayer getLayerPolygon(XmlElement element) {
-    final JsonStyle style = JsonStyle.create(element.getAttribute('style'))!;
-    final List<Vertex> vertices = getVerticesPolygon(element.getAttribute('d')!, [0, 0]);
-    final bool open = element.getBoolAttribute('open');
-
-    return JsonLayer(
-      polygon: JsonLayerPolygon(
-        style: style,
-        vertices: vertices,
-        open: open,
-      ),
-    );
   }
 }
