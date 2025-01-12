@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:cavedash/app/constants.dart';
+import 'package:cavedash/utils/platform.dart';
 import 'package:flame_forge2d/body_component.dart';
 
 extension ComponentExtension on BodyComponent {
   void setup() {
-    renderBody = Constants.RENDER_BODIES;
+    renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
 
     if (renderBody) {
       paint.color = const Color(0xff00ff00);
