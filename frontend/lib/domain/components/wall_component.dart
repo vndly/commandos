@@ -23,8 +23,8 @@ class WallComponent extends BodyComponent {
   Body createBody() {
     final BodyDef bodyDef = BodyDef(
       position: Vector2(
-        jsonBody.x.toDouble() / Constants.MAP_GRID_RATIO,
-        jsonBody.y.toDouble() / Constants.MAP_GRID_RATIO,
+        jsonBody.x / Constants.MAP_GRID_RATIO,
+        jsonBody.y / Constants.MAP_GRID_RATIO,
       ),
       type: jsonBody.type,
     );
@@ -34,8 +34,8 @@ class WallComponent extends BodyComponent {
     for (final JsonFixture jsonFixture in jsonFixtures) {
       final List<Vector2> vertices = jsonFixture.vertices
           .map((v) => Vector2(
-                v[0].toDouble() / Constants.MAP_GRID_RATIO,
-                v[1].toDouble() / Constants.MAP_GRID_RATIO,
+                v[0] / Constants.MAP_GRID_RATIO,
+                v[1] / Constants.MAP_GRID_RATIO,
               ))
           .toList();
 
