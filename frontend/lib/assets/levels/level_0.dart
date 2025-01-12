@@ -7,7 +7,7 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2",
         "type": "static",
-        "x": 76.51,
+        "x": 289.0,
         "y": 0.0,
         "angle": 0
       },
@@ -17,20 +17,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              -77.83,
-              1.32
+              -294.0,
+              5.0
             ],
             [
-              77.83,
-              1.32
+              294.0,
+              5.0
             ],
             [
-              77.83,
-              -1.32
+              294.0,
+              -5.0
             ],
             [
-              -77.83,
-              -1.32
+              -294.0,
+              -5.0
             ]
           ],
           "radius": 0
@@ -42,7 +42,7 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-24",
         "type": "static",
-        "x": 232.17,
+        "x": 877.5,
         "y": 0.0,
         "angle": 0
       },
@@ -52,20 +52,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              -33.73,
-              1.32
+              -127.5,
+              5.0
             ],
             [
-              33.73,
-              1.32
+              127.5,
+              5.0
             ],
             [
-              33.73,
-              -1.32
+              127.5,
+              -5.0
             ],
             [
-              -33.73,
-              -1.32
+              -127.5,
+              -5.0
             ]
           ],
           "radius": 0
@@ -77,8 +77,8 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-24-8",
         "type": "static",
-        "x": 176.51,
-        "y": -88.38,
+        "x": 666.0,
+        "y": -333.0,
         "angle": 0
       },
       "fixtures": [
@@ -87,20 +87,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              -13.11,
-              13.11
+              -50.0,
+              50.0
             ],
             [
-              13.11,
-              13.11
+              50.0,
+              50.0
             ],
             [
-              13.11,
-              -13.11
+              50.0,
+              -50.0
             ],
             [
-              -13.11,
-              -13.11
+              -50.0,
+              -50.0
             ]
           ],
           "radius": 0
@@ -112,8 +112,8 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-24-8-1",
         "type": "static",
-        "x": 66.44,
-        "y": -198.13,
+        "x": 249.5,
+        "y": -749.5,
         "angle": 0
       },
       "fixtures": [
@@ -122,20 +122,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              -32.77,
-              32.77
+              -133.5,
+              133.5
             ],
             [
-              32.78,
-              32.77
+              133.5,
+              133.5
             ],
             [
-              32.78,
-              -32.77
+              133.5,
+              -133.5
             ],
             [
-              -32.77,
-              -32.77
+              -133.5,
+              -133.5
             ]
           ],
           "radius": 0
@@ -147,8 +147,8 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-24-5",
         "type": "static",
-        "x": 232.17,
-        "y": -264.58,
+        "x": 877.5,
+        "y": -1000.0,
         "angle": 0
       },
       "fixtures": [
@@ -157,20 +157,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              -33.73,
-              1.32
+              -127.5,
+              5.0
             ],
             [
-              33.73,
-              1.32
+              127.5,
+              5.0
             ],
             [
-              33.73,
-              -1.32
+              127.5,
+              -5.0
             ],
             [
-              -33.73,
-              -1.32
+              -127.5,
+              -5.0
             ]
           ],
           "radius": 0
@@ -183,7 +183,7 @@ class ModelsLevelsLevel0 {
         "id": "rect2-5",
         "type": "static",
         "x": 0.0,
-        "y": -54.45,
+        "y": -205.5,
         "angle": 0
       },
       "fixtures": [
@@ -192,20 +192,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              1.32,
-              55.77
+              5.0,
+              210.5
             ],
             [
-              1.32,
-              -55.77
+              5.0,
+              -210.5
             ],
             [
-              -1.32,
-              -55.77
+              -5.0,
+              -210.5
             ],
             [
-              -1.32,
-              55.77
+              -5.0,
+              210.5
             ]
           ],
           "radius": 0
@@ -218,7 +218,7 @@ class ModelsLevelsLevel0 {
         "id": "rect2-5-1",
         "type": "static",
         "x": 0.0,
-        "y": -210.13,
+        "y": -794.0,
         "angle": 0
       },
       "fixtures": [
@@ -227,20 +227,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              1.32,
-              55.77
+              5.0,
+              211.0
             ],
             [
-              1.32,
-              -55.77
+              5.0,
+              -211.0
             ],
             [
-              -1.32,
-              -55.77
+              -5.0,
+              -211.0
             ],
             [
-              -1.32,
-              55.77
+              -5.0,
+              211.0
             ]
           ],
           "radius": 0
@@ -252,8 +252,8 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-5-1-9",
         "type": "static",
-        "x": 264.58,
-        "y": -210.13,
+        "x": 1000.0,
+        "y": -794.0,
         "angle": 0
       },
       "fixtures": [
@@ -262,20 +262,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              1.32,
-              55.77
+              5.0,
+              211.0
             ],
             [
-              1.32,
-              -55.77
+              5.0,
+              -211.0
             ],
             [
-              -1.32,
-              -55.77
+              -5.0,
+              -211.0
             ],
             [
-              -1.32,
-              55.77
+              -5.0,
+              211.0
             ]
           ],
           "radius": 0
@@ -287,8 +287,8 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-5-6",
         "type": "static",
-        "x": 264.58,
-        "y": -54.45,
+        "x": 1000.0,
+        "y": -205.5,
         "angle": 0
       },
       "fixtures": [
@@ -297,20 +297,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              1.32,
-              55.77
+              5.0,
+              210.5
             ],
             [
-              1.32,
-              -55.77
+              5.0,
+              -210.5
             ],
             [
-              -1.32,
-              -55.77
+              -5.0,
+              -210.5
             ],
             [
-              -1.32,
-              55.77
+              -5.0,
+              210.5
             ]
           ],
           "radius": 0
@@ -322,8 +322,8 @@ class ModelsLevelsLevel0 {
       "body": {
         "id": "rect2-2",
         "type": "static",
-        "x": 76.51,
-        "y": -264.58,
+        "x": 289.0,
+        "y": -1000.0,
         "angle": 0
       },
       "fixtures": [
@@ -332,20 +332,20 @@ class ModelsLevelsLevel0 {
           "shapeType": "polygon",
           "vertices": [
             [
-              -77.83,
-              1.32
+              -294.0,
+              5.0
             ],
             [
-              77.83,
-              1.32
+              294.0,
+              5.0
             ],
             [
-              77.83,
-              -1.32
+              294.0,
+              -5.0
             ],
             [
-              -77.83,
-              -1.32
+              -294.0,
+              -5.0
             ]
           ],
           "radius": 0

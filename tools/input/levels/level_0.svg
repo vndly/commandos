@@ -46,12 +46,10 @@
              enabled="true"
              visible="true" />
     </sodipodi:namedview>
-    <defs
-         id="defs1" />
     <g
-         inkscape:label="Layer 1"
+         inkscape:label="walls"
          inkscape:groupmode="layer"
-         id="layer1">
+         id="walls">
         <path
              id="rect2"
              style="fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.990129;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
