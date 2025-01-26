@@ -39,7 +39,8 @@ class BaseGenerator {
 
   Future generatePNG(FileSystemEntity entry) async {
     final String input = entry.path;
-    final String output = '../frontend/assets/images/${entry.path.replaceFirst('input/', '').replaceAll('svg', 'png')}';
+    final String output =
+        '../frontend/assets/images/${entry.path.replaceFirst('input/', '').replaceAll('svg', 'png')}';
     await Process.run('inkscape', [
       input,
       '--export-type=png',
@@ -67,7 +68,8 @@ $json
 }
 ''';
 
-    final File outputDart = File('../frontend/lib/assets/$folder/$fileName.dart');
+    final File outputDart =
+        File('../frontend/lib/assets/$folder/$fileName.dart');
     outputDart.writeAsStringSync(content);
   }
 
@@ -359,7 +361,11 @@ $json
     for (final String element in path.split(' ')) {
       final String current = element.toUpperCase();
 
-      if ((current == 'M') || (current == 'Z') || (current == 'L') || (current == 'H') || (current == 'V')) {
+      if ((current == 'M') ||
+          (current == 'Z') ||
+          (current == 'L') ||
+          (current == 'H') ||
+          (current == 'V')) {
         command = current;
       } else if ((command == 'M') || (command == 'L')) {
         final List<String> coordinates = current.split(',');
@@ -401,7 +407,8 @@ $json
     num translateY = 0;
 
     if ((transform != null) && transform.startsWith('translate')) {
-      final List<String> coordinates = transform.replaceAll('translate(', '').replaceAll(')', '').split(',');
+      final List<String> coordinates =
+          transform.replaceAll('translate(', '').replaceAll(')', '').split(',');
 
       if (coordinates.isNotEmpty) {
         translateX = double.parse(coordinates[0]);

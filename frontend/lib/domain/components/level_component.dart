@@ -23,10 +23,6 @@ class LevelComponent extends Forge2DWorld {
       grid: grid,
     ));
 
-    /*add(GridComponent(
-      grid: grid,
-    ));*/
-
     characterComponent = CharacterComponent(
       size: Vector2(4, 4),
       grid: grid,
