@@ -23,6 +23,7 @@ class LevelGenerator extends BaseGenerator {
 
   JsonLevel getLevel(XmlDocument document, int id) {
     final List<JsonGameObject> walls = [];
+    final List<JsonGameObject> portals = [];
     final Iterable<XmlElement> layers = document.findAllElements('g');
 
     for (final XmlElement layer in layers) {
@@ -30,6 +31,8 @@ class LevelGenerator extends BaseGenerator {
 
       if (id == 'walls') {
         walls.addAll(getGameObjects(layer));
+      } else if (id == 'walls') {
+        portals.addAll(getGameObjects(layer));
       }
     }
 

@@ -7,7 +7,6 @@ part of 'json_body.dart';
 // **************************************************************************
 
 JsonBody _$JsonBodyFromJson(Map<String, dynamic> json) => JsonBody(
-      id: json['id'] as String,
       type: $enumDecode(_$BodyTypeEnumMap, json['type']),
       x: json['x'] as num,
       y: json['y'] as num,
@@ -15,7 +14,6 @@ JsonBody _$JsonBodyFromJson(Map<String, dynamic> json) => JsonBody(
     );
 
 Map<String, dynamic> _$JsonBodyToJson(JsonBody instance) => <String, dynamic>{
-      'id': instance.id,
       'type': _$BodyTypeEnumMap[instance.type]!,
       'x': instance.x,
       'y': instance.y,

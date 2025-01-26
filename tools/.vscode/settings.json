@@ -7,14 +7,12 @@
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "editor.fontFamily": "'Source Code Pro'",
-    "files.autoSave": "afterDelay",
-    "dart.previewFlutterUiGuides": true,
-    "dart.lineLength": 150,
-    "[dart]": {
-        "editor.rulers": [
-            150
-        ],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
     },
+    "files.autoSave": "afterDelay",
+    "files.encoding": "utf8",
+    "dart.previewFlutterUiGuides": true,
     "cSpell.words": [
         "bordercolor",
         "borderopacity",

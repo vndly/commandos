@@ -147,8 +147,8 @@ $json
     }
 
     return JsonGameObject(
+      id: id,
       body: JsonBody(
-        id: id,
         type: bodyType,
         x: x.rounded(),
         y: y.rounded(),

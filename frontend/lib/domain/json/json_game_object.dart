@@ -7,11 +7,13 @@ part 'json_game_object.g.dart';
 
 @JsonSerializable()
 class JsonGameObject {
+  final String id;
   final JsonBody body;
   final List<JsonFixture> fixtures;
   final List<JsonBehavior> behaviors;
 
   const JsonGameObject({
+    required this.id,
     required this.body,
     required this.fixtures,
     required this.behaviors,
