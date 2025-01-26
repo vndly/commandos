@@ -1,10 +1,11 @@
 import 'package:cavedash/app/constants.dart';
+import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 class Input {
   InputState state = InputState.none;
 
-  bool get isMoving => !state.isNone;
+  bool get hasInput => !state.isNone;
 
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     bool handled = false;
@@ -53,6 +54,21 @@ class Input {
       } else {
         state = InputState.up;
       }
+    }
+  }
+
+  Vector2 get direction {
+    switch (state) {
+      case InputState.left:
+        return Vector2(-1, 0);
+      case InputState.right:
+        return Vector2(1, 0);
+      case InputState.up:
+        return Vector2(0, -1);
+      case InputState.down:
+        return Vector2(0, 1);
+      default:
+        return Vector2.zero();
     }
   }
 }

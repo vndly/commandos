@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/domain/components/game_component.dart';
 import 'package:cavedash/domain/components/wall_component.dart';
-import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/domain/models/input.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:cavedash/utils/assets.dart';
@@ -15,13 +14,11 @@ import 'package:flutter/services.dart';
 class CharacterComponent extends BodyComponent<GameComponent>
     with KeyboardHandler, ContactCallbacks {
   final Vector2 size;
-  final Grid grid;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
 
   CharacterComponent({
     required this.size,
-    required this.grid,
   });
 
   @override
@@ -35,28 +32,11 @@ class CharacterComponent extends BodyComponent<GameComponent>
   void update(double dt) {
     super.update(dt);
 
-    // Detect start moving
-    if (input.isMoving && !grid.isMoving) {
-      grid.move(
-        state: input.state,
-        position: position,
-      );
-    }
-
-    // Detect moving
-    if (grid.isMoving) {
-      final Vector2 deltaPosition = grid.direction! * Constants.CHARACTER_SPEED;
+    if (input.hasInput) {
+      final Vector2 deltaPosition = input.direction * Constants.CHARACTER_SPEED;
       body.linearVelocity = deltaPosition;
-
-      // print(grid.remainingDistance(position));
-      // Detect stop moving
-      if (grid.remainingDistance(position) <
-          Constants.NODE_DISTANCE_THRESHOLD) {
-        grid.stop();
-        body.linearVelocity = Vector2.zero();
-        body.setTransform(grid.currentNode.position, angle);
-        input.state = InputState.none;
-      }
+    } else {
+      body.linearVelocity = Vector2.zero();
     }
   }
 
@@ -76,7 +56,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
     );
 
     final BodyDef bodyDef = BodyDef(
-      position: grid.startPosition.clone(),
+      position: Constants.MAP_CENTER,
       type: BodyType.dynamic,
     );
 

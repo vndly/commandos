@@ -1,17 +1,13 @@
 import 'dart:async';
 import 'package:cavedash/app/constants.dart';
-import 'package:cavedash/domain/models/grid.dart';
 import 'package:cavedash/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 
 class MapBackgroundComponent extends SpriteComponent {
-  final Grid grid;
-
-  MapBackgroundComponent({
-    required this.grid,
-  }) : super(
-          position: grid.center,
+  MapBackgroundComponent()
+      : super(
+          position: Constants.MAP_CENTER,
           anchor: Anchor.center,
         );
 
