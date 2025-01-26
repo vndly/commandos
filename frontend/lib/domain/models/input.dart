@@ -1,45 +1,58 @@
-import 'package:cavedash/app/constants.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 class Input {
-  InputState state = InputState.none;
+  final Set<ActiveInput> activeInputs = {};
 
-  bool get hasInput => !state.isNone;
+  bool get hasInput => activeInputs.isNotEmpty;
 
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    bool handled = false;
-    final bool isKeyDown = event is KeyDownEvent;
+    _checkKey(
+      input: ActiveInput.left,
+      key1: LogicalKeyboardKey.keyA,
+      key2: LogicalKeyboardKey.arrowLeft,
+      keysPressed: keysPressed,
+    );
 
-    if (isKeyDown &&
-        (keysPressed.contains(LogicalKeyboardKey.keyA) ||
-            keysPressed.contains(LogicalKeyboardKey.arrowLeft))) {
-      state = InputState.left;
-      handled = true;
-    } else if (isKeyDown &&
-        (keysPressed.contains(LogicalKeyboardKey.keyD) ||
-            keysPressed.contains(LogicalKeyboardKey.arrowRight))) {
-      state = InputState.right;
-      handled = true;
-    } else if (isKeyDown &&
-        (keysPressed.contains(LogicalKeyboardKey.keyW) ||
-            keysPressed.contains(LogicalKeyboardKey.arrowUp))) {
-      state = InputState.up;
-      handled = true;
-    } else if (isKeyDown &&
-        (keysPressed.contains(LogicalKeyboardKey.keyS) ||
-            keysPressed.contains(LogicalKeyboardKey.arrowDown))) {
-      state = InputState.down;
-      handled = true;
+    _checkKey(
+      input: ActiveInput.right,
+      key1: LogicalKeyboardKey.keyD,
+      key2: LogicalKeyboardKey.arrowRight,
+      keysPressed: keysPressed,
+    );
+
+    _checkKey(
+      input: ActiveInput.up,
+      key1: LogicalKeyboardKey.keyW,
+      key2: LogicalKeyboardKey.arrowUp,
+      keysPressed: keysPressed,
+    );
+
+    _checkKey(
+      input: ActiveInput.down,
+      key1: LogicalKeyboardKey.keyS,
+      key2: LogicalKeyboardKey.arrowDown,
+      keysPressed: keysPressed,
+    );
+
+    return true;
+  }
+
+  void _checkKey({
+    required ActiveInput input,
+    required LogicalKeyboardKey key1,
+    required LogicalKeyboardKey key2,
+    required Set<LogicalKeyboardKey> keysPressed,
+  }) {
+    if (keysPressed.contains(key1) || keysPressed.contains(key2)) {
+      activeInputs.add(input);
     } else {
-      state = InputState.none;
+      activeInputs.remove(input);
     }
-
-    return handled;
   }
 
   void onPanUpdate(Offset delta) {
-    final double dx = delta.dx;
+    /*final double dx = delta.dx;
     final double dy = delta.dy;
 
     if ((dx.abs() > dy.abs()) && (dx.abs() > Constants.PAN_THRESHOLD)) {
@@ -54,31 +67,27 @@ class Input {
       } else {
         state = InputState.up;
       }
-    }
+    }*/
   }
 
   Vector2 get direction {
-    switch (state) {
-      case InputState.left:
-        return Vector2(-1, 0);
-      case InputState.right:
-        return Vector2(1, 0);
-      case InputState.up:
-        return Vector2(0, -1);
-      case InputState.down:
-        return Vector2(0, 1);
-      default:
-        return Vector2.zero();
+    if (activeInputs.contains(ActiveInput.left)) {
+      return Vector2(-1, 0);
+    } else if (activeInputs.contains(ActiveInput.right)) {
+      return Vector2(1, 0);
+    } else if (activeInputs.contains(ActiveInput.up)) {
+      return Vector2(0, -1);
+    } else if (activeInputs.contains(ActiveInput.down)) {
+      return Vector2(0, 1);
+    } else {
+      return Vector2.zero();
     }
   }
 }
 
-enum InputState {
-  none,
+enum ActiveInput {
   left,
   right,
   up,
-  down;
-
-  bool get isNone => this == InputState.none;
+  down,
 }
