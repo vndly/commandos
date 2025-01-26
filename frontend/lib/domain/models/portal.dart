@@ -4,17 +4,12 @@ class Portal {
   final PortalType type;
   final double entrance;
   final double exit;
-  bool enabled = true;
 
-  Portal({
+  const Portal({
     required this.type,
     required this.entrance,
     required this.exit,
   });
-
-  void disable() {
-    enabled = false;
-  }
 
   Vector2 destination(Vector2 position) {
     if (type == PortalType.horizontal) {

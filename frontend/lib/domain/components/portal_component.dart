@@ -24,12 +24,10 @@ class PortalComponent extends BodyComponent {
     setup();
   }
 
-  void disable() {
-    portal.disable();
-
-    /*for (final Fixture fixture in body.fixtures) {
-      fixture.setSensor(false);
-    }*/
+  void setSensor(bool isSensor) {
+    for (final Fixture fixture in body.fixtures) {
+      fixture.setSensor(isSensor);
+    }
   }
 
   @override

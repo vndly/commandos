@@ -37,6 +37,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
     if (teleportTo != null) {
       body.clearForces();
       body.setTransform(teleportTo!, angle);
+
       teleportTo = null;
     } else if (input.hasInput) {
       final Vector2 deltaPosition = input.direction * Constants.CHARACTER_SPEED;
@@ -89,15 +90,13 @@ class CharacterComponent extends BodyComponent<GameComponent>
 
     if (other is WallComponent) {
       game.onMatchReset();
-    } else if ((other is PortalComponent) && other.portal.enabled) {
+    } else if (other is PortalComponent) {
       _teleport(other);
     }
   }
 
   void _teleport(PortalComponent portal) {
-    portal.disable();
     teleportTo = portal.portal.destination(position);
-    print(teleportTo);
   }
 }
 

@@ -32,10 +32,10 @@ class LevelComponent extends Forge2DWorld {
       ));
     }
 
-    final Portal portal = Portal(
+    const Portal portal = Portal(
       type: PortalType.vertical,
-      entrance: 0,
-      exit: 100,
+      entrance: 3,
+      exit: 97,
     );
 
     for (final JsonGameObject jsonPortal in jsonLevel.portals) {
