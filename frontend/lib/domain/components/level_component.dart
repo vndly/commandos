@@ -32,19 +32,34 @@ class LevelComponent extends Forge2DWorld {
       ));
     }
 
-    const Portal portal = Portal(
+    const Portal portal1 = Portal(
       type: PortalType.vertical,
       entrance: 3,
       exit: 97,
     );
 
+    const Portal portal2 = Portal(
+      type: PortalType.horizontal,
+      entrance: 3,
+      exit: 97,
+    );
+
     for (final JsonGameObject jsonPortal in jsonLevel.portals) {
-      add(PortalComponent(
-        id: jsonPortal.id,
-        jsonBody: jsonPortal.body,
-        jsonFixtures: jsonPortal.fixtures,
-        portal: portal,
-      ));
+      if (jsonPortal.id.startsWith('p1')) {
+        add(PortalComponent(
+          id: jsonPortal.id,
+          jsonBody: jsonPortal.body,
+          jsonFixtures: jsonPortal.fixtures,
+          portal: portal1,
+        ));
+      } else if (jsonPortal.id.startsWith('p2')) {
+        add(PortalComponent(
+          id: jsonPortal.id,
+          jsonBody: jsonPortal.body,
+          jsonFixtures: jsonPortal.fixtures,
+          portal: portal2,
+        ));
+      }
     }
 
     return super.onLoad();

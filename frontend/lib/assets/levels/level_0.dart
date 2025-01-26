@@ -356,7 +356,7 @@ class ModelsLevelsLevel0 {
   ],
   "portals": [
     {
-      "id": "p2",
+      "id": "p1d",
       "body": {
         "type": "static",
         "x": 666.5,
@@ -365,7 +365,7 @@ class ModelsLevelsLevel0 {
       },
       "fixtures": [
         {
-          "id": "p2",
+          "id": "p1d",
           "shapeType": "polygon",
           "vertices": [
             [
@@ -391,7 +391,7 @@ class ModelsLevelsLevel0 {
       "behaviors": []
     },
     {
-      "id": "p1",
+      "id": "p1u",
       "body": {
         "type": "static",
         "x": 666.5,
@@ -400,7 +400,7 @@ class ModelsLevelsLevel0 {
       },
       "fixtures": [
         {
-          "id": "p1",
+          "id": "p1u",
           "shapeType": "polygon",
           "vertices": [
             [
@@ -418,6 +418,76 @@ class ModelsLevelsLevel0 {
             [
               -83.5,
               5.0
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "id": "p2l",
+      "body": {
+        "type": "static",
+        "x": 0.0,
+        "y": 499.5,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "p2l",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              5.0,
+              -83.5
+            ],
+            [
+              5.0,
+              83.5
+            ],
+            [
+              -4.99,
+              83.5
+            ],
+            [
+              -5.0,
+              -83.5
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "id": "p2r",
+      "body": {
+        "type": "static",
+        "x": 1000.0,
+        "y": 499.5,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "p2r",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              5.0,
+              -83.5
+            ],
+            [
+              5.0,
+              83.5
+            ],
+            [
+              -5.0,
+              83.5
+            ],
+            [
+              -5.0,
+              -83.5
             ]
           ],
           "radius": 0

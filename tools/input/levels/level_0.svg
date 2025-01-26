@@ -155,9 +155,9 @@
          inkscape:deskcolor="#000000"
          inkscape:document-units="mm"
          showgrid="true"
-         inkscape:zoom="0.125"
-         inkscape:cx="1380"
-         inkscape:cy="1724"
+         inkscape:zoom="0.17678"
+         inkscape:cx="1467.9"
+         inkscape:cy="1637.6"
          inkscape:window-width="1920"
          inkscape:window-height="1016"
          inkscape:window-x="0"
@@ -239,14 +239,24 @@
          inkscape:groupmode="layer"
          id="portals">
         <path
-             id="p2"
+             id="p1d"
              style="fill:#ff8a00;fill-opacity:1;stroke:none;stroke-width:0.990129;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
              d="M 583,995 L 749.99,994.98 V 1005 L 583,1005 Z"
              sodipodi:nodetypes="ccccc" />
         <path
-             id="p1"
+             id="p1u"
              style="fill:#ff8a00;fill-opacity:1;stroke:none;stroke-width:0.990119;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
              d="M 582.99,-4.998 H 749.99 L 750,5 H 583 Z"
+             sodipodi:nodetypes="ccccc" />
+        <path
+             id="p2l"
+             style="fill:#ff8a00;fill-opacity:1;stroke:none;stroke-width:0.990109;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
+             d="M 5,416 V 583 H -4.99 L -5,416 Z"
+             sodipodi:nodetypes="ccccc" />
+        <path
+             id="p2r"
+             style="fill:#ff8a00;fill-opacity:1;stroke:none;stroke-width:0.990099;stroke-linecap:round;stroke-opacity:1;paint-order:markers fill stroke"
+             d="M 1005,416 V 583 H 995 V 416 Z"
              sodipodi:nodetypes="ccccc" />
     </g>
     <g
