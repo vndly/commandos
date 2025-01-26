@@ -1,22 +1,35 @@
 import 'package:cavedash/app/constants.dart';
 import 'package:cavedash/domain/json/json_body.dart';
 import 'package:cavedash/domain/json/json_fixture.dart';
+import 'package:cavedash/domain/models/portal.dart';
 import 'package:cavedash/extensions/body_component_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class PortalComponent extends BodyComponent {
+  final String id;
   final JsonBody jsonBody;
   final List<JsonFixture> jsonFixtures;
+  final Portal portal;
 
   PortalComponent({
+    required this.id,
     required this.jsonBody,
     required this.jsonFixtures,
+    required this.portal,
   });
 
   @override
   Future onLoad() async {
     await super.onLoad();
     setup();
+  }
+
+  void disable() {
+    portal.disable();
+
+    /*for (final Fixture fixture in body.fixtures) {
+      fixture.setSensor(false);
+    }*/
   }
 
   @override
@@ -45,6 +58,7 @@ class PortalComponent extends BodyComponent {
       final FixtureDef fixtureDef = FixtureDef(
         shape,
         userData: this,
+        isSensor: true,
       );
 
       body.createFixture(fixtureDef);

@@ -7,10 +7,12 @@ part 'json_level.g.dart';
 class JsonLevel {
   final int id;
   final List<JsonGameObject> walls;
+  final List<JsonGameObject> portals;
 
   const JsonLevel({
     required this.id,
     required this.walls,
+    required this.portals,
   });
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>

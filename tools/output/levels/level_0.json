@@ -351,5 +351,77 @@
       ],
       "behaviors": []
     }
+  ],
+  "portals": [
+    {
+      "id": "p2",
+      "body": {
+        "type": "static",
+        "x": 666.5,
+        "y": 999.99,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "p2",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -83.5,
+              -4.99
+            ],
+            [
+              83.5,
+              -5.01
+            ],
+            [
+              83.5,
+              5.01
+            ],
+            [
+              -83.5,
+              5.01
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    },
+    {
+      "id": "p1",
+      "body": {
+        "type": "static",
+        "x": 666.5,
+        "y": 0.0,
+        "angle": 0
+      },
+      "fixtures": [
+        {
+          "id": "p1",
+          "shapeType": "polygon",
+          "vertices": [
+            [
+              -83.5,
+              -5.0
+            ],
+            [
+              83.5,
+              -5.0
+            ],
+            [
+              83.5,
+              5.0
+            ],
+            [
+              -83.5,
+              5.0
+            ]
+          ],
+          "radius": 0
+        }
+      ],
+      "behaviors": []
+    }
   ]
 }

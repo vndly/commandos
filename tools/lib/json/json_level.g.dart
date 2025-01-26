@@ -11,9 +11,13 @@ JsonLevel _$JsonLevelFromJson(Map<String, dynamic> json) => JsonLevel(
       walls: (json['walls'] as List<dynamic>)
           .map((e) => JsonGameObject.fromJson(e as Map<String, dynamic>))
           .toList(),
+      portals: (json['portals'] as List<dynamic>)
+          .map((e) => JsonGameObject.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$JsonLevelToJson(JsonLevel instance) => <String, dynamic>{
       'id': instance.id,
       'walls': instance.walls,
+      'portals': instance.portals,
     };

@@ -31,7 +31,7 @@ class LevelGenerator extends BaseGenerator {
 
       if (id == 'walls') {
         walls.addAll(getGameObjects(layer));
-      } else if (id == 'walls') {
+      } else if (id == 'portals') {
         portals.addAll(getGameObjects(layer));
       }
     }
@@ -39,6 +39,7 @@ class LevelGenerator extends BaseGenerator {
     return JsonLevel(
       id: id,
       walls: walls,
+      portals: portals,
     );
   }
 }
