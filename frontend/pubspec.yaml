@@ -4,39 +4,39 @@ publish_to: none
 version: 0.0.1+1
 
 environment:
-  sdk: '>=3.6.1 <4.0.0'
+  sdk: ">=3.8.1 <4.0.0"
 
 dependencies:
   get_it: ^8.0.3
-  flame: ^1.23.0
-  logger: ^2.5.0
-  dafluta: ^5.4.0
+  flame: ^1.29.0
+  logger: ^2.6.0
+  dafluta: ^5.5.1
   url_strategy: ^0.3.0
-  flame_forge2d: ^0.18.2+4
+  flame_forge2d: ^0.19.0+2
   json_annotation: ^4.9.0
-  shared_preferences: ^2.4.0
+  shared_preferences: ^2.5.3
 
-  firebase_core: ^3.10.1
-  firebase_auth: ^5.4.1
-  firebase_analytics: ^11.4.1
-  firebase_crashlytics: ^4.3.1
-  cloud_functions: ^5.3.1
-  cloud_firestore: ^5.6.2
+  firebase_core: ^3.14.0
+  firebase_auth: ^5.6.0
+  firebase_analytics: ^11.5.0
+  firebase_crashlytics: ^4.3.7
+  cloud_functions: ^5.5.2
+  cloud_firestore: ^5.6.9
 
   flutter:
     sdk: flutter
 
   flutter_localizations:
-    sdk: flutter 
+    sdk: flutter
 
 dev_dependencies:
-  dalocale: ^2.5.0
+  dalocale: ^2.6.0
   daassets: ^1.5.0
-  daunused: ^1.6.1
+  daunused: ^1.7.4
   dapublock: ^1.1.0
-  build_runner: ^2.4.14
-  flutter_lints: ^5.0.0
-  json_serializable: ^6.9.3
+  build_runner: ^2.5.4
+  flutter_lints: ^6.0.0
+  json_serializable: ^6.9.5
 
 flutter:
   uses-material-design: true

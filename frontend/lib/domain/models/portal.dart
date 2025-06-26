@@ -34,7 +34,4 @@ class Portal {
   }
 }
 
-enum PortalType {
-  horizontal,
-  vertical,
-}
+enum PortalType { horizontal, vertical }

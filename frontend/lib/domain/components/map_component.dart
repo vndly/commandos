@@ -6,10 +6,7 @@ import 'package:flame/extensions.dart';
 
 class MapBackgroundComponent extends SpriteComponent {
   MapBackgroundComponent()
-      : super(
-          position: Constants.MAP_CENTER,
-          anchor: Anchor.center,
-        );
+    : super(position: Constants.MAP_CENTER, anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {

@@ -19,9 +19,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
   final Input input = Input();
   Vector2? teleportTo;
 
-  CharacterComponent({
-    required this.size,
-  });
+  CharacterComponent({required this.size});
 
   @override
   Future onLoad() async {
@@ -57,10 +55,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
       Vector2(-size.x / 2, 0),
     ]);
 
-    final FixtureDef fixtureDef = FixtureDef(
-      shape,
-      userData: this,
-    );
+    final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
 
     final BodyDef bodyDef = BodyDef(
       position: Constants.MAP_CENTER,
@@ -101,10 +96,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
 }
 
 class CharacterSpriteComponent extends SpriteComponent {
-  CharacterSpriteComponent()
-      : super(
-          anchor: Anchor.center,
-        );
+  CharacterSpriteComponent() : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {

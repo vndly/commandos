@@ -13,21 +13,15 @@ class GameComponent extends Forge2DGame<LevelComponent>
     with HasKeyboardHandlerComponents, PanDetector {
   final MatchState matchState;
 
-  GameComponent({
-    required this.matchState,
-  }) : super(
-          world: LevelComponent(),
-          gravity: Vector2(0, 0),
-        );
+  GameComponent({required this.matchState})
+    : super(world: LevelComponent(), gravity: Vector2(0, 0));
 
   @override
   FutureOr onLoad() {
     debugMode = false;
 
     final Size screenSize = MediaQuery.of(Navigation.context()).size;
-    final Size gameSize = _gameSize(
-      screenSize: screenSize,
-    );
+    final Size gameSize = _gameSize(screenSize: screenSize);
 
     camera = CameraComponent.withFixedResolution(
       width: gameSize.width,
@@ -36,24 +30,21 @@ class GameComponent extends Forge2DGame<LevelComponent>
     camera.moveTo(Constants.MAP_CENTER);
 
     if (debugMode) {
-      camera.viewport.add(FpsTextComponent(
-        position: Vector2(0, 0),
-        anchor: Anchor.topLeft,
-        textRenderer: TextPaint(
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 3,
+      camera.viewport.add(
+        FpsTextComponent(
+          position: Vector2(0, 0),
+          anchor: Anchor.topLeft,
+          textRenderer: TextPaint(
+            style: const TextStyle(color: Colors.white, fontSize: 3),
           ),
         ),
-      ));
+      );
     }
 
     return super.onLoad();
   }
 
-  Size _gameSize({
-    required Size screenSize,
-  }) {
+  Size _gameSize({required Size screenSize}) {
     final Size screenSize = MediaQuery.of(Navigation.context()).size;
 
     if (screenSize.width > screenSize.height) {

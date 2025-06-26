@@ -85,9 +85,4 @@ class Input {
   }
 }
 
-enum ActiveInput {
-  left,
-  right,
-  up,
-  down,
-}
+enum ActiveInput { left, right, up, down }

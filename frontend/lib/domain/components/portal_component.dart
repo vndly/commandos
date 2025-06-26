@@ -44,10 +44,12 @@ class PortalComponent extends BodyComponent {
 
     for (final JsonFixture jsonFixture in jsonFixtures) {
       final List<Vector2> vertices = jsonFixture.vertices
-          .map((v) => Vector2(
-                v[0] / Constants.MAP_GRID_RATIO,
-                v[1] / Constants.MAP_GRID_RATIO,
-              ))
+          .map(
+            (v) => Vector2(
+              v[0] / Constants.MAP_GRID_RATIO,
+              v[1] / Constants.MAP_GRID_RATIO,
+            ),
+          )
           .toList();
 
       final PolygonShape shape = PolygonShape();

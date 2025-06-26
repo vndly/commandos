@@ -44,26 +44,24 @@ class ConfirmationDialog extends StatelessWidget {
   static DialogController won({
     required VoidCallback onAccept,
     required VoidCallback onCancel,
-  }) =>
-      _show(
-        message: 'You won!',
-        buttonAccept: 'Play again',
-        buttonCancel: 'Quit',
-        onAccept: onAccept,
-        onCancel: onCancel,
-      );
+  }) => _show(
+    message: 'You won!',
+    buttonAccept: 'Play again',
+    buttonCancel: 'Quit',
+    onAccept: onAccept,
+    onCancel: onCancel,
+  );
 
   static DialogController lost({
     required VoidCallback onAccept,
     required VoidCallback onCancel,
-  }) =>
-      _show(
-        message: 'You lost!',
-        buttonAccept: 'Play again',
-        buttonCancel: 'Quit',
-        onAccept: onAccept,
-        onCancel: onCancel,
-      );
+  }) => _show(
+    message: 'You lost!',
+    buttonAccept: 'Play again',
+    buttonCancel: 'Quit',
+    onAccept: onAccept,
+    onCancel: onCancel,
+  );
 
   @override
   Widget build(BuildContext context) {

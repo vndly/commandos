@@ -9,9 +9,7 @@ class MatchState extends BaseState {
   }
 
   void restart() {
-    gameComponent = GameComponent(
-      matchState: this,
-    );
+    gameComponent = GameComponent(matchState: this);
 
     notify();
   }

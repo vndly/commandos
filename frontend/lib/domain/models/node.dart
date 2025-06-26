@@ -5,11 +5,7 @@ class Node {
   final Vector2 position;
   Node? teleportsTo;
 
-  Node({
-    required this.id,
-    required this.position,
-    this.teleportsTo,
-  });
+  Node({required this.id, required this.position, this.teleportsTo});
 
   bool get canTeleport => teleportsTo != null;
 

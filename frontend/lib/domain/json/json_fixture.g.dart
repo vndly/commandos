@@ -7,13 +7,13 @@ part of 'json_fixture.dart';
 // **************************************************************************
 
 JsonFixture _$JsonFixtureFromJson(Map<String, dynamic> json) => JsonFixture(
-      id: json['id'] as String,
-      shapeType: $enumDecode(_$ShapeTypeEnumMap, json['shapeType']),
-      vertices: (json['vertices'] as List<dynamic>)
-          .map((e) => (e as List<dynamic>).map((e) => e as num).toList())
-          .toList(),
-      radius: json['radius'] as num,
-    );
+  id: json['id'] as String,
+  shapeType: $enumDecode(_$ShapeTypeEnumMap, json['shapeType']),
+  vertices: (json['vertices'] as List<dynamic>)
+      .map((e) => (e as List<dynamic>).map((e) => e as num).toList())
+      .toList(),
+  radius: json['radius'] as num,
+);
 
 Map<String, dynamic> _$JsonFixtureToJson(JsonFixture instance) =>
     <String, dynamic>{

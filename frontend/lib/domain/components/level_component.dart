@@ -17,19 +17,16 @@ class LevelComponent extends Forge2DWorld {
   FutureOr onLoad() {
     add(MapBackgroundComponent());
 
-    characterComponent = CharacterComponent(
-      size: Vector2(4, 4),
-    );
+    characterComponent = CharacterComponent(size: Vector2(4, 4));
     add(characterComponent);
 
     final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
     final JsonLevel jsonLevel = JsonLevel.fromJson(json);
 
     for (final JsonGameObject jsonWall in jsonLevel.walls) {
-      add(WallComponent(
-        jsonBody: jsonWall.body,
-        jsonFixtures: jsonWall.fixtures,
-      ));
+      add(
+        WallComponent(jsonBody: jsonWall.body, jsonFixtures: jsonWall.fixtures),
+      );
     }
 
     const Portal portal1 = Portal(
@@ -46,19 +43,23 @@ class LevelComponent extends Forge2DWorld {
 
     for (final JsonGameObject jsonPortal in jsonLevel.portals) {
       if (jsonPortal.id.startsWith('p1')) {
-        add(PortalComponent(
-          id: jsonPortal.id,
-          jsonBody: jsonPortal.body,
-          jsonFixtures: jsonPortal.fixtures,
-          portal: portal1,
-        ));
+        add(
+          PortalComponent(
+            id: jsonPortal.id,
+            jsonBody: jsonPortal.body,
+            jsonFixtures: jsonPortal.fixtures,
+            portal: portal1,
+          ),
+        );
       } else if (jsonPortal.id.startsWith('p2')) {
-        add(PortalComponent(
-          id: jsonPortal.id,
-          jsonBody: jsonPortal.body,
-          jsonFixtures: jsonPortal.fixtures,
-          portal: portal2,
-        ));
+        add(
+          PortalComponent(
+            id: jsonPortal.id,
+            jsonBody: jsonPortal.body,
+            jsonFixtures: jsonPortal.fixtures,
+            portal: portal2,
+          ),
+        );
       }
     }
 

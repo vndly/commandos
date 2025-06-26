@@ -9,11 +9,7 @@ class GameContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DarkStatusBar(
-      child: Scaffold(
-        body: SafeArea(
-          child: child,
-        ),
-      ),
+      child: Scaffold(body: SafeArea(child: child)),
     );
   }
 }
