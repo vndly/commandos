@@ -32,12 +32,13 @@ Future<Json> getJson(File file) async {
 
 List<JsonPath> getPaths(Json json) {
   final List<JsonPath> result = [];
+  final int nodeSize = int.parse(json['svg']['nodeSize']);
 
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'paths') {
       for (final Json path in g['path']) {
         final String pathString = path['d'];
-        result.add(getPath(pathString));
+        result.add(getPath(pathString: pathString, nodeSize: nodeSize));
       }
     }
   }
@@ -45,7 +46,7 @@ List<JsonPath> getPaths(Json json) {
   return result;
 }
 
-JsonPath getPath(String pathString) {
+JsonPath getPath({required String pathString, required int nodeSize}) {
   final RegExp commandRegExp = RegExp(r'[a-zA-Z][^a-zA-Z]*');
   final Iterable<Match> matches = commandRegExp.allMatches(pathString);
   final List<List<double>> coords = [];
@@ -113,8 +114,14 @@ JsonPath getPath(String pathString) {
   final List<double> pointA = coords[0];
   final List<double> pointB = coords[1];
 
-  final JsonLocation a = JsonLocation(x: pointA[0] ~/ 100, y: pointA[1] ~/ 100);
-  final JsonLocation b = JsonLocation(x: pointB[0] ~/ 100, y: pointB[1] ~/ 100);
+  final JsonLocation a = JsonLocation(
+    x: pointA[0] ~/ nodeSize,
+    y: pointA[1] ~/ nodeSize,
+  );
+  final JsonLocation b = JsonLocation(
+    x: pointB[0] ~/ nodeSize,
+    y: pointB[1] ~/ nodeSize,
+  );
 
   return JsonPath(a: a, b: b);
 }
