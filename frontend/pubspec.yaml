@@ -30,6 +30,7 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  xml2json: ^6.2.7
   dalocale: ^2.6.0
   daassets: ^1.5.0
   daunused: ^1.7.4
