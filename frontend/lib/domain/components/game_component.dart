@@ -51,16 +51,16 @@ class GameComponent extends Forge2DGame<LevelComponent>
       final double screenRatio = screenSize.height / screenSize.width;
 
       const double height = Constants.MAP_SIZE_HEIGHT * 1.1;
-      const double width = height / screenRatio;
+      final double width = height / screenRatio;
 
-      return const Size(width, height);
+      return Size(width, height);
     } else {
       final double screenRatio = screenSize.width / screenSize.height;
 
       const double width = Constants.MAP_SIZE_WIDTH * 1.1;
-      const double height = width / screenRatio;
+      final double height = width / screenRatio;
 
-      return const Size(width, height);
+      return Size(width, height);
     }
   }
 
