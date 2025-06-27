@@ -1,6 +1,6 @@
-import 'package:cavedash/domain/json/json_behavior.dart';
-import 'package:cavedash/domain/json/json_body.dart';
-import 'package:cavedash/domain/json/json_fixture.dart';
+import 'package:commandos/domain/json/json_behavior.dart';
+import 'package:commandos/domain/json/json_body.dart';
+import 'package:commandos/domain/json/json_fixture.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_game_object.g.dart';

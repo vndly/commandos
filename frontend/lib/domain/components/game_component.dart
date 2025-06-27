@@ -1,9 +1,9 @@
 import 'dart:async';
-import 'package:cavedash/app/constants.dart';
-import 'package:cavedash/domain/components/level_component.dart';
-import 'package:cavedash/domain/state/match/match_state.dart';
-import 'package:cavedash/utils/navigation.dart';
-import 'package:cavedash/utils/palette.dart';
+import 'package:commandos/app/constants.dart';
+import 'package:commandos/domain/components/level_component.dart';
+import 'package:commandos/domain/state/match/match_state.dart';
+import 'package:commandos/utils/navigation.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -51,16 +51,16 @@ class GameComponent extends Forge2DGame<LevelComponent>
       final double screenRatio = screenSize.height / screenSize.width;
 
       const double height = Constants.MAP_SIZE_HEIGHT * 1.1;
-      final double width = height / screenRatio;
+      const double width = height / screenRatio;
 
-      return Size(width, height);
+      return const Size(width, height);
     } else {
       final double screenRatio = screenSize.width / screenSize.height;
 
       const double width = Constants.MAP_SIZE_WIDTH * 1.1;
-      final double height = width / screenRatio;
+      const double height = width / screenRatio;
 
-      return Size(width, height);
+      return const Size(width, height);
     }
   }
 

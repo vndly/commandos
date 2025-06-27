@@ -1,5 +1,5 @@
-import 'package:cavedash/presentation/match/match_screen.dart';
-import 'package:cavedash/utils/locator.dart';
+import 'package:commandos/presentation/match/match_screen.dart';
+import 'package:commandos/utils/locator.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/widgets.dart';
 

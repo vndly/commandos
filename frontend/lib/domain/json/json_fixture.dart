@@ -1,6 +1,6 @@
-import 'package:cavedash/domain/types/shape_type.dart';
-import 'package:cavedash/domain/types/types.dart';
-import 'package:cavedash/extensions/num_extension.dart';
+import 'package:commandos/domain/types/shape_type.dart';
+import 'package:commandos/domain/types/types.dart';
+import 'package:commandos/extensions/num_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_fixture.g.dart';

@@ -1,6 +1,6 @@
 {
-    "name": "cavedash",
-    "short_name": "cavedash",
+    "name": "commandos",
+    "short_name": "commandos",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

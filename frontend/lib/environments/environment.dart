@@ -1,5 +1,5 @@
-import 'package:cavedash/utils/locator.dart';
-import 'package:cavedash/utils/platform.dart';
+import 'package:commandos/utils/locator.dart';
+import 'package:commandos/utils/platform.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class Environment {

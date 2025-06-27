@@ -1,4 +1,4 @@
-import 'package:cavedash/domain/json/json_game_object.dart';
+import 'package:commandos/domain/json/json_game_object.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_level.g.dart';

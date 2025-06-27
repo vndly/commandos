@@ -1,5 +1,5 @@
-import 'package:cavedash/platform/platform_mobile.dart'
-    if (dart.library.html) 'package:cavedash/platform/platform_web.dart';
+import 'package:commandos/platform/platform_mobile.dart'
+    if (dart.library.js_interop) 'package:commandos/platform/platform_web.dart';
 
 class SetFullscreen {
   static void set() => PlatformMethods().webFullscreen();

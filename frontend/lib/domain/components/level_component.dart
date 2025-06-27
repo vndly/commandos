@@ -1,13 +1,13 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:cavedash/assets/levels/level_0.dart';
-import 'package:cavedash/domain/components/character_component.dart';
-import 'package:cavedash/domain/components/map_component.dart';
-import 'package:cavedash/domain/components/portal_component.dart';
-import 'package:cavedash/domain/components/wall_component.dart';
-import 'package:cavedash/domain/json/json_game_object.dart';
-import 'package:cavedash/domain/json/json_level.dart';
-import 'package:cavedash/domain/models/portal.dart';
+import 'package:commandos/assets/levels/level_0.dart';
+import 'package:commandos/domain/components/character_component.dart';
+import 'package:commandos/domain/components/map_component.dart';
+import 'package:commandos/domain/components/portal_component.dart';
+import 'package:commandos/domain/components/wall_component.dart';
+import 'package:commandos/domain/json/json_game_object.dart';
+import 'package:commandos/domain/json/json_level.dart';
+import 'package:commandos/domain/models/portal.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {

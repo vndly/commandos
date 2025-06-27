@@ -1,7 +1,7 @@
-import 'package:cavedash/app/constants.dart';
-import 'package:cavedash/domain/json/json_body.dart';
-import 'package:cavedash/domain/json/json_fixture.dart';
-import 'package:cavedash/extensions/body_component_extension.dart';
+import 'package:commandos/app/constants.dart';
+import 'package:commandos/domain/json/json_body.dart';
+import 'package:commandos/domain/json/json_fixture.dart';
+import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class WallComponent extends BodyComponent {

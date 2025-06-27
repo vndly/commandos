@@ -1,4 +1,4 @@
-import 'package:cavedash/domain/components/game_component.dart';
+import 'package:commandos/domain/components/game_component.dart';
 import 'package:dafluta/dafluta.dart';
 
 class MatchState extends BaseState {

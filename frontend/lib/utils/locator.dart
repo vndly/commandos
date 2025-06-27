@@ -1,7 +1,7 @@
-import 'package:cavedash/environments/environment.dart';
-import 'package:cavedash/utils/navigation.dart';
-import 'package:cavedash/utils/platform.dart';
-import 'package:cavedash/utils/set_url_strategy.dart';
+import 'package:commandos/environments/environment.dart';
+import 'package:commandos/utils/navigation.dart';
+import 'package:commandos/utils/platform.dart';
+import 'package:commandos/utils/set_url_strategy.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flame/flame.dart';

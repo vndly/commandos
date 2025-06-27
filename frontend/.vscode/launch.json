@@ -13,7 +13,12 @@
             "request": "launch",
             "type": "dart",
             "program": "lib/main/main_remote.dart",
-            "flutterMode": "debug"
+            "flutterMode": "debug",
+            "args": [
+                "-d",
+                "chrome",
+                "--wasm",
+            ]
         }
     ]
 }

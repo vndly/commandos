@@ -1,15 +1,15 @@
-import 'package:cavedash/presentation/splash/splash_screen.dart';
-import 'package:cavedash/utils/navigation.dart';
-import 'package:cavedash/utils/palette.dart';
+import 'package:commandos/presentation/splash/splash_screen.dart';
+import 'package:commandos/utils/navigation.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:flutter/material.dart';
 
-class CaveDash extends StatelessWidget {
-  const CaveDash();
+class Commandos extends StatelessWidget {
+  const Commandos();
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cave Dash',
+      title: 'Commandos',
       debugShowCheckedModeBanner: false,
       navigatorKey: Navigation.get.routes.key,
       theme: ThemeData(

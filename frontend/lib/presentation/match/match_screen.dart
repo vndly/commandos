@@ -1,5 +1,5 @@
-import 'package:cavedash/domain/state/match/match_state.dart';
-import 'package:cavedash/widgets/game_container.dart';
+import 'package:commandos/domain/state/match/match_state.dart';
+import 'package:commandos/widgets/game_container.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';

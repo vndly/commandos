@@ -1,5 +1,5 @@
-import 'package:cavedash/domain/types/behavior_type.dart';
-import 'package:cavedash/domain/types/intermittent_state.dart';
+import 'package:commandos/domain/types/behavior_type.dart';
+import 'package:commandos/domain/types/intermittent_state.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_behavior.g.dart';

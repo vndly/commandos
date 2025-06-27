@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:cavedash/app/constants.dart';
-import 'package:cavedash/utils/assets.dart';
+import 'package:commandos/app/constants.dart';
+import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 

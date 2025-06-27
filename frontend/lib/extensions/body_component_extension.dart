@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:cavedash/app/constants.dart';
-import 'package:cavedash/utils/platform.dart';
+import 'package:commandos/app/constants.dart';
+import 'package:commandos/utils/platform.dart';
 import 'package:flame_forge2d/body_component.dart';
 
 extension ComponentExtension on BodyComponent {
