@@ -8,6 +8,7 @@ import 'package:flutter/material.dart' show Colors, Paint, Canvas;
 
 class RaycastExample extends Forge2DGame with MouseMovementDetector {
   final List<Vector2> redPoints = [];
+  final List<Box> boxes = [];
   Box? nearestBox;
 
   RaycastExample() : super(gravity: Vector2.zero());
@@ -20,7 +21,9 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
     const numberOfBoxes = 3;
     for (var i = 0; i < numberOfBoxes; ++i) {
       for (var j = 0; j < numberOfRows; ++j) {
-        world.add(Box(Vector2(i * 10, j * 20 - 20)));
+        final box = Box(Vector2(i * 10, j * 20 - 20));
+        boxes.add(box);
+        world.add(box);
       }
     }
     world.add(
@@ -64,11 +67,9 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   @override
   void update(double dt) {
     super.update(dt);
-    children.whereType<Box>().forEach((component) {
+    boxes.forEach((component) {
       if (component == nearestBox) {
-        component.paint.color = Colors.yellow;
-      } else if (component == nearestBox) {
-        component.paint.color = Colors.red;
+        component.paint.color = Colors.green;
       } else {
         component.paint.color = Colors.white;
       }
