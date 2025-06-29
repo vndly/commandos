@@ -1,5 +1,5 @@
+import 'dart:math';
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/input.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -34,9 +34,25 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
           ..strokeWidth = 0.5,
       ),
     );
+
+    final rayStart = screenToWorld(
+      Vector2(camera.viewport.size.x / 4, camera.viewport.size.y / 2),
+    );
+
+    const int numRays = 5;
+    const double rayLength = 65;
+    const double degreeGap = 5;
+    const double baseAngle = 0;
+
+    for (int i = 0; i < numRays; i++) {
+      final double angleRad = (baseAngle + i * degreeGap) * (pi / 180.0);
+      final Vector2 direction = Vector2(cos(angleRad), sin(angleRad));
+      final Vector2 redRayTarget = rayStart + direction * rayLength;
+      fireRedRay(rayStart, redRayTarget);
+    }
   }
 
-  @override
+  /*@override
   void onMouseMove(PointerHoverInfo info) {
     final rayStart = screenToWorld(
       Vector2(camera.viewport.size.x / 4, camera.viewport.size.y / 2),
@@ -47,7 +63,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
     fireRedRay(rayStart, redRayTarget);
 
     super.onMouseMove(info);
-  }
+  }*/
 
   void fireRedRay(Vector2 rayStart, Vector2 rayTarget) {
     final Vector2 direction = (rayTarget - rayStart).normalized();
