@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/level_component.dart';
-import 'package:commandos/domain/state/match/match_state.dart';
+import 'package:commandos/domain/state/match/level_state.dart';
 import 'package:commandos/utils/navigation.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
