@@ -9,13 +9,8 @@ import 'package:flame/palette.dart';
 import 'package:flutter/material.dart';
 
 class RaycastLightExample extends FlameGame
-    with HasCollisionDetection, TapDetector, MouseMovementDetector {
-  Ray2? ray;
-  Ray2? reflection;
+    with HasCollisionDetection, MouseMovementDetector {
   Vector2? origin;
-  Vector2? tapOrigin;
-  bool isOriginCasted = false;
-  bool isTapOriginCasted = false;
   Paint paint = Paint();
   Paint tapPaint = Paint();
 
@@ -80,17 +75,8 @@ class RaycastLightExample extends FlameGame
   }
 
   @override
-  void onTapDown(TapDownInfo info) {
-    super.onTapDown(info);
-    final origin = info.eventPosition.widget;
-    isTapOriginCasted = origin == tapOrigin;
-    tapOrigin = origin;
-  }
-
-  @override
   void onMouseMove(PointerHoverInfo info) {
     final origin = info.eventPosition.widget;
-    isOriginCasted = origin == this.origin;
     this.origin = origin;
   }
 
@@ -102,23 +88,15 @@ class RaycastLightExample extends FlameGame
     _timePassed += dt;
     paint.color = _colorTween.transform(0.5 + (sin(_timePassed) / 2))!;
     tapPaint.color = _colorTween.transform(0.5 + (cos(_timePassed) / 2))!;
-    if (origin != null && !isOriginCasted) {
+    if (origin != null) {
       collisionDetection.raycastAll(
         origin!,
         numberOfRays: numberOfRays,
+        startAngle: pi / 2,
+        sweepAngle: -pi / 2,
         rays: rays,
         out: results,
       );
-      isOriginCasted = true;
-    }
-    if (tapOrigin != null && !isTapOriginCasted) {
-      collisionDetection.raycastAll(
-        tapOrigin!,
-        numberOfRays: numberOfRays,
-        rays: tapRays,
-        out: tapResults,
-      );
-      isTapOriginCasted = true;
     }
   }
 
@@ -126,14 +104,11 @@ class RaycastLightExample extends FlameGame
   void render(Canvas canvas) {
     super.render(canvas);
     if (origin != null) {
-      renderResult(canvas, origin!, results, paint);
-    }
-    if (tapOrigin != null) {
-      renderResult(canvas, tapOrigin!, tapResults, tapPaint);
+      _renderResult(canvas, origin!, results, paint);
     }
   }
 
-  void renderResult(
+  void _renderResult(
     Canvas canvas,
     Vector2 origin,
     List<RaycastResult<ShapeHitbox>> results,
