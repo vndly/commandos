@@ -86,6 +86,7 @@ class RaycastLightExample extends FlameGame
         sweepAngle: -pi / 2,
         rays: rays,
         out: results,
+        maxDistance: 200,
       );
     }
   }
