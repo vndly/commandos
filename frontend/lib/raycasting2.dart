@@ -9,7 +9,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   final List<List<Vector2>> redPoints = [];
   final List<Box> boxes = [];
   Box? nearestBox;
-  final int numRays = 300;
+  final int numRays = 400;
 
   RaycastExample() : super(gravity: Vector2.zero());
 
@@ -54,7 +54,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
 
       const double rayLength = 65;
       const double degreeGap = 0.1;
-      const double baseAngle = 0;
+      const double baseAngle = -30;
 
       for (int i = 0; i < numRays; i++) {
         final double angleRad = (baseAngle + i * degreeGap) * (pi / 180.0);
