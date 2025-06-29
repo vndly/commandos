@@ -6,10 +6,10 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
 class RaycastExample extends Forge2DGame with MouseMovementDetector {
-  final NearestBoxRayCastCallback nearestCallback = NearestBoxRayCastCallback();
-  final List<Vector2> redPoints = [];
+  final List<List<Vector2>> redPoints = [];
   final List<Box> boxes = [];
   Box? nearestBox;
+  final int numRays = 300;
 
   RaycastExample() : super(gravity: Vector2.zero());
 
@@ -26,30 +26,52 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
         world.add(box);
       }
     }
-    world.add(
-      LineComponent(
-        redPoints,
-        Paint()
-          ..color = Colors.red
-          ..strokeWidth = 0.5,
-      ),
-    );
-
-    final rayStart = screenToWorld(
-      Vector2(camera.viewport.size.x / 4, camera.viewport.size.y / 2),
-    );
-
-    const int numRays = 5;
-    const double rayLength = 65;
-    const double degreeGap = 5;
-    const double baseAngle = 0;
 
     for (int i = 0; i < numRays; i++) {
-      final double angleRad = (baseAngle + i * degreeGap) * (pi / 180.0);
-      final Vector2 direction = Vector2(cos(angleRad), sin(angleRad));
-      final Vector2 redRayTarget = rayStart + direction * rayLength;
-      fireRedRay(rayStart, redRayTarget);
+      redPoints.add([]);
+
+      world.add(
+        LineComponent(
+          redPoints[i],
+          Paint()
+            ..color = Colors.red
+            ..strokeWidth = 0.1,
+        ),
+      );
     }
+  }
+
+  bool done = false;
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    if (!done) {
+      final rayStart = screenToWorld(
+        Vector2(camera.viewport.size.x / 4, camera.viewport.size.y / 2),
+      );
+
+      const double rayLength = 65;
+      const double degreeGap = 0.1;
+      const double baseAngle = 0;
+
+      for (int i = 0; i < numRays; i++) {
+        final double angleRad = (baseAngle + i * degreeGap) * (pi / 180.0);
+        final Vector2 direction = Vector2(cos(angleRad), sin(angleRad));
+        final Vector2 redRayTarget = rayStart + direction * rayLength;
+        _fireRedRay(rayStart, redRayTarget, redPoints[i]);
+      }
+      done = true;
+    }
+
+    boxes.forEach((component) {
+      if (component == nearestBox) {
+        component.paint.color = Colors.green;
+      } else {
+        component.paint.color = Colors.white;
+      }
+    });
   }
 
   /*@override
@@ -65,43 +87,26 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
     super.onMouseMove(info);
   }*/
 
-  void fireRedRay(Vector2 rayStart, Vector2 rayTarget) {
-    final Vector2 direction = (rayTarget - rayStart).normalized();
-    final Vector2 maxDistancePoint = rayStart + (direction * 65);
-
-    redPoints.clear();
+  void _fireRedRay(
+    Vector2 rayStart,
+    Vector2 rayTarget,
+    List<Vector2> redPoints,
+  ) {
     redPoints.add(rayStart);
 
-    nearestCallback.reset();
+    final NearestBoxRayCastCallback nearestCallback =
+        NearestBoxRayCastCallback();
     world.raycast(nearestCallback, rayStart, rayTarget);
 
     Vector2 endPoint;
     if (nearestCallback.nearestPoint != null) {
-      final double distToTarget = rayStart.distanceTo(
-        nearestCallback.nearestPoint!,
-      );
-      final double distToMax = rayStart.distanceTo(maxDistancePoint);
-      endPoint = distToTarget < distToMax
-          ? nearestCallback.nearestPoint!
-          : maxDistancePoint;
+      endPoint = nearestCallback.nearestPoint!;
     } else {
-      endPoint = maxDistancePoint;
+      endPoint = rayTarget;
     }
 
     redPoints.add(endPoint);
     nearestBox = nearestCallback.box;
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-    boxes.forEach((component) {
-      if (component == nearestBox) {
-        component.paint.color = Colors.green;
-      } else {
-        component.paint.color = Colors.white;
-      }
-    });
   }
 }
 
