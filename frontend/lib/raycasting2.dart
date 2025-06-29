@@ -9,12 +9,8 @@ import 'package:flutter/material.dart' show Colors, Paint, Canvas;
 
 class RaycastExample extends Forge2DGame with MouseMovementDetector {
   final random = Random();
-
   final redPoints = <Vector2>[];
-  final bluePoints = <Vector2>[];
-
   Box? nearestBox;
-  Box? farthestBox;
 
   RaycastExample() : super(gravity: Vector2.zero());
 
@@ -24,7 +20,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
     await world.addAll(createBoundaries(this));
 
     const numberOfRows = 3;
-    const numberOfBoxes = 4;
+    const numberOfBoxes = 3;
     for (var i = 0; i < numberOfBoxes; ++i) {
       for (var j = 0; j < numberOfRows; ++j) {
         world.add(Box(Vector2(i * 10, j * 20 - 20)));
@@ -35,14 +31,6 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
         redPoints,
         Paint()
           ..color = Colors.red
-          ..strokeWidth = 1,
-      ),
-    );
-    world.add(
-      LineComponent(
-        bluePoints,
-        Paint()
-          ..color = Colors.blue
           ..strokeWidth = 1,
       ),
     );
@@ -73,25 +61,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
     final redRayTarget = worldPosition + Vector2(0, 2);
     fireRedRay(rayStart, redRayTarget);
 
-    final blueRayTarget = worldPosition - Vector2(0, 2);
-    fireBlueRay(rayStart, blueRayTarget);
-
     super.onMouseMove(info);
-  }
-
-  void fireBlueRay(Vector2 rayStart, Vector2 rayTarget) {
-    bluePoints.clear();
-    bluePoints.add(rayStart);
-
-    final farthestCallback = FarthestBoxRayCastCallback();
-    world.raycast(farthestCallback, rayStart, rayTarget);
-
-    if (farthestCallback.farthestPoint != null) {
-      bluePoints.add(farthestCallback.farthestPoint!);
-    } else {
-      bluePoints.add(rayTarget);
-    }
-    farthestBox = farthestCallback.box;
   }
 
   void fireRedRay(Vector2 rayStart, Vector2 rayTarget) {
@@ -113,12 +83,10 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   void update(double dt) {
     super.update(dt);
     children.whereType<Box>().forEach((component) {
-      if ((component == nearestBox) && (component == farthestBox)) {
+      if (component == nearestBox) {
         component.paint.color = Colors.yellow;
       } else if (component == nearestBox) {
         component.paint.color = Colors.red;
-      } else if (component == farthestBox) {
-        component.paint.color = Colors.blue;
       } else {
         component.paint.color = Colors.white;
       }
@@ -185,34 +153,6 @@ class NearestBoxRayCastCallback extends RayCastCallback {
     // fixtures that are closer to ray start point than
     // the current fixture
     return fraction;
-  }
-}
-
-class FarthestBoxRayCastCallback extends RayCastCallback {
-  Box? box;
-  Vector2? farthestPoint;
-  Vector2? normalAtInter;
-  double previousFraction = 0;
-
-  @override
-  double reportFixture(
-    Fixture fixture,
-    Vector2 point,
-    Vector2 normal,
-    double fraction,
-  ) {
-    // Value of fraction is directly proportional to
-    // the distance of fixture from ray start point.
-    // So we are interested in the current fixture only if
-    // it has a higher fraction value than previousFraction.
-    if (previousFraction < fraction) {
-      farthestPoint = point.clone();
-      normalAtInter = normal.clone();
-      box = fixture.userData as Box?;
-      previousFraction = fraction;
-    }
-
-    return 1;
   }
 }
 
