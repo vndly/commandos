@@ -11,13 +11,7 @@ import 'package:flutter/material.dart';
 class RaycastLightExample extends FlameGame
     with HasCollisionDetection, MouseMovementDetector {
   Vector2? origin;
-  Paint paint = Paint();
-  Paint tapPaint = Paint();
-
-  final _colorTween = ColorTween(
-    begin: Colors.blue.withValues(alpha: 0.2),
-    end: Colors.red.withValues(alpha: 0.2),
-  );
+  Paint rayPaint = Paint();
 
   static const numberOfRays = 2000;
   final List<Ray2> rays = [];
@@ -25,12 +19,15 @@ class RaycastLightExample extends FlameGame
   final List<RaycastResult<ShapeHitbox>> results = [];
   final List<RaycastResult<ShapeHitbox>> tapResults = [];
 
-  late Path path;
   @override
   Future<void> onLoad() async {
-    final paint = BasicPalette.gray.paint()
+    rayPaint.color = Colors.green;
+
+    final Paint paint = BasicPalette.gray.paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.0;
+      ..strokeWidth = 2
+      ..color = Colors.white;
+
     add(ScreenHitbox());
     add(
       CircleComponent(
@@ -80,14 +77,10 @@ class RaycastLightExample extends FlameGame
     this.origin = origin;
   }
 
-  var _timePassed = 0.0;
-
   @override
   void update(double dt) {
     super.update(dt);
-    _timePassed += dt;
-    paint.color = _colorTween.transform(0.5 + (sin(_timePassed) / 2))!;
-    tapPaint.color = _colorTween.transform(0.5 + (cos(_timePassed) / 2))!;
+
     if (origin != null) {
       collisionDetection.raycastAll(
         origin!,
@@ -104,7 +97,7 @@ class RaycastLightExample extends FlameGame
   void render(Canvas canvas) {
     super.render(canvas);
     if (origin != null) {
-      _renderResult(canvas, origin!, results, paint);
+      _renderResult(canvas, origin!, results, rayPaint);
     }
   }
 
