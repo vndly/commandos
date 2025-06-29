@@ -82,22 +82,11 @@ class LineComponent extends Component {
 
   final List<Vector2> points;
   final Paint paint;
-  final Path path = Path();
-
-  @override
-  void update(double dt) {
-    path
-      ..reset()
-      ..addPolygon(
-        points.map((p) => p.toOffset()).toList(growable: false),
-        false,
-      );
-  }
 
   @override
   void render(Canvas canvas) {
-    for (var i = 0; i < points.length - 1; ++i) {
-      canvas.drawLine(points[i].toOffset(), points[i + 1].toOffset(), paint);
+    if (points.length == 2) {
+      canvas.drawLine(points[0].toOffset(), points[1].toOffset(), paint);
     }
   }
 }
