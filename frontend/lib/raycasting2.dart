@@ -50,17 +50,29 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   }
 
   void fireRedRay(Vector2 rayStart, Vector2 rayTarget) {
+    final Vector2 direction = (rayTarget - rayStart).normalized();
+    final Vector2 maxDistancePoint = rayStart + (direction * 65);
+
     redPoints.clear();
     redPoints.add(rayStart);
 
     nearestCallback.reset();
     world.raycast(nearestCallback, rayStart, rayTarget);
 
+    Vector2 endPoint;
     if (nearestCallback.nearestPoint != null) {
-      redPoints.add(nearestCallback.nearestPoint!);
+      final double distToTarget = rayStart.distanceTo(
+        nearestCallback.nearestPoint!,
+      );
+      final double distToMax = rayStart.distanceTo(maxDistancePoint);
+      endPoint = distToTarget < distToMax
+          ? nearestCallback.nearestPoint!
+          : maxDistancePoint;
     } else {
-      redPoints.add(rayTarget);
+      endPoint = maxDistancePoint;
     }
+
+    redPoints.add(endPoint);
     nearestBox = nearestCallback.box;
   }
 
