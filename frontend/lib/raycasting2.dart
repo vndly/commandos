@@ -3,7 +3,7 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/input.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/material.dart' show Colors, Paint, Canvas;
+import 'package:flutter/material.dart';
 
 class RaycastExample extends Forge2DGame with MouseMovementDetector {
   final NearestBoxRayCastCallback nearestCallback = NearestBoxRayCastCallback();
@@ -31,7 +31,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
         redPoints,
         Paint()
           ..color = Colors.red
-          ..strokeWidth = 1,
+          ..strokeWidth = 0.5,
       ),
     );
   }
