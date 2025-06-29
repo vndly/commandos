@@ -6,6 +6,7 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart' show Colors, Paint, Canvas;
 
 class RaycastExample extends Forge2DGame with MouseMovementDetector {
+  final NearestBoxRayCastCallback nearestCallback = NearestBoxRayCastCallback();
   final List<Vector2> redPoints = [];
   final List<Box> boxes = [];
   Box? nearestBox;
@@ -52,7 +53,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
     redPoints.clear();
     redPoints.add(rayStart);
 
-    final nearestCallback = NearestBoxRayCastCallback();
+    nearestCallback.reset();
     world.raycast(nearestCallback, rayStart, rayTarget);
 
     if (nearestCallback.nearestPoint != null) {
@@ -107,7 +108,11 @@ class Box extends BodyComponent {
 class NearestBoxRayCastCallback extends RayCastCallback {
   Box? box;
   Vector2? nearestPoint;
-  Vector2? normalAtInter;
+
+  void reset() {
+    box = null;
+    nearestPoint = null;
+  }
 
   @override
   double reportFixture(
@@ -117,7 +122,6 @@ class NearestBoxRayCastCallback extends RayCastCallback {
     double fraction,
   ) {
     nearestPoint = point.clone();
-    normalAtInter = normal.clone();
     box = fixture.userData as Box?;
 
     // Returning fraction implies that we care only about
