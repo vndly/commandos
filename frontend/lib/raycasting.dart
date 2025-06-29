@@ -73,8 +73,7 @@ class RaycastLightExample extends FlameGame
 
   @override
   void onMouseMove(PointerHoverInfo info) {
-    final origin = info.eventPosition.widget;
-    this.origin = origin;
+    origin = info.eventPosition.widget;
   }
 
   @override
@@ -96,6 +95,7 @@ class RaycastLightExample extends FlameGame
   @override
   void render(Canvas canvas) {
     super.render(canvas);
+
     if (origin != null) {
       _renderResult(canvas, origin!, results, rayPaint);
     }
@@ -107,13 +107,13 @@ class RaycastLightExample extends FlameGame
     List<RaycastResult<ShapeHitbox>> results,
     Paint paint,
   ) {
-    final originOffset = origin.toOffset();
-    for (final result in results) {
-      if (!result.isActive) {
-        continue;
+    final Offset originOffset = origin.toOffset();
+
+    for (final RaycastResult<ShapeHitbox> result in results) {
+      if (result.isActive) {
+        final Offset intersectionPoint = result.intersectionPoint!.toOffset();
+        canvas.drawLine(originOffset, intersectionPoint, paint);
       }
-      final intersectionPoint = result.intersectionPoint!.toOffset();
-      canvas.drawLine(originOffset, intersectionPoint, paint);
     }
   }
 }
