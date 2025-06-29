@@ -11,13 +11,11 @@ import 'package:flutter/material.dart';
 class RaycastLightExample extends FlameGame
     with HasCollisionDetection, MouseMovementDetector {
   Vector2? origin;
-  Paint rayPaint = Paint();
+  final Paint rayPaint = Paint();
 
   static const numberOfRays = 2000;
   final List<Ray2> rays = [];
-  final List<Ray2> tapRays = [];
   final List<RaycastResult<ShapeHitbox>> results = [];
-  final List<RaycastResult<ShapeHitbox>> tapResults = [];
 
   @override
   Future<void> onLoad() async {
