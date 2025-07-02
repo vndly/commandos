@@ -127,6 +127,10 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
 }
 
 void writeLevel(JsonStage level) {
+  const JsonEncoder encoder = JsonEncoder.withIndent('  ');
+  final String json = encoder.convert(level);
+  print(json);
+
   final String jsonString = jsonEncode(level.toJson());
   final File file = File('assets/levels/gym.json');
   file.writeAsStringSync(jsonString);
