@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/json/json_location.dart';
 import 'package:commandos/domain/json/json_path.dart';
-import 'package:commandos/domain/json/json_stage.dart';
 import 'package:commandos/extensions/string_extension.dart';
 import 'package:xml2json/xml2json.dart';
 
@@ -17,10 +17,9 @@ Future<void> processFile(String filePath) async {
   final Json json = await getJson(file);
   final List<JsonPath> paths = getPaths(json);
 
-  final JsonStage stage = JsonStage(id: 'Gym', paths: paths);
-
+  final JsonLevel level = JsonLevel(id: 'Gym', paths: paths);
   final String fileName = file.uri.pathSegments.last.split('.')[0];
-  writeLevel(fileName: fileName, level: stage);
+  writeLevel(fileName: fileName, level: level);
 }
 
 Future<Json> getJson(File file) async {
@@ -129,7 +128,7 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
   return JsonPath(a: a, b: b);
 }
 
-void writeLevel({required String fileName, required JsonStage level}) {
+void writeLevel({required String fileName, required JsonLevel level}) {
   const JsonEncoder encoder = JsonEncoder.withIndent('  ');
   final String json = encoder.convert(level);
   final String className = 'Lebel${fileName.capitalize}';
