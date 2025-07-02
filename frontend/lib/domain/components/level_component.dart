@@ -1,13 +1,6 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:commandos/assets/levels/level_0.dart';
 import 'package:commandos/domain/components/character_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
-import 'package:commandos/domain/components/portal_component.dart';
-import 'package:commandos/domain/components/wall_component.dart';
-import 'package:commandos/domain/json/json_game_object.dart';
-import 'package:commandos/domain/json/json_level.dart';
-import 'package:commandos/domain/models/portal.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
@@ -17,51 +10,20 @@ class LevelComponent extends Forge2DWorld {
   FutureOr onLoad() {
     add(MapBackgroundComponent());
 
-    characterComponent = CharacterComponent(size: Vector2(4, 4));
+    characterComponent = CharacterComponent(
+      initialPosition: Vector2(0, 0),
+      size: Vector2(10, 10),
+    );
     add(characterComponent);
 
-    final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
+    /*final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
     final JsonLevel jsonLevel = JsonLevel.fromJson(json);
 
     for (final JsonGameObject jsonWall in jsonLevel.walls) {
       add(
         WallComponent(jsonBody: jsonWall.body, jsonFixtures: jsonWall.fixtures),
       );
-    }
-
-    const Portal portal1 = Portal(
-      type: PortalType.vertical,
-      entrance: 3,
-      exit: 97,
-    );
-
-    const Portal portal2 = Portal(
-      type: PortalType.horizontal,
-      entrance: 3,
-      exit: 97,
-    );
-
-    for (final JsonGameObject jsonPortal in jsonLevel.portals) {
-      if (jsonPortal.id.startsWith('p1')) {
-        add(
-          PortalComponent(
-            id: jsonPortal.id,
-            jsonBody: jsonPortal.body,
-            jsonFixtures: jsonPortal.fixtures,
-            portal: portal1,
-          ),
-        );
-      } else if (jsonPortal.id.startsWith('p2')) {
-        add(
-          PortalComponent(
-            id: jsonPortal.id,
-            jsonBody: jsonPortal.body,
-            jsonFixtures: jsonPortal.fixtures,
-            portal: portal2,
-          ),
-        );
-      }
-    }
+    }*/
 
     return super.onLoad();
   }

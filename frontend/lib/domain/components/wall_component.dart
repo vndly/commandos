@@ -1,4 +1,4 @@
-import 'package:commandos/app/constants.dart';
+/*import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/json/json_body.dart';
 import 'package:commandos/domain/json/json_fixture.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
@@ -49,3 +49,4 @@ class WallComponent extends BodyComponent {
     return body;
   }
 }
+*/

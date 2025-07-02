@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:commandos/domain/json/json_location.dart';
+import 'package:commandos/domain/json/json_path.dart';
+import 'package:commandos/domain/json/json_stage.dart';
 import 'package:xml2json/xml2json.dart';
-import 'json/json_location.dart';
-import 'json/json_path.dart';
-import 'json/json_stage.dart';
 
 typedef Json = Map<String, dynamic>;
 
 void main(List<String> args) async {
-  await processFile('tool/input/stage1.svg');
+  await processFile('tool/input/gym.svg');
 }
 
 Future<void> processFile(String filePath) async {
@@ -16,7 +16,7 @@ Future<void> processFile(String filePath) async {
   final Json json = await getJson(file);
   final List<JsonPath> paths = getPaths(json);
 
-  final JsonStage stage = JsonStage(id: 'Mission 1', paths: paths);
+  final JsonStage stage = JsonStage(id: 'Gym', paths: paths);
   writeStage(stage);
 }
 

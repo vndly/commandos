@@ -1,25 +1,22 @@
 import 'dart:async';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
-import 'package:commandos/domain/components/portal_component.dart';
-import 'package:commandos/domain/components/wall_component.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
-import 'package:flame/extensions.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
 class CharacterComponent extends BodyComponent<GameComponent>
     with KeyboardHandler, ContactCallbacks {
+  final Vector2 initialPosition;
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
-  Vector2? teleportTo;
 
-  CharacterComponent({required this.size});
+  CharacterComponent({required this.initialPosition, required this.size});
 
   @override
   Future onLoad() async {
@@ -32,12 +29,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
   void update(double dt) {
     super.update(dt);
 
-    if (teleportTo != null) {
-      body.clearForces();
-      body.setTransform(teleportTo!, angle);
-
-      teleportTo = null;
-    } else if (input.hasInput) {
+    if (input.hasInput) {
       final Vector2 deltaPosition = input.direction * Constants.CHARACTER_SPEED;
       body.linearVelocity = deltaPosition;
     } else {
@@ -58,7 +50,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
     final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
 
     final BodyDef bodyDef = BodyDef(
-      position: Constants.MAP_CENTER,
+      position: initialPosition,
       type: BodyType.dynamic,
     );
 
@@ -79,7 +71,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
 
   void onPanUpdate(DragUpdateInfo info) => input.onPanUpdate(info.raw.delta);
 
-  @override
+  /*@override
   void beginContact(Object other, Contact contact) {
     super.beginContact(other, contact);
 
@@ -88,11 +80,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
     } else if (other is PortalComponent) {
       _teleport(other);
     }
-  }
-
-  void _teleport(PortalComponent portal) {
-    teleportTo = portal.portal.destination(position);
-  }
+  }*/
 }
 
 class CharacterSpriteComponent extends SpriteComponent {
@@ -101,7 +89,7 @@ class CharacterSpriteComponent extends SpriteComponent {
   @override
   FutureOr onLoad() async {
     sprite = await Sprite.load(Assets.IMAGES_CHARACTERS_CHARACTER);
-    size = sprite!.image.size / Constants.CHARACTER_GRID_RATIO;
+    //size = sprite!.image.size / Constants.CHARACTER_GRID_RATIO;
 
     return super.onLoad();
   }

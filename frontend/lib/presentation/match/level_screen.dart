@@ -1,5 +1,4 @@
 import 'package:commandos/domain/state/match/level_state.dart';
-import 'package:commandos/raycasting2.dart';
 import 'package:commandos/widgets/game_container.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flame/game.dart';
@@ -30,7 +29,6 @@ class Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GameWidget(game: RaycastExample());
-    //GameWidget(game: state.gameComponent);
+    return GameWidget(game: state.gameComponent);
   }
 }
