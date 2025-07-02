@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:commandos/domain/json/json_level.dart';
-import 'package:commandos/domain/json/json_location.dart';
 import 'package:commandos/domain/json/json_path.dart';
+import 'package:commandos/domain/json/json_position.dart';
 import 'package:commandos/extensions/string_extension.dart';
 import 'package:xml2json/xml2json.dart';
 
@@ -110,17 +110,17 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
   }
 
   if (coords.length != 2) {
-    throw Exception('Path must have exactly two locations');
+    throw Exception('Path must have exactly two positions');
   }
 
   final List<double> pointA = coords[0];
   final List<double> pointB = coords[1];
 
-  final JsonLocation a = JsonLocation(
+  final JsonPosition a = JsonPosition(
     x: pointA[0].toInt(),
     y: pointA[1].toInt(),
   );
-  final JsonLocation b = JsonLocation(
+  final JsonPosition b = JsonPosition(
     x: pointB[0].toInt(),
     y: pointB[1].toInt(),
   );

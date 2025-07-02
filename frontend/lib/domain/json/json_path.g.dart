@@ -7,8 +7,8 @@ part of 'json_path.dart';
 // **************************************************************************
 
 JsonPath _$JsonPathFromJson(Map<String, dynamic> json) => JsonPath(
-  a: JsonLocation.fromJson(json['a'] as Map<String, dynamic>),
-  b: JsonLocation.fromJson(json['b'] as Map<String, dynamic>),
+  a: JsonPosition.fromJson(json['a'] as Map<String, dynamic>),
+  b: JsonPosition.fromJson(json['b'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$JsonPathToJson(JsonPath instance) => <String, dynamic>{

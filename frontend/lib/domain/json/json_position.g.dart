@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_location.dart';
+part of 'json_position.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-JsonLocation _$JsonLocationFromJson(Map<String, dynamic> json) =>
-    JsonLocation(x: (json['x'] as num).toInt(), y: (json['y'] as num).toInt());
+JsonPosition _$JsonPositionFromJson(Map<String, dynamic> json) =>
+    JsonPosition(x: (json['x'] as num).toInt(), y: (json['y'] as num).toInt());
 
-Map<String, dynamic> _$JsonLocationToJson(JsonLocation instance) =>
+Map<String, dynamic> _$JsonPositionToJson(JsonPosition instance) =>
     <String, dynamic>{'x': instance.x, 'y': instance.y};
