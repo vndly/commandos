@@ -89,7 +89,6 @@ class CharacterSpriteComponent extends SpriteComponent {
   @override
   FutureOr onLoad() async {
     sprite = await Sprite.load(Assets.IMAGES_CHARACTERS_CHARACTER);
-    //size = sprite!.image.size / Constants.CHARACTER_GRID_RATIO;
 
     return super.onLoad();
   }

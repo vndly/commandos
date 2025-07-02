@@ -13,7 +13,9 @@ class GameComponent extends Forge2DGame<LevelComponent>
   final MatchState matchState;
 
   GameComponent({required this.matchState})
-    : super(world: LevelComponent(), gravity: Vector2(0, 0));
+    : super(world: LevelComponent(), gravity: Vector2(0, 0)) {
+    GameComponentRef.instance = this;
+  }
 
   @override
   FutureOr onLoad() {
@@ -45,4 +47,10 @@ class GameComponent extends Forge2DGame<LevelComponent>
   Color backgroundColor() => Palette.GAME_BACKGROUND;
 
   void onMatchReset() => matchState.restart();
+}
+
+mixin GameComponentRef {
+  static late GameComponent instance;
+
+  GameComponent get game => instance;
 }
