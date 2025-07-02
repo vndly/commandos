@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:commandos/domain/json/json_location.dart';
 import 'package:commandos/domain/json/json_path.dart';
 import 'package:commandos/domain/json/json_stage.dart';
+import 'package:commandos/extensions/string_extension.dart';
 import 'package:xml2json/xml2json.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -17,7 +18,9 @@ Future<void> processFile(String filePath) async {
   final List<JsonPath> paths = getPaths(json);
 
   final JsonStage stage = JsonStage(id: 'Gym', paths: paths);
-  writeLevel(stage);
+
+  final String fileName = file.uri.pathSegments.last.split('.')[0];
+  writeLevel(fileName: fileName, level: stage);
 }
 
 Future<Json> getJson(File file) async {
@@ -126,12 +129,19 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
   return JsonPath(a: a, b: b);
 }
 
-void writeLevel(JsonStage level) {
+void writeLevel({required String fileName, required JsonStage level}) {
   const JsonEncoder encoder = JsonEncoder.withIndent('  ');
   final String json = encoder.convert(level);
-  print(json);
+  final String className = 'Lebel${fileName.capitalize}';
+  final String content =
+      '''
+class $className {
+  static const String JSON = \'\'\'
+$json
+\'\'\';
+}
+''';
 
-  final String jsonString = jsonEncode(level.toJson());
-  final File file = File('assets/levels/gym.json');
-  file.writeAsStringSync(jsonString);
+  final File outputDart = File('../frontend/lib/assets/levels/$fileName.dart');
+  outputDart.writeAsStringSync(content);
 }
