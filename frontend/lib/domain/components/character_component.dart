@@ -22,7 +22,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
   Future onLoad() async {
     await super.onLoad();
     setup();
-    add(CharacterSpriteComponent());
+    add(CharacterSpriteComponent(size: size));
   }
 
   @override
@@ -84,7 +84,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
 }
 
 class CharacterSpriteComponent extends SpriteComponent {
-  CharacterSpriteComponent() : super(anchor: Anchor.center);
+  CharacterSpriteComponent({super.size}) : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {

@@ -13,7 +13,7 @@ class LevelComponent extends Forge2DWorld {
 
     characterComponent = CharacterComponent(
       initialPosition: Vector2(0, 850),
-      size: Vector2(2, 2),
+      size: Vector2(60, 60),
     );
     await add(characterComponent);
 
