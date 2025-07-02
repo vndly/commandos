@@ -8,7 +8,7 @@ import 'package:xml2json/xml2json.dart';
 typedef Json = Map<String, dynamic>;
 
 void main(List<String> args) async {
-  await processFile('tool/input/gym.svg');
+  await processFile('tool/input/levels/gym.svg');
 }
 
 Future<void> processFile(String filePath) async {
@@ -17,7 +17,7 @@ Future<void> processFile(String filePath) async {
   final List<JsonPath> paths = getPaths(json);
 
   final JsonStage stage = JsonStage(id: 'Gym', paths: paths);
-  writeStage(stage);
+  writeLevel(stage);
 }
 
 Future<Json> getJson(File file) async {
@@ -115,19 +115,19 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
   final List<double> pointB = coords[1];
 
   final JsonLocation a = JsonLocation(
-    x: pointA[0] ~/ nodeSize,
-    y: pointA[1] ~/ nodeSize,
+    x: pointA[0].toInt(),
+    y: pointA[1].toInt(),
   );
   final JsonLocation b = JsonLocation(
-    x: pointB[0] ~/ nodeSize,
-    y: pointB[1] ~/ nodeSize,
+    x: pointB[0].toInt(),
+    y: pointB[1].toInt(),
   );
 
   return JsonPath(a: a, b: b);
 }
 
-void writeStage(JsonStage stage) {
-  final String jsonString = jsonEncode(stage.toJson());
-  final File file = File('assets/stages/stage1.json');
+void writeLevel(JsonStage level) {
+  final String jsonString = jsonEncode(level.toJson());
+  final File file = File('assets/levels/gym.json');
   file.writeAsStringSync(jsonString);
 }
