@@ -131,7 +131,7 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
 void writeLevel({required String fileName, required JsonLevel level}) {
   const JsonEncoder encoder = JsonEncoder.withIndent('  ');
   final String json = encoder.convert(level);
-  final String className = 'Lebel${fileName.capitalize}';
+  final String className = 'Level${fileName.capitalize}';
   final String content =
       '''
 class $className {

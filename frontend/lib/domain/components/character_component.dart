@@ -2,21 +2,27 @@ import 'dart:async';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/input.dart';
+import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
 class CharacterComponent extends BodyComponent<GameComponent>
-    with KeyboardHandler, ContactCallbacks {
+    with KeyboardHandler {
   final Vector2 initialPosition;
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
+  final List<Node> nodes;
+  Node? nextNode;
 
-  CharacterComponent({required this.initialPosition, required this.size});
+  CharacterComponent({
+    required this.initialPosition,
+    required this.size,
+    required this.nodes,
+  });
 
   @override
   Future onLoad() async {
@@ -68,19 +74,6 @@ class CharacterComponent extends BodyComponent<GameComponent>
       return super.onKeyEvent(event, keysPressed);
     }
   }
-
-  void onPanUpdate(DragUpdateInfo info) => input.onPanUpdate(info.raw.delta);
-
-  /*@override
-  void beginContact(Object other, Contact contact) {
-    super.beginContact(other, contact);
-
-    if (other is WallComponent) {
-      game.onMatchReset();
-    } else if (other is PortalComponent) {
-      _teleport(other);
-    }
-  }*/
 }
 
 class CharacterSpriteComponent extends SpriteComponent {

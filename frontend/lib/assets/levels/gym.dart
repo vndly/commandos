@@ -1,4 +1,4 @@
-class LebelGym {
+class LevelGym {
   static const String JSON = '''
 {
   "id": "Gym",
