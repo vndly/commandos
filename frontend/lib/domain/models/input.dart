@@ -51,25 +51,6 @@ class Input {
     }
   }
 
-  void onPanUpdate(Offset delta) {
-    /*final double dx = delta.dx;
-    final double dy = delta.dy;
-
-    if ((dx.abs() > dy.abs()) && (dx.abs() > Constants.PAN_THRESHOLD)) {
-      if (dx > 0) {
-        state = InputState.right;
-      } else {
-        state = InputState.left;
-      }
-    } else if ((dy.abs() > dx.abs()) && (dy.abs() > Constants.PAN_THRESHOLD)) {
-      if (dy > 0) {
-        state = InputState.down;
-      } else {
-        state = InputState.up;
-      }
-    }*/
-  }
-
   Vector2 get direction {
     if (activeInputs.contains(ActiveInput.left)) {
       return Vector2(-1, 0);

@@ -29,6 +29,20 @@ class Node {
     }
   }
 
+  Node? nodeAt(Vector2 direction) {
+    if (direction.x > 0 && right != null) {
+      return right;
+    } else if (direction.x < 0 && left != null) {
+      return left;
+    } else if (direction.y > 0 && down != null) {
+      return down;
+    } else if (direction.y < 0 && up != null) {
+      return up;
+    } else {
+      return null;
+    }
+  }
+
   @override
   String toString() => 'Node: ($id, $position)';
 }

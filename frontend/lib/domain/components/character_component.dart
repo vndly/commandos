@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
@@ -16,13 +15,19 @@ class CharacterComponent extends BodyComponent<GameComponent>
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
   final List<Node> nodes;
-  Node? nextNode;
+  late final CharacterMovement movement;
 
   CharacterComponent({
     required this.initialPosition,
     required this.size,
     required this.nodes,
-  });
+  }) {
+    movement = CharacterMovement(
+      nodes: nodes,
+      character: this,
+      initialPosition: initialPosition,
+    );
+  }
 
   @override
   Future onLoad() async {
@@ -34,13 +39,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
   @override
   void update(double dt) {
     super.update(dt);
-
-    if (input.hasInput) {
-      final Vector2 deltaPosition = input.direction * Constants.CHARACTER_SPEED;
-      body.linearVelocity = deltaPosition;
-    } else {
-      body.linearVelocity = Vector2.zero();
-    }
+    movement.update(input);
   }
 
   @override
@@ -84,5 +83,61 @@ class CharacterSpriteComponent extends SpriteComponent {
     sprite = await Sprite.load(Assets.IMAGES_CHARACTERS_CHARACTER);
 
     return super.onLoad();
+  }
+}
+
+class CharacterMovement {
+  final List<Node> nodes;
+  final CharacterComponent character;
+  late Node currentNode;
+  Vector2 direction = Vector2.zero();
+  bool isMoving = false;
+  Node? nextNode;
+
+  CharacterMovement({
+    required this.nodes,
+    required this.character,
+    required Vector2 initialPosition,
+  }) {
+    currentNode = _getNodeAt(
+      nodes: nodes,
+      position: initialPosition,
+    );
+  }
+
+  void update(Input input) {
+    if (input.hasInput && !isMoving) {
+      isMoving = true;
+      nextNode = currentNode.nodeAt(input.direction);
+      direction = input.direction;
+      final Vector2 deltaPosition = input.direction * 500;
+      character.body.linearVelocity = deltaPosition;
+    }
+
+    if (isMoving) {
+      final Vector2 currentPosition = character.body.position;
+      final Vector2 targetPosition = nextNode!.position;
+      final Vector2 toTarget = targetPosition - currentPosition;
+
+      if (toTarget.length < 1) {
+        character.body.linearVelocity = Vector2.zero();
+        character.body.setTransform(targetPosition, character.body.angle);
+        isMoving = false;
+        currentNode = nextNode!;
+        nextNode = null;
+      }
+    }
+  }
+
+  static Node _getNodeAt({
+    required List<Node> nodes,
+    required Vector2 position,
+  }) {
+    for (final Node node in nodes) {
+      if (node.position == position) {
+        return node;
+      }
+    }
+    throw Exception('Node not found for position: $position');
   }
 }
