@@ -111,9 +111,8 @@ class CharacterMovement {
 
       if (nextNode != null) {
         isMoving = true;
-        final Vector2 deltaPosition =
-            input.direction * Constants.CHARACTER_SPEED;
-        character.body.linearVelocity = deltaPosition;
+        final Vector2 velocity = input.direction * Constants.CHARACTER_SPEED;
+        character.body.linearVelocity = velocity;
       }
     }
 
