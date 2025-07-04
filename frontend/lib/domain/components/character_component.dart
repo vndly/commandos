@@ -91,7 +91,6 @@ class CharacterMovement {
   final List<Node> nodes;
   final CharacterComponent character;
   late Node currentNode;
-  Vector2 direction = Vector2.zero();
   bool isMoving = false;
   Node? nextNode;
 
@@ -108,11 +107,14 @@ class CharacterMovement {
 
   void update(Input input) {
     if (input.hasInput && !isMoving) {
-      isMoving = true;
       nextNode = currentNode.nodeAt(input.direction);
-      direction = input.direction;
-      final Vector2 deltaPosition = input.direction * Constants.CHARACTER_SPEED;
-      character.body.linearVelocity = deltaPosition;
+
+      if (nextNode != null) {
+        isMoving = true;
+        final Vector2 deltaPosition =
+            input.direction * Constants.CHARACTER_SPEED;
+        character.body.linearVelocity = deltaPosition;
+      }
     }
 
     if (isMoving) {
