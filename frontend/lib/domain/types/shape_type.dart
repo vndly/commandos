@@ -1,1 +1,4 @@
-enum ShapeType { polygon, circle }
+enum ShapeType {
+  polygon,
+  circle,
+}
