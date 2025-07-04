@@ -7,8 +7,11 @@ import 'package:flame/components.dart';
 class MapComponent extends SpriteComponent {
   final List<Node> nodes;
 
-  MapComponent({required this.nodes})
-    : super(position: Vector2.zero(), anchor: Anchor.topLeft);
+  MapComponent({required this.nodes, required super.size})
+    : super(
+        position: Vector2.zero(),
+        anchor: Anchor.topLeft,
+      );
 
   @override
   FutureOr onLoad() async {
@@ -23,8 +26,7 @@ class MapComponent extends SpriteComponent {
 class PathsComponent extends PositionComponent {
   final Paint paint = Paint()
     ..color = const Color(0xffff0000)
-    ..style = PaintingStyle.fill
-    ..strokeWidth = 1;
+    ..style = PaintingStyle.fill;
   final List<Node> nodes;
 
   PathsComponent({required this.nodes})
@@ -34,7 +36,7 @@ class PathsComponent extends PositionComponent {
   void render(Canvas canvas) {
     for (final node in nodes) {
       final Vector2 position = node.position;
-      canvas.drawCircle(position.toOffset(), 5, paint);
+      canvas.drawCircle(position.toOffset(), 0.5, paint);
     }
 
     super.render(canvas);

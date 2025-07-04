@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:commandos/domain/json/json_level.dart';
-import 'package:commandos/domain/json/json_path.dart';
-import 'package:commandos/domain/json/json_position.dart';
-import 'package:commandos/extensions/string_extension.dart';
 import 'package:xml2json/xml2json.dart';
+import 'json/json_level.dart';
+import 'json/json_path.dart';
+import 'json/json_position.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -15,9 +14,21 @@ void main(List<String> args) async {
 Future<void> processFile(String filePath) async {
   final File file = File(filePath);
   final Json json = await getJson(file);
+
+  final int width = int.parse(
+    (json['svg']['width'] as String).replaceAll('mm', ''),
+  );
+  final int height = int.parse(
+    (json['svg']['height'] as String).replaceAll('mm', ''),
+  );
   final List<JsonPath> paths = getPaths(json);
 
-  final JsonLevel level = JsonLevel(id: 'Gym', paths: paths);
+  final JsonLevel level = JsonLevel(
+    id: 'Gym',
+    width: width,
+    height: height,
+    paths: paths,
+  );
   final String fileName = file.uri.pathSegments.last.split('.')[0];
   writeLevel(fileName: fileName, level: level);
 }
@@ -34,13 +45,12 @@ Future<Json> getJson(File file) async {
 
 List<JsonPath> getPaths(Json json) {
   final List<JsonPath> result = [];
-  final int nodeSize = int.parse(json['svg']['nodeSize']);
 
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'paths') {
       for (final Json path in g['path']) {
         final String pathString = path['d'];
-        result.add(getPath(pathString: pathString, nodeSize: nodeSize));
+        result.add(getPath(pathString: pathString));
       }
     }
   }
@@ -48,7 +58,7 @@ List<JsonPath> getPaths(Json json) {
   return result;
 }
 
-JsonPath getPath({required String pathString, required int nodeSize}) {
+JsonPath getPath({required String pathString}) {
   final RegExp commandRegExp = RegExp(r'[a-zA-Z][^a-zA-Z]*');
   final Iterable<Match> matches = commandRegExp.allMatches(pathString);
   final List<List<double>> coords = [];
@@ -117,12 +127,12 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
   final List<double> pointB = coords[1];
 
   final JsonPosition a = JsonPosition(
-    x: pointA[0].toInt(),
-    y: pointA[1].toInt(),
+    x: pointA[0].round(),
+    y: pointA[1].round(),
   );
   final JsonPosition b = JsonPosition(
-    x: pointB[0].toInt(),
-    y: pointB[1].toInt(),
+    x: pointB[0].round(),
+    y: pointB[1].round(),
   );
 
   return JsonPath(a: a, b: b);
@@ -131,7 +141,7 @@ JsonPath getPath({required String pathString, required int nodeSize}) {
 void writeLevel({required String fileName, required JsonLevel level}) {
   const JsonEncoder encoder = JsonEncoder.withIndent('  ');
   final String json = encoder.convert(level);
-  final String className = 'Level${fileName.capitalize}';
+  final String className = 'Level${capitalize(fileName)}';
   final String content =
       '''
 class $className {
@@ -144,3 +154,6 @@ $json
   final File outputDart = File('../frontend/lib/assets/levels/$fileName.dart');
   outputDart.writeAsStringSync(content);
 }
+
+String capitalize(String value) =>
+    '${value[0].toUpperCase()}${value.substring(1)}';

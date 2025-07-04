@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
@@ -110,7 +111,7 @@ class CharacterMovement {
       isMoving = true;
       nextNode = currentNode.nodeAt(input.direction);
       direction = input.direction;
-      final Vector2 deltaPosition = input.direction * 500;
+      final Vector2 deltaPosition = input.direction * Constants.CHARACTER_SPEED;
       character.body.linearVelocity = deltaPosition;
     }
 
@@ -119,7 +120,7 @@ class CharacterMovement {
       final Vector2 targetPosition = nextNode!.position;
       final Vector2 toTarget = targetPosition - currentPosition;
 
-      if (toTarget.length < 1) {
+      if (toTarget.length < 0.1) {
         character.body.linearVelocity = Vector2.zero();
         character.body.setTransform(targetPosition, character.body.angle);
         isMoving = false;

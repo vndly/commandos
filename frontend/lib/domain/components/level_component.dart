@@ -18,11 +18,16 @@ class LevelComponent extends Forge2DWorld {
     final JsonLevel jsonLevel = JsonLevel.fromJson(json);
     nodes.addAll(jsonLevel.nodes);
 
-    await add(MapComponent(nodes: nodes));
+    await add(
+      MapComponent(
+        nodes: nodes,
+        size: Vector2(jsonLevel.width.toDouble(), jsonLevel.height.toDouble()),
+      ),
+    );
 
     characterComponent = CharacterComponent(
-      initialPosition: Vector2(150, 850),
-      size: Vector2(60, 60),
+      initialPosition: Vector2(15, 85),
+      size: Vector2(6, 6),
       nodes: nodes,
     );
     await add(characterComponent);
