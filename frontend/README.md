@@ -18,3 +18,4 @@
 - Entry and exit point
 - Change floor (stairs, elevator, etc)
 - Switch between agents
+- See map
