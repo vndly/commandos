@@ -1,4 +1,20 @@
 # Frontend
 
-* Entry and exit point
-* Switch between agents
+- Turrets
+- Obstacles
+  - Doors
+  - Barbed wire
+  - Pressure plates
+  - Electrified floor
+  - Cameras
+  - Lasers
+- Interact
+    - Doors
+    - Pick up
+    - Carry object
+    - Switch
+- Alarm level
+- Backapack
+- Entry and exit point
+- Change floor (stairs, elevator, etc)
+- Switch between agents
