@@ -40,5 +40,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/characters/
+    - assets/images/agents/
     - assets/images/levels/

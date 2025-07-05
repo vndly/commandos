@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:commandos/assets/levels/gym.dart';
-import 'package:commandos/domain/components/character_component.dart';
+import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/json/json_level.dart';
@@ -10,7 +10,7 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
   final List<Node> nodes = [];
-  late final CharacterComponent characterComponent;
+  late final AgentComponent agentComponent;
 
   @override
   FutureOr onLoad() async {
@@ -25,14 +25,14 @@ class LevelComponent extends Forge2DWorld {
       ),
     );
 
-    characterComponent = CharacterComponent(
+    agentComponent = AgentComponent(
       initialPosition: Vector2(15, 85),
       size: Vector2(6, 6),
       nodes: nodes,
     );
-    await add(characterComponent);
+    await add(agentComponent);
 
-    GameComponentRef.instance.camera.follow(characterComponent);
+    GameComponentRef.instance.camera.follow(agentComponent);
 
     /*final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
     final JsonLevel jsonLevel = JsonLevel.fromJson(json);

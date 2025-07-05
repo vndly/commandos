@@ -9,23 +9,22 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
-class CharacterComponent extends BodyComponent<GameComponent>
-    with KeyboardHandler {
+class AgentComponent extends BodyComponent<GameComponent> with KeyboardHandler {
   final Vector2 initialPosition;
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
   final List<Node> nodes;
-  late final CharacterMovement movement;
+  late final AgentMovement movement;
 
-  CharacterComponent({
+  AgentComponent({
     required this.initialPosition,
     required this.size,
     required this.nodes,
   }) {
-    movement = CharacterMovement(
+    movement = AgentMovement(
       nodes: nodes,
-      character: this,
+      agent: this,
       initialPosition: initialPosition,
     );
   }
@@ -34,7 +33,7 @@ class CharacterComponent extends BodyComponent<GameComponent>
   Future onLoad() async {
     await super.onLoad();
     setup();
-    add(CharacterSpriteComponent(size: size));
+    add(AgentSpriteComponent(size: size));
   }
 
   @override
@@ -76,27 +75,27 @@ class CharacterComponent extends BodyComponent<GameComponent>
   }
 }
 
-class CharacterSpriteComponent extends SpriteComponent {
-  CharacterSpriteComponent({super.size}) : super(anchor: Anchor.center);
+class AgentSpriteComponent extends SpriteComponent {
+  AgentSpriteComponent({super.size}) : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_CHARACTERS_CHARACTER);
+    sprite = await Sprite.load(Assets.IMAGES_AGENTS_AGENT);
 
     return super.onLoad();
   }
 }
 
-class CharacterMovement {
+class AgentMovement {
   final List<Node> nodes;
-  final CharacterComponent character;
+  final AgentComponent agent;
   late Node currentNode;
   bool isMoving = false;
   Node? nextNode;
 
-  CharacterMovement({
+  AgentMovement({
     required this.nodes,
-    required this.character,
+    required this.agent,
     required Vector2 initialPosition,
   }) {
     currentNode = _getNodeAt(
@@ -111,19 +110,19 @@ class CharacterMovement {
 
       if (nextNode != null) {
         isMoving = true;
-        final Vector2 velocity = input.direction * Constants.CHARACTER_SPEED;
-        character.body.linearVelocity = velocity;
+        final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
+        agent.body.linearVelocity = velocity;
       }
     }
 
     if (isMoving) {
-      final Vector2 currentPosition = character.body.position;
+      final Vector2 currentPosition = agent.body.position;
       final Vector2 targetPosition = nextNode!.position;
       final Vector2 toTarget = targetPosition - currentPosition;
 
       if (toTarget.length < 0.1) {
-        character.body.linearVelocity = Vector2.zero();
-        character.body.setTransform(targetPosition, character.body.angle);
+        agent.body.linearVelocity = Vector2.zero();
+        agent.body.setTransform(targetPosition, agent.body.angle);
         isMoving = false;
         currentNode = nextNode!;
         nextNode = null;

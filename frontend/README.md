@@ -1,3 +1,4 @@
 # Frontend
 
-* Simple enemy
+* Entry and exit point
+* Switch between agents
