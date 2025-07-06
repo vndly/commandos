@@ -637,6 +637,29 @@ class LevelGym {
         "y": 15
       }
     }
+  ],
+  "agents": [
+    {
+      "id": "agent3",
+      "position": {
+        "x": 605,
+        "y": 15
+      }
+    },
+    {
+      "id": "agent2",
+      "position": {
+        "x": 95,
+        "y": 45
+      }
+    },
+    {
+      "id": "agent1",
+      "position": {
+        "x": 15,
+        "y": 85
+      }
+    }
   ]
 }
 ''';

@@ -84,10 +84,12 @@ List<JsonAgent> getAgents({
   for (final Json g in json['svg']['g']) {
     if (g['id'] == name) {
       for (final Json circle in g['circle']) {
+        final String id = circle['id'];
         final int cx = double.parse(circle['cx'] as String).round();
         final int cy = double.parse(circle['cy'] as String).round();
         result.add(
           JsonAgent(
+            id: id,
             position: JsonPosition(x: cx, y: cy),
           ),
         );

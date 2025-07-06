@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:commandos/domain/json/json_agent.dart';
+import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
@@ -91,6 +92,17 @@ class JsonLevel {
       final Node nodeB = nodes.nodeAt(path.b.vector2);
 
       result.add(Connection(a: nodeA, b: nodeB));
+    }
+
+    return result;
+  }
+
+  List<Agent> getAgents(Nodes nodes) {
+    final List<Agent> result = [];
+
+    for (final JsonAgent agent in agents) {
+      final Node node = nodes.nodeAt(agent.position.vector2);
+      result.add(Agent(id: agent.id, position: node.position));
     }
 
     return result;
