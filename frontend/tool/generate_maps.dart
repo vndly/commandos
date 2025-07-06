@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:xml2json/xml2json.dart';
+import 'json/json_agent.dart';
 import 'json/json_level.dart';
 import 'json/json_path.dart';
 import 'json/json_position.dart';
@@ -29,6 +30,10 @@ Future<void> processFile(String filePath) async {
     json: json,
     name: 'connections',
   );
+  final List<JsonAgent> agents = getAgents(
+    json: json,
+    name: 'agents',
+  );
 
   final JsonLevel level = JsonLevel(
     id: 'Gym',
@@ -36,6 +41,7 @@ Future<void> processFile(String filePath) async {
     height: height,
     paths: paths,
     connections: connections,
+    agents: agents,
   );
   final String fileName = file.uri.pathSegments.last.split('.')[0];
   writeLevel(fileName: fileName, level: level);
@@ -62,6 +68,29 @@ List<JsonPath> getPaths({
       for (final Json path in g['path']) {
         final String pathString = path['d'];
         result.add(getPath(pathString: pathString));
+      }
+    }
+  }
+
+  return result;
+}
+
+List<JsonAgent> getAgents({
+  required Json json,
+  required String name,
+}) {
+  final List<JsonAgent> result = [];
+
+  for (final Json g in json['svg']['g']) {
+    if (g['id'] == name) {
+      for (final Json circle in g['circle']) {
+        final int cx = double.parse(circle['cx'] as String).round();
+        final int cy = double.parse(circle['cy'] as String).round();
+        result.add(
+          JsonAgent(
+            position: JsonPosition(x: cx, y: cy),
+          ),
+        );
       }
     }
   }

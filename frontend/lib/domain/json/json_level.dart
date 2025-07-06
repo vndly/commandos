@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:commandos/domain/json/json_agent.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
@@ -25,12 +26,16 @@ class JsonLevel {
   @JsonKey(name: 'connections')
   final List<JsonPath> connections;
 
+  @JsonKey(name: 'agents')
+  final List<JsonAgent> agents;
+
   const JsonLevel({
     required this.id,
     required this.width,
     required this.height,
     required this.paths,
     required this.connections,
+    required this.agents,
   });
 
   factory JsonLevel.fromString(String input) {

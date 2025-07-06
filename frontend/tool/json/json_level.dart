@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+import 'json_agent.dart';
 import 'json_path.dart';
 
 part 'json_level.g.dart';
@@ -20,12 +21,16 @@ class JsonLevel {
   @JsonKey(name: 'connections')
   final List<JsonPath> connections;
 
+  @JsonKey(name: 'agents')
+  final List<JsonAgent> agents;
+
   const JsonLevel({
     required this.id,
     required this.width,
     required this.height,
     required this.paths,
     required this.connections,
+    required this.agents,
   });
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>
