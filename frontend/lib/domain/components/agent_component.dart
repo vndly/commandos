@@ -66,7 +66,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
     final BodyDef bodyDef = BodyDef(
       position: initialPosition,
-      type: BodyType.dynamic,
+      type: BodyType.kinematic,
     );
 
     final Body body = world.createBody(bodyDef);
