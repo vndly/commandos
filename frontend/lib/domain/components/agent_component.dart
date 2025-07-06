@@ -4,6 +4,7 @@ import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
+import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
@@ -15,7 +16,7 @@ class AgentComponent extends BodyComponent<GameComponent> with KeyboardHandler {
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
-  final List<Node> nodes;
+  final Nodes nodes;
   final List<Connection> connections;
   late final AgentMovement movement;
 
@@ -92,7 +93,7 @@ class AgentSpriteComponent extends SpriteComponent {
 
 class AgentMovement {
   final AgentComponent agent;
-  final List<Node> nodes;
+  final Nodes nodes;
   final List<Connection> connections;
   late Node currentNode;
   bool isMoving = false;
@@ -104,10 +105,7 @@ class AgentMovement {
     required this.connections,
     required Vector2 initialPosition,
   }) {
-    currentNode = _getNodeAt(
-      nodes: nodes,
-      position: initialPosition,
-    );
+    currentNode = nodes.nodeAt(initialPosition);
   }
 
   void update(Input input) {
@@ -153,17 +151,5 @@ class AgentMovement {
     }
 
     return null;
-  }
-
-  static Node _getNodeAt({
-    required List<Node> nodes,
-    required Vector2 position,
-  }) {
-    for (final Node node in nodes) {
-      if (node.position == position) {
-        return node;
-      }
-    }
-    throw Exception('Node not found for position: $position');
   }
 }

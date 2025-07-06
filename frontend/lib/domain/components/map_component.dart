@@ -1,11 +1,12 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:commandos/domain/models/node.dart';
+import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 
 class MapComponent extends SpriteComponent {
-  final List<Node> nodes;
+  final Nodes nodes;
 
   MapComponent({required this.nodes, required super.size})
     : super(
@@ -27,14 +28,14 @@ class PathsComponent extends PositionComponent {
   final Paint paint = Paint()
     ..color = const Color(0xffff0000)
     ..style = PaintingStyle.fill;
-  final List<Node> nodes;
+  final Nodes nodes;
 
   PathsComponent({required this.nodes})
     : super(position: Vector2.zero(), anchor: Anchor.topLeft);
 
   @override
   void render(Canvas canvas) {
-    for (final node in nodes) {
+    for (final Node node in nodes) {
       final Vector2 position = node.position;
       canvas.drawCircle(position.toOffset(), 0.5, paint);
     }

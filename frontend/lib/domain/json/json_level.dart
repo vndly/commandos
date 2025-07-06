@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/node.dart';
+import 'package:commandos/domain/models/nodes.dart';
 import 'package:flame/components.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'json_path.dart';
@@ -41,7 +42,7 @@ class JsonLevel {
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>
       _$JsonLevelFromJson(json);
 
-  List<Node> get nodes {
+  Nodes get nodes {
     final Map<String, Node> result = {};
 
     for (final JsonPath path in paths) {
@@ -58,7 +59,7 @@ class JsonLevel {
       nodeB.addConnection(nodeA);
     }
 
-    return result.values.toList();
+    return Nodes(nodes: result.values.toList());
   }
 
   Node _addNode({
@@ -77,12 +78,12 @@ class JsonLevel {
     }
   }
 
-  List<Connection> get getConnections {
+  List<Connection> getConnections(Nodes nodes) {
     final List<Connection> result = [];
 
     for (final JsonPath path in connections) {
-      final Node nodeA = Node(position: path.a.vector2);
-      final Node nodeB = Node(position: path.b.vector2);
+      final Node nodeA = nodes.nodeAt(path.a.vector2);
+      final Node nodeB = nodes.nodeAt(path.b.vector2);
 
       result.add(Connection(a: nodeA, b: nodeB));
     }

@@ -5,19 +5,18 @@ import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/models/connection.dart';
-import 'package:commandos/domain/models/node.dart';
+import 'package:commandos/domain/models/nodes.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
-  final List<Node> nodes = [];
   final List<Connection> connections = [];
   late final AgentComponent agentComponent;
 
   @override
   FutureOr onLoad() async {
     final JsonLevel jsonLevel = JsonLevel.fromString(LevelGym.JSON);
-    nodes.addAll(jsonLevel.nodes);
-    connections.addAll(jsonLevel.getConnections);
+    final Nodes nodes = jsonLevel.nodes;
+    connections.addAll(jsonLevel.getConnections(nodes));
 
     await add(
       MapComponent(
