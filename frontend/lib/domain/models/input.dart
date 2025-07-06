@@ -6,32 +6,30 @@ class Input {
 
   bool get hasInput => activeInputs.isNotEmpty;
 
+  bool hasActiveInput(ActiveInput input) => activeInputs.contains(input);
+
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _checkKey(
       input: ActiveInput.left,
-      key1: LogicalKeyboardKey.keyA,
-      key2: LogicalKeyboardKey.arrowLeft,
+      keys: [LogicalKeyboardKey.keyA, LogicalKeyboardKey.arrowLeft],
       keysPressed: keysPressed,
     );
 
     _checkKey(
       input: ActiveInput.right,
-      key1: LogicalKeyboardKey.keyD,
-      key2: LogicalKeyboardKey.arrowRight,
+      keys: [LogicalKeyboardKey.keyD, LogicalKeyboardKey.arrowRight],
       keysPressed: keysPressed,
     );
 
     _checkKey(
       input: ActiveInput.up,
-      key1: LogicalKeyboardKey.keyW,
-      key2: LogicalKeyboardKey.arrowUp,
+      keys: [LogicalKeyboardKey.keyW, LogicalKeyboardKey.arrowUp],
       keysPressed: keysPressed,
     );
 
     _checkKey(
       input: ActiveInput.down,
-      key1: LogicalKeyboardKey.keyS,
-      key2: LogicalKeyboardKey.arrowDown,
+      keys: [LogicalKeyboardKey.keyS, LogicalKeyboardKey.arrowDown],
       keysPressed: keysPressed,
     );
 
@@ -40,11 +38,10 @@ class Input {
 
   void _checkKey({
     required ActiveInput input,
-    required LogicalKeyboardKey key1,
-    required LogicalKeyboardKey key2,
+    required List<LogicalKeyboardKey> keys,
     required Set<LogicalKeyboardKey> keysPressed,
   }) {
-    if (keysPressed.contains(key1) || keysPressed.contains(key2)) {
+    if (keysPressed.any((key) => keys.contains(key))) {
       activeInputs.add(input);
     } else {
       activeInputs.remove(input);

@@ -12,11 +12,12 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
 
-class LevelComponent extends Forge2DWorld  with KeyboardHandler{
+class LevelComponent extends Forge2DWorld with KeyboardHandler {
   final Input input = Input();
   final List<Connection> connections = [];
   final List<AgentComponent> agentComponents = [];
   late AgentComponent activeAgentComponent;
+  int activeAgentIndex = 0;
 
   @override
   FutureOr onLoad() async {
@@ -44,7 +45,7 @@ class LevelComponent extends Forge2DWorld  with KeyboardHandler{
       agentComponents.add(agentComponent);
     }
 
-    activeAgentComponent = agentComponents[0];
+    activeAgentComponent = agentComponents[activeAgentIndex];
     activeAgentComponent.active = true;
     GameComponentRef.instance.camera.follow(activeAgentComponent);
 
@@ -54,9 +55,22 @@ class LevelComponent extends Forge2DWorld  with KeyboardHandler{
   @override
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     if (input.onKeyEvent(event, keysPressed)) {
+      if ((event is KeyDownEvent) &&
+          keysPressed.contains(LogicalKeyboardKey.tab)) {
+        _switchAgent();
+      }
+
       return false;
     } else {
       return super.onKeyEvent(event, keysPressed);
     }
+  }
+
+  void _switchAgent() {
+    activeAgentIndex = (activeAgentIndex + 1) % agentComponents.length;
+    activeAgentComponent.active = false;
+    activeAgentComponent = agentComponents[activeAgentIndex];
+    activeAgentComponent.active = true;
+    GameComponentRef.instance.camera.follow(activeAgentComponent);
   }
 }
