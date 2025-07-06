@@ -1,6 +1,5 @@
 # Frontend
 
-- Change floor (stairs, elevator, etc)
 - Entry and exit point
 - Switch between agents
 - Turrets
@@ -12,10 +11,10 @@
   - Cameras
   - Lasers
 - Interact
-    - Doors
-    - Pick up
-    - Carry object
-    - Switch
+  - Doors
+  - Pick up
+  - Carry object
+  - Switch
 - Alarm level
 - Backapack
 - See map
