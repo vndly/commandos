@@ -56,8 +56,7 @@
     <g
          inkscape:label="walls"
          inkscape:groupmode="layer"
-         id="walls"
-         style="display:inline">
+         id="walls">
         <rect
              style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635672;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2"
@@ -851,7 +850,7 @@
     </g>
     <g
          inkscape:groupmode="layer"
-         id="layer1"
+         id="floor"
          inkscape:label="floor">
         <rect
              style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635662;stroke-linecap:round;paint-order:markers fill stroke"
@@ -859,40 +858,35 @@
              width="9.9997"
              height="9.9997"
              x="530"
-             y="0"
-             transform="scale(0.99999)" />
+             y="0" />
         <rect
              style="display:inline;fill:#969696;fill-opacity:1;stroke:none;stroke-width:0.635644;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2-5-06-9"
              width="9.9994"
              height="9.9994"
              x="30"
-             y="79.998"
-             transform="scale(0.99999)" />
+             y="79.998" />
         <rect
              style="display:inline;fill:#969696;fill-opacity:1;stroke:none;stroke-width:0.635644;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2-5-06-7"
              width="9.9994"
              height="9.9994"
              x="40"
-             y="70.001"
-             transform="scale(0.99999)" />
+             y="70.001" />
         <rect
              style="display:inline;fill:#969696;fill-opacity:1;stroke:none;stroke-width:0.635644;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2-5-06-77"
              width="9.9994"
              height="9.9994"
              x="40.001"
-             y="50"
-             transform="scale(0.99999)" />
+             y="50" />
         <rect
              style="display:inline;fill:#969696;fill-opacity:1;stroke:none;stroke-width:0.635644;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2-5-06-5"
              width="9.9994"
              height="9.9994"
              x="40"
-             y="30.001"
-             transform="scale(0.99999)" />
+             y="30.001" />
         <rect
              style="display:inline;fill:#969696;fill-opacity:1;stroke:none;stroke-width:0.635631;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2-5-06-5-9"
@@ -1275,8 +1269,7 @@
     <g
          inkscape:groupmode="layer"
          id="paths"
-         inkscape:label="paths"
-         style="display:none">
+         inkscape:label="paths">
         <path
              style="fill:none;stroke:#ff0000;stroke-width:0.299991;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Dot-4-9-7);marker-end:url(#Dot-4-9-7);paint-order:normal"
              d="M 105,45 H 95.003"
