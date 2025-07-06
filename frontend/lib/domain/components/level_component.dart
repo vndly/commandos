@@ -1,22 +1,23 @@
 import 'dart:async';
-import 'dart:convert';
 import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/json/json_level.dart';
+import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class LevelComponent extends Forge2DWorld {
   final List<Node> nodes = [];
+  final List<Connection> connections = [];
   late final AgentComponent agentComponent;
 
   @override
   FutureOr onLoad() async {
-    final dynamic json = jsonDecode(LevelGym.JSON);
-    final JsonLevel jsonLevel = JsonLevel.fromJson(json);
+    final JsonLevel jsonLevel = JsonLevel.fromString(LevelGym.JSON);
     nodes.addAll(jsonLevel.nodes);
+    connections.addAll(jsonLevel.getConnections);
 
     await add(
       MapComponent(
@@ -33,15 +34,6 @@ class LevelComponent extends Forge2DWorld {
     await add(agentComponent);
 
     GameComponentRef.instance.camera.follow(agentComponent);
-
-    /*final dynamic json = jsonDecode(ModelsLevelsLevel0.JSON);
-    final JsonLevel jsonLevel = JsonLevel.fromJson(json);
-
-    for (final JsonGameObject jsonWall in jsonLevel.walls) {
-      add(
-        WallComponent(jsonBody: jsonWall.body, jsonFixtures: jsonWall.fixtures),
-      );
-    }*/
 
     return super.onLoad();
   }

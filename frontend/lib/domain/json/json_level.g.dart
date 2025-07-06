@@ -13,6 +13,9 @@ JsonLevel _$JsonLevelFromJson(Map<String, dynamic> json) => JsonLevel(
   paths: (json['paths'] as List<dynamic>)
       .map((e) => JsonPath.fromJson(e as Map<String, dynamic>))
       .toList(),
+  connections: (json['connections'] as List<dynamic>)
+      .map((e) => JsonPath.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$JsonLevelToJson(JsonLevel instance) => <String, dynamic>{
@@ -20,4 +23,5 @@ Map<String, dynamic> _$JsonLevelToJson(JsonLevel instance) => <String, dynamic>{
   'width': instance.width,
   'height': instance.height,
   'paths': instance.paths,
+  'connections': instance.connections,
 };

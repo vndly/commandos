@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:flame/components.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -19,12 +21,22 @@ class JsonLevel {
   @JsonKey(name: 'paths')
   final List<JsonPath> paths;
 
+  @JsonKey(name: 'connections')
+  final List<JsonPath> connections;
+
   const JsonLevel({
     required this.id,
     required this.width,
     required this.height,
     required this.paths,
+    required this.connections,
   });
+
+  factory JsonLevel.fromString(String input) {
+    final dynamic json = jsonDecode(input);
+
+    return JsonLevel.fromJson(json);
+  }
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>
       _$JsonLevelFromJson(json);
@@ -33,8 +45,14 @@ class JsonLevel {
     final Map<String, Node> result = {};
 
     for (final JsonPath path in paths) {
-      final Node nodeA = _addNode(result: result, position: path.a.vector2);
-      final Node nodeB = _addNode(result: result, position: path.b.vector2);
+      final Node nodeA = _addNode(
+        result: result,
+        position: path.a.vector2,
+      );
+      final Node nodeB = _addNode(
+        result: result,
+        position: path.b.vector2,
+      );
 
       nodeA.addConnection(nodeB);
       nodeB.addConnection(nodeA);
@@ -57,6 +75,19 @@ class JsonLevel {
 
       return node;
     }
+  }
+
+  List<Connection> get getConnections {
+    final List<Connection> result = [];
+
+    for (final JsonPath path in connections) {
+      final Node nodeA = Node(position: path.a.vector2);
+      final Node nodeB = Node(position: path.b.vector2);
+
+      result.add(Connection(a: nodeA, b: nodeB));
+    }
+
+    return result;
   }
 
   Map<String, dynamic> toJson() => _$JsonLevelToJson(this);
