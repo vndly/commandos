@@ -27,15 +27,15 @@
          inkscape:deskcolor="#d2d2d2"
          inkscape:document-units="mm"
          showborder="true"
-         inkscape:zoom="0.25"
-         inkscape:cx="938"
-         inkscape:cy="-278"
+         inkscape:zoom="0.70711"
+         inkscape:cx="260.92"
+         inkscape:cy="4.9497"
          inkscape:window-width="1920"
          inkscape:window-height="1016"
          inkscape:window-x="0"
          inkscape:window-y="27"
          inkscape:window-maximized="1"
-         inkscape:current-layer="paths"
+         inkscape:current-layer="layer1"
          showgrid="true"
          borderlayer="false">
         <inkscape:grid
@@ -54,7 +54,7 @@
              visible="true" />
     </sodipodi:namedview>
     <g
-         inkscape:label="walls"
+         inkscape:label="static"
          inkscape:groupmode="layer"
          id="walls">
         <rect
@@ -841,18 +841,6 @@
              x="580"
              y="90" />
         <rect
-             style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635662;stroke-linecap:round;paint-order:markers fill stroke"
-             id="rect2-02-7"
-             width="9.9997"
-             height="9.9997"
-             x="610"
-             y="80" />
-    </g>
-    <g
-         inkscape:groupmode="layer"
-         id="floor"
-         inkscape:label="floor">
-        <rect
              style="display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635662;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2-92-7"
              width="9.9997"
@@ -1265,6 +1253,13 @@
              height="9.9991"
              x="99.997"
              y="80.001" />
+        <rect
+             style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635662;stroke-linecap:round;paint-order:markers fill stroke"
+             id="rect2-02-7"
+             width="9.9997"
+             height="9.9997"
+             x="610"
+             y="80" />
     </g>
     <g
          inkscape:groupmode="layer"
@@ -1574,6 +1569,21 @@
              style="display:inline;fill:none;stroke:#ff0000;stroke-width:0.299973;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Dot-4-9-4);marker-end:url(#Dot-4-9-4);paint-order:normal"
              d="M 554.99,15.001 H 544.99"
              id="path2-2-9-8-1-1-88-5-7-5"
+             sodipodi:nodetypes="cc" />
+    </g>
+    <g
+         inkscape:groupmode="layer"
+         id="connections"
+         inkscape:label="connections">
+        <path
+             style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.29999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Dot-4-5);marker-end:url(#Dot-4-5);paint-order:normal"
+             d="M 525,65 L 25,65.002"
+             id="path2-2-5-3"
+             sodipodi:nodetypes="cc" />
+        <path
+             style="fill:none;fill-opacity:1;stroke:#00ff00;stroke-width:0.299987;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:3;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Dot-4-5);marker-end:url(#Dot-4-5);paint-order:normal"
+             d="M 544.99,15.001 L 45,15"
+             id="path2-2-5-3-1"
              sodipodi:nodetypes="cc" />
     </g>
 </svg>

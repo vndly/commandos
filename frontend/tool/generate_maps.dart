@@ -21,13 +21,21 @@ Future<void> processFile(String filePath) async {
   final int height = int.parse(
     (json['svg']['height'] as String).replaceAll('mm', ''),
   );
-  final List<JsonPath> paths = getPaths(json);
+  final List<JsonPath> paths = getPaths(
+    json: json,
+    name: 'paths',
+  );
+  final List<JsonPath> connections = getPaths(
+    json: json,
+    name: 'connections',
+  );
 
   final JsonLevel level = JsonLevel(
     id: 'Gym',
     width: width,
     height: height,
     paths: paths,
+    connections: connections,
   );
   final String fileName = file.uri.pathSegments.last.split('.')[0];
   writeLevel(fileName: fileName, level: level);
@@ -43,11 +51,14 @@ Future<Json> getJson(File file) async {
   return jsonDecode(gdata);
 }
 
-List<JsonPath> getPaths(Json json) {
+List<JsonPath> getPaths({
+  required Json json,
+  required String name,
+}) {
   final List<JsonPath> result = [];
 
   for (final Json g in json['svg']['g']) {
-    if (g['id'] == 'paths') {
+    if (g['id'] == name) {
       for (final Json path in g['path']) {
         final String pathString = path['d'];
         result.add(getPath(pathString: pathString));

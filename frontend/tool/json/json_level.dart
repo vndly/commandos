@@ -17,11 +17,15 @@ class JsonLevel {
   @JsonKey(name: 'paths')
   final List<JsonPath> paths;
 
+  @JsonKey(name: 'connections')
+  final List<JsonPath> connections;
+
   const JsonLevel({
     required this.id,
     required this.width,
     required this.height,
     required this.paths,
+    required this.connections,
   });
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>
