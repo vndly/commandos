@@ -1,5 +1,8 @@
 # Frontend
 
+- Change floor (stairs, elevator, etc)
+- Entry and exit point
+- Switch between agents
 - Turrets
 - Obstacles
   - Doors
@@ -15,7 +18,4 @@
     - Switch
 - Alarm level
 - Backapack
-- Entry and exit point
-- Change floor (stairs, elevator, etc)
-- Switch between agents
 - See map
