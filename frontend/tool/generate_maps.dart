@@ -126,6 +126,13 @@ JsonPath getPath({required String pathString}) {
   final List<double> pointA = coords[0];
   final List<double> pointB = coords[1];
 
+  if (pointA[0].round() % 5 != 0 ||
+      pointA[1].round() % 5 != 0 ||
+      pointB[0].round() % 5 != 0 ||
+      pointB[1].round() % 5 != 0) {
+    throw Exception('Coordinates must be multiples of 5: $pointA, $pointB');
+  }
+
   final JsonPosition a = JsonPosition(
     x: pointA[0].round(),
     y: pointA[1].round(),

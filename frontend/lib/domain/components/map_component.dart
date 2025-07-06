@@ -17,7 +17,7 @@ class MapComponent extends SpriteComponent {
   FutureOr onLoad() async {
     sprite = await Sprite.load(Assets.IMAGES_LEVELS_GYM);
 
-    add(PathsComponent(nodes: nodes));
+    //add(PathsComponent(nodes: nodes));
 
     return super.onLoad();
   }

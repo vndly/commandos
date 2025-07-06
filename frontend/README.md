@@ -1,5 +1,6 @@
 # Frontend
 
+- Camera boundaries
 - Change floor (stairs, elevator, etc)
 - Entry and exit point
 - Switch between agents
