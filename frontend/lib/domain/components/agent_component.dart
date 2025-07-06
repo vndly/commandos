@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
@@ -15,16 +16,19 @@ class AgentComponent extends BodyComponent<GameComponent> with KeyboardHandler {
   final Vector2 velocity = Vector2.zero();
   final Input input = Input();
   final List<Node> nodes;
+  final List<Connection> connections;
   late final AgentMovement movement;
 
   AgentComponent({
     required this.initialPosition,
     required this.size,
     required this.nodes,
+    required this.connections,
   }) {
     movement = AgentMovement(
-      nodes: nodes,
       agent: this,
+      nodes: nodes,
+      connections: connections,
       initialPosition: initialPosition,
     );
   }
@@ -87,15 +91,17 @@ class AgentSpriteComponent extends SpriteComponent {
 }
 
 class AgentMovement {
-  final List<Node> nodes;
   final AgentComponent agent;
+  final List<Node> nodes;
+  final List<Connection> connections;
   late Node currentNode;
   bool isMoving = false;
   Node? nextNode;
 
   AgentMovement({
-    required this.nodes,
     required this.agent,
+    required this.nodes,
+    required this.connections,
     required Vector2 initialPosition,
   }) {
     currentNode = _getNodeAt(
@@ -126,8 +132,27 @@ class AgentMovement {
         isMoving = false;
         currentNode = nextNode!;
         nextNode = null;
+
+        final Node? conectionTo = getConnectionTo(currentNode);
+
+        if (conectionTo != null) {
+          currentNode = conectionTo;
+          agent.body.setTransform(conectionTo.position, agent.body.angle);
+        }
       }
     }
+  }
+
+  Node? getConnectionTo(Node node) {
+    for (final Connection connection in connections) {
+      if (connection.a == node) {
+        return connection.b;
+      } else if (connection.b == node) {
+        return connection.a;
+      }
+    }
+
+    return null;
   }
 
   static Node _getNodeAt({

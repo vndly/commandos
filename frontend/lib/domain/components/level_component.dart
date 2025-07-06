@@ -30,6 +30,7 @@ class LevelComponent extends Forge2DWorld {
       initialPosition: Vector2(15, 85),
       size: Vector2(6, 6),
       nodes: nodes,
+      connections: connections,
     );
     await add(agentComponent);
 

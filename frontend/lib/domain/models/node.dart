@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 
-class Node {
+class Node implements Comparable<Node> {
   late final String id;
   final Vector2 position;
   Node? up;
@@ -45,4 +45,13 @@ class Node {
 
   @override
   String toString() => 'Node: ($id, $position)';
+
+  @override
+  int compareTo(Node other) {
+    if (position == other.position) {
+      return 0;
+    } else {
+      return position.normalize().compareTo(other.position.normalize());
+    }
+  }
 }
