@@ -9,22 +9,24 @@ import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/services.dart';
 
-class AgentComponent extends BodyComponent<GameComponent> with KeyboardHandler {
+class AgentComponent extends BodyComponent<GameComponent> {
   final Vector2 initialPosition;
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
-  final Input input = Input();
+  final Input input;
   final Nodes nodes;
   final List<Connection> connections;
   late final AgentMovement movement;
+  bool active;
 
   AgentComponent({
     required this.initialPosition,
     required this.size,
+    required this.input,
     required this.nodes,
     required this.connections,
+    required this.active,
   }) {
     movement = AgentMovement(
       agent: this,
@@ -44,7 +46,10 @@ class AgentComponent extends BodyComponent<GameComponent> with KeyboardHandler {
   @override
   void update(double dt) {
     super.update(dt);
-    movement.update(input);
+
+    if (active) {
+      movement.update(input);
+    }
   }
 
   @override
@@ -68,15 +73,6 @@ class AgentComponent extends BodyComponent<GameComponent> with KeyboardHandler {
     body.createFixture(fixtureDef);
 
     return body;
-  }
-
-  @override
-  bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    if (input.onKeyEvent(event, keysPressed)) {
-      return false;
-    } else {
-      return super.onKeyEvent(event, keysPressed);
-    }
   }
 }
 
