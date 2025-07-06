@@ -640,21 +640,21 @@ class LevelGym {
   ],
   "agents": [
     {
-      "id": "agent1",
+      "id": "1",
       "position": {
         "x": 15,
         "y": 85
       }
     },
     {
-      "id": "agent2",
+      "id": "2",
       "position": {
         "x": 95,
         "y": 45
       }
     },
     {
-      "id": "agent3",
+      "id": "3",
       "position": {
         "x": 605,
         "y": 15

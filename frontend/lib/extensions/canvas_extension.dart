@@ -7,6 +7,8 @@ extension CanvasExtension on Canvas {
     required String text,
     required Vector2 position,
     required double size,
+    TextAlign textAlign = TextAlign.center,
+    Anchor anchor = Anchor.center,
     Color? color,
     Paint? foreground,
     Paint? background,
@@ -22,19 +24,25 @@ extension CanvasExtension on Canvas {
     final TextPainter textPainter = TextPainter(
       text: textSpan,
       textDirection: TextDirection.ltr,
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
     );
     textPainter.layout();
 
-    final translatedPosition = translate(
-      anchor: Anchor.center,
-      point: Vector2(position.x, position.y),
-      size: Vector2(textPainter.size.width, textPainter.size.height),
+    final Vector2 textSize = Vector2(
+      textPainter.size.width,
+      textPainter.size.height,
     );
+
+    final Vector2 translatedPosition = translatePosition(
+      anchor: anchor,
+      point: Vector2(position.x, position.y),
+      size: textSize,
+    );
+
     textPainter.paint(this, translatedPosition.toOffset());
   }
 
-  Vector2 translate({
+  Vector2 translatePosition({
     required Anchor anchor,
     required Vector2 point,
     required Vector2 size,

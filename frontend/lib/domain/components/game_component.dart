@@ -55,7 +55,8 @@ class FpsComponent extends PositionComponent {
     ..color = Colors.black
     ..style = PaintingStyle.fill;
 
-  FpsComponent({super.position, super.size}) : super(anchor: Anchor.topLeft);
+  FpsComponent({required super.position, required super.size})
+    : super(anchor: Anchor.topLeft);
 
   @override
   FutureOr<void> onLoad() {

@@ -1592,21 +1592,21 @@
          inkscape:label="agents">
         <circle
              style="fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:6.56353;stroke-linecap:round;stroke-miterlimit:3"
-             id="agent1"
+             id="1"
              cx="15"
              cy="84.998"
              r="5"
              inkscape:label="agent1" />
         <circle
              style="fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:6.56346;stroke-linecap:round;stroke-miterlimit:3"
-             id="agent2"
+             id="2"
              cx="95"
              cy="44.998"
              r="4.9999"
              inkscape:label="agent2" />
         <circle
              style="fill:#00ff00;fill-opacity:1;stroke:none;stroke-width:6.56346;stroke-linecap:round;stroke-miterlimit:3"
-             id="agent3"
+             id="3"
              cx="605"
              cy="14.998"
              r="4.9999"

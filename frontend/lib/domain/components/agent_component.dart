@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -15,6 +18,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
   final Vector2 size;
   final Vector2 velocity = Vector2.zero();
   final Input input;
+  final Agent agent;
   final Nodes nodes;
   final List<Connection> connections;
   late final AgentMovement movement;
@@ -24,6 +28,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     required this.initialPosition,
     required this.size,
     required this.input,
+    required this.agent,
     required this.nodes,
     required this.connections,
     required this.active,
@@ -40,7 +45,12 @@ class AgentComponent extends BodyComponent<GameComponent> {
   Future onLoad() async {
     await super.onLoad();
     setup();
-    add(AgentSpriteComponent(size: size));
+    add(
+      AgentSpriteComponent(
+        agent: agent,
+        size: size,
+      ),
+    );
   }
 
   @override
@@ -77,13 +87,27 @@ class AgentComponent extends BodyComponent<GameComponent> {
 }
 
 class AgentSpriteComponent extends SpriteComponent {
-  AgentSpriteComponent({super.size}) : super(anchor: Anchor.center);
+  final Agent agent;
+
+  AgentSpriteComponent({required this.agent, required super.size})
+    : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {
     sprite = await Sprite.load(Assets.IMAGES_AGENTS_AGENT);
 
     return super.onLoad();
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    canvas.drawText(
+      text: agent.id,
+      position: Vector2(size.x / 2, size.y / 2.2),
+      size: size.x / 3,
+    );
   }
 }
 
