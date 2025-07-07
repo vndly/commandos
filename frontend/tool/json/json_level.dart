@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'json_agent.dart';
 import 'json_path.dart';
+import 'json_turret.dart';
 
 part 'json_level.g.dart';
 
@@ -24,6 +25,9 @@ class JsonLevel {
   @JsonKey(name: 'agents')
   final List<JsonAgent> agents;
 
+  @JsonKey(name: 'turrets')
+  final List<JsonTurret> turrets;
+
   const JsonLevel({
     required this.id,
     required this.width,
@@ -31,6 +35,7 @@ class JsonLevel {
     required this.paths,
     required this.connections,
     required this.agents,
+    required this.turrets,
   });
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>

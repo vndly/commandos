@@ -1,14 +1,18 @@
 {
     "id": "gym",
-    "enemies": {
-        "turrets": [
-            {
-                "id": "turret1",
-                "position": {
-                    "x": 100,
-                    "y": 200
+    "turrets": [
+        {
+            "id": "turret1",
+            "position": {
+                "x": 100,
+                "y": 200
+            },
+            "lasers": [
+                {
+                    "angle": 0,
+                    "length": 150
                 }
-            }
-        ]
-    }
+            ]
+        }
+    ]
 }
