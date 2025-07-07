@@ -1,6 +1,5 @@
 # Frontend
 
-- Entry and exit point
 - Turrets
 - Obstacles
   - Doors
@@ -14,6 +13,7 @@
   - Pick up
   - Carry object
   - Switch
+- Exit point
 - Alarm level
 - Backapack
 - See map
