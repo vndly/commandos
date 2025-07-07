@@ -16,7 +16,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     required this.size,
     required this.turret,
   });
-  
+
   @override
   Future onLoad() async {
     await super.onLoad();
