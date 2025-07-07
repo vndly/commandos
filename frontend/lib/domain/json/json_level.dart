@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'package:commandos/domain/json/json_agent.dart';
+import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_turret.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
+import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
+import 'package:commandos/domain/models/turret.dart';
 import 'package:flame/components.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'json_path.dart';
@@ -112,6 +115,28 @@ class JsonLevel {
 
     return result;
   }
+
+  List<Turret> getTurrets(Nodes nodes) {
+    final List<Turret> result = [];
+
+    for (final JsonTurret turret in turrets) {
+      final Node node = nodes.nodeAt(turret.position.vector2);
+      result.add(
+        Turret(
+          id: turret.id,
+          position: node.position,
+          lasers: turret.lasers.map(getLaser).toList(),
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  Laser getLaser(JsonLaser jsonLaser) => Laser(
+    angle: jsonLaser.angle,
+    length: jsonLaser.length,
+  );
 
   Map<String, dynamic> toJson() => _$JsonLevelToJson(this);
 }

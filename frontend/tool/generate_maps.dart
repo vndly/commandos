@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:xml2json/xml2json.dart';
 import 'json/json_agent.dart';
+import 'json/json_extra.dart';
 import 'json/json_level.dart';
 import 'json/json_path.dart';
 import 'json/json_position.dart';
-import 'json/json_turret.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -37,10 +37,10 @@ Future<void> processFile(String levelFolder) async {
   );
 
   final File jsonFile = File('$levelFolder/level.json');
-  final String extraString = await jsonFile.readAsString();
-  final dynamic extra = jsonDecode(extraString);
+  final String extra = await jsonFile.readAsString();
+  final JsonExtra jsonExtra = JsonExtra.fromString(extra);
 
-  final String levelId = extra['id'] as String;
+  final String levelId = jsonExtra.id;
 
   final JsonLevel level = JsonLevel(
     id: levelId,
@@ -49,7 +49,7 @@ Future<void> processFile(String levelFolder) async {
     paths: paths,
     connections: connections,
     agents: agents,
-    turrets: extra['turrets'] as List<JsonTurret>,
+    turrets: jsonExtra.turrets,
   );
 
   writeLevel(fileName: levelId, level: level);

@@ -3,11 +3,13 @@ import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
+import 'package:commandos/domain/components/turret_component.dart';
 import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/nodes.dart';
+import 'package:commandos/domain/models/turret.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
@@ -44,6 +46,16 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       );
       await add(agentComponent);
       agentComponents.add(agentComponent);
+    }
+
+    for (final Turret turret in jsonLevel.getTurrets(nodes)) {
+      await add(
+        TurretComponent(
+          initialPosition: turret.position,
+          size: Vector2(6, 6),
+          turret: turret,
+        ),
+      );
     }
 
     activeAgentComponent = agentComponents[activeAgentIndex];

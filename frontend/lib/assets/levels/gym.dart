@@ -660,6 +660,21 @@ class LevelGym {
         "y": 15
       }
     }
+  ],
+  "turrets": [
+    {
+      "id": "turret1",
+      "position": {
+        "x": 105,
+        "y": 35
+      },
+      "lasers": [
+        {
+          "angle": 0.0,
+          "length": 150.0
+        }
+      ]
+    }
   ]
 }
 ''';
