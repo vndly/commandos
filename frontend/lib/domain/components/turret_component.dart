@@ -19,7 +19,6 @@ class TurretComponent extends BodyComponent<GameComponent> {
   @override
   Future onLoad() async {
     await super.onLoad();
-    setup();
     await add(
       TurretSpriteComponent(
         turret: turret,
@@ -31,10 +30,10 @@ class TurretComponent extends BodyComponent<GameComponent> {
   @override
   Body createBody() => getBody(
     vertices: [
-      Vector2(0, -size.y / 2),
-      Vector2(size.x / 2, 0),
-      Vector2(0, size.y / 2),
-      Vector2(-size.x / 2, 0),
+      Vector2(-size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, size.y / 2),
+      Vector2(-size.x / 2, size.y / 2),
     ],
     initialPosition: initialPosition,
     bodyType: BodyType.kinematic,

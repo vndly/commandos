@@ -4,7 +4,11 @@ import 'package:commandos/utils/platform.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 extension ComponentExtension on BodyComponent {
-  void setup() {
+  Body getBody({
+    required List<Vector2> vertices,
+    required Vector2 initialPosition,
+    required BodyType bodyType,
+  }) {
     renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
 
     if (renderBody) {
@@ -12,13 +16,7 @@ extension ComponentExtension on BodyComponent {
       paint.style = PaintingStyle.stroke;
       paint.strokeWidth = 0.3;
     }
-  }
 
-  Body getBody({
-    required List<Vector2> vertices,
-    required Vector2 initialPosition,
-    required BodyType bodyType,
-  }) {
     final PolygonShape shape = PolygonShape();
     shape.set(vertices);
 

@@ -44,7 +44,6 @@ class AgentComponent extends BodyComponent<GameComponent> {
   @override
   Future onLoad() async {
     await super.onLoad();
-    setup();
     await add(
       AgentSpriteComponent(
         agent: agent,

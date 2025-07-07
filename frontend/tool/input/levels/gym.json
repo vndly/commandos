@@ -1,0 +1,13 @@
+{
+    "enemies": {
+        "turrets": [
+            {
+                "id": "turret1",
+                "position": {
+                    "x": 100,
+                    "y": 200
+                }
+            }
+        ]
+    }
+}
