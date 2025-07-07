@@ -45,7 +45,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
   Future onLoad() async {
     await super.onLoad();
     setup();
-    add(
+    await add(
       AgentSpriteComponent(
         agent: agent,
         size: size,
@@ -63,27 +63,16 @@ class AgentComponent extends BodyComponent<GameComponent> {
   }
 
   @override
-  Body createBody() {
-    final PolygonShape shape = PolygonShape();
-    shape.set([
+  Body createBody() => getBody(
+    vertices: [
       Vector2(0, -size.y / 2),
       Vector2(size.x / 2, 0),
       Vector2(0, size.y / 2),
       Vector2(-size.x / 2, 0),
-    ]);
-
-    final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
-
-    final BodyDef bodyDef = BodyDef(
-      position: initialPosition,
-      type: BodyType.kinematic,
-    );
-
-    final Body body = world.createBody(bodyDef);
-    body.createFixture(fixtureDef);
-
-    return body;
-  }
+    ],
+    initialPosition: initialPosition,
+    bodyType: BodyType.kinematic,
+  );
 }
 
 class AgentSpriteComponent extends SpriteComponent {
