@@ -4,11 +4,13 @@ import 'package:flame/components.dart';
 class Turret {
   final String id;
   final Vector2 position;
+  final double angle;
   final List<Laser> lasers;
 
   Turret({
     required this.id,
     required this.position,
+    required this.angle,
     required this.lasers,
   });
 }

@@ -125,6 +125,7 @@ class JsonLevel {
         Turret(
           id: turret.id,
           position: node.position,
+          angle: turret.angle,
           lasers: turret.lasers.map(getLaser).toList(),
         ),
       );

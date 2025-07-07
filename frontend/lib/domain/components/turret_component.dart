@@ -38,6 +38,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     ],
     initialPosition: initialPosition,
     bodyType: BodyType.kinematic,
+    angle: radians(turret.angle),
   );
 }
 
@@ -49,7 +50,7 @@ class TurretSpriteComponent extends SpriteComponent {
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_AGENTS_AGENT);
+    sprite = await Sprite.load(Assets.IMAGES_TURRETS_TURRET);
 
     return super.onLoad();
   }

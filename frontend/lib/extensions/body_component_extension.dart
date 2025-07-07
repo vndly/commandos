@@ -8,6 +8,7 @@ extension ComponentExtension on BodyComponent {
     required List<Vector2> vertices,
     required Vector2 initialPosition,
     required BodyType bodyType,
+    double angle = 0,
   }) {
     renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
 
@@ -25,6 +26,7 @@ extension ComponentExtension on BodyComponent {
     final BodyDef bodyDef = BodyDef(
       position: initialPosition,
       type: bodyType,
+      angle: angle,
     );
 
     final Body body = world.createBody(bodyDef);
