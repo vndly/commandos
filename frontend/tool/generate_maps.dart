@@ -9,12 +9,12 @@ import 'json/json_position.dart';
 typedef Json = Map<String, dynamic>;
 
 void main(List<String> args) async {
-  await processFile('tool/input/levels/gym.svg');
+  await processFile('tool/input/levels/gym');
 }
 
-Future<void> processFile(String filePath) async {
-  final File file = File(filePath);
-  final Json json = await getJson(file);
+Future<void> processFile(String levelFolder) async {
+  final File svgFile = File('$levelFolder/level.svg');
+  final Json json = await getJson(svgFile);
 
   final int width = int.parse(
     (json['svg']['width'] as String).replaceAll('mm', ''),
@@ -35,16 +35,22 @@ Future<void> processFile(String filePath) async {
     name: 'agents',
   );
 
+  final File jsonFile = File('$levelFolder/level.json');
+  final String extraString = await jsonFile.readAsString();
+  final dynamic extra = jsonDecode(extraString);
+
+  final String levelId = extra['id'] as String;
+
   final JsonLevel level = JsonLevel(
-    id: 'Gym',
+    id: levelId,
     width: width,
     height: height,
     paths: paths,
     connections: connections,
     agents: agents,
   );
-  final String fileName = file.uri.pathSegments.last.split('.')[0];
-  writeLevel(fileName: fileName, level: level);
+
+  writeLevel(fileName: levelId, level: level);
 }
 
 Future<Json> getJson(File file) async {

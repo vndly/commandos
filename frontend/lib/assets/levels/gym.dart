@@ -1,7 +1,7 @@
 class LevelGym {
   static const String JSON = '''
 {
-  "id": "Gym",
+  "id": "gym",
   "width": 620,
   "height": 100,
   "paths": [
