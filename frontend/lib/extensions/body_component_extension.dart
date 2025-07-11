@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:commandos/app/constants.dart';
+import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/utils/platform.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -8,6 +9,7 @@ extension ComponentExtension on BodyComponent {
     required List<Vector2> vertices,
     required Vector2 initialPosition,
     required BodyType bodyType,
+    required CollisionGroup group,
     double angle = 0,
   }) {
     renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
@@ -22,6 +24,10 @@ extension ComponentExtension on BodyComponent {
     shape.set(vertices);
 
     final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
+    fixtureDef.isSensor = group.isSensor;
+    fixtureDef.filter.categoryBits = group.category;
+    fixtureDef.filter.maskBits = group.mask;
+    fixtureDef.filter.groupIndex = group.group;
 
     final BodyDef bodyDef = BodyDef(
       position: initialPosition,

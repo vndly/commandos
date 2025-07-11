@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
@@ -37,8 +38,9 @@ class TurretComponent extends BodyComponent<GameComponent> {
       Vector2(-size.x / 2, size.y / 2),
     ],
     initialPosition: initialPosition,
-    bodyType: BodyType.kinematic,
+    bodyType: BodyType.dynamic,
     angle: radians(turret.angle),
+    group: CollisionGroup.TURRET,
   );
 }
 

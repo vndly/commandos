@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/agent.dart';
+import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
@@ -70,7 +71,8 @@ class AgentComponent extends BodyComponent<GameComponent> {
       Vector2(-size.x / 2, 0),
     ],
     initialPosition: initialPosition,
-    bodyType: BodyType.kinematic,
+    bodyType: BodyType.dynamic,
+    group: CollisionGroup.AGENT,
   );
 }
 
