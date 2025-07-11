@@ -17,7 +17,6 @@ import 'package:flame/components.dart';
 class LevelLoader {
   static Level load(String json) {
     final JsonLevel jsonLevel = JsonLevel.fromJson(jsonDecode(json));
-
     final Nodes nodes = _getNodes(jsonLevel);
 
     return Level(
