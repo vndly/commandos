@@ -6,8 +6,11 @@ import 'json/json_extra.dart';
 import 'json/json_level.dart';
 import 'json/json_path.dart';
 import 'json/json_position.dart';
+import 'json/json_wall.dart';
 
 typedef Json = Map<String, dynamic>;
+
+typedef Vertex = List<int>;
 
 void main(List<String> args) async {
   await processFile('tool/input/levels/gym');
@@ -35,6 +38,10 @@ Future<void> processFile(String levelFolder) async {
     json: json,
     name: 'agents',
   );
+  final List<JsonWall> walls = getWalls(
+    json: json,
+    name: 'walls',
+  );
 
   final File jsonFile = File('$levelFolder/level.json');
   final String extra = await jsonFile.readAsString();
@@ -50,6 +57,7 @@ Future<void> processFile(String levelFolder) async {
     connections: connections,
     agents: agents,
     turrets: jsonExtra.turrets,
+    walls: walls,
   );
 
   writeLevel(fileName: levelId, level: level);
@@ -75,7 +83,7 @@ List<JsonPath> getPaths({
     if (g['id'] == name) {
       for (final Json path in g['path']) {
         final String pathString = path['d'];
-        result.add(getPath(pathString: pathString));
+        result.add(getPath(pathString));
       }
     }
   }
@@ -108,10 +116,104 @@ List<JsonAgent> getAgents({
   return result;
 }
 
-JsonPath getPath({required String pathString}) {
+List<JsonWall> getWalls({
+  required Json json,
+  required String name,
+}) {
+  final List<JsonWall> result = [];
+
+  for (final Json g in json['svg']['g']) {
+    if (g['id'] == name) {
+      for (final Json path in g['path']) {
+        final String pathString = path['d'];
+        result.add(getWall(pathString));
+      }
+    }
+  }
+
+  return result;
+}
+
+JsonPath getPath(String pathString) {
+  final List<Vertex> coords = getCoordinates(pathString);
+
+  if (coords.length != 2) {
+    throw Exception('Path must have exactly two positions');
+  }
+
+  final Vertex pointA = coords[0];
+  final Vertex pointB = coords[1];
+
+  if (pointA[0] % 5 != 0 ||
+      pointA[1] % 5 != 0 ||
+      pointB[0] % 5 != 0 ||
+      pointB[1] % 5 != 0) {
+    throw Exception('Coordinates must be multiples of 5: $pointA, $pointB');
+  }
+
+  return JsonPath(
+    a: JsonPosition(
+      x: pointA[0],
+      y: pointA[1],
+    ),
+    b: JsonPosition(
+      x: pointB[0],
+      y: pointB[1],
+    ),
+  );
+}
+
+JsonWall getWall(String wallString) {
+  final List<Vertex> coords = getCoordinates(wallString);
+
+  if (coords.length != 4) {
+    throw Exception('Wall must have exactly two positions');
+  }
+
+  final Vertex pointA = coords[0];
+  final Vertex pointB = coords[1];
+  final Vertex pointC = coords[2];
+  final Vertex pointD = coords[3];
+
+  if (pointA[0] % 10 != 0 ||
+      pointA[1] % 10 != 0 ||
+      pointB[0] % 10 != 0 ||
+      pointB[1] % 10 != 0 ||
+      pointC[0] % 10 != 0 ||
+      pointC[1] % 10 != 0 ||
+      pointD[0] % 10 != 0 ||
+      pointD[1] % 10 != 0) {
+    throw Exception(
+      'Coordinates must be multiples of 10: $pointA, $pointB, $pointC, $pointD',
+    );
+  }
+
+  return JsonWall(
+    vertices: [
+      JsonPosition(
+        x: pointA[0],
+        y: pointA[1],
+      ),
+      JsonPosition(
+        x: pointB[0],
+        y: pointB[1],
+      ),
+      JsonPosition(
+        x: pointC[0],
+        y: pointC[1],
+      ),
+      JsonPosition(
+        x: pointD[0],
+        y: pointD[1],
+      ),
+    ],
+  );
+}
+
+List<Vertex> getCoordinates(String pathString) {
   final RegExp commandRegExp = RegExp(r'[a-zA-Z][^a-zA-Z]*');
   final Iterable<Match> matches = commandRegExp.allMatches(pathString);
-  final List<List<double>> coords = [];
+  final List<Vertex> result = [];
   double startX = 0;
   double startY = 0;
   double currentX = 0;
@@ -134,7 +236,7 @@ JsonPath getPath({required String pathString}) {
         for (int i = 0; i < args.length; i += 2) {
           final double x = args[i];
           final double y = args[i + 1];
-          coords.add([x, y]);
+          result.add([x.round(), y.round()]);
           currentX = x;
           currentY = y;
           if (type == 'M') {
@@ -147,14 +249,14 @@ JsonPath getPath({required String pathString}) {
       case 'H':
         for (final x in args) {
           currentX = x;
-          coords.add([currentX, currentY]);
+          result.add([currentX.round(), currentY.round()]);
         }
         break;
 
       case 'V':
         for (final y in args) {
           currentY = y;
-          coords.add([currentX, currentY]);
+          result.add([currentX.round(), currentY.round()]);
         }
         break;
 
@@ -169,30 +271,7 @@ JsonPath getPath({required String pathString}) {
     }
   }
 
-  if (coords.length != 2) {
-    throw Exception('Path must have exactly two positions');
-  }
-
-  final List<double> pointA = coords[0];
-  final List<double> pointB = coords[1];
-
-  if (pointA[0].round() % 5 != 0 ||
-      pointA[1].round() % 5 != 0 ||
-      pointB[0].round() % 5 != 0 ||
-      pointB[1].round() % 5 != 0) {
-    throw Exception('Coordinates must be multiples of 5: $pointA, $pointB');
-  }
-
-  final JsonPosition a = JsonPosition(
-    x: pointA[0].round(),
-    y: pointA[1].round(),
-  );
-  final JsonPosition b = JsonPosition(
-    x: pointB[0].round(),
-    y: pointB[1].round(),
-  );
-
-  return JsonPath(a: a, b: b);
+  return result;
 }
 
 void writeLevel({required String fileName, required JsonLevel level}) {

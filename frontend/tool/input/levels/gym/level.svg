@@ -56,7 +56,7 @@
     <g
          inkscape:label="static"
          inkscape:groupmode="layer"
-         id="walls">
+         id="static">
         <rect
              style="opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.635672;stroke-linecap:round;paint-order:markers fill stroke"
              id="rect2"

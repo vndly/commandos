@@ -22,6 +22,9 @@ JsonLevel _$JsonLevelFromJson(Map<String, dynamic> json) => JsonLevel(
   turrets: (json['turrets'] as List<dynamic>)
       .map((e) => JsonTurret.fromJson(e as Map<String, dynamic>))
       .toList(),
+  walls: (json['walls'] as List<dynamic>)
+      .map((e) => JsonWall.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$JsonLevelToJson(JsonLevel instance) => <String, dynamic>{
@@ -32,4 +35,5 @@ Map<String, dynamic> _$JsonLevelToJson(JsonLevel instance) => <String, dynamic>{
   'connections': instance.connections,
   'agents': instance.agents,
   'turrets': instance.turrets,
+  'walls': instance.walls,
 };
