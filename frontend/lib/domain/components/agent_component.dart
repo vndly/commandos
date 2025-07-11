@@ -63,7 +63,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
   }
 
   @override
-  Body createBody() => getBody(
+  Body createBody() => getBodyFromRelativePosition(
     vertices: [
       Vector2(0, -size.y / 2),
       Vector2(size.x / 2, 0),

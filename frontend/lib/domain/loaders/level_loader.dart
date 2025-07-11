@@ -5,6 +5,7 @@ import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/json/json_path.dart';
 import 'package:commandos/domain/json/json_position.dart';
 import 'package:commandos/domain/json/json_turret.dart';
+import 'package:commandos/domain/json/json_wall.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/laser.dart';
@@ -12,6 +13,7 @@ import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/turret.dart';
+import 'package:commandos/domain/models/wall.dart';
 import 'package:flame/components.dart';
 
 class LevelLoader {
@@ -34,6 +36,10 @@ class LevelLoader {
       ),
       connections: _getConnections(
         connections: jsonLevel.connections,
+        nodes: nodes,
+      ),
+      walls: _getWalls(
+        walls: jsonLevel.walls,
         nodes: nodes,
       ),
     );
@@ -75,22 +81,6 @@ class LevelLoader {
     }
   }
 
-  static List<Connection> _getConnections({
-    required List<JsonPath> connections,
-    required Nodes nodes,
-  }) {
-    final List<Connection> result = [];
-
-    for (final JsonPath path in connections) {
-      final Node nodeA = nodes.nodeAt(_toVector2(path.a));
-      final Node nodeB = nodes.nodeAt(_toVector2(path.b));
-
-      result.add(Connection(a: nodeA, b: nodeB));
-    }
-
-    return result;
-  }
-
   static List<Agent> _getAgents({
     required List<JsonAgent> agents,
     required Nodes nodes,
@@ -130,6 +120,36 @@ class LevelLoader {
     angle: jsonLaser.angle,
     length: jsonLaser.length,
   );
+
+  static List<Connection> _getConnections({
+    required List<JsonPath> connections,
+    required Nodes nodes,
+  }) {
+    final List<Connection> result = [];
+
+    for (final JsonPath path in connections) {
+      final Node nodeA = nodes.nodeAt(_toVector2(path.a));
+      final Node nodeB = nodes.nodeAt(_toVector2(path.b));
+
+      result.add(Connection(a: nodeA, b: nodeB));
+    }
+
+    return result;
+  }
+
+  static List<Wall> _getWalls({
+    required List<JsonWall> walls,
+    required Nodes nodes,
+  }) {
+    final List<Wall> result = [];
+
+    for (final JsonWall wall in walls) {
+      final List<Vector2> vertices = wall.vertices.map(_toVector2).toList();
+      result.add(Wall(vertices: vertices));
+    }
+
+    return result;
+  }
 
   static Vector2 _toVector2(JsonPosition position) =>
       Vector2(position.x.toDouble(), position.y.toDouble());

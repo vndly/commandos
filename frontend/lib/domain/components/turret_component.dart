@@ -30,7 +30,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
   }
 
   @override
-  Body createBody() => getBody(
+  Body createBody() => getBodyFromRelativePosition(
     vertices: [
       Vector2(-size.x / 2, -size.y / 2),
       Vector2(size.x / 2, -size.y / 2),

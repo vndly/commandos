@@ -4,6 +4,7 @@ import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/components/turret_component.dart';
+import 'package:commandos/domain/components/wall_component.dart';
 import 'package:commandos/domain/loaders/level_loader.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
@@ -11,6 +12,7 @@ import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/turret.dart';
+import 'package:commandos/domain/models/wall.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
@@ -56,6 +58,12 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
           size: Vector2(6, 6),
           turret: turret,
         ),
+      );
+    }
+
+    for (final Wall wall in level.walls) {
+      await add(
+        WallComponent(wall: wall),
       );
     }
 

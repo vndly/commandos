@@ -1,52 +1,18 @@
-/*import 'package:commandos/app/constants.dart';
-import 'package:commandos/domain/json/json_body.dart';
-import 'package:commandos/domain/json/json_fixture.dart';
+import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/models/collision_group.dart';
+import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-class WallComponent extends BodyComponent {
-  final JsonBody jsonBody;
-  final List<JsonFixture> jsonFixtures;
+class WallComponent extends BodyComponent<GameComponent> {
+  final Wall wall;
 
-  WallComponent({required this.jsonBody, required this.jsonFixtures});
-
-  @override
-  Future onLoad() async {
-    await super.onLoad();
-    setup();
-  }
+  WallComponent({required this.wall});
 
   @override
-  Body createBody() {
-    final BodyDef bodyDef = BodyDef(
-      position: Vector2(
-        jsonBody.x / Constants.MAP_GRID_RATIO,
-        jsonBody.y / Constants.MAP_GRID_RATIO,
-      ),
-      type: jsonBody.type,
-    );
-
-    final Body body = world.createBody(bodyDef);
-
-    for (final JsonFixture jsonFixture in jsonFixtures) {
-      final List<Vector2> vertices = jsonFixture.vertices
-          .map(
-            (v) => Vector2(
-              v[0] / Constants.MAP_GRID_RATIO,
-              v[1] / Constants.MAP_GRID_RATIO,
-            ),
-          )
-          .toList();
-
-      final PolygonShape shape = PolygonShape();
-      shape.set(vertices);
-
-      final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
-
-      body.createFixture(fixtureDef);
-    }
-
-    return body;
-  }
+  Body createBody() => getBodyFromAbsolutePosition(
+    vertices: wall.vertices,
+    bodyType: BodyType.dynamic,
+    group: CollisionGroup.WALL,
+  );
 }
-*/
