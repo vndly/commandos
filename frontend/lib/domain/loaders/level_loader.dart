@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:commandos/domain/json/json_agent.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
@@ -14,7 +15,9 @@ import 'package:commandos/domain/models/turret.dart';
 import 'package:flame/components.dart';
 
 class LevelLoader {
-  static Level load(JsonLevel jsonLevel) {
+  static Level load(String json) {
+    final JsonLevel jsonLevel = JsonLevel.fromJson(jsonDecode(json));
+
     final Nodes nodes = _getNodes(jsonLevel);
 
     return Level(

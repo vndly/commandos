@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
 import 'json_agent.dart';
 import 'json_path.dart';
@@ -38,12 +37,6 @@ class JsonLevel {
     required this.agents,
     required this.turrets,
   });
-
-  factory JsonLevel.fromString(String input) {
-    final dynamic json = jsonDecode(input);
-
-    return JsonLevel.fromJson(json);
-  }
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>
       _$JsonLevelFromJson(json);

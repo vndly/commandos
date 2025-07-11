@@ -4,7 +4,6 @@ import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/components/turret_component.dart';
-import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/loaders/level_loader.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
@@ -25,15 +24,14 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
   @override
   FutureOr onLoad() async {
-    final JsonLevel jsonLevel = JsonLevel.fromString(LevelGym.JSON);
-    final Level level = LevelLoader.load(jsonLevel);
+    final Level level = LevelLoader.load(LevelGym.JSON);
     final Nodes nodes = level.nodes;
     connections.addAll(level.connections);
 
     await add(
       MapComponent(
         nodes: nodes,
-        size: Vector2(jsonLevel.width.toDouble(), jsonLevel.height.toDouble()),
+        size: Vector2(level.width.toDouble(), level.height.toDouble()),
       ),
     );
 
