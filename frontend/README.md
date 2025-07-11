@@ -1,6 +1,5 @@
 # Frontend
 
-- Static walls
 - Turrets
 - Obstacles
   - Doors

@@ -12,7 +12,7 @@ class WallComponent extends BodyComponent<GameComponent> {
   @override
   Body createBody() => getBodyFromAbsolutePosition(
     vertices: wall.vertices,
-    bodyType: BodyType.dynamic,
+    bodyType: BodyType.static,
     group: CollisionGroup.WALL,
   );
 }

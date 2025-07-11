@@ -37,7 +37,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
       Vector2(size.x / 2, size.y / 2),
       Vector2(-size.x / 2, size.y / 2),
     ],
-    initialPosition: initialPosition,
+    center: initialPosition,
     bodyType: BodyType.dynamic,
     angle: radians(turret.angle),
     group: CollisionGroup.TURRET,

@@ -7,38 +7,22 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 extension ComponentExtension on BodyComponent {
   Body getBodyFromRelativePosition({
     required List<Vector2> vertices,
-    required Vector2 initialPosition,
+    required Vector2 center,
     required BodyType bodyType,
     required CollisionGroup group,
     double angle = 0,
   }) {
-    renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
-
-    if (renderBody) {
-      paint.color = const Color(0xff00ff00);
-      paint.style = PaintingStyle.stroke;
-      paint.strokeWidth = 0.3;
-    }
+    _setupDebug();
 
     final PolygonShape shape = PolygonShape();
     shape.set(vertices);
 
-    final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
-    fixtureDef.isSensor = group.isSensor;
-    fixtureDef.filter.categoryBits = group.category;
-    fixtureDef.filter.maskBits = group.mask;
-    fixtureDef.filter.groupIndex = group.group;
-
-    final BodyDef bodyDef = BodyDef(
-      position: initialPosition,
-      type: bodyType,
-      angle: angle,
+    return getBody(
+      shape: shape,
+      center: center,
+      bodyType: bodyType,
+      group: group,
     );
-
-    final Body body = world.createBody(bodyDef);
-    body.createFixture(fixtureDef);
-
-    return body;
   }
 
   Body getBodyFromAbsolutePosition({
@@ -47,13 +31,7 @@ extension ComponentExtension on BodyComponent {
     required CollisionGroup group,
     double angle = 0,
   }) {
-    renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
-
-    if (renderBody) {
-      paint.color = const Color(0xff00ff00);
-      paint.style = PaintingStyle.stroke;
-      paint.strokeWidth = 0.3;
-    }
+    _setupDebug();
 
     final Vector2 center = getCenter(vertices);
     final List<Vector2> centeredVertices = vertices
@@ -63,6 +41,21 @@ extension ComponentExtension on BodyComponent {
     final PolygonShape shape = PolygonShape();
     shape.set(centeredVertices);
 
+    return getBody(
+      shape: shape,
+      center: center,
+      bodyType: bodyType,
+      group: group,
+    );
+  }
+
+  Body getBody({
+    required Shape shape,
+    required Vector2 center,
+    required BodyType bodyType,
+    required CollisionGroup group,
+    double angle = 0,
+  }) {
     final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
     fixtureDef.isSensor = group.isSensor;
     fixtureDef.filter.categoryBits = group.category;
@@ -91,5 +84,15 @@ extension ComponentExtension on BodyComponent {
     }
 
     return Vector2(sumX / vertices.length, sumY / vertices.length);
+  }
+
+  void _setupDebug() {
+    renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
+
+    if (renderBody) {
+      paint.color = const Color(0xff00ff00);
+      paint.style = PaintingStyle.stroke;
+      paint.strokeWidth = 0.3;
+    }
   }
 }

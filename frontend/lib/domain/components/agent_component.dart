@@ -70,7 +70,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
       Vector2(0, size.y / 2),
       Vector2(-size.x / 2, 0),
     ],
-    initialPosition: initialPosition,
+    center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
   );
