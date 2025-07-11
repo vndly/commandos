@@ -1,4 +1,3 @@
-import 'package:flame/components.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_position.g.dart';
@@ -16,10 +15,5 @@ class JsonPosition {
   factory JsonPosition.fromJson(Map<String, dynamic> json) =>
       _$JsonPositionFromJson(json);
 
-  Vector2 get vector2 => Vector2(x.toDouble(), y.toDouble());
-
   Map<String, dynamic> toJson() => _$JsonPositionToJson(this);
-
-  @override
-  String toString() => '($x, $y)';
 }

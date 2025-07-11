@@ -5,9 +5,11 @@ import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/components/turret_component.dart';
 import 'package:commandos/domain/json/json_level.dart';
+import 'package:commandos/domain/loaders/level_loader.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
+import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:flame/components.dart';
@@ -24,8 +26,9 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   @override
   FutureOr onLoad() async {
     final JsonLevel jsonLevel = JsonLevel.fromString(LevelGym.JSON);
-    final Nodes nodes = jsonLevel.nodes;
-    connections.addAll(jsonLevel.getConnections(nodes));
+    final Level level = LevelLoader.load(jsonLevel);
+    final Nodes nodes = level.nodes;
+    connections.addAll(level.connections);
 
     await add(
       MapComponent(
@@ -34,7 +37,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       ),
     );
 
-    for (final Agent agent in jsonLevel.getAgents(nodes)) {
+    for (final Agent agent in level.agents) {
       final AgentComponent agentComponent = AgentComponent(
         initialPosition: agent.position,
         size: Vector2(6, 6),
@@ -48,7 +51,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       agentComponents.add(agentComponent);
     }
 
-    for (final Turret turret in jsonLevel.getTurrets(nodes)) {
+    for (final Turret turret in level.turrets) {
       await add(
         TurretComponent(
           initialPosition: turret.position,

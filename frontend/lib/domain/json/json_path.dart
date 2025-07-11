@@ -17,7 +17,4 @@ class JsonPath {
       _$JsonPathFromJson(json);
 
   Map<String, dynamic> toJson() => _$JsonPathToJson(this);
-
-  @override
-  String toString() => '($a, $b)';
 }
