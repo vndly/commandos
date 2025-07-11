@@ -1,6 +1,7 @@
 # Frontend
 
 - Make agents dynamic and non collidable with masks
+- Static walls
 - Turrets
 - Obstacles
   - Doors
