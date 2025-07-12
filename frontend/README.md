@@ -1,5 +1,6 @@
 # Frontend
 
+- Debug mode on/off
 - Turrets
 - Obstacles
   - Doors
