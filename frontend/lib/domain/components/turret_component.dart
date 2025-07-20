@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
@@ -7,11 +6,12 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
+import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class TurretComponent extends BodyComponent<GameComponent> {
-  final NearestBoxRayCastCallback rayCastCallback = NearestBoxRayCastCallback();
+  late final RayCasting rayCasting;
   final Vector2 initialPosition;
   final Vector2 size;
   final Turret turret;
@@ -26,6 +26,9 @@ class TurretComponent extends BodyComponent<GameComponent> {
   @override
   Future onLoad() async {
     await super.onLoad();
+
+    rayCasting = RayCasting(world);
+
     await add(
       TurretSpriteComponent(
         turret: turret,
@@ -61,15 +64,13 @@ class TurretComponent extends BodyComponent<GameComponent> {
     body.setTransform(position, newAngle);
 
     for (final LaserComponent laser in lasers) {
-      final Vector2 direction = Vector2(
-        cos(body.angle + laser.laser.angle),
-        sin(body.angle + laser.laser.angle),
+      final RayCastingResult result = rayCasting.test(
+        source: body.position,
+        angle: body.angle + laser.laser.angle,
+        gap: size.x / 2,
+        length: laser.laser.length,
       );
-      final Vector2 startPoint = body.position + direction * (size.x / 2);
-      final Vector2 rayTarget = startPoint + direction * laser.laser.length;
-      world.raycast(rayCastCallback, startPoint, rayTarget);
-      final Vector2 endPoint = rayCastCallback.nearestPoint ?? rayTarget;
-      laser.updatePoints(start: startPoint, end: endPoint);
+      laser.updatePoints(start: result.start, end: result.end);
     }
   }
 }
