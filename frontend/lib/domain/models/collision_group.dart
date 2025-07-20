@@ -5,28 +5,28 @@ class CollisionGroup {
   final int group;
 
   static final CollisionGroup AGENT = CollisionGroup(
-    false,
-    Groups.AGENT,
-    Groups.TURRET | Groups.WALL,
+    isSensor: false,
+    category: Groups.AGENT,
+    mask: Groups.WALL | Groups.TURRET,
   );
 
   static final CollisionGroup TURRET = CollisionGroup(
-    false,
-    Groups.TURRET,
-    Groups.AGENT | Groups.WALL,
+    isSensor: false,
+    category: Groups.TURRET,
+    mask: Groups.WALL | Groups.AGENT,
   );
 
   static final CollisionGroup WALL = CollisionGroup(
-    false,
-    Groups.WALL,
-    Groups.AGENT | Groups.TURRET,
+    isSensor: false,
+    category: Groups.WALL,
+    mask: Groups.AGENT | Groups.TURRET,
   );
 
-  CollisionGroup(
-    this.isSensor,
-    this.category,
-    this.mask,
-  ) : group = -category;
+  CollisionGroup({
+    required this.isSensor,
+    required this.category,
+    required this.mask,
+  }) : group = -category;
 }
 
 class Groups {

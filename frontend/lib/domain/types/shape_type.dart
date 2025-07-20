@@ -1,4 +1,0 @@
-enum ShapeType {
-  polygon,
-  circle,
-}
