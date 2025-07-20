@@ -5,4 +5,38 @@ class Palette {
   static const Color transparent = Colors.transparent;
 
   static const Color GAME_BACKGROUND = Colors.black;
+
+  static const Color LASER = Colors.red;
+
+  static Paint paint({
+    PaintingStyle? style,
+    Color? color,
+    double? strokeWidth,
+    StrokeCap? strokeCap,
+    StrokeJoin? strokeJoin,
+  }) {
+    final Paint paint = Paint();
+
+    if (color != null) {
+      paint.color = color;
+    }
+
+    if (strokeWidth != null) {
+      paint.strokeWidth = strokeWidth;
+    }
+
+    if (style != null) {
+      paint.style = style;
+    }
+
+    if (strokeCap != null) {
+      paint.strokeCap = strokeCap;
+    }
+
+    if (strokeJoin != null) {
+      paint.strokeJoin = strokeJoin;
+    }
+
+    return paint;
+  }
 }

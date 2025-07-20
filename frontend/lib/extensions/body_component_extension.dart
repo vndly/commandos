@@ -22,6 +22,7 @@ extension ComponentExtension on BodyComponent {
       center: center,
       bodyType: bodyType,
       group: group,
+      angle: angle,
     );
   }
 
@@ -46,6 +47,7 @@ extension ComponentExtension on BodyComponent {
       center: center,
       bodyType: bodyType,
       group: group,
+      angle: angle,
     );
   }
 
@@ -87,11 +89,11 @@ extension ComponentExtension on BodyComponent {
   }
 
   List<Vector2> shapeSquare(Vector2 size) => [
-      Vector2(-size.x / 2, -size.y / 2),
-      Vector2(size.x / 2, -size.y / 2),
-      Vector2(size.x / 2, size.y / 2),
-      Vector2(-size.x / 2, size.y / 2),
-    ];
+    Vector2(-size.x / 2, -size.y / 2),
+    Vector2(size.x / 2, -size.y / 2),
+    Vector2(size.x / 2, size.y / 2),
+    Vector2(-size.x / 2, size.y / 2),
+  ];
 
   List<Vector2> shapeRombus(Vector2 size) => [
     Vector2(0, -size.y / 2),
@@ -108,5 +110,30 @@ extension ComponentExtension on BodyComponent {
       paint.style = PaintingStyle.stroke;
       paint.strokeWidth = 0.3;
     }
+  }
+}
+
+class NearestBoxRayCastCallback extends RayCastCallback {
+  Object? object;
+  Vector2? nearestPoint;
+
+  void reset() {
+    object = null;
+    nearestPoint = null;
+  }
+
+  @override
+  double reportFixture(
+    Fixture fixture,
+    Vector2 point,
+    Vector2 normal,
+    double fraction,
+  ) {
+    nearestPoint = point.clone();
+    object = fixture.userData;
+
+    // Returning fraction implies that we care only about fixtures
+    // that are closer to the ray start point than the current fixture
+    return fraction;
   }
 }
