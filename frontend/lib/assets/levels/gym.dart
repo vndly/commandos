@@ -668,7 +668,7 @@ class LevelGym {
         "x": 105,
         "y": 35
       },
-      "angle": 180.0,
+      "angle": 0.0,
       "lasers": [
         {
           "angle": 0.0,

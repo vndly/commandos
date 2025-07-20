@@ -1,0 +1,10 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run_tools",
+            "type": "shell",
+            "command": "./scripts/tool.sh"
+        }
+    ]
+}
