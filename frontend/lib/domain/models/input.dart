@@ -49,6 +49,21 @@ class Input {
     }
   }
 
+  bool _isPressing({
+    required KeyEvent event,
+    required Set<LogicalKeyboardKey> keysPressed,
+    required LogicalKeyboardKey key,
+  }) => (event is KeyDownEvent) && keysPressed.contains(LogicalKeyboardKey.tab);
+
+  bool isSwitchingAgentForward(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.tab,
+  );
+
   Vector2 get direction {
     if (hasActiveInput(ActiveInput.left)) {
       return Vector2(-1, 0);

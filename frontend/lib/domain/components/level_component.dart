@@ -78,25 +78,12 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     input.onKeyEvent(event, keysPressed);
 
-    if (_isSwitchingAgent(event, keysPressed)) {
+    if (input.isSwitchingAgentForward(event, keysPressed)) {
       _switchAgent();
     }
 
     return false;
   }
-
-  bool _isSwitchingAgent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) =>
-      _isPressing(
-        event: event,
-        keysPressed: keysPressed,
-        key: LogicalKeyboardKey.tab,
-      );
-
-  bool _isPressing({
-    required KeyEvent event,
-    required Set<LogicalKeyboardKey> keysPressed,
-    required LogicalKeyboardKey key,
-  }) => (event is KeyDownEvent) && keysPressed.contains(LogicalKeyboardKey.tab);
 
   void _switchAgent() {
     activeAgentIndex = (activeAgentIndex + 1) % agentComponents.length;
