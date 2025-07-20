@@ -57,12 +57,15 @@ class TurretComponent extends BodyComponent<GameComponent> {
   void update(double dt) {
     super.update(dt);
 
+    final double newAngle = body.angle + radians(50 * dt);
+    body.setTransform(position, newAngle);
+
     for (final LaserComponent laser in lasers) {
       final Vector2 direction = Vector2(
         cos(body.angle + laser.laser.angle),
         sin(body.angle + laser.laser.angle),
       );
-      final Vector2 startPoint = body.position;
+      final Vector2 startPoint = body.position + direction * (size.x / 2);
       final Vector2 rayTarget = startPoint + direction * laser.laser.length;
       world.raycast(rayCastCallback, startPoint, rayTarget);
       final Vector2 endPoint = rayCastCallback.nearestPoint ?? rayTarget;
