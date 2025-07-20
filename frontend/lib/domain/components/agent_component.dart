@@ -57,6 +57,8 @@ class AgentComponent extends BodyComponent<GameComponent> {
   void update(double dt) {
     super.update(dt);
 
+    checkDebug();
+
     if (active) {
       movement.update(input);
     }

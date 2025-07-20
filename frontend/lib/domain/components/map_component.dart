@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/utils/assets.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 
 class MapComponent extends SpriteComponent {
@@ -23,9 +24,10 @@ class MapComponent extends SpriteComponent {
 }
 
 class PathsComponent extends PositionComponent {
-  final Paint paint = Paint()
-    ..color = const Color(0xffff0000)
-    ..style = PaintingStyle.fill;
+  final Paint paint = Palette.paint(
+    style: PaintingStyle.fill,
+    color: const Color(0xffff0000),
+  );
   final Nodes nodes;
 
   PathsComponent({required this.nodes})

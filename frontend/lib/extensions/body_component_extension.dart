@@ -1,7 +1,6 @@
 import 'dart:ui';
-import 'package:commandos/app/constants.dart';
+import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/models/collision_group.dart';
-import 'package:commandos/utils/platform.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 extension ComponentExtension on BodyComponent {
@@ -12,8 +11,6 @@ extension ComponentExtension on BodyComponent {
     required CollisionGroup group,
     double angle = 0,
   }) {
-    _setupDebug();
-
     final PolygonShape shape = PolygonShape();
     shape.set(vertices);
 
@@ -32,8 +29,6 @@ extension ComponentExtension on BodyComponent {
     required CollisionGroup group,
     double angle = 0,
   }) {
-    _setupDebug();
-
     final Vector2 center = _getCenter(vertices);
     final List<Vector2> centeredVertices = vertices
         .map((v) => v - center)
@@ -102,8 +97,8 @@ extension ComponentExtension on BodyComponent {
     Vector2(-size.x / 2, 0),
   ];
 
-  void _setupDebug() {
-    renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
+  void checkDebug() {
+    renderBody = Debug.hasBodyDebug;
 
     if (renderBody) {
       paint.color = const Color(0xff00ff00);

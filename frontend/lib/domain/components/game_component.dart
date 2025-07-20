@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/components/level_component.dart';
 import 'package:commandos/domain/state/match/level_state.dart';
 import 'package:commandos/environments/environment.dart';
@@ -20,8 +21,6 @@ class GameComponent extends Forge2DGame<LevelComponent>
 
   @override
   FutureOr onLoad() {
-    debugMode = false;
-
     final Size gameSize = Dimensions.gameSize();
     camera = CameraComponent.withFixedResolution(
       width: gameSize.width,
@@ -50,32 +49,40 @@ mixin GameComponentRef {
 }
 
 class FpsComponent extends PositionComponent {
-  final Paint paint = Paint()
-    ..color = Colors.black
-    ..style = PaintingStyle.fill;
+  FpsTextComponent? fpsTextComponent;
+  final Paint paint = Palette.paint(
+    style: PaintingStyle.fill,
+    color: Colors.black.withAlpha(128),
+  );
 
   FpsComponent({required super.position, required super.size})
     : super(anchor: Anchor.topLeft);
 
   @override
-  FutureOr<void> onLoad() {
-    add(
-      FpsTextComponent(
+  void update(double dt) {
+    super.update(dt);
+
+    if (Debug.hasFpsDebug && (fpsTextComponent == null)) {
+      fpsTextComponent = FpsTextComponent(
         position: Vector2(0.7, 0.7),
         anchor: Anchor.topLeft,
         textRenderer: TextPaint(
           style: const TextStyle(color: Colors.white, fontSize: 2),
         ),
-      ),
-    );
-
-    return super.onLoad();
+      );
+      add(fpsTextComponent!);
+    } else if (!Debug.hasFpsDebug && (fpsTextComponent != null)) {
+      remove(fpsTextComponent!);
+      fpsTextComponent = null;
+    }
   }
 
   @override
   void render(Canvas canvas) {
     super.render(canvas);
 
-    canvas.drawRect(size.toRect(), paint);
+    if (Debug.hasFpsDebug) {
+      canvas.drawRect(size.toRect(), paint);
+    }
   }
 }

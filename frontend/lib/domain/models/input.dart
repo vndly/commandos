@@ -85,6 +85,15 @@ class Input {
         key: LogicalKeyboardKey.shiftLeft,
       );
 
+  bool isDebug(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.keyB,
+  );
+
   Vector2 get direction {
     if (hasActiveInput(ActiveInput.left)) {
       return Vector2(-1, 0);

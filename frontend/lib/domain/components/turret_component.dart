@@ -60,6 +60,8 @@ class TurretComponent extends BodyComponent<GameComponent> {
   void update(double dt) {
     super.update(dt);
 
+    checkDebug();
+
     final double newAngle = body.angle + radians(50 * dt);
     body.setTransform(position, newAngle);
 

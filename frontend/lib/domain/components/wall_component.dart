@@ -15,4 +15,11 @@ class WallComponent extends BodyComponent<GameComponent> {
     bodyType: BodyType.static,
     group: CollisionGroup.WALL,
   );
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    checkDebug();
+  }
 }

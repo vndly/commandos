@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/app/debug.dart';
 import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
@@ -82,6 +83,8 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       _switchAgent(1);
     } else if (input.isSwitchingAgentBackward(event, keysPressed)) {
       _switchAgent(-1);
+    } else if (input.isDebug(event, keysPressed)) {
+      Debug.toggle();
     }
 
     return false;
