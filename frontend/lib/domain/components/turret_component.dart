@@ -25,6 +25,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
       TurretSpriteComponent(
         turret: turret,
         size: size,
+        angle: radians(turret.angle),
       ),
     );
   }
@@ -47,8 +48,11 @@ class TurretComponent extends BodyComponent<GameComponent> {
 class TurretSpriteComponent extends SpriteComponent {
   final Turret turret;
 
-  TurretSpriteComponent({required this.turret, required super.size})
-    : super(anchor: Anchor.center);
+  TurretSpriteComponent({
+    required this.turret,
+    required super.size,
+    required super.angle,
+  }) : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {
