@@ -64,12 +64,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    vertices: [
-      Vector2(0, -size.y / 2),
-      Vector2(size.x / 2, 0),
-      Vector2(0, size.y / 2),
-      Vector2(-size.x / 2, 0),
-    ],
+    vertices: shapeRombus(size),
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,

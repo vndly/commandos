@@ -17,7 +17,7 @@ extension ComponentExtension on BodyComponent {
     final PolygonShape shape = PolygonShape();
     shape.set(vertices);
 
-    return getBody(
+    return _getBody(
       shape: shape,
       center: center,
       bodyType: bodyType,
@@ -33,7 +33,7 @@ extension ComponentExtension on BodyComponent {
   }) {
     _setupDebug();
 
-    final Vector2 center = getCenter(vertices);
+    final Vector2 center = _getCenter(vertices);
     final List<Vector2> centeredVertices = vertices
         .map((v) => v - center)
         .toList();
@@ -41,7 +41,7 @@ extension ComponentExtension on BodyComponent {
     final PolygonShape shape = PolygonShape();
     shape.set(centeredVertices);
 
-    return getBody(
+    return _getBody(
       shape: shape,
       center: center,
       bodyType: bodyType,
@@ -49,7 +49,7 @@ extension ComponentExtension on BodyComponent {
     );
   }
 
-  Body getBody({
+  Body _getBody({
     required Shape shape,
     required Vector2 center,
     required BodyType bodyType,
@@ -74,7 +74,7 @@ extension ComponentExtension on BodyComponent {
     return body;
   }
 
-  Vector2 getCenter(List<Vector2> vertices) {
+  Vector2 _getCenter(List<Vector2> vertices) {
     double sumX = 0;
     double sumY = 0;
 
@@ -85,6 +85,20 @@ extension ComponentExtension on BodyComponent {
 
     return Vector2(sumX / vertices.length, sumY / vertices.length);
   }
+
+  List<Vector2> shapeSquare(Vector2 size) => [
+      Vector2(-size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, size.y / 2),
+      Vector2(-size.x / 2, size.y / 2),
+    ];
+
+  List<Vector2> shapeRombus(Vector2 size) => [
+    Vector2(0, -size.y / 2),
+    Vector2(size.x / 2, 0),
+    Vector2(0, size.y / 2),
+    Vector2(-size.x / 2, 0),
+  ];
 
   void _setupDebug() {
     renderBody = Constants.RENDER_BODIES && Platform.isDebugMode;
