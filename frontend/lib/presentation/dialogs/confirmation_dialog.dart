@@ -52,17 +52,6 @@ class ConfirmationDialog extends StatelessWidget {
     onCancel: onCancel,
   );
 
-  static DialogController lost({
-    required VoidCallback onAccept,
-    required VoidCallback onCancel,
-  }) => _show(
-    message: 'You lost!',
-    buttonAccept: 'Play again',
-    buttonCancel: 'Quit',
-    onAccept: onAccept,
-    onCancel: onCancel,
-  );
-
   @override
   Widget build(BuildContext context) {
     return PopScope(

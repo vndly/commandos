@@ -49,13 +49,13 @@ class Input {
   }
 
   Vector2 get direction {
-    if (activeInputs.contains(ActiveInput.left)) {
+    if (hasActiveInput(ActiveInput.left)) {
       return Vector2(-1, 0);
-    } else if (activeInputs.contains(ActiveInput.right)) {
+    } else if (hasActiveInput(ActiveInput.right)) {
       return Vector2(1, 0);
-    } else if (activeInputs.contains(ActiveInput.up)) {
+    } else if (hasActiveInput(ActiveInput.up)) {
       return Vector2(0, -1);
-    } else if (activeInputs.contains(ActiveInput.down)) {
+    } else if (hasActiveInput(ActiveInput.down)) {
       return Vector2(0, 1);
     } else {
       return Vector2.zero();

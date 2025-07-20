@@ -41,7 +41,7 @@ class GameComponent extends Forge2DGame<LevelComponent>
   @override
   Color backgroundColor() => Palette.GAME_BACKGROUND;
 
-  void onMatchReset() => matchState.restart();
+  void onLevelRestart() => matchState.restart();
 }
 
 mixin GameComponentRef {

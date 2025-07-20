@@ -1,11 +1,7 @@
 enum Priority {
-  battlefield(0),
-  lane(1),
-  node(2),
-  unit(3),
-  damage(4),
-  controls(5),
-  base(6);
+  floor(0),
+  agent(1),
+  turret(2);
 
   final int value;
 
