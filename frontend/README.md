@@ -1,6 +1,5 @@
 # Frontend
 
-- Debug mode on/off
 - Character direction sprite
 - Obstacles
   - Doors
