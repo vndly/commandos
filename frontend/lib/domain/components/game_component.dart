@@ -27,7 +27,6 @@ class GameComponent extends Forge2DGame<LevelComponent>
       width: gameSize.width,
       height: gameSize.height,
     );
-    camera.moveTo(Vector2.zero());
 
     if (Environment.get.isDebugMode) {
       camera.viewport.add(

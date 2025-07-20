@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
@@ -35,11 +36,11 @@ class TurretComponent extends BodyComponent<GameComponent> {
     for (final Laser laser in turret.lasers) {
       final LaserComponent laserComponent = LaserComponent(
         laser: laser,
-        start: initialPosition,
-        end: initialPosition + Vector2(0, 1) * 25,
+        start: Vector2.zero(),
+        end: Vector2.zero(),
       );
       lasers.add(laserComponent);
-      await add(laserComponent);
+      await world.add(laserComponent);
     }
   }
 
@@ -52,7 +53,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     group: CollisionGroup.TURRET,
   );
 
-  /*@override
+  @override
   void update(double dt) {
     super.update(dt);
 
@@ -67,7 +68,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
       final Vector2 endPoint = rayCastCallback.nearestPoint ?? rayTarget;
       laser.updatePoints(start: startPoint, end: endPoint);
     }
-  }*/
+  }
 }
 
 class TurretSpriteComponent extends SpriteComponent {

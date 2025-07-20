@@ -5,12 +5,12 @@ import 'package:flame/components.dart';
 
 class LaserComponent extends Component {
   final Laser laser;
-  final Vector2 start;
-  final Vector2 end;
+  Vector2 start;
+  Vector2 end;
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
     color: Palette.LASER,
-    strokeWidth: 3,
+    strokeWidth: 0.5,
   );
 
   LaserComponent({
@@ -23,8 +23,8 @@ class LaserComponent extends Component {
     required Vector2 start,
     required Vector2 end,
   }) {
-    start.setFrom(start);
-    end.setFrom(end);
+    this.start = start;
+    this.end = end;
   }
 
   @override
