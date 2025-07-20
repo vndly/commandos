@@ -672,7 +672,11 @@ class LevelGym {
       "lasers": [
         {
           "angle": 0.0,
-          "length": 150.0
+          "length": 100.0
+        },
+        {
+          "angle": 90.0,
+          "length": 100.0
         }
       ]
     }

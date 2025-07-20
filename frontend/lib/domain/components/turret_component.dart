@@ -52,7 +52,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     vertices: shapeSquare(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
-    angle: radians(turret.angle),
+    angle: turret.angle,
     group: CollisionGroup.TURRET,
   );
 

@@ -107,7 +107,7 @@ class LevelLoader {
         Turret(
           id: turret.id,
           position: node.position,
-          angle: turret.angle,
+          angle: radians(turret.angle),
           lasers: turret.lasers.map(_getLaser).toList(),
         ),
       );
@@ -117,7 +117,7 @@ class LevelLoader {
   }
 
   static Laser _getLaser(JsonLaser jsonLaser) => Laser(
-    angle: jsonLaser.angle,
+    angle: radians(jsonLaser.angle),
     length: jsonLaser.length,
   );
 
