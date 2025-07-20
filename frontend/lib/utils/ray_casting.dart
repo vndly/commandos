@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class RayCasting {
@@ -14,14 +13,11 @@ class RayCasting {
     required double gap,
     required double length,
   }) {
-    rayCastCallback.reset();
-
-    final Vector2 direction = Vector2(
-      cos(angle),
-      sin(angle),
-    );
+    final Vector2 direction = Vector2(cos(angle), sin(angle));
     final Vector2 startPoint = source + direction * gap;
     final Vector2 maxTarget = startPoint + (direction * length);
+
+    rayCastCallback.reset();
     world.raycast(rayCastCallback, startPoint, maxTarget);
 
     return RayCastingResult(
@@ -40,7 +36,7 @@ class RayCastingResult {
   const RayCastingResult({
     required this.start,
     required this.end,
-    this.object,
+    required this.object,
   });
 }
 
