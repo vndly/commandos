@@ -79,14 +79,16 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     input.onKeyEvent(event, keysPressed);
 
     if (input.isSwitchingAgentForward(event, keysPressed)) {
-      _switchAgent();
+      _switchAgent(1);
+    } else if (input.isSwitchingAgentBackward(event, keysPressed)) {
+      _switchAgent(-1);
     }
 
     return false;
   }
 
-  void _switchAgent() {
-    activeAgentIndex = (activeAgentIndex + 1) % agentComponents.length;
+  void _switchAgent(int shift) {
+    activeAgentIndex = (activeAgentIndex + shift) % agentComponents.length;
     activeAgentComponent.active = false;
     activeAgentComponent = agentComponents[activeAgentIndex];
     activeAgentComponent.active = true;
