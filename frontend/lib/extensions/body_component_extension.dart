@@ -5,23 +5,18 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 extension ComponentExtension on BodyComponent {
   Body getBodyFromRelativePosition({
-    required List<Vector2> vertices,
+    required Shape shape,
     required Vector2 center,
     required BodyType bodyType,
     required CollisionGroup group,
     double angle = 0,
-  }) {
-    final PolygonShape shape = PolygonShape();
-    shape.set(vertices);
-
-    return _getBody(
-      shape: shape,
-      center: center,
-      bodyType: bodyType,
-      group: group,
-      angle: angle,
-    );
-  }
+  }) => _getBody(
+    shape: shape,
+    center: center,
+    bodyType: bodyType,
+    group: group,
+    angle: angle,
+  );
 
   Body getBodyFromAbsolutePosition({
     required List<Vector2> vertices,
@@ -83,19 +78,36 @@ extension ComponentExtension on BodyComponent {
     return Vector2(sumX / vertices.length, sumY / vertices.length);
   }
 
-  List<Vector2> shapeSquare(Vector2 size) => [
-    Vector2(-size.x / 2, -size.y / 2),
-    Vector2(size.x / 2, -size.y / 2),
-    Vector2(size.x / 2, size.y / 2),
-    Vector2(-size.x / 2, size.y / 2),
-  ];
+  CircleShape shapeCircle(Vector2 size) {
+    final CircleShape shape = CircleShape();
+    shape.radius = size.x / 2;
 
-  List<Vector2> shapeRombus(Vector2 size) => [
-    Vector2(0, -size.y / 2),
-    Vector2(size.x / 2, 0),
-    Vector2(0, size.y / 2),
-    Vector2(-size.x / 2, 0),
-  ];
+    return shape;
+  }
+
+  PolygonShape shapeSquare(Vector2 size) {
+    final PolygonShape shape = PolygonShape();
+    shape.set([
+      Vector2(-size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, size.y / 2),
+      Vector2(-size.x / 2, size.y / 2),
+    ]);
+
+    return shape;
+  }
+
+  PolygonShape shapeRombus(Vector2 size) {
+    final PolygonShape shape = PolygonShape();
+    shape.set([
+      Vector2(0, -size.y / 2),
+      Vector2(size.x / 2, 0),
+      Vector2(0, size.y / 2),
+      Vector2(-size.x / 2, 0),
+    ]);
+
+    return shape;
+  }
 
   void checkDebug() {
     renderBody = Debug.hasBodyDebug;

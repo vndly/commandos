@@ -48,6 +48,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     await add(
       AgentSpriteComponent(
         agent: agent,
+        movement: movement,
         size: size,
       ),
     );
@@ -66,24 +67,80 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    vertices: shapeRombus(size),
+    shape: shapeCircle(size * 0.6),
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
   );
 }
 
-class AgentSpriteComponent extends SpriteComponent {
+class AgentSpriteComponent extends PositionComponent {
   final Agent agent;
+  final AgentMovement movement;
+  late final SpriteAnimationGroupComponent<AgentMovingState> spriteAnimation;
 
-  AgentSpriteComponent({required this.agent, required super.size})
-    : super(anchor: Anchor.center);
+  AgentSpriteComponent({
+    required this.agent,
+    required this.movement,
+    required super.size,
+  }) : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_AGENTS_AGENT);
+    final SpriteAnimation idle = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+    final SpriteAnimation walkingUp = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+      SpriteAnimationData.sequenced(
+        amount: 5,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+    final SpriteAnimation walkingDown = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN,
+      SpriteAnimationData.sequenced(
+        amount: 5,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+
+    spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
+      animations: {
+        AgentMovingState.idle: idle,
+        AgentMovingState.walking_up: walkingUp,
+        AgentMovingState.walking_down: walkingDown,
+      },
+      current: AgentMovingState.idle,
+      position: Vector2(0, 0),
+      size: size,
+    );
+
+    add(spriteAnimation);
 
     return super.onLoad();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    if (movement.isMoving) {
+      if (movement.nextNode != null) {
+        spriteAnimation.current = AgentMovingState.walking_up;
+      } else {
+        spriteAnimation.current = AgentMovingState.idle;
+      }
+    } else {
+      spriteAnimation.current = AgentMovingState.idle;
+    }
   }
 
   @override
@@ -96,6 +153,14 @@ class AgentSpriteComponent extends SpriteComponent {
       size: size.x / 3,
     );
   }
+}
+
+enum AgentMovingState {
+  idle,
+  walking_up,
+  walking_down,
+  walking_left,
+  walking_right,
 }
 
 class AgentMovement {

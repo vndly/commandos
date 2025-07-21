@@ -49,7 +49,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    vertices: shapeSquare(size),
+    shape: shapeSquare(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
     angle: turret.angle,
