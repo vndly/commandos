@@ -132,15 +132,7 @@ class AgentSpriteComponent extends PositionComponent {
   void update(double dt) {
     super.update(dt);
 
-    if (movement.isMoving) {
-      if (movement.nextNode != null) {
-        spriteAnimation.current = AgentMovingState.walking_up;
-      } else {
-        spriteAnimation.current = AgentMovingState.idle;
-      }
-    } else {
-      spriteAnimation.current = AgentMovingState.idle;
-    }
+    spriteAnimation.current = movement.movingState;
   }
 
   @override
@@ -168,6 +160,7 @@ class AgentMovement {
   final Nodes nodes;
   final List<Connection> connections;
   late Node currentNode;
+  AgentMovingState movingState = AgentMovingState.idle;
   bool isMoving = false;
   Node? nextNode;
 
@@ -188,6 +181,16 @@ class AgentMovement {
         isMoving = true;
         final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
         agent.body.linearVelocity = velocity;
+
+        if (input.direction.y < 0) {
+          movingState = AgentMovingState.walking_up;
+        } else if (input.direction.y > 0) {
+          movingState = AgentMovingState.walking_down;
+        } else if (input.direction.x < 0) {
+          movingState = AgentMovingState.walking_left;
+        } else if (input.direction.x > 0) {
+          movingState = AgentMovingState.walking_right;
+        }
       }
     }
 
@@ -210,6 +213,8 @@ class AgentMovement {
           agent.body.setTransform(conectionTo.position, agent.body.angle);
         }
       }
+    } else {
+      movingState = AgentMovingState.idle;
     }
   }
 
