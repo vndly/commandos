@@ -67,7 +67,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size * 0.6),
+    shape: shapeCircle(size * 0.3),
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
@@ -87,8 +87,32 @@ class AgentSpriteComponent extends PositionComponent {
 
   @override
   FutureOr onLoad() async {
-    final SpriteAnimation idle = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
+    final SpriteAnimation idleUp = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_UP,
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+    final SpriteAnimation idleDown = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_DOWN,
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+    final SpriteAnimation idleLeft = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_LEFT,
+      SpriteAnimationData.sequenced(
+        amount: 1,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+    final SpriteAnimation idleRight = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_RIGHT,
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: 0.1,
@@ -130,13 +154,16 @@ class AgentSpriteComponent extends PositionComponent {
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
-        AgentMovingState.idle: idle,
+        AgentMovingState.idle_up: idleUp,
+        AgentMovingState.idle_down: idleDown,
+        AgentMovingState.idle_left: idleLeft,
+        AgentMovingState.idle_right: idleRight,
         AgentMovingState.walking_up: walkingUp,
         AgentMovingState.walking_down: walkingDown,
         AgentMovingState.walking_left: walkingLeft,
         AgentMovingState.walking_right: walkingRight,
       },
-      current: AgentMovingState.idle,
+      current: movement.movingState,
       position: Vector2(0, 0),
       size: size,
     );
@@ -166,7 +193,10 @@ class AgentSpriteComponent extends PositionComponent {
 }
 
 enum AgentMovingState {
-  idle,
+  idle_up,
+  idle_down,
+  idle_left,
+  idle_right,
   walking_up,
   walking_down,
   walking_left,
@@ -178,7 +208,7 @@ class AgentMovement {
   final Nodes nodes;
   final List<Connection> connections;
   late Node currentNode;
-  AgentMovingState movingState = AgentMovingState.idle;
+  AgentMovingState movingState = AgentMovingState.idle_right;
   bool isMoving = false;
   Node? nextNode;
 
@@ -232,7 +262,15 @@ class AgentMovement {
         }
       }
     } else {
-      movingState = AgentMovingState.idle;
+      if (movingState == AgentMovingState.walking_up) {
+        movingState = AgentMovingState.idle_up;
+      } else if (movingState == AgentMovingState.walking_down) {
+        movingState = AgentMovingState.idle_down;
+      } else if (movingState == AgentMovingState.walking_left) {
+        movingState = AgentMovingState.idle_left;
+      } else if (movingState == AgentMovingState.walking_right) {
+        movingState = AgentMovingState.idle_right;
+      }
     }
   }
 

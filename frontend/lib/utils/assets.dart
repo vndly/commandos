@@ -1,7 +1,13 @@
 class Assets {
   static const String IMAGES_AGENTS_AGENT = 'agents/agent.png';
-  static const String IMAGES_ANIMATIONS_AGENTS_IDLE =
-      'animations/agents/idle.png';
+  static const String IMAGES_ANIMATIONS_AGENTS_IDLE_DOWN =
+      'animations/agents/idle_down.png';
+  static const String IMAGES_ANIMATIONS_AGENTS_IDLE_LEFT =
+      'animations/agents/idle_left.png';
+  static const String IMAGES_ANIMATIONS_AGENTS_IDLE_RIGHT =
+      'animations/agents/idle_right.png';
+  static const String IMAGES_ANIMATIONS_AGENTS_IDLE_UP =
+      'animations/agents/idle_up.png';
   static const String IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN =
       'animations/agents/walking_down.png';
   static const String IMAGES_ANIMATIONS_AGENTS_WALKING_LEFT =
