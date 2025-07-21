@@ -111,12 +111,30 @@ class AgentSpriteComponent extends PositionComponent {
         textureSize: Vector2(128, 128),
       ),
     );
+    final SpriteAnimation walkingLeft = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_LEFT,
+      SpriteAnimationData.sequenced(
+        amount: 5,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
+    final SpriteAnimation walkingRight = await SpriteAnimation.load(
+      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_RIGHT,
+      SpriteAnimationData.sequenced(
+        amount: 5,
+        stepTime: 0.1,
+        textureSize: Vector2(128, 128),
+      ),
+    );
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
         AgentMovingState.idle: idle,
         AgentMovingState.walking_up: walkingUp,
         AgentMovingState.walking_down: walkingDown,
+        AgentMovingState.walking_left: walkingLeft,
+        AgentMovingState.walking_right: walkingRight,
       },
       current: AgentMovingState.idle,
       position: Vector2(0, 0),

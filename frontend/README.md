@@ -1,6 +1,5 @@
 # Frontend
 
-- Character direction sprite
 - Obstacles
   - Doors
   - Barbed wire
