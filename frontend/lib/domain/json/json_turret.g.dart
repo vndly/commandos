@@ -13,6 +13,9 @@ JsonTurret _$JsonTurretFromJson(Map<String, dynamic> json) => JsonTurret(
   lasers: (json['lasers'] as List<dynamic>)
       .map((e) => JsonLaser.fromJson(e as Map<String, dynamic>))
       .toList(),
+  behaviors: (json['behaviors'] as List<dynamic>)
+      .map((e) => JsonBehavior.fromJson(e as Map<String, dynamic>))
+      .toList(),
 );
 
 Map<String, dynamic> _$JsonTurretToJson(JsonTurret instance) =>
@@ -21,4 +24,5 @@ Map<String, dynamic> _$JsonTurretToJson(JsonTurret instance) =>
       'position': instance.position,
       'angle': instance.angle,
       'lasers': instance.lasers,
+      'behaviors': instance.behaviors,
     };

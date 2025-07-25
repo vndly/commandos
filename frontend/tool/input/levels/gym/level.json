@@ -13,6 +13,16 @@
                     "angle": 0,
                     "range": 50
                 }
+            ],
+            "behaviors": [
+                {
+                    "type": "rotating",
+                    "startAngle": 0,
+                    "speed": 100,
+                    "rotatingDirection": "clockwise",
+                    "minAngle": -90,
+                    "maxAngle": 90
+                }
             ]
         },
         {
@@ -26,6 +36,16 @@
                 {
                     "angle": 0,
                     "range": 50
+                }
+            ],
+            "behaviors": [
+                {
+                    "type": "rotating",
+                    "startAngle": 0,
+                    "speed": 100,
+                    "rotatingDirection": "counter_clockwise",
+                    "minAngle": -90,
+                    "maxAngle": 90
                 }
             ]
         }

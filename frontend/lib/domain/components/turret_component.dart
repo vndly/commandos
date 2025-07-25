@@ -67,9 +67,6 @@ class TurretComponent extends BodyComponent<GameComponent> {
       behavior.update(body, dt);
     }
 
-    //final double newAngle = body.angle + radians(50 * dt);
-    //body.setTransform(position, newAngle);
-
     for (final LaserComponent laser in lasers) {
       final RayCastingResult result = rayCasting.test(
         source: body.position,

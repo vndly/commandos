@@ -1,6 +1,13 @@
 import 'dart:convert';
+import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/behaviors/harmonic_behavior.dart';
+import 'package:commandos/domain/behaviors/intermittent_behavior.dart';
+import 'package:commandos/domain/behaviors/moving_behavior.dart';
+import 'package:commandos/domain/behaviors/orbiting_behavior.dart';
+import 'package:commandos/domain/behaviors/oscillating_behavior.dart';
 import 'package:commandos/domain/behaviors/rotating_behavior.dart';
 import 'package:commandos/domain/json/json_agent.dart';
+import 'package:commandos/domain/json/json_behavior.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/json/json_position.dart';
@@ -11,7 +18,7 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
-import 'package:commandos/domain/types/rotating_direction.dart';
+import 'package:commandos/domain/types/behavior_type.dart';
 import 'package:flame/components.dart';
 
 class LevelLoader {
@@ -62,15 +69,7 @@ class LevelLoader {
           position: _toVector2(turret.position),
           angle: radians(turret.angle),
           lasers: turret.lasers.map(_getLaser).toList(),
-          behaviors: [
-            RotatingBehavior(
-              startAngle: 0,
-              rotationSpeed: 100,
-              direction: RotatingDirection.clockwise,
-              minAngle: -90,
-              maxAngle: 90,
-            ),
-          ],
+          behaviors: turret.behaviors.map(_getBehavior).toList(),
         ),
       );
     }
@@ -92,6 +91,72 @@ class LevelLoader {
     }
 
     return result;
+  }
+
+  static Behavior _getBehavior(JsonBehavior jsonBehavior) {
+    switch (jsonBehavior.type) {
+      case BehaviorType.rotating:
+        return RotatingBehavior(
+          startAngle: jsonBehavior.startAngle!,
+          rotationSpeed: jsonBehavior.speed!,
+          direction: jsonBehavior.rotatingDirection!,
+          minAngle: jsonBehavior.minAngle,
+          maxAngle: jsonBehavior.maxAngle,
+        );
+
+      case BehaviorType.orbiting:
+        return OrbitingBehavior(
+          startAngle: jsonBehavior.startAngle!,
+          centerX: jsonBehavior.centerX!,
+          centerY: jsonBehavior.centerY!,
+          radius: jsonBehavior.radius!,
+          angularSpeed: jsonBehavior.speed!,
+        );
+
+      case BehaviorType.oscillating:
+        return OscillatingBehavior(
+          startX: jsonBehavior.startX!,
+          startY: jsonBehavior.startY!,
+          minX: jsonBehavior.minX,
+          maxX: jsonBehavior.maxX,
+          minY: jsonBehavior.minY,
+          maxY: jsonBehavior.maxY,
+          speedX: jsonBehavior.speedX,
+          speedY: jsonBehavior.speedY,
+        );
+
+      case BehaviorType.moving:
+        return MovingBehavior(
+          trigger: jsonBehavior.trigger!,
+          startX: jsonBehavior.startX!,
+          startY: jsonBehavior.startY!,
+          minX: jsonBehavior.minX,
+          maxX: jsonBehavior.maxX,
+          minY: jsonBehavior.minY,
+          maxY: jsonBehavior.maxY,
+          speedX: jsonBehavior.speedX,
+          speedY: jsonBehavior.speedY,
+        );
+
+      case BehaviorType.harmonic:
+        return HarmonicBehavior(
+          startX: jsonBehavior.startX!,
+          startY: jsonBehavior.startY!,
+          periodX: jsonBehavior.periodX,
+          periodY: jsonBehavior.periodY,
+          amplitudeX: jsonBehavior.amplitudeX,
+          amplitudeY: jsonBehavior.amplitudeY,
+          initialTime: jsonBehavior.initialTime,
+        );
+
+      case BehaviorType.intermittent:
+        return IntermittentBehavior(
+          timeOn: jsonBehavior.timeOn!,
+          timeOff: jsonBehavior.timeOff!,
+          intermittentState: jsonBehavior.intermittentState!,
+          initialTime: jsonBehavior.initialTime,
+        );
+    }
   }
 
   static Vector2 _toVector2(JsonPosition position) =>
