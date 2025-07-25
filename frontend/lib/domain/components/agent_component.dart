@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
@@ -192,11 +193,22 @@ class AgentMovement {
   void update(Input input) {
     if (input.hasInput) {
       movingState = AgentMovingState.walking;
-      final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
-      agent.body.linearVelocity = velocity;
+      agent.body.setTransform(
+        agent.body.position,
+        radians(_angle(input.direction)),
+      );
+      agent.body.linearVelocity = input.direction * Constants.AGENT_SPEED;
     } else {
       movingState = AgentMovingState.idle;
       agent.body.linearVelocity = Vector2.zero();
+    }
+  }
+
+  double _angle(Vector2 direction) {
+    if (direction.x == 0 && direction.y == 0) {
+      return 0;
+    } else {
+      return (atan2(direction.y, direction.x) * 180 / pi) + 90;
     }
   }
 }
