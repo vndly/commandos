@@ -38,7 +38,13 @@ class LevelLoader {
     final List<Agent> result = [];
 
     for (final JsonAgent agent in agents) {
-      result.add(Agent(id: agent.id, position: _toVector2(agent.position)));
+      result.add(
+        Agent(
+          id: agent.id,
+          position: _toVector2(agent.position),
+          angle: radians(agent.angle),
+        ),
+      );
     }
 
     return result;

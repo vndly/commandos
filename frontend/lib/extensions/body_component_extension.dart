@@ -9,20 +9,24 @@ extension ComponentExtension on BodyComponent {
     required Vector2 center,
     required BodyType bodyType,
     required CollisionGroup group,
-    double angle = 0,
+    required double angle,
   }) => _getBody(
-    shape: shape,
     center: center,
     bodyType: bodyType,
-    group: group,
     angle: angle,
+    fixtures: [
+      createFixture(
+        shape: shape,
+        group: group,
+      ),
+    ],
   );
 
   Body getBodyFromAbsolutePosition({
     required List<Vector2> vertices,
     required BodyType bodyType,
     required CollisionGroup group,
-    double angle = 0,
+    required double angle,
   }) {
     final Vector2 center = _getCenter(vertices);
     final List<Vector2> centeredVertices = vertices
@@ -33,20 +37,21 @@ extension ComponentExtension on BodyComponent {
     shape.set(centeredVertices);
 
     return _getBody(
-      shape: shape,
       center: center,
       bodyType: bodyType,
-      group: group,
       angle: angle,
+      fixtures: [
+        createFixture(
+          shape: shape,
+          group: group,
+        ),
+      ],
     );
   }
 
-  Body _getBody({
+  FixtureDef createFixture({
     required Shape shape,
-    required Vector2 center,
-    required BodyType bodyType,
     required CollisionGroup group,
-    double angle = 0,
   }) {
     final FixtureDef fixtureDef = FixtureDef(shape, userData: this);
     fixtureDef.isSensor = group.isSensor;
@@ -54,6 +59,15 @@ extension ComponentExtension on BodyComponent {
     fixtureDef.filter.maskBits = group.mask;
     fixtureDef.filter.groupIndex = group.group;
 
+    return fixtureDef;
+  }
+
+  Body _getBody({
+    required Vector2 center,
+    required BodyType bodyType,
+    required double angle,
+    required List<FixtureDef> fixtures,
+  }) {
     final BodyDef bodyDef = BodyDef(
       position: center,
       type: bodyType,
@@ -61,7 +75,10 @@ extension ComponentExtension on BodyComponent {
     );
 
     final Body body = world.createBody(bodyDef);
-    body.createFixture(fixtureDef);
+
+    for (final FixtureDef fixtureDef in fixtures) {
+      body.createFixture(fixtureDef);
+    }
 
     return body;
   }

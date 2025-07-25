@@ -62,6 +62,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
+    angle: agent.angle,
   );
 }
 

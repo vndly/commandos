@@ -11,9 +11,13 @@ class JsonAgent {
   @JsonKey(name: 'position')
   final JsonPosition position;
 
+  @JsonKey(name: 'angle')
+  final double angle;
+
   JsonAgent({
     required this.id,
     required this.position,
+    required this.angle,
   });
 
   factory JsonAgent.fromJson(Map<String, dynamic> json) =>

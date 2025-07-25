@@ -78,6 +78,7 @@ List<JsonAgent> getAgents({
           JsonAgent(
             id: id,
             position: JsonPosition(x: cx, y: cy),
+            angle: 0,
           ),
         );
       }

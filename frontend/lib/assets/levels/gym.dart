@@ -10,21 +10,24 @@ class LevelGym {
       "position": {
         "x": 10,
         "y": 10
-      }
+      },
+      "angle": 0.0
     },
     {
       "id": "2",
       "position": {
         "x": 10,
         "y": 90
-      }
+      },
+      "angle": 0.0
     },
     {
       "id": "3",
       "position": {
         "x": 605,
         "y": 15
-      }
+      },
+      "angle": 0.0
     }
   ],
   "turrets": [

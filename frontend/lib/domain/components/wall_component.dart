@@ -14,6 +14,7 @@ class WallComponent extends BodyComponent<GameComponent> {
     vertices: wall.vertices,
     bodyType: BodyType.static,
     group: CollisionGroup.WALL,
+    angle: 0,
   );
 
   @override
