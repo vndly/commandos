@@ -11,7 +11,7 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
-import 'package:commandos/domain/types/rotation_direction.dart';
+import 'package:commandos/domain/types/rotating_direction.dart';
 import 'package:flame/components.dart';
 
 class LevelLoader {
@@ -66,7 +66,7 @@ class LevelLoader {
             RotatingBehavior(
               startAngle: 0,
               rotationSpeed: 100,
-              direction: RotationDirection.clockwise,
+              direction: RotatingDirection.clockwise,
               minAngle: -90,
               maxAngle: 90,
             ),

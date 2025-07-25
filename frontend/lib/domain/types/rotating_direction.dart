@@ -1,8 +1,8 @@
-enum RotationDirection {
+enum RotatingDirection {
   clockwise(1),
   counter_clockwise(-1);
 
   final int value;
 
-  const RotationDirection(this.value);
+  const RotatingDirection(this.value);
 }
