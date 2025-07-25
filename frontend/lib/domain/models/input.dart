@@ -95,17 +95,22 @@ class Input {
   );
 
   Vector2 get direction {
+    double x = 0;
+    double y = 0;
+
     if (hasActiveInput(ActiveInput.left)) {
-      return Vector2(-1, 0);
+      x = -1;
     } else if (hasActiveInput(ActiveInput.right)) {
-      return Vector2(1, 0);
-    } else if (hasActiveInput(ActiveInput.up)) {
-      return Vector2(0, -1);
-    } else if (hasActiveInput(ActiveInput.down)) {
-      return Vector2(0, 1);
-    } else {
-      return Vector2.zero();
+      x = 1;
     }
+
+    if (hasActiveInput(ActiveInput.up)) {
+      y = -1;
+    } else if (hasActiveInput(ActiveInput.down)) {
+      y = 1;
+    }
+
+    return Vector2(x, y);
   }
 }
 

@@ -29,7 +29,6 @@ class AgentComponent extends BodyComponent<GameComponent> {
   }) {
     movement = AgentMovement(
       agent: this,
-      initialPosition: initialPosition,
     );
   }
 
@@ -86,7 +85,7 @@ class AgentSpriteComponent extends PositionComponent {
         textureSize: Vector2(128, 128),
       ),
     );
-    final SpriteAnimation idleDown = await SpriteAnimation.load(
+    /*final SpriteAnimation idleDown = await SpriteAnimation.load(
       Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_DOWN,
       SpriteAnimationData.sequenced(
         amount: 1,
@@ -109,7 +108,7 @@ class AgentSpriteComponent extends PositionComponent {
         stepTime: 0.1,
         textureSize: Vector2(128, 128),
       ),
-    );
+    );*/
     final SpriteAnimation walkingUp = await SpriteAnimation.load(
       Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
       SpriteAnimationData.sequenced(
@@ -118,7 +117,7 @@ class AgentSpriteComponent extends PositionComponent {
         textureSize: Vector2(128, 128),
       ),
     );
-    final SpriteAnimation walkingDown = await SpriteAnimation.load(
+    /*final SpriteAnimation walkingDown = await SpriteAnimation.load(
       Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN,
       SpriteAnimationData.sequenced(
         amount: 5,
@@ -141,18 +140,12 @@ class AgentSpriteComponent extends PositionComponent {
         stepTime: 0.1,
         textureSize: Vector2(128, 128),
       ),
-    );
+    );*/
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
-        AgentMovingState.idle_up: idleUp,
-        AgentMovingState.idle_down: idleDown,
-        AgentMovingState.idle_left: idleLeft,
-        AgentMovingState.idle_right: idleRight,
-        AgentMovingState.walking_up: walkingUp,
-        AgentMovingState.walking_down: walkingDown,
-        AgentMovingState.walking_left: walkingLeft,
-        AgentMovingState.walking_right: walkingRight,
+        AgentMovingState.idle: idleUp,
+        AgentMovingState.walking: walkingUp,
       },
       current: movement.movingState,
       position: Vector2(0, 0),
@@ -184,88 +177,26 @@ class AgentSpriteComponent extends PositionComponent {
 }
 
 enum AgentMovingState {
-  idle_up,
-  idle_down,
-  idle_left,
-  idle_right,
-  walking_up,
-  walking_down,
-  walking_left,
-  walking_right,
+  idle,
+  walking,
 }
 
 class AgentMovement {
   final AgentComponent agent;
-  AgentMovingState movingState = AgentMovingState.idle_right;
-  bool isMoving = false;
+  AgentMovingState movingState = AgentMovingState.idle;
 
   AgentMovement({
     required this.agent,
-    required Vector2 initialPosition,
   });
 
   void update(Input input) {
-    if (input.hasInput && !isMoving) {
-      nextNode = currentNode.nodeAt(input.direction);
-
-      if (nextNode != null) {
-        isMoving = true;
-        final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
-        agent.body.linearVelocity = velocity;
-
-        if (input.direction.y < 0) {
-          movingState = AgentMovingState.walking_up;
-        } else if (input.direction.y > 0) {
-          movingState = AgentMovingState.walking_down;
-        } else if (input.direction.x < 0) {
-          movingState = AgentMovingState.walking_left;
-        } else if (input.direction.x > 0) {
-          movingState = AgentMovingState.walking_right;
-        }
-      }
-    }
-
-    if (isMoving) {
-      final Vector2 currentPosition = agent.body.position;
-      final Vector2 targetPosition = nextNode!.position;
-      final Vector2 toTarget = targetPosition - currentPosition;
-
-      if (toTarget.length < 0.1) {
-        agent.body.linearVelocity = Vector2.zero();
-        agent.body.setTransform(targetPosition, agent.body.angle);
-        isMoving = false;
-        currentNode = nextNode!;
-        nextNode = null;
-
-        final Node? conectionTo = getConnectionTo(currentNode);
-
-        if (conectionTo != null) {
-          currentNode = conectionTo;
-          agent.body.setTransform(conectionTo.position, agent.body.angle);
-        }
-      }
+    if (input.hasInput) {
+      movingState = AgentMovingState.walking;
+      final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
+      agent.body.linearVelocity = velocity;
     } else {
-      if (movingState == AgentMovingState.walking_up) {
-        movingState = AgentMovingState.idle_up;
-      } else if (movingState == AgentMovingState.walking_down) {
-        movingState = AgentMovingState.idle_down;
-      } else if (movingState == AgentMovingState.walking_left) {
-        movingState = AgentMovingState.idle_left;
-      } else if (movingState == AgentMovingState.walking_right) {
-        movingState = AgentMovingState.idle_right;
-      }
+      movingState = AgentMovingState.idle;
+      agent.body.linearVelocity = Vector2.zero();
     }
-  }
-
-  Node? getConnectionTo(Node node) {
-    for (final Connection connection in connections) {
-      if (connection.a == node) {
-        return connection.b;
-      } else if (connection.b == node) {
-        return connection.a;
-      }
-    }
-
-    return null;
   }
 }
