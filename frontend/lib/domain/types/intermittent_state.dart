@@ -1,0 +1,4 @@
+enum IntermittentState {
+  on,
+  off,
+}

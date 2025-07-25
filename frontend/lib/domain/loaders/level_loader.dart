@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:commandos/domain/behaviors/rotating_behavior.dart';
 import 'package:commandos/domain/json/json_agent.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
@@ -60,6 +61,15 @@ class LevelLoader {
           position: _toVector2(turret.position),
           angle: radians(turret.angle),
           lasers: turret.lasers.map(_getLaser).toList(),
+          behaviors: [
+            RotatingBehavior(
+              startAngle: 0,
+              rotationSpeed: 100,
+              direction: 1,
+              minAngle: -90,
+              maxAngle: 90,
+            ),
+          ],
         ),
       );
     }

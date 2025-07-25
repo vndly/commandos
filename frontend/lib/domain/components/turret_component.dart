@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
@@ -62,8 +63,12 @@ class TurretComponent extends BodyComponent<GameComponent> {
 
     checkDebug();
 
-    final double newAngle = body.angle + radians(50 * dt);
-    body.setTransform(position, newAngle);
+    for (final Behavior behavior in turret.behaviors) {
+      behavior.update(body, dt);
+    }
+
+    //final double newAngle = body.angle + radians(50 * dt);
+    //body.setTransform(position, newAngle);
 
     for (final LaserComponent laser in lasers) {
       final RayCastingResult result = rayCasting.test(

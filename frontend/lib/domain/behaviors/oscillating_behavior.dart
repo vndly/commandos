@@ -1,0 +1,89 @@
+import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
+
+class OscillatingBehavior extends Behavior {
+  final double startX;
+  final double startY;
+  final double? minX;
+  final double? maxX;
+  final double? minY;
+  final double? maxY;
+  final double? speedX;
+  final double? speedY;
+
+  double currentDirectionX = 1;
+  double currentDirectionY = 1;
+  final Vector2 velocity = Vector2(0, 0);
+
+  OscillatingBehavior({
+    required this.startX,
+    required this.startY,
+    required this.minX,
+    required this.maxX,
+    required this.minY,
+    required this.maxY,
+    required this.speedX,
+    required this.speedY,
+  });
+
+  @override
+  void update(Body body, double dt) {
+    final Vector2 position = body.position;
+
+    if (isMinX(position.x) || isMaxX(position.x)) {
+      currentDirectionX *= -1;
+    }
+
+    if (isMinY(position.y) || isMaxY(position.y)) {
+      currentDirectionY *= -1;
+    }
+
+    if (isMinX(position.x)) {
+      body.setTransform(Vector2(minX!, position.y), body.angle);
+    }
+
+    if (isMaxX(position.x)) {
+      body.setTransform(Vector2(maxX!, position.y), body.angle);
+    }
+
+    if (isMinY(position.y)) {
+      body.setTransform(Vector2(position.x, minY!), body.angle);
+    }
+
+    if (isMaxY(position.y)) {
+      body.setTransform(Vector2(position.x, maxY!), body.angle);
+    }
+
+    double velocityX = 0;
+    double velocityY = 0;
+
+    if (speedX != null) {
+      velocityX = speedX! * currentDirectionX;
+    }
+
+    if (speedY != null) {
+      velocityY = speedY! * currentDirectionY;
+    }
+
+    velocity.setValues(velocityX, velocityY);
+    body.linearVelocity.setValues(velocity.x, velocity.y);
+  }
+
+  bool isMinX(double x) => (minX != null) && (x < minX!);
+
+  bool isMinY(double y) => (minY != null) && (y < minY!);
+
+  bool isMaxX(double x) => (maxX != null) && (x > maxX!);
+
+  bool isMaxY(double y) => (maxY != null) && (y > maxY!);
+
+  @override
+  void reset(Body body) {
+    currentDirectionX = 1;
+    currentDirectionY = 1;
+    velocity.setValues(0, 0);
+
+    body.setTransform(Vector2(startX, startY), body.angle);
+    body.linearVelocity.setValues(velocity.x, velocity.y);
+  }
+}
