@@ -62,8 +62,8 @@ class TurretComponent extends BodyComponent<GameComponent> {
 
     checkDebug();
 
-    final double newAngle = body.angle + radians(50 * dt);
-    body.setTransform(position, newAngle);
+    //final double newAngle = body.angle + radians(50 * dt);
+    //body.setTransform(position, newAngle);
 
     for (final LaserComponent laser in lasers) {
       final RayCastingResult result = rayCasting.test(
@@ -87,7 +87,7 @@ class TurretSpriteComponent extends SpriteComponent {
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_TURRETS_TURRET);
+    sprite = await Sprite.load(Assets.IMAGES_TURRETS_SINGLE);
 
     return super.onLoad();
   }

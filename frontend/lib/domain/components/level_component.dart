@@ -48,7 +48,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       await add(
         TurretComponent(
           initialPosition: turret.position,
-          size: Vector2(6, 6),
+          size: Vector2(4, 4),
           turret: turret,
         ),
       );

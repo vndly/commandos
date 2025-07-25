@@ -79,69 +79,21 @@ class AgentSpriteComponent extends PositionComponent {
   @override
   FutureOr onLoad() async {
     final SpriteAnimation idleUp = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_UP,
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: 0.1,
         textureSize: Vector2(128, 128),
       ),
     );
-    /*final SpriteAnimation idleDown = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_DOWN,
-      SpriteAnimationData.sequenced(
-        amount: 1,
-        stepTime: 0.1,
-        textureSize: Vector2(128, 128),
-      ),
-    );
-    final SpriteAnimation idleLeft = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_LEFT,
-      SpriteAnimationData.sequenced(
-        amount: 1,
-        stepTime: 0.1,
-        textureSize: Vector2(128, 128),
-      ),
-    );
-    final SpriteAnimation idleRight = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_RIGHT,
-      SpriteAnimationData.sequenced(
-        amount: 1,
-        stepTime: 0.1,
-        textureSize: Vector2(128, 128),
-      ),
-    );*/
     final SpriteAnimation walkingUp = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING,
       SpriteAnimationData.sequenced(
         amount: 5,
         stepTime: 0.1,
         textureSize: Vector2(128, 128),
       ),
     );
-    /*final SpriteAnimation walkingDown = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN,
-      SpriteAnimationData.sequenced(
-        amount: 5,
-        stepTime: 0.1,
-        textureSize: Vector2(128, 128),
-      ),
-    );
-    final SpriteAnimation walkingLeft = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_LEFT,
-      SpriteAnimationData.sequenced(
-        amount: 5,
-        stepTime: 0.1,
-        textureSize: Vector2(128, 128),
-      ),
-    );
-    final SpriteAnimation walkingRight = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_RIGHT,
-      SpriteAnimationData.sequenced(
-        amount: 5,
-        stepTime: 0.1,
-        textureSize: Vector2(128, 128),
-      ),
-    );*/
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
