@@ -38,7 +38,21 @@ class LevelGym {
       "lasers": [
         {
           "angle": 0.0,
-          "range": 100.0
+          "range": 50.0
+        }
+      ]
+    },
+    {
+      "id": "turret2",
+      "position": {
+        "x": 10,
+        "y": 25
+      },
+      "angle": 90.0,
+      "lasers": [
+        {
+          "angle": 0.0,
+          "range": 50.0
         }
       ]
     }
