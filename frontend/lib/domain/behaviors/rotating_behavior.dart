@@ -1,10 +1,11 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/types/rotation_direction.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class RotatingBehavior extends Behavior {
   double angle = 0;
-  double direction; // 1: clockwise, -1: counter-clockwise
+  RotationDirection direction; // 1: clockwise, -1: counter-clockwise
   final double startAngle;
   final double rotationSpeed;
   final double? minAngle;
@@ -20,15 +21,15 @@ class RotatingBehavior extends Behavior {
 
   @override
   void update(Body body, double dt) {
-    angle += dt * rotationSpeed * direction;
+    angle += dt * rotationSpeed * direction.value;
 
     if (minAngle != null && maxAngle != null) {
       if (angle < minAngle!) {
         angle = minAngle!;
-        direction = 1; // Change direction to clockwise
+        direction = RotationDirection.clockwise;
       } else if (angle > maxAngle!) {
         angle = maxAngle!;
-        direction = -1; // Change direction to counter-clockwise
+        direction = RotationDirection.counter_clockwise;
       }
     }
 
