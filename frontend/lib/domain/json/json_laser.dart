@@ -7,12 +7,12 @@ class JsonLaser {
   @JsonKey(name: 'angle')
   final double angle;
 
-  @JsonKey(name: 'length')
-  final double length;
+  @JsonKey(name: 'range')
+  final double range;
 
   JsonLaser({
     required this.angle,
-    required this.length,
+    required this.range,
   });
 
   factory JsonLaser.fromJson(Map<String, dynamic> json) =>

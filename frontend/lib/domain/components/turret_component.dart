@@ -70,7 +70,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
         source: body.position,
         angle: body.angle + laser.laser.angle,
         gap: size.x / 2,
-        length: laser.laser.length,
+        length: laser.laser.range,
       );
       laser.updatePoints(start: result.start, end: result.end);
     }

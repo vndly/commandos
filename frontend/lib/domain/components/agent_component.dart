@@ -4,10 +4,7 @@ import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
-import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
-import 'package:commandos/domain/models/node.dart';
-import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:commandos/utils/assets.dart';
@@ -20,8 +17,6 @@ class AgentComponent extends BodyComponent<GameComponent> {
   final Vector2 velocity = Vector2.zero();
   final Input input;
   final Agent agent;
-  final Nodes nodes;
-  final List<Connection> connections;
   late final AgentMovement movement;
   bool active;
 
@@ -30,14 +25,10 @@ class AgentComponent extends BodyComponent<GameComponent> {
     required this.size,
     required this.input,
     required this.agent,
-    required this.nodes,
-    required this.connections,
     required this.active,
   }) {
     movement = AgentMovement(
       agent: this,
-      nodes: nodes,
-      connections: connections,
       initialPosition: initialPosition,
     );
   }
@@ -205,21 +196,13 @@ enum AgentMovingState {
 
 class AgentMovement {
   final AgentComponent agent;
-  final Nodes nodes;
-  final List<Connection> connections;
-  late Node currentNode;
   AgentMovingState movingState = AgentMovingState.idle_right;
   bool isMoving = false;
-  Node? nextNode;
 
   AgentMovement({
     required this.agent,
-    required this.nodes,
-    required this.connections,
     required Vector2 initialPosition,
-  }) {
-    currentNode = nodes.nodeAt(initialPosition);
-  }
+  });
 
   void update(Input input) {
     if (input.hasInput && !isMoving) {

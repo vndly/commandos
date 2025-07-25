@@ -8,10 +8,10 @@ part of 'json_laser.dart';
 
 JsonLaser _$JsonLaserFromJson(Map<String, dynamic> json) => JsonLaser(
   angle: (json['angle'] as num).toDouble(),
-  length: (json['length'] as num).toDouble(),
+  range: (json['range'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$JsonLaserToJson(JsonLaser instance) => <String, dynamic>{
   'angle': instance.angle,
-  'length': instance.length,
+  'range': instance.range,
 };

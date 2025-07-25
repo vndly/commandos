@@ -4,7 +4,6 @@ import 'package:xml2json/xml2json.dart';
 import 'json/json_agent.dart';
 import 'json/json_extra.dart';
 import 'json/json_level.dart';
-import 'json/json_path.dart';
 import 'json/json_position.dart';
 import 'json/json_wall.dart';
 
@@ -26,14 +25,6 @@ Future<void> processFile(String levelFolder) async {
   final int height = int.parse(
     (json['svg']['height'] as String).replaceAll('mm', ''),
   );
-  final List<JsonPath> paths = getPaths(
-    json: json,
-    name: 'paths',
-  );
-  final List<JsonPath> connections = getPaths(
-    json: json,
-    name: 'connections',
-  );
   final List<JsonAgent> agents = getAgents(
     json: json,
     name: 'agents',
@@ -53,8 +44,6 @@ Future<void> processFile(String levelFolder) async {
     id: levelId,
     width: width,
     height: height,
-    paths: paths,
-    connections: connections,
     agents: agents,
     turrets: jsonExtra.turrets,
     walls: walls,
@@ -71,24 +60,6 @@ Future<Json> getJson(File file) async {
   final String gdata = xml2json.toGData();
 
   return jsonDecode(gdata);
-}
-
-List<JsonPath> getPaths({
-  required Json json,
-  required String name,
-}) {
-  final List<JsonPath> result = [];
-
-  for (final Json g in json['svg']['g']) {
-    if (g['id'] == name) {
-      for (final Json path in g['path']) {
-        final String pathString = path['d'];
-        result.add(getPath(pathString));
-      }
-    }
-  }
-
-  return result;
 }
 
 List<JsonAgent> getAgents({
@@ -134,35 +105,6 @@ List<JsonWall> getWalls({
   return result;
 }
 
-JsonPath getPath(String pathString) {
-  final List<Vertex> coords = getCoordinates(pathString);
-
-  if (coords.length != 2) {
-    throw Exception('Path must have exactly two positions');
-  }
-
-  final Vertex pointA = coords[0];
-  final Vertex pointB = coords[1];
-
-  if (pointA[0] % 5 != 0 ||
-      pointA[1] % 5 != 0 ||
-      pointB[0] % 5 != 0 ||
-      pointB[1] % 5 != 0) {
-    throw Exception('Coordinates must be multiples of 5: $pointA, $pointB');
-  }
-
-  return JsonPath(
-    a: JsonPosition(
-      x: pointA[0],
-      y: pointA[1],
-    ),
-    b: JsonPosition(
-      x: pointB[0],
-      y: pointB[1],
-    ),
-  );
-}
-
 JsonWall getWall(String wallString) {
   final List<Vertex> coords = getCoordinates(wallString);
 
@@ -174,19 +116,6 @@ JsonWall getWall(String wallString) {
   final Vertex pointB = coords[1];
   final Vertex pointC = coords[2];
   final Vertex pointD = coords[3];
-
-  if (pointA[0] % 10 != 0 ||
-      pointA[1] % 10 != 0 ||
-      pointB[0] % 10 != 0 ||
-      pointB[1] % 10 != 0 ||
-      pointC[0] % 10 != 0 ||
-      pointC[1] % 10 != 0 ||
-      pointD[0] % 10 != 0 ||
-      pointD[1] % 10 != 0) {
-    throw Exception(
-      'Coordinates must be multiples of 10: $pointA, $pointB, $pointC, $pointD',
-    );
-  }
 
   return JsonWall(
     vertices: [

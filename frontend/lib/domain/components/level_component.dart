@@ -8,10 +8,8 @@ import 'package:commandos/domain/components/turret_component.dart';
 import 'package:commandos/domain/components/wall_component.dart';
 import 'package:commandos/domain/loaders/level_loader.dart';
 import 'package:commandos/domain/models/agent.dart';
-import 'package:commandos/domain/models/connection.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/level.dart';
-import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
 import 'package:flame/components.dart';
@@ -20,7 +18,6 @@ import 'package:flutter/services.dart';
 
 class LevelComponent extends Forge2DWorld with KeyboardHandler {
   final Input input = Input();
-  final List<Connection> connections = [];
   final List<AgentComponent> agentComponents = [];
   late AgentComponent activeAgentComponent;
   int activeAgentIndex = 0;
@@ -28,12 +25,9 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   @override
   FutureOr onLoad() async {
     final Level level = LevelLoader.load(LevelGym.JSON);
-    final Nodes nodes = level.nodes;
-    connections.addAll(level.connections);
 
     await add(
       MapComponent(
-        nodes: nodes,
         size: Vector2(level.width.toDouble(), level.height.toDouble()),
       ),
     );
@@ -44,8 +38,6 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
         size: Vector2(10, 10),
         input: input,
         agent: agent,
-        nodes: nodes,
-        connections: connections,
         active: false,
       );
       await add(agentComponent);

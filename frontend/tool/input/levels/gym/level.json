@@ -11,11 +11,11 @@
             "lasers": [
                 {
                     "angle": 0,
-                    "length": 100
+                    "range": 100
                 },
                 {
                     "angle": 90,
-                    "length": 100
+                    "range": 100
                 }
             ]
         }
