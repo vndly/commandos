@@ -231,20 +231,20 @@ class AgentMovement {
     switch (movingState) {
       case AgentMovingState.walking_up:
         return AgentMovingState.idle_up;
-      case AgentMovingState.walking_down:
-        return AgentMovingState.idle_down;
-      case AgentMovingState.walking_right:
-        return AgentMovingState.idle_right;
-      case AgentMovingState.walking_left:
-        return AgentMovingState.idle_left;
       case AgentMovingState.walking_up_right:
         return AgentMovingState.idle_up_right;
-      case AgentMovingState.walking_up_left:
-        return AgentMovingState.idle_up_left;
+      case AgentMovingState.walking_right:
+        return AgentMovingState.idle_right;
       case AgentMovingState.walking_down_right:
         return AgentMovingState.idle_down_right;
+      case AgentMovingState.walking_down:
+        return AgentMovingState.idle_down;
       case AgentMovingState.walking_down_left:
         return AgentMovingState.idle_down_left;
+      case AgentMovingState.walking_left:
+        return AgentMovingState.idle_left;
+      case AgentMovingState.walking_up_left:
+        return AgentMovingState.idle_up_left;
       default:
         return current;
     }
