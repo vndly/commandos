@@ -7,11 +7,15 @@ class JsonLaser {
   @JsonKey(name: 'angle')
   final double angle;
 
+  @JsonKey(name: 'aperture')
+  final double aperture;
+
   @JsonKey(name: 'range')
   final double range;
 
   JsonLaser({
     required this.angle,
+    required this.aperture,
     required this.range,
   });
 

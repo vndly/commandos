@@ -79,6 +79,7 @@ class LevelLoader {
 
   static Laser _getLaser(JsonLaser jsonLaser) => Laser(
     angle: radians(jsonLaser.angle),
+    aperture: jsonLaser.aperture,
     range: jsonLaser.range,
   );
 

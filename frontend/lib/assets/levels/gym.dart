@@ -41,6 +41,7 @@ class LevelGym {
       "lasers": [
         {
           "angle": 0.0,
+          "aperture": 20.0,
           "range": 50.0
         }
       ],
@@ -85,6 +86,7 @@ class LevelGym {
       "lasers": [
         {
           "angle": 0.0,
+          "aperture": 50.0,
           "range": 50.0
         }
       ],
@@ -94,8 +96,8 @@ class LevelGym {
           "trigger": null,
           "startX": null,
           "startY": null,
-          "startAngle": 90.0,
-          "speed": 80.0,
+          "startAngle": 0.0,
+          "speed": 70.0,
           "speedX": null,
           "speedY": null,
           "centerX": null,

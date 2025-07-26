@@ -18,9 +18,8 @@ class LaserComponent extends Component {
     required this.laser,
   }) {
     priority = Priority.laser.value;
-    const double aperture = 20;
     const double numberOfBeams = 2;
-    const double delta = aperture / numberOfBeams;
+    final double delta = laser.aperture / numberOfBeams;
 
     /*beams.add(
       Beam(

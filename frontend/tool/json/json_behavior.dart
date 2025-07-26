@@ -1,14 +1,7 @@
-import 'package:commandos/domain/behaviors/behavior.dart';
-import 'package:commandos/domain/behaviors/harmonic_behavior.dart';
-import 'package:commandos/domain/behaviors/intermittent_behavior.dart';
-import 'package:commandos/domain/behaviors/moving_behavior.dart';
-import 'package:commandos/domain/behaviors/orbiting_behavior.dart';
-import 'package:commandos/domain/behaviors/oscillating_behavior.dart';
-import 'package:commandos/domain/behaviors/rotating_behavior.dart';
-import 'package:commandos/domain/types/behavior_type.dart';
-import 'package:commandos/domain/types/intermittent_state.dart';
-import 'package:commandos/domain/types/rotating_direction.dart';
 import 'package:json_annotation/json_annotation.dart';
+import '../types/behavior_type.dart';
+import '../types/intermittent_state.dart';
+import '../types/rotating_direction.dart';
 
 part 'json_behavior.g.dart';
 
@@ -69,72 +62,6 @@ class JsonBehavior {
     required this.rotatingDirection,
     required this.intermittentState,
   });
-
-  Behavior getBehavior() {
-    switch (type) {
-      case BehaviorType.rotating:
-        return RotatingBehavior(
-          startAngle: startAngle!,
-          rotationSpeed: speed!,
-          direction: rotatingDirection!,
-          minAngle: minAngle,
-          maxAngle: maxAngle,
-        );
-
-      case BehaviorType.orbiting:
-        return OrbitingBehavior(
-          startAngle: startAngle!,
-          centerX: centerX!,
-          centerY: centerY!,
-          radius: radius!,
-          angularSpeed: speed!,
-        );
-
-      case BehaviorType.oscillating:
-        return OscillatingBehavior(
-          startX: startX!,
-          startY: startY!,
-          minX: minX,
-          maxX: maxX,
-          minY: minY,
-          maxY: maxY,
-          speedX: speedX,
-          speedY: speedY,
-        );
-
-      case BehaviorType.moving:
-        return MovingBehavior(
-          trigger: trigger!,
-          startX: startX!,
-          startY: startY!,
-          minX: minX,
-          maxX: maxX,
-          minY: minY,
-          maxY: maxY,
-          speedX: speedX,
-          speedY: speedY,
-        );
-
-      case BehaviorType.harmonic:
-        return HarmonicBehavior(
-          startX: startX!,
-          startY: startY!,
-          periodX: periodX,
-          periodY: periodY,
-          amplitudeX: amplitudeX,
-          amplitudeY: amplitudeY,
-          initialTime: initialTime,
-        );
-
-      case BehaviorType.intermittent:
-        return IntermittentBehavior(
-          timeOn: timeOn!,
-          timeOff: timeOff!,
-          intermittentState: intermittentState!,
-          initialTime: initialTime,
-        );
-    }
-  }
 
   factory JsonBehavior.fromJson(Map<String, dynamic> json) =>
       _$JsonBehaviorFromJson(json);

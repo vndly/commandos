@@ -1,6 +1,6 @@
-import 'package:commandos/domain/json/json_behavior.dart';
-import 'package:commandos/domain/json/json_laser.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'json_behavior.dart';
+import 'json_laser.dart';
 import 'json_position.dart';
 
 part 'json_turret.g.dart';

@@ -11,6 +11,7 @@
             "lasers": [
                 {
                     "angle": 0,
+                    "aperture": 20,
                     "range": 50
                 }
             ],
@@ -35,14 +36,15 @@
             "lasers": [
                 {
                     "angle": 0,
+                    "aperture": 50,
                     "range": 50
                 }
             ],
             "behaviors": [
                 {
                     "type": "rotating",
-                    "startAngle": 90,
-                    "speed": 80,
+                    "startAngle": 0,
+                    "speed": 70,
                     "rotatingDirection": "counter_clockwise",
                     "minAngle": -180,
                     "maxAngle": -90
