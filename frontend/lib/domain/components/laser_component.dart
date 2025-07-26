@@ -9,7 +9,7 @@ class LaserComponent extends Component {
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
     color: Palette.LASER,
-    strokeWidth: 0.1,
+    strokeWidth: 0.5,
   );
   final List<Beam> beams = [];
 
@@ -17,7 +17,7 @@ class LaserComponent extends Component {
     required this.laser,
   }) {
     const double aperture = 20;
-    const double numberOfBeams = 50;
+    const double numberOfBeams = 0;
     const double delta = aperture / numberOfBeams;
 
     beams.add(

@@ -6,7 +6,7 @@ class Palette {
 
   static const Color GAME_BACKGROUND = Colors.black;
 
-  static Color LASER = Colors.red.withAlpha(128);
+  static Color LASER = Colors.red.withAlpha(160);
 
   static Paint paint({
     PaintingStyle? style,
