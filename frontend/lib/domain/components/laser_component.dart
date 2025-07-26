@@ -4,8 +4,6 @@ import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 
-typedef Beam = (Vector2, Vector2);
-
 class LaserComponent extends Component {
   final Laser laser;
   final Paint paint = Palette.paint(
@@ -21,7 +19,12 @@ class LaserComponent extends Component {
     required Vector2 end,
   }) {
     for (int i = 0; i < 1; i++) {
-      beams.add((start, end));
+      beams.add(
+        Beam(
+          start: start,
+          end: end,
+        ),
+      );
     }
   }
 
@@ -37,15 +40,29 @@ class LaserComponent extends Component {
         gap: 0, //size.x / 2,
         length: laser.range,
       );
-      beam.$1.setFrom(result.start);
-      beam.$2.setFrom(result.end);
+      beam.update(result);
     }
   }
 
   @override
   void render(Canvas canvas) {
     for (final Beam beam in beams) {
-      canvas.drawLine(beam.$1.toOffset(), beam.$2.toOffset(), paint);
+      canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
     }
+  }
+}
+
+class Beam {
+  final Vector2 start;
+  final Vector2 end;
+
+  const Beam({
+    required this.start,
+    required this.end,
+  });
+
+  void update(RayCastingResult result) {
+    start.setFrom(result.start);
+    end.setFrom(result.end);
   }
 }
