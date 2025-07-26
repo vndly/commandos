@@ -9,13 +9,17 @@ class LaserComponent extends Component {
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
     color: Palette.LASER,
-    strokeWidth: 0.5,
+    strokeWidth: 0.1,
   );
   final List<Beam> beams = [];
 
   LaserComponent({
     required this.laser,
   }) {
+    const double aperture = 20;
+    const double numberOfBeams = 50;
+    const double delta = aperture / numberOfBeams;
+
     beams.add(
       Beam(
         start: Vector2.zero(),
@@ -24,12 +28,12 @@ class LaserComponent extends Component {
       ),
     );
 
-    for (int i = 1; i < 3; i++) {
+    for (int i = 1; i < numberOfBeams; i++) {
       beams.add(
         Beam(
           start: Vector2.zero(),
           end: Vector2.zero(),
-          angle: radians(i * 15),
+          angle: radians(i * delta),
         ),
       );
 
@@ -37,7 +41,7 @@ class LaserComponent extends Component {
         Beam(
           start: Vector2.zero(),
           end: Vector2.zero(),
-          angle: -radians(i * 15),
+          angle: -radians(i * delta),
         ),
       );
     }
@@ -53,7 +57,7 @@ class LaserComponent extends Component {
         source: source,
         angle: angle + laser.angle + beam.angle,
         gap: 0, //size.x / 2,
-        length: laser.range,
+        length: 25, //laser.range,
       );
       beam.update(result);
     }
