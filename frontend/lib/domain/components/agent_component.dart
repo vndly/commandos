@@ -84,27 +84,40 @@ class AgentSpriteComponent extends PositionComponent {
     );
     decorator.addLast(decorator2);
 
-    final SpriteAnimation idleRight = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_RIGHT,
-      SpriteAnimationData.sequenced(
-        amount: 1,
-        stepTime: 0.1,
-        textureSize: Vector2(36, 36),
-      ),
-    );
-    /*final SpriteAnimation walkingUp = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_WALKING,
-      SpriteAnimationData.sequenced(
-        amount: 5,
-        stepTime: 0.1,
-        textureSize: Vector2(36, 36),
-      ),
-    );*/
-
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
-        AgentMovingState.idle_right: idleRight,
-        //AgentMovingState.walking: walkingUp,
+        AgentMovingState.idle_up: await _idleAnimation(0),
+        AgentMovingState.idle_up_right: await _idleAnimation(1),
+        AgentMovingState.idle_right: await _idleAnimation(2),
+        AgentMovingState.idle_down_right: await _idleAnimation(3),
+        AgentMovingState.idle_down: await _idleAnimation(4),
+        AgentMovingState.idle_down_left: await _idleAnimation(5),
+        AgentMovingState.idle_left: await _idleAnimation(6),
+        AgentMovingState.idle_up_left: await _idleAnimation(7),
+        AgentMovingState.walking_up: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_up_right: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_right: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_down_right: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_down: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_down_left: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_left: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
+        AgentMovingState.walking_up_left: await _walkingAnimation(
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+        ),
       },
       current: movement.movingState,
       position: Vector2(0, 0),
@@ -116,6 +129,27 @@ class AgentSpriteComponent extends PositionComponent {
     return super.onLoad();
   }
 
+  Future<SpriteAnimation> _idleAnimation(int range) => SpriteAnimation.load(
+    Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
+    SpriteAnimationData.range(
+      start: range,
+      end: range,
+      amount: 8,
+      stepTimes: [1],
+      textureSize: Vector2(36, 36),
+    ),
+  );
+
+  Future<SpriteAnimation> _walkingAnimation(String path) =>
+      SpriteAnimation.load(
+        path,
+        SpriteAnimationData.sequenced(
+          amount: 8,
+          stepTime: 0.1,
+          textureSize: Vector2(36, 36),
+        ),
+      );
+
   @override
   void update(double dt) {
     super.update(dt);
@@ -126,21 +160,31 @@ class AgentSpriteComponent extends PositionComponent {
 
 enum AgentMovingState {
   idle_up,
-  idle_down,
-  idle_right,
-  idle_left,
   idle_up_right,
-  idle_up_left,
+  idle_right,
   idle_down_right,
+  idle_down,
   idle_down_left,
+  idle_left,
+  idle_up_left,
   walking_up,
-  walking_down,
-  walking_right,
-  walking_left,
   walking_up_right,
-  walking_up_left,
+  walking_right,
   walking_down_right,
+  walking_down,
   walking_down_left,
+  walking_left,
+  walking_up_left;
+
+  bool get isIdle =>
+      this == AgentMovingState.idle_up ||
+      this == AgentMovingState.idle_up_right ||
+      this == AgentMovingState.idle_right ||
+      this == AgentMovingState.idle_down_right ||
+      this == AgentMovingState.idle_down ||
+      this == AgentMovingState.idle_down_left ||
+      this == AgentMovingState.idle_left ||
+      this == AgentMovingState.idle_up_left;
 }
 
 class AgentMovement {
@@ -155,14 +199,14 @@ class AgentMovement {
     if (input.hasInput) {
       movingState = _walkingSate(input.direction);
       agent.body.linearVelocity = input.direction * Constants.AGENT_SPEED;
-    } else {
+    } else if (!movingState.isIdle) {
       movingState = _idleState(movingState);
       agent.body.linearVelocity = Vector2.zero();
     }
   }
 
   AgentMovingState _walkingSate(Vector2 direction) {
-    /*if (direction.x > 0 && direction.y < 0) {
+    if (direction.x > 0 && direction.y < 0) {
       return AgentMovingState.walking_up_right;
     } else if (direction.x > 0 && direction.y > 0) {
       return AgentMovingState.walking_down_right;
@@ -180,12 +224,11 @@ class AgentMovement {
       return AgentMovingState.walking_up;
     } else {
       return movingState;
-    }*/
-    return AgentMovingState.idle_right;
+    }
   }
 
   AgentMovingState _idleState(AgentMovingState current) {
-    /*switch (movingState) {
+    switch (movingState) {
       case AgentMovingState.walking_up:
         return AgentMovingState.idle_up;
       case AgentMovingState.walking_down:
@@ -204,7 +247,6 @@ class AgentMovement {
         return AgentMovingState.idle_down_left;
       default:
         return current;
-    }*/
-    return AgentMovingState.idle_right;
+    }
   }
 }
