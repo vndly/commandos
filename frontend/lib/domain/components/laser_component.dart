@@ -17,16 +17,16 @@ class LaserComponent extends Component {
     required this.laser,
   }) {
     const double aperture = 20;
-    const double numberOfBeams = 0;
+    const double numberOfBeams = 2;
     const double delta = aperture / numberOfBeams;
 
-    beams.add(
+    /*beams.add(
       Beam(
         start: Vector2.zero(),
         end: Vector2.zero(),
         angle: 0,
       ),
-    );
+    );*/
 
     for (int i = 1; i < numberOfBeams; i++) {
       beams.add(
@@ -57,7 +57,7 @@ class LaserComponent extends Component {
         source: source,
         angle: angle + laser.angle + beam.angle,
         gap: 0, //size.x / 2,
-        length: 25, //laser.range,
+        length: laser.range,
       );
       beam.update(result);
     }
