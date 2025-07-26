@@ -5,6 +5,7 @@ import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/turret.dart';
+import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/ray_casting.dart';
@@ -22,7 +23,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     required this.initialPosition,
     required this.size,
     required this.turret,
-  });
+  }) : super(priority: Priority.turret.value);
 
   @override
   Future onLoad() async {

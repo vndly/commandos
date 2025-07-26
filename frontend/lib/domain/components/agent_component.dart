@@ -6,6 +6,7 @@ import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
+import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:commandos/utils/assets.dart';
@@ -28,6 +29,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     required this.agent,
     required this.active,
   }) {
+    priority = Priority.agent.value;
     movement = AgentMovement(
       agent: this,
     );
