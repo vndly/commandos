@@ -40,8 +40,6 @@ class TurretComponent extends BodyComponent<GameComponent> {
     for (final Laser laser in turret.lasers) {
       final LaserComponent laserComponent = LaserComponent(
         laser: laser,
-        start: Vector2.zero(),
-        end: Vector2.zero(),
       );
       lasers.add(laserComponent);
       await world.add(laserComponent);

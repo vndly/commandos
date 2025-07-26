@@ -15,14 +15,29 @@ class LaserComponent extends Component {
 
   LaserComponent({
     required this.laser,
-    required Vector2 start,
-    required Vector2 end,
   }) {
-    for (int i = 0; i < 1; i++) {
+    beams.add(
+      Beam(
+        start: Vector2.zero(),
+        end: Vector2.zero(),
+        angle: 0,
+      ),
+    );
+
+    for (int i = 1; i < 3; i++) {
       beams.add(
         Beam(
-          start: start,
-          end: end,
+          start: Vector2.zero(),
+          end: Vector2.zero(),
+          angle: radians(i * 15),
+        ),
+      );
+
+      beams.add(
+        Beam(
+          start: Vector2.zero(),
+          end: Vector2.zero(),
+          angle: -radians(i * 15),
         ),
       );
     }
@@ -36,7 +51,7 @@ class LaserComponent extends Component {
     for (final Beam beam in beams) {
       final RayCastingResult result = rayCasting.test(
         source: source,
-        angle: angle + laser.angle,
+        angle: angle + laser.angle + beam.angle,
         gap: 0, //size.x / 2,
         length: laser.range,
       );
@@ -53,16 +68,18 @@ class LaserComponent extends Component {
 }
 
 class Beam {
-  final Vector2 start;
-  final Vector2 end;
+  Vector2 start;
+  Vector2 end;
+  final double angle;
 
-  const Beam({
+  Beam({
     required this.start,
     required this.end,
+    required this.angle,
   });
 
   void update(RayCastingResult result) {
-    start.setFrom(result.start);
-    end.setFrom(result.end);
+    start = result.start;
+    end = result.end;
   }
 }
