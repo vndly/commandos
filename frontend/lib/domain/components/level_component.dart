@@ -35,7 +35,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     for (final Agent agent in level.agents) {
       final AgentComponent agentComponent = AgentComponent(
         initialPosition: agent.position,
-        size: Vector2(10, 10),
+        size: Vector2(15, 15),
         input: input,
         agent: agent,
         active: false,

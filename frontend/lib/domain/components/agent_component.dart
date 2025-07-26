@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
@@ -86,22 +85,22 @@ class AgentSpriteComponent extends PositionComponent {
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: 0.1,
-        textureSize: Vector2(128, 128),
+        textureSize: Vector2(36, 36),
       ),
     );
-    final SpriteAnimation walkingUp = await SpriteAnimation.load(
+    /*final SpriteAnimation walkingUp = await SpriteAnimation.load(
       Assets.IMAGES_ANIMATIONS_AGENTS_WALKING,
       SpriteAnimationData.sequenced(
         amount: 5,
         stepTime: 0.1,
         textureSize: Vector2(128, 128),
       ),
-    );
+    );*/
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
         AgentMovingState.idle: idleUp,
-        AgentMovingState.walking: walkingUp,
+        //AgentMovingState.walking: walkingUp,
       },
       current: movement.movingState,
       position: Vector2(0, 0),
@@ -147,23 +146,11 @@ class AgentMovement {
 
   void update(Input input) {
     if (input.hasInput) {
-      movingState = AgentMovingState.walking;
-      agent.body.setTransform(
-        agent.body.position,
-        radians(_angle(input.direction)),
-      );
+      //movingState = AgentMovingState.walking;
       agent.body.linearVelocity = input.direction * Constants.AGENT_SPEED;
     } else {
       movingState = AgentMovingState.idle;
       agent.body.linearVelocity = Vector2.zero();
-    }
-  }
-
-  double _angle(Vector2 direction) {
-    if (direction.x == 0 && direction.y == 0) {
-      return 0;
-    } else {
-      return (atan2(direction.y, direction.x) * 180 / pi) + 90;
     }
   }
 }
