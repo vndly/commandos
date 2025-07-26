@@ -84,7 +84,7 @@ class AgentSpriteComponent extends PositionComponent {
     );
     decorator.addLast(decorator2);
 
-    final SpriteAnimation idleUp = await SpriteAnimation.load(
+    final SpriteAnimation idleRight = await SpriteAnimation.load(
       Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
       SpriteAnimationData.sequenced(
         amount: 1,
@@ -103,7 +103,7 @@ class AgentSpriteComponent extends PositionComponent {
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
-        AgentMovingState.idle: idleUp,
+        AgentMovingState.idle_right: idleRight,
         //AgentMovingState.walking: walkingUp,
       },
       current: movement.movingState,
@@ -125,13 +125,27 @@ class AgentSpriteComponent extends PositionComponent {
 }
 
 enum AgentMovingState {
-  idle,
-  walking,
+  idle_up,
+  idle_down,
+  idle_right,
+  idle_left,
+  idle_up_right,
+  idle_up_left,
+  idle_down_right,
+  idle_down_left,
+  walking_up,
+  walking_down,
+  walking_right,
+  walking_left,
+  walking_up_right,
+  walking_up_left,
+  walking_down_right,
+  walking_down_left,
 }
 
 class AgentMovement {
   final AgentComponent agent;
-  AgentMovingState movingState = AgentMovingState.idle;
+  AgentMovingState movingState = AgentMovingState.idle_right;
 
   AgentMovement({
     required this.agent,
@@ -139,11 +153,56 @@ class AgentMovement {
 
   void update(Input input) {
     if (input.hasInput) {
-      //movingState = AgentMovingState.walking;
+      movingState = _walkingSate(input.direction);
       agent.body.linearVelocity = input.direction * Constants.AGENT_SPEED;
     } else {
-      movingState = AgentMovingState.idle;
+      movingState = _idleState(movingState);
       agent.body.linearVelocity = Vector2.zero();
+    }
+  }
+
+  AgentMovingState _walkingSate(Vector2 direction) {
+    if (direction.x > 0 && direction.y < 0) {
+      return AgentMovingState.walking_up_right;
+    } else if (direction.x > 0 && direction.y > 0) {
+      return AgentMovingState.walking_down_right;
+    } else if (direction.x < 0 && direction.y < 0) {
+      return AgentMovingState.walking_up_left;
+    } else if (direction.x < 0 && direction.y > 0) {
+      return AgentMovingState.walking_down_left;
+    } else if (direction.x > 0) {
+      return AgentMovingState.walking_right;
+    } else if (direction.x < 0) {
+      return AgentMovingState.walking_left;
+    } else if (direction.y > 0) {
+      return AgentMovingState.walking_down;
+    } else if (direction.y < 0) {
+      return AgentMovingState.walking_up;
+    } else {
+      return movingState;
+    }
+  }
+
+  AgentMovingState _idleState(AgentMovingState current) {
+    switch (movingState) {
+      case AgentMovingState.walking_up:
+        return AgentMovingState.idle_up;
+      case AgentMovingState.walking_down:
+        return AgentMovingState.idle_down;
+      case AgentMovingState.walking_right:
+        return AgentMovingState.idle_right;
+      case AgentMovingState.walking_left:
+        return AgentMovingState.idle_left;
+      case AgentMovingState.walking_up_right:
+        return AgentMovingState.idle_up_right;
+      case AgentMovingState.walking_up_left:
+        return AgentMovingState.idle_up_left;
+      case AgentMovingState.walking_down_right:
+        return AgentMovingState.idle_down_right;
+      case AgentMovingState.walking_down_left:
+        return AgentMovingState.idle_down_left;
+      default:
+        return current;
     }
   }
 }
