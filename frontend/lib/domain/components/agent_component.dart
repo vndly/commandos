@@ -85,7 +85,7 @@ class AgentSpriteComponent extends PositionComponent {
     decorator.addLast(decorator2);
 
     final SpriteAnimation idleRight = await SpriteAnimation.load(
-      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
+      Assets.IMAGES_ANIMATIONS_AGENTS_IDLE_RIGHT,
       SpriteAnimationData.sequenced(
         amount: 1,
         stepTime: 0.1,
@@ -97,7 +97,7 @@ class AgentSpriteComponent extends PositionComponent {
       SpriteAnimationData.sequenced(
         amount: 5,
         stepTime: 0.1,
-        textureSize: Vector2(128, 128),
+        textureSize: Vector2(36, 36),
       ),
     );*/
 
@@ -162,7 +162,7 @@ class AgentMovement {
   }
 
   AgentMovingState _walkingSate(Vector2 direction) {
-    if (direction.x > 0 && direction.y < 0) {
+    /*if (direction.x > 0 && direction.y < 0) {
       return AgentMovingState.walking_up_right;
     } else if (direction.x > 0 && direction.y > 0) {
       return AgentMovingState.walking_down_right;
@@ -180,11 +180,12 @@ class AgentMovement {
       return AgentMovingState.walking_up;
     } else {
       return movingState;
-    }
+    }*/
+    return AgentMovingState.idle_right;
   }
 
   AgentMovingState _idleState(AgentMovingState current) {
-    switch (movingState) {
+    /*switch (movingState) {
       case AgentMovingState.walking_up:
         return AgentMovingState.idle_up;
       case AgentMovingState.walking_down:
@@ -203,6 +204,7 @@ class AgentMovement {
         return AgentMovingState.idle_down_left;
       default:
         return current;
-    }
+    }*/
+    return AgentMovingState.idle_right;
   }
 }
