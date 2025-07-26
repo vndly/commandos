@@ -68,13 +68,11 @@ class TurretComponent extends BodyComponent<GameComponent> {
     }
 
     for (final LaserComponent laser in lasers) {
-      final RayCastingResult result = rayCasting.test(
+      laser.test(
         source: body.position,
-        angle: body.angle + laser.laser.angle,
-        gap: size.x / 2,
-        length: laser.laser.range,
+        angle: body.angle,
+        rayCasting: rayCasting,
       );
-      laser.updatePoints(start: result.start, end: result.end);
     }
   }
 }
