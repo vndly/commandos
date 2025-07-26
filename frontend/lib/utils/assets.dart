@@ -1,6 +1,8 @@
 class Assets {
   static const String IMAGES_ANIMATIONS_AGENTS_IDLE =
       'animations/agents/idle.png';
+  static const String IMAGES_ANIMATIONS_AGENTS_WALKING_RIGHT =
+      'animations/agents/walking_right.png';
   static const String IMAGES_ANIMATIONS_AGENTS_WALKING_UP =
       'animations/agents/walking_up.png';
   static const String IMAGES_ANIMATIONS_AGENTS_WALKING_UP_RIGHT =
