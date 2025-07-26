@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/agent.dart';
@@ -7,9 +6,9 @@ import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
-import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
+import 'package:flame/rendering.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class AgentComponent extends BodyComponent<GameComponent> {
@@ -80,6 +79,11 @@ class AgentSpriteComponent extends PositionComponent {
 
   @override
   FutureOr onLoad() async {
+    final PaintDecorator decorator2 = PaintDecorator.tint(
+      Constants.AGENT_COLORS[agent.id]!,
+    );
+    decorator.addLast(decorator2);
+
     final SpriteAnimation idleUp = await SpriteAnimation.load(
       Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
       SpriteAnimationData.sequenced(
@@ -117,17 +121,6 @@ class AgentSpriteComponent extends PositionComponent {
     super.update(dt);
 
     spriteAnimation.current = movement.movingState;
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-
-    canvas.drawText(
-      text: agent.id,
-      position: Vector2(size.x / 2, size.y / 2.2),
-      size: size.x / 3,
-    );
   }
 }
 
