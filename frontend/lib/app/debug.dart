@@ -1,21 +1,32 @@
 class Debug {
-  static DebugMode flag = DebugMode.noDebug;
+  static bool hasBodyDebug = false;
+  static bool hasFpsDebug = false;
+  static bool hasAgentVision = false;
 
-  static void toggle() {
-    flag = DebugMode.values[(DebugMode.values.indexOf(flag) + 1) % DebugMode.values.length];
-    print('Debug mode: $flag');
+  static void set(DebugMode flag) {
+    switch (flag) {
+      case DebugMode.off:
+        hasBodyDebug = false;
+        hasFpsDebug = false;
+        hasAgentVision = false;
+        break;
+      case DebugMode.mode1:
+        hasBodyDebug = !hasBodyDebug;
+        break;
+      case DebugMode.mode2:
+        hasFpsDebug = !hasFpsDebug;
+        break;
+      case DebugMode.mode3:
+        hasAgentVision = !hasAgentVision;
+        break;
+    }
+    print('Debug mode: on');
   }
-
-  static bool get hasBodyDebug => flag == DebugMode.bodyDebug;
-
-  static bool get hasFpsDebug => flag == DebugMode.fpsDebug;
-
-  static bool get hasAgentVision => flag == DebugMode.agentVision;
 }
 
 enum DebugMode {
-  noDebug,
-  bodyDebug,
-  fpsDebug,
-  agentVision,
+  off,
+  mode1, // bodies
+  mode2, // fps
+  mode3, // agent vision
 }

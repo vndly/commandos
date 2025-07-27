@@ -75,8 +75,14 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       _switchAgent(1);
     } else if (input.isSwitchingAgentBackward(event, keysPressed)) {
       _switchAgent(-1);
-    } else if (input.isDebug(event, keysPressed)) {
-      Debug.toggle();
+    } else if (input.isDebugOff(event, keysPressed)) {
+      Debug.set(DebugMode.off);
+    } else if (input.isDebugMode1(event, keysPressed)) {
+      Debug.set(DebugMode.mode1);
+    } else if (input.isDebugMode2(event, keysPressed)) {
+      Debug.set(DebugMode.mode2);
+    } else if (input.isDebugMode3(event, keysPressed)) {
+      Debug.set(DebugMode.mode3);
     }
 
     return false;

@@ -87,13 +87,40 @@ class Input {
         key: LogicalKeyboardKey.shiftLeft,
       );
 
-  bool isDebug(
+  bool isDebugOff(
     KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) => _isPressing(
     event: event,
     keysPressed: keysPressed,
-    key: LogicalKeyboardKey.keyB,
+    key: LogicalKeyboardKey.digit0,
+  );
+
+  bool isDebugMode1(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.digit1,
+  );
+
+  bool isDebugMode2(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.digit2,
+  );
+
+  bool isDebugMode3(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.digit3,
   );
 
   Vector2 get direction {
