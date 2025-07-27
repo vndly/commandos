@@ -183,7 +183,6 @@ class AgentMovement {
     required this.agent,
   });
 
-  // TODO(momo): Ignore the last input when releasing two keys
   void update(Input input) {
     if (input.hasInput) {
       movingState = _walkingSate(input.direction);
