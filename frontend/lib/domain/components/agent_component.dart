@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:commandos/app/constants.dart';
+import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/agent.dart';
@@ -73,7 +74,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
       movement.update(input);
     }
 
-    if (active) {
+    if (active && Debug.hasAgentVision) {
       laser.show(
         source: body.position,
         angle: movement.movingState.radians,
