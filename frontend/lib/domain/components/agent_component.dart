@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
+import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
+import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame/rendering.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -18,6 +21,8 @@ class AgentComponent extends BodyComponent<GameComponent> {
   final Input input;
   final Agent agent;
   late final AgentMovement movement;
+  late final LaserComponent laser;
+  late final RayCasting rayCasting;
   bool active;
 
   AgentComponent({
@@ -36,6 +41,14 @@ class AgentComponent extends BodyComponent<GameComponent> {
   @override
   Future onLoad() async {
     await super.onLoad();
+
+    rayCasting = RayCasting(world);
+
+    laser = LaserComponent(
+      laser: const Laser(angle: 0, aperture: 20, range: 0),
+    );
+    await world.add(laser);
+
     await add(
       AgentSpriteComponent(
         agent: agent,
@@ -54,6 +67,12 @@ class AgentComponent extends BodyComponent<GameComponent> {
     if (active) {
       movement.update(input);
     }
+
+    laser.test(
+      source: body.position,
+      angle: movement.movingState.radians,
+      rayCasting: rayCasting,
+    );
   }
 
   @override
@@ -155,18 +174,23 @@ class AgentSpriteComponent extends PositionComponent {
 }
 
 enum AgentMovingState {
-  idle_up,
-  idle_right,
-  idle_down,
-  idle_left,
-  walking_up,
-  walking_up_right,
-  walking_right,
-  walking_down_right,
-  walking_down,
-  walking_down_left,
-  walking_left,
-  walking_up_left;
+  idle_up(0, 0 * degrees2Radians),
+  idle_right(90, 90 * degrees2Radians),
+  idle_down(180, 180 * degrees2Radians),
+  idle_left(270, 270 * degrees2Radians),
+  walking_up(0, 0 * degrees2Radians),
+  walking_up_right(45, 45 * degrees2Radians),
+  walking_right(90, 90 * degrees2Radians),
+  walking_down_right(135, 135 * degrees2Radians),
+  walking_down(180, 180 * degrees2Radians),
+  walking_down_left(225, 225 * degrees2Radians),
+  walking_left(270, 270 * degrees2Radians),
+  walking_up_left(315, 315 * degrees2Radians);
+
+  final double angle;
+  final double radians;
+
+  const AgentMovingState(this.angle, this.radians);
 
   bool get isIdle =>
       this == AgentMovingState.idle_up ||
