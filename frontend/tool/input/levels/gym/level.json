@@ -12,7 +12,8 @@
                 {
                     "angle": 0,
                     "aperture": 20,
-                    "range": 50
+                    "range": 50,
+                    "numberOfBeams": 2
                 }
             ],
             "behaviors": [
@@ -37,7 +38,8 @@
                 {
                     "angle": 0,
                     "aperture": 50,
-                    "range": 50
+                    "range": 50,
+                    "numberOfBeams": 2
                 }
             ],
             "behaviors": [

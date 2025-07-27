@@ -42,7 +42,8 @@ class LevelGym {
         {
           "angle": 0.0,
           "aperture": 20.0,
-          "range": 50.0
+          "range": 50.0,
+          "numberOfBeams": 2
         }
       ],
       "behaviors": [
@@ -87,7 +88,8 @@ class LevelGym {
         {
           "angle": 0.0,
           "aperture": 50.0,
-          "range": 50.0
+          "range": 50.0,
+          "numberOfBeams": 2
         }
       ],
       "behaviors": [

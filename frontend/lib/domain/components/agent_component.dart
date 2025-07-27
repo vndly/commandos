@@ -45,7 +45,12 @@ class AgentComponent extends BodyComponent<GameComponent> {
     rayCasting = RayCasting(world);
 
     laser = LaserComponent(
-      laser: const Laser(angle: 0, aperture: 22.5, range: 0),
+      laser: const Laser(
+        angle: 0,
+        aperture: 22.5,
+        range: 0,
+        numberOfBeams: 50,
+      ),
     );
     await world.add(laser);
 
@@ -68,11 +73,15 @@ class AgentComponent extends BodyComponent<GameComponent> {
       movement.update(input);
     }
 
-    laser.test(
-      source: body.position,
-      angle: movement.movingState.radians,
-      rayCasting: rayCasting,
-    );
+    if (active) {
+      laser.show(
+        source: body.position,
+        angle: movement.movingState.radians,
+        rayCasting: rayCasting,
+      );
+    } else {
+      laser.hide();
+    }
   }
 
   @override

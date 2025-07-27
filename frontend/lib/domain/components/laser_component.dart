@@ -18,18 +18,19 @@ class LaserComponent extends Component {
     required this.laser,
   }) {
     priority = Priority.laser.value;
-    const double numberOfBeams = 50;
-    final double delta = laser.aperture / numberOfBeams;
+    final double delta = laser.aperture / laser.numberOfBeams;
 
-    /*beams.add(
-      Beam(
-        start: Vector2.zero(),
-        end: Vector2.zero(),
-        angle: 0,
-      ),
-    );*/
+    if (laser.numberOfBeams > 2) {
+      beams.add(
+        Beam(
+          start: Vector2.zero(),
+          end: Vector2.zero(),
+          angle: 0,
+        ),
+      );
+    }
 
-    for (int i = 1; i < numberOfBeams; i++) {
+    for (int i = 1; i < laser.numberOfBeams; i++) {
       beams.add(
         Beam(
           start: Vector2.zero(),
@@ -48,7 +49,7 @@ class LaserComponent extends Component {
     }
   }
 
-  void test({
+  void show({
     required Vector2 source,
     required double angle,
     required RayCasting rayCasting,
@@ -61,6 +62,13 @@ class LaserComponent extends Component {
         length: laser.range != 0 ? laser.range : 1000,
       );
       beam.update(result);
+    }
+  }
+
+  void hide() {
+    for (final Beam beam in beams) {
+      beam.start = Vector2.zero();
+      beam.end = Vector2.zero();
     }
   }
 

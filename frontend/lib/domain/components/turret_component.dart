@@ -67,7 +67,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     }
 
     for (final LaserComponent laser in lasers) {
-      laser.test(
+      laser.show(
         source: body.position,
         angle: body.angle,
         rayCasting: rayCasting,

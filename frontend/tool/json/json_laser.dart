@@ -13,10 +13,14 @@ class JsonLaser {
   @JsonKey(name: 'range')
   final double range;
 
+  @JsonKey(name: 'numberOfBeams')
+  final int numberOfBeams;
+
   JsonLaser({
     required this.angle,
     required this.aperture,
     required this.range,
+    required this.numberOfBeams,
   });
 
   factory JsonLaser.fromJson(Map<String, dynamic> json) =>
