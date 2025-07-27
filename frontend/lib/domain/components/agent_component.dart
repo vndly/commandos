@@ -45,7 +45,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     rayCasting = RayCasting(world);
 
     laser = LaserComponent(
-      laser: const Laser(angle: 0, aperture: 20, range: 0),
+      laser: const Laser(angle: 0, aperture: 22.5, range: 0),
     );
     await world.add(laser);
 
