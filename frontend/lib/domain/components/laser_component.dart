@@ -20,7 +20,7 @@ class LaserComponent extends Component {
     priority = Priority.laser.value;
     final double delta = laser.aperture / laser.numberOfBeams;
 
-    if (laser.numberOfBeams > 2) {
+    if ((laser.numberOfBeams == 1) || (laser.numberOfBeams > 2)) {
       beams.add(
         Beam(
           start: Vector2.zero(),
