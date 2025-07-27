@@ -20,7 +20,6 @@ class Debug {
         hasAgentVision = !hasAgentVision;
         break;
     }
-    print('Debug mode: on');
   }
 }
 
