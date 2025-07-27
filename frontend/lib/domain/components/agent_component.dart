@@ -195,8 +195,7 @@ class AgentMovement {
     required this.agent,
   });
 
-  // TODO(momo): diagonal speed cannot be the same as horizontal/vertical speed
-  // Ignore the last input when releasing two keys
+  // TODO(momo): Ignore the last input when releasing two keys
   void update(Input input) {
     if (input.hasInput) {
       movingState = _walkingSate(input.direction);

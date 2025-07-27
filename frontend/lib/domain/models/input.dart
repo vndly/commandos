@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
@@ -110,7 +112,11 @@ class Input {
       y = 1;
     }
 
-    return Vector2(x, y);
+    if (x != 0 && y != 0) {
+      return Vector2(x / sqrt2, y / sqrt2);
+    } else {
+      return Vector2(x, y);
+    }
   }
 }
 
