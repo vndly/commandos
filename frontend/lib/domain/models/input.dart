@@ -1,10 +1,10 @@
 import 'dart:math';
-
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 class Input {
   KeyEvent? lastEvent;
+  Vector2 previousDirection = Vector2.zero();
   final Set<ActiveInput> activeInputs = {};
 
   bool get hasInput => activeInputs.isNotEmpty;
@@ -13,6 +13,12 @@ class Input {
 
   void onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     lastEvent = event;
+
+    if (keysPressed.isNotEmpty) {
+      print('---------------');
+      print('${event.runtimeType} ${event.logicalKey.debugName}');
+      print(keysPressed.map((key) => key.debugName).join(', '));
+    }
 
     _checkKey(
       input: ActiveInput.left,
@@ -140,9 +146,24 @@ class Input {
     }
 
     if (x != 0 && y != 0) {
-      return Vector2(x / sqrt2, y / sqrt2);
+      return previousDirection = Vector2(x / sqrt2, y / sqrt2);
+    } else if (x == 0 && y == 0) {
+      return previousDirection = Vector2.zero();
     } else {
-      return Vector2(x, y);
+      // This is to fix an error in the input delivery. When releasing two keys
+      // at the same time, the framework still signals that there is still one
+      // of the two keys pressed.
+      if (previousDirection.x != 0 && previousDirection.y != 0) {
+        final Vector2 result = Vector2(
+          previousDirection.x,
+          previousDirection.y,
+        );
+        previousDirection = Vector2(x, y);
+
+        return result;
+      } else {
+        return previousDirection = Vector2(x, y);
+      }
     }
   }
 }

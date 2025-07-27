@@ -116,9 +116,13 @@ class AgentSpriteComponent extends PositionComponent {
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
         AgentMovingState.idle_up: await _idleAnimation(0),
+        AgentMovingState.idle_up_right: await _idleAnimation(1),
         AgentMovingState.idle_right: await _idleAnimation(2),
+        AgentMovingState.idle_down_right: await _idleAnimation(3),
         AgentMovingState.idle_down: await _idleAnimation(4),
+        AgentMovingState.idle_down_left: await _idleAnimation(5),
         AgentMovingState.idle_left: await _idleAnimation(6),
+        AgentMovingState.idle_up_left: await _idleAnimation(7),
         AgentMovingState.walking_up: await _walkingAnimation(
           Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
         ),
@@ -185,9 +189,13 @@ class AgentSpriteComponent extends PositionComponent {
 
 enum AgentMovingState {
   idle_up(0, 0 * degrees2Radians),
+  idle_up_right(45, 45 * degrees2Radians),
   idle_right(90, 90 * degrees2Radians),
+  idle_down_right(135, 135 * degrees2Radians),
   idle_down(180, 180 * degrees2Radians),
+  idle_down_left(225, 225 * degrees2Radians),
   idle_left(270, 270 * degrees2Radians),
+  idle_up_left(315, 315 * degrees2Radians),
   walking_up(0, 0 * degrees2Radians),
   walking_up_right(45, 45 * degrees2Radians),
   walking_right(90, 90 * degrees2Radians),
@@ -204,9 +212,13 @@ enum AgentMovingState {
 
   bool get isIdle =>
       this == AgentMovingState.idle_up ||
+      this == AgentMovingState.idle_up_right ||
       this == AgentMovingState.idle_right ||
+      this == AgentMovingState.idle_down_right ||
       this == AgentMovingState.idle_down ||
-      this == AgentMovingState.idle_left;
+      this == AgentMovingState.idle_down_left ||
+      this == AgentMovingState.idle_left ||
+      this == AgentMovingState.idle_up_left;
 }
 
 class AgentMovement {
@@ -252,17 +264,29 @@ class AgentMovement {
   AgentMovingState _idleState(AgentMovingState current) {
     switch (movingState) {
       case AgentMovingState.walking_up:
-      case AgentMovingState.walking_up_right:
         return AgentMovingState.idle_up;
+
+      case AgentMovingState.walking_up_right:
+        return AgentMovingState.idle_up_right;
+
       case AgentMovingState.walking_right:
-      case AgentMovingState.walking_down_right:
         return AgentMovingState.idle_right;
+
+      case AgentMovingState.walking_down_right:
+        return AgentMovingState.idle_down_right;
+
       case AgentMovingState.walking_down:
-      case AgentMovingState.walking_down_left:
         return AgentMovingState.idle_down;
+
+      case AgentMovingState.walking_down_left:
+        return AgentMovingState.idle_down_left;
+
       case AgentMovingState.walking_left:
-      case AgentMovingState.walking_up_left:
         return AgentMovingState.idle_left;
+
+      case AgentMovingState.walking_up_left:
+        return AgentMovingState.idle_up_left;
+
       default:
         return current;
     }
