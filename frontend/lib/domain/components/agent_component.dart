@@ -145,7 +145,7 @@ class AgentSpriteComponent extends PositionComponent {
         path,
         SpriteAnimationData.sequenced(
           amount: 8,
-          stepTime: 0.1,
+          stepTime: 0.05,
           textureSize: Vector2(36, 36),
         ),
       );
