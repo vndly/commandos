@@ -41,7 +41,7 @@ class LevelGym {
       "lasers": [
         {
           "angle": 0.0,
-          "aperture": 20.0,
+          "sweep": 20.0,
           "range": 50.0,
           "numberOfBeams": 2
         }
@@ -87,7 +87,7 @@ class LevelGym {
       "lasers": [
         {
           "angle": 0.0,
-          "aperture": 50.0,
+          "sweep": 50.0,
           "range": 50.0,
           "numberOfBeams": 2
         }

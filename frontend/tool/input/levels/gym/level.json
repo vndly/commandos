@@ -11,7 +11,7 @@
             "lasers": [
                 {
                     "angle": 0,
-                    "aperture": 20,
+                    "sweep": 20,
                     "range": 50,
                     "numberOfBeams": 2
                 }
@@ -37,7 +37,7 @@
             "lasers": [
                 {
                     "angle": 0,
-                    "aperture": 50,
+                    "sweep": 50,
                     "range": 50,
                     "numberOfBeams": 2
                 }

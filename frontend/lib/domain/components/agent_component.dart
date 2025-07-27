@@ -48,7 +48,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     laser = LaserComponent(
       laser: const Laser(
         angle: 0,
-        aperture: 22.5,
+        sweep: 22.5,
         range: 0,
         numberOfBeams: 50,
       ),
