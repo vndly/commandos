@@ -2,7 +2,8 @@ enum Priority {
   floor(0),
   laser(1),
   agent(2),
-  turret(3);
+  turret(3),
+  light(4);
 
   final int value;
 

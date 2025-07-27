@@ -42,4 +42,5 @@ flutter:
   assets:
     - assets/images/levels/
     - assets/images/turrets/
+    - assets/images/light/
     - assets/images/animations/agents/

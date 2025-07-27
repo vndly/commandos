@@ -108,10 +108,11 @@ class AgentSpriteComponent extends PositionComponent {
 
   @override
   FutureOr onLoad() async {
-    final PaintDecorator decorator2 = PaintDecorator.tint(
-      Constants.AGENT_COLORS[agent.id]!,
+    decorator.addLast(
+      PaintDecorator.tint(
+        Constants.AGENT_COLORS[agent.id]!,
+      ),
     );
-    decorator.addLast(decorator2);
 
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
