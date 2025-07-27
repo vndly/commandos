@@ -110,13 +110,13 @@ class AgentSpriteComponent extends PositionComponent {
           Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN,
         ),
         AgentMovingState.walking_down_left: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN_LEFT,
         ),
         AgentMovingState.walking_left: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_LEFT,
         ),
         AgentMovingState.walking_up_left: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
+          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP_LEFT,
         ),
       },
       current: movement.movingState,
