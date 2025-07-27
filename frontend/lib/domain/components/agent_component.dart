@@ -87,13 +87,9 @@ class AgentSpriteComponent extends PositionComponent {
     spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
       animations: {
         AgentMovingState.idle_up: await _idleAnimation(0),
-        AgentMovingState.idle_up_right: await _idleAnimation(1),
         AgentMovingState.idle_right: await _idleAnimation(2),
-        AgentMovingState.idle_down_right: await _idleAnimation(3),
         AgentMovingState.idle_down: await _idleAnimation(4),
-        AgentMovingState.idle_down_left: await _idleAnimation(5),
         AgentMovingState.idle_left: await _idleAnimation(6),
-        AgentMovingState.idle_up_left: await _idleAnimation(7),
         AgentMovingState.walking_up: await _walkingAnimation(
           Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
         ),
@@ -160,13 +156,9 @@ class AgentSpriteComponent extends PositionComponent {
 
 enum AgentMovingState {
   idle_up,
-  idle_up_right,
   idle_right,
-  idle_down_right,
   idle_down,
-  idle_down_left,
   idle_left,
-  idle_up_left,
   walking_up,
   walking_up_right,
   walking_right,
@@ -178,13 +170,9 @@ enum AgentMovingState {
 
   bool get isIdle =>
       this == AgentMovingState.idle_up ||
-      this == AgentMovingState.idle_up_right ||
       this == AgentMovingState.idle_right ||
-      this == AgentMovingState.idle_down_right ||
       this == AgentMovingState.idle_down ||
-      this == AgentMovingState.idle_down_left ||
-      this == AgentMovingState.idle_left ||
-      this == AgentMovingState.idle_up_left;
+      this == AgentMovingState.idle_left;
 }
 
 class AgentMovement {
@@ -231,21 +219,17 @@ class AgentMovement {
   AgentMovingState _idleState(AgentMovingState current) {
     switch (movingState) {
       case AgentMovingState.walking_up:
-        return AgentMovingState.idle_up;
       case AgentMovingState.walking_up_right:
-        return AgentMovingState.idle_up_right;
+        return AgentMovingState.idle_up;
       case AgentMovingState.walking_right:
-        return AgentMovingState.idle_right;
       case AgentMovingState.walking_down_right:
-        return AgentMovingState.idle_down_right;
+        return AgentMovingState.idle_right;
       case AgentMovingState.walking_down:
-        return AgentMovingState.idle_down;
       case AgentMovingState.walking_down_left:
-        return AgentMovingState.idle_down_left;
+        return AgentMovingState.idle_down;
       case AgentMovingState.walking_left:
-        return AgentMovingState.idle_left;
       case AgentMovingState.walking_up_left:
-        return AgentMovingState.idle_up_left;
+        return AgentMovingState.idle_left;
       default:
         return current;
     }
