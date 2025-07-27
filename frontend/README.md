@@ -12,6 +12,7 @@
   - Pick up
   - Carry object
   - Switch
+- Verticality (using ladders to "climb" to a wall)
 - Exit point
 - Alarm level
 - Backapack
