@@ -11,11 +11,13 @@ import 'package:commandos/domain/json/json_behavior.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/json/json_position.dart';
+import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
 import 'package:commandos/domain/json/json_wall.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
+import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/domain/types/behavior_type.dart';
@@ -34,6 +36,9 @@ class LevelLoader {
       ),
       turrets: _getTurrets(
         jsonLevel.turrets,
+      ),
+      soldiers: _getSoldiers(
+        jsonLevel.soldiers,
       ),
       walls: _getWalls(
         jsonLevel.walls,
@@ -70,6 +75,25 @@ class LevelLoader {
           angle: radians(turret.angle),
           lasers: turret.lasers.map(_getLaser).toList(),
           behaviors: turret.behaviors.map(_getBehavior).toList(),
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  static List<Soldier> _getSoldiers(List<JsonSoldier> soldiers) {
+    final List<Soldier> result = [];
+
+    for (final JsonSoldier soldier in soldiers) {
+      result.add(
+        Soldier(
+          id: soldier.id,
+          position: _toVector2(soldier.position),
+          angle: radians(soldier.angle),
+          sweep: soldier.sweep,
+          range: soldier.range,
+          behaviors: soldier.behaviors.map(_getBehavior).toList(),
         ),
       );
     }

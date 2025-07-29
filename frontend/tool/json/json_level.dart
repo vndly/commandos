@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'json_agent.dart';
+import 'json_soldier.dart';
 import 'json_turret.dart';
 import 'json_wall.dart';
 
@@ -22,6 +23,9 @@ class JsonLevel {
   @JsonKey(name: 'turrets')
   final List<JsonTurret> turrets;
 
+  @JsonKey(name: 'soldiers')
+  final List<JsonSoldier> soldiers;
+
   @JsonKey(name: 'walls')
   final List<JsonWall> walls;
 
@@ -31,6 +35,7 @@ class JsonLevel {
     required this.height,
     required this.agents,
     required this.turrets,
+    required this.soldiers,
     required this.walls,
   });
 

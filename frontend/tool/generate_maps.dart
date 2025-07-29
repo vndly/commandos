@@ -46,6 +46,7 @@ Future<void> processFile(String levelFolder) async {
     height: height,
     agents: agents,
     turrets: jsonExtra.turrets,
+    soldiers: jsonExtra.soldiers,
     walls: walls,
   );
 

@@ -30,22 +30,17 @@ class LevelGym {
       "angle": 0.0
     }
   ],
-  "turrets": [
+  "turrets": [],
+  "soldiers": [
     {
-      "id": "turret1",
+      "id": "soldier1",
       "position": {
         "x": 60,
         "y": 40
       },
       "angle": 0.0,
-      "lasers": [
-        {
-          "angle": 0.0,
-          "sweep": 20.0,
-          "range": 50.0,
-          "numberOfBeams": 2
-        }
-      ],
+      "sweep": 20.0,
+      "range": 50.0,
       "behaviors": [
         {
           "type": "rotating",
@@ -78,20 +73,14 @@ class LevelGym {
       ]
     },
     {
-      "id": "turret2",
+      "id": "soldier2",
       "position": {
         "x": 10,
         "y": 35
       },
       "angle": 90.0,
-      "lasers": [
-        {
-          "angle": 0.0,
-          "sweep": 50.0,
-          "range": 50.0,
-          "numberOfBeams": 2
-        }
-      ],
+      "sweep": 50.0,
+      "range": 50.0,
       "behaviors": [
         {
           "type": "rotating",

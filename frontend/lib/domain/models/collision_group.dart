@@ -7,7 +7,7 @@ class CollisionGroup {
   static final CollisionGroup AGENT = CollisionGroup(
     isSensor: false,
     category: Groups.AGENT,
-    mask: Groups.WALL | Groups.TURRET,
+    mask: Groups.WALL | Groups.TURRET | Groups.SOLDIER,
   );
 
   static final CollisionGroup TURRET = CollisionGroup(
@@ -16,10 +16,16 @@ class CollisionGroup {
     mask: Groups.WALL | Groups.AGENT,
   );
 
+  static final CollisionGroup SOLDIER = CollisionGroup(
+    isSensor: false,
+    category: Groups.SOLDIER,
+    mask: Groups.WALL | Groups.AGENT,
+  );
+
   static final CollisionGroup WALL = CollisionGroup(
     isSensor: false,
     category: Groups.WALL,
-    mask: Groups.AGENT | Groups.TURRET,
+    mask: Groups.AGENT | Groups.TURRET | Groups.SOLDIER,
   );
 
   CollisionGroup({
@@ -32,5 +38,6 @@ class CollisionGroup {
 class Groups {
   static const int AGENT = 0x0001; // 0000 0000 0000 0001
   static const int TURRET = 0x0002; // 0000 0000 0000 0010
-  static const int WALL = 0x0004; // 0000 0000 0000 0100
+  static const int SOLDIER = 0x0004; // 0000 0000 0000 0100
+  static const int WALL = 0x0008; // 0000 0000 0000 1000
 }
