@@ -16,7 +16,9 @@ class SoldierComponent extends BodyComponent<GameComponent> {
   final Vector2 initialPosition;
   final Vector2 size;
   final Soldier soldier;
+  double facingAngle = 0;
   late final VisionComponent vision;
+  SoldierMovingState movingState = SoldierMovingState.idle_right;
 
   SoldierComponent({
     required this.initialPosition,
@@ -29,10 +31,12 @@ class SoldierComponent extends BodyComponent<GameComponent> {
     await super.onLoad();
 
     rayCasting = RayCasting(world);
+    facingAngle = soldier.angle;
 
     await add(
       SoldierSpriteComponent(
         soldier: soldier,
+        soldierComponent: this,
         size: size,
       ),
     );
@@ -49,7 +53,7 @@ class SoldierComponent extends BodyComponent<GameComponent> {
     shape: shapeCircle(size / 4),
     center: initialPosition,
     bodyType: BodyType.kinematic,
-    angle: soldier.angle,
+    angle: 0,
     group: CollisionGroup.SOLDIER,
   );
 
@@ -58,6 +62,8 @@ class SoldierComponent extends BodyComponent<GameComponent> {
     super.update(dt);
 
     checkDebug();
+
+    movingState = _getMovingState(degrees(facingAngle));
 
     for (final Behavior behavior in soldier.behaviors) {
       behavior.update(body, dt);
@@ -69,15 +75,28 @@ class SoldierComponent extends BodyComponent<GameComponent> {
       rayCasting: rayCasting,
     );
   }
+
+  SoldierMovingState _getMovingState(double angle) {
+    final double positiveAngle = angle < 0 ? angle + 360 : angle;
+
+    for (final SoldierMovingState state in SoldierMovingState.values) {
+      if (positiveAngle >= state.angleMin && positiveAngle < state.angleMax) {
+        return state;
+      }
+    }
+
+    return movingState;
+  }
 }
 
 class SoldierSpriteComponent extends PositionComponent {
   final Soldier soldier;
+  final SoldierComponent soldierComponent;
   late final SpriteAnimationGroupComponent<SoldierMovingState> spriteAnimation;
-  SoldierMovingState movingState = SoldierMovingState.idle_right;
 
   SoldierSpriteComponent({
     required this.soldier,
+    required this.soldierComponent,
     required super.size,
   }) : super(anchor: Anchor.center);
 
@@ -94,7 +113,7 @@ class SoldierSpriteComponent extends PositionComponent {
         SoldierMovingState.idle_left: await _idleAnimation(6),
         SoldierMovingState.idle_up_left: await _idleAnimation(7),
       },
-      current: movingState,
+      current: soldierComponent.movingState,
       position: Vector2(0, 0),
       size: size,
     );
@@ -114,22 +133,29 @@ class SoldierSpriteComponent extends PositionComponent {
       textureSize: Vector2(36, 36),
     ),
   );
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    spriteAnimation.current = soldierComponent.movingState;
+  }
 }
 
 enum SoldierMovingState {
-  idle_up(0, 0 * degrees2Radians),
-  idle_up_right(45, 45 * degrees2Radians),
-  idle_right(90, 90 * degrees2Radians),
-  idle_down_right(135, 135 * degrees2Radians),
-  idle_down(180, 180 * degrees2Radians),
-  idle_down_left(225, 225 * degrees2Radians),
-  idle_left(270, 270 * degrees2Radians),
-  idle_up_left(315, 315 * degrees2Radians);
+  idle_up(247.5, 292.5),
+  idle_up_right(292.5, 337.5),
+  idle_right(337.5, 22.5),
+  idle_down_right(22.5, 67.5),
+  idle_down(67.5, 112.5),
+  idle_down_left(112.5, 157.5),
+  idle_left(157.5, 202.5),
+  idle_up_left(202.5, 247.5);
 
-  final double angle;
-  final double radians;
+  final double angleMin;
+  final double angleMax;
 
-  const SoldierMovingState(this.angle, this.radians);
+  const SoldierMovingState(this.angleMin, this.angleMax);
 
   bool get isIdle =>
       this == SoldierMovingState.idle_up ||
