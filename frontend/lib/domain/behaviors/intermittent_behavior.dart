@@ -1,4 +1,5 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/types/intermittent_state.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -21,43 +22,46 @@ class IntermittentBehavior extends Behavior {
   });
 
   @override
-  void update(Body body, double dt) {
+  void update(EnemyComponent enemy, double dt) {
     currentTime += dt;
 
     if ((currentState == IntermittentState.on) && (currentTime >= timeOn)) {
       currentTime -= timeOn;
       currentState = IntermittentState.off;
-      updatePosition(body);
+      updatePosition(enemy);
     } else if ((currentState == IntermittentState.off) &&
         (currentTime >= timeOff)) {
       currentTime -= timeOff;
       currentState = IntermittentState.on;
-      updatePosition(body);
+      updatePosition(enemy);
     }
   }
 
-  void updatePosition(Body body) {
+  void updatePosition(EnemyComponent enemy) {
     switch (currentState) {
       case IntermittentState.on:
-        body.setTransform(positionOn, body.angle);
+        enemy.body.setTransform(positionOn, enemy.body.angle);
         break;
 
       case IntermittentState.off:
-        body.setTransform(positionOff, body.angle);
+        enemy.body.setTransform(positionOff, enemy.body.angle);
         break;
     }
   }
 
   @override
-  void reset(Body body) {
+  void reset(EnemyComponent enemy) {
     if (positionOn.isNaN || positionOff.isNaN) {
-      positionOn.setValues(body.position.x, body.position.y);
-      positionOff.setValues(body.position.x - 1000, body.position.y);
+      positionOn.setValues(enemy.body.position.x, enemy.body.position.y);
+      positionOff.setValues(
+        enemy.body.position.x - 1000,
+        enemy.body.position.y,
+      );
     }
 
     currentTime = initialTime ?? 0;
     currentState = intermittentState;
 
-    updatePosition(body);
+    updatePosition(enemy);
   }
 }

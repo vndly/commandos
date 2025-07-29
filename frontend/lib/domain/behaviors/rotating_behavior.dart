@@ -1,7 +1,7 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/types/rotating_direction.dart';
 import 'package:flame/game.dart';
-import 'package:flame_forge2d/flame_forge2d.dart';
 
 class RotatingBehavior extends Behavior {
   double angle = 0;
@@ -20,7 +20,7 @@ class RotatingBehavior extends Behavior {
   });
 
   @override
-  void update(Body body, double dt) {
+  void update(EnemyComponent enemy, double dt) {
     angle += dt * rotationSpeed * direction.value;
 
     if (minAngle != null && maxAngle != null) {
@@ -33,12 +33,12 @@ class RotatingBehavior extends Behavior {
       }
     }
 
-    body.setTransform(body.position, -radians(angle));
+    enemy.facingAngle = radians(angle);
   }
 
   @override
-  void reset(Body body) {
+  void reset(EnemyComponent enemy) {
     angle = startAngle;
-    body.setTransform(body.position, -radians(angle));
+    enemy.facingAngle = radians(angle);
   }
 }

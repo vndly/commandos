@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:commandos/domain/behaviors/behavior.dart';
-import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/laser.dart';
@@ -8,28 +8,22 @@ import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
-import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-class TurretComponent extends BodyComponent<GameComponent> {
-  late final RayCasting rayCasting;
-  final Vector2 initialPosition;
-  final Vector2 size;
+class TurretComponent extends EnemyComponent {
   final Turret turret;
   final List<LaserComponent> lasers = [];
 
   TurretComponent({
-    required this.initialPosition,
-    required this.size,
+    required super.initialPosition,
+    required super.size,
     required this.turret,
-  }) : super(priority: Priority.turret.value);
+  }) : super(priority: Priority.turret.value, facingAngle: turret.angle);
 
   @override
   Future onLoad() async {
     await super.onLoad();
-
-    rayCasting = RayCasting(world);
 
     await add(
       TurretSpriteComponent(
@@ -63,7 +57,7 @@ class TurretComponent extends BodyComponent<GameComponent> {
     checkDebug();
 
     for (final Behavior behavior in turret.behaviors) {
-      behavior.update(body, dt);
+      behavior.update(this, dt);
     }
 
     for (final LaserComponent laser in lasers) {

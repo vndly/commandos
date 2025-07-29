@@ -1,4 +1,5 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class MovingBehavior extends Behavior {
@@ -26,43 +27,43 @@ class MovingBehavior extends Behavior {
   });
 
   @override
-  void update(Body body, double dt) {
+  void update(EnemyComponent enemy, double dt) {
     if (!started) {
       started = true;
-      body.linearVelocity = Vector2(speedX ?? 0, speedY ?? 0);
+      enemy.body.linearVelocity = Vector2(speedX ?? 0, speedY ?? 0);
     }
 
     if (started) {
-      final Vector2 position = body.position;
-      final double angle = body.angle;
+      final Vector2 position = enemy.body.position;
+      final double angle = enemy.body.angle;
 
       if ((minX != null) && (position.x < minX!)) {
-        body.setTransform(Vector2(minX!, position.y), angle);
-        body.linearVelocity.setValues(0, body.linearVelocity.y);
+        enemy.body.setTransform(Vector2(minX!, position.y), angle);
+        enemy.body.linearVelocity.setValues(0, enemy.body.linearVelocity.y);
       }
 
       if ((maxX != null) && (position.x > maxX!)) {
-        body.setTransform(Vector2(maxX!, position.y), angle);
-        body.linearVelocity.setValues(0, body.linearVelocity.y);
+        enemy.body.setTransform(Vector2(maxX!, position.y), angle);
+        enemy.body.linearVelocity.setValues(0, enemy.body.linearVelocity.y);
       }
 
       if ((minY != null) && (position.y < minY!)) {
-        body.setTransform(Vector2(position.x, minY!), angle);
-        body.linearVelocity.setValues(body.linearVelocity.x, 0);
+        enemy.body.setTransform(Vector2(position.x, minY!), angle);
+        enemy.body.linearVelocity.setValues(enemy.body.linearVelocity.x, 0);
       }
 
       if ((maxY != null) && (position.y > maxY!)) {
-        body.setTransform(Vector2(position.x, maxY!), angle);
-        body.linearVelocity.setValues(body.linearVelocity.x, 0);
+        enemy.body.setTransform(Vector2(position.x, maxY!), angle);
+        enemy.body.linearVelocity.setValues(enemy.body.linearVelocity.x, 0);
       }
     }
   }
 
   @override
-  void reset(Body body) {
+  void reset(EnemyComponent enemy) {
     started = false;
 
-    body.setTransform(Vector2(startX, startY), body.angle);
-    body.linearVelocity.setValues(0, 0);
+    enemy.body.setTransform(Vector2(startX, startY), enemy.body.angle);
+    enemy.body.linearVelocity.setValues(0, 0);
   }
 }

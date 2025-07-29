@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -21,9 +22,9 @@ class OrbitingBehavior extends Behavior {
   });
 
   @override
-  void update(Body body, double dt) {
+  void update(EnemyComponent enemy, double dt) {
     updateAngle(dt, angularSpeed);
-    updatePosition(body, currentAngle, radius, centerX, centerY);
+    updatePosition(enemy.body, currentAngle, radius, centerX, centerY);
   }
 
   void updateAngle(double delta, double speed) {
@@ -46,8 +47,8 @@ class OrbitingBehavior extends Behavior {
   }
 
   @override
-  void reset(Body body) {
+  void reset(EnemyComponent enemy) {
     currentAngle = startAngle;
-    updatePosition(body, currentAngle, radius, centerX, centerY);
+    updatePosition(enemy.body, currentAngle, radius, centerX, centerY);
   }
 }

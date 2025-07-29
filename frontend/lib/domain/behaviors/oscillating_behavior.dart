@@ -1,4 +1,5 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class OscillatingBehavior extends Behavior {
@@ -27,8 +28,8 @@ class OscillatingBehavior extends Behavior {
   });
 
   @override
-  void update(Body body, double dt) {
-    final Vector2 position = body.position;
+  void update(EnemyComponent enemy, double dt) {
+    final Vector2 position = enemy.body.position;
 
     if (isMinX(position.x) || isMaxX(position.x)) {
       currentDirectionX *= -1;
@@ -39,19 +40,19 @@ class OscillatingBehavior extends Behavior {
     }
 
     if (isMinX(position.x)) {
-      body.setTransform(Vector2(minX!, position.y), body.angle);
+      enemy.body.setTransform(Vector2(minX!, position.y), enemy.body.angle);
     }
 
     if (isMaxX(position.x)) {
-      body.setTransform(Vector2(maxX!, position.y), body.angle);
+      enemy.body.setTransform(Vector2(maxX!, position.y), enemy.body.angle);
     }
 
     if (isMinY(position.y)) {
-      body.setTransform(Vector2(position.x, minY!), body.angle);
+      enemy.body.setTransform(Vector2(position.x, minY!), enemy.body.angle);
     }
 
     if (isMaxY(position.y)) {
-      body.setTransform(Vector2(position.x, maxY!), body.angle);
+      enemy.body.setTransform(Vector2(position.x, maxY!), enemy.body.angle);
     }
 
     double velocityX = 0;
@@ -66,7 +67,7 @@ class OscillatingBehavior extends Behavior {
     }
 
     velocity.setValues(velocityX, velocityY);
-    body.linearVelocity.setValues(velocity.x, velocity.y);
+    enemy.body.linearVelocity.setValues(velocity.x, velocity.y);
   }
 
   bool isMinX(double x) => (minX != null) && (x < minX!);
@@ -78,12 +79,12 @@ class OscillatingBehavior extends Behavior {
   bool isMaxY(double y) => (maxY != null) && (y > maxY!);
 
   @override
-  void reset(Body body) {
+  void reset(EnemyComponent enemy) {
     currentDirectionX = 1;
     currentDirectionY = 1;
     velocity.setValues(0, 0);
 
-    body.setTransform(Vector2(startX, startY), body.angle);
-    body.linearVelocity.setValues(velocity.x, velocity.y);
+    enemy.body.setTransform(Vector2(startX, startY), enemy.body.angle);
+    enemy.body.linearVelocity.setValues(velocity.x, velocity.y);
   }
 }

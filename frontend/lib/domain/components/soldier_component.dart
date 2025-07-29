@@ -1,37 +1,29 @@
 import 'dart:async';
 import 'package:commandos/domain/behaviors/behavior.dart';
-import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/components/vision_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
-import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-class SoldierComponent extends BodyComponent<GameComponent> {
-  late final RayCasting rayCasting;
-  final Vector2 initialPosition;
-  final Vector2 size;
+class SoldierComponent extends EnemyComponent {
   final Soldier soldier;
-  double facingAngle = 0;
   late final VisionComponent vision;
   SoldierMovingState movingState = SoldierMovingState.idle_right;
 
   SoldierComponent({
-    required this.initialPosition,
-    required this.size,
+    required super.initialPosition,
+    required super.size,
     required this.soldier,
-  }) : super(priority: Priority.soldier.value);
+  }) : super(priority: Priority.soldier.value, facingAngle: soldier.angle);
 
   @override
   Future onLoad() async {
     await super.onLoad();
-
-    rayCasting = RayCasting(world);
-    facingAngle = soldier.angle;
 
     await add(
       SoldierSpriteComponent(
@@ -66,7 +58,7 @@ class SoldierComponent extends BodyComponent<GameComponent> {
     movingState = _getMovingState(degrees(facingAngle));
 
     for (final Behavior behavior in soldier.behaviors) {
-      behavior.update(body, dt);
+      behavior.update(this, dt);
     }
 
     vision.show(
