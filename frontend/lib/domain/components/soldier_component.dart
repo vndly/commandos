@@ -1,24 +1,33 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:commandos/domain/behaviors/behavior.dart';
+import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/components/vision_component.dart';
+import 'package:commandos/domain/models/beam.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/assets.dart';
+import 'package:commandos/utils/palette.dart';
+import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
 
 class SoldierComponent extends EnemyComponent {
   final Soldier soldier;
+  final List<AgentComponent> agents;
   late final VisionComponent vision;
   SoldierMovingState movingState = SoldierMovingState.idle_right;
+  final List<DebugVisionComponent> debugVision = [];
 
   SoldierComponent({
     required super.initialPosition,
     required super.size,
     required this.soldier,
+    required this.agents,
   }) : super(priority: Priority.soldier.value, facingAngle: soldier.angle);
 
   @override
@@ -32,6 +41,14 @@ class SoldierComponent extends EnemyComponent {
         size: size,
       ),
     );
+
+    for (final AgentComponent agent in agents) {
+      final DebugVisionComponent debugVisionComponent = DebugVisionComponent(
+        agent: agent,
+      );
+      debugVision.add(debugVisionComponent);
+      await world.add(debugVisionComponent);
+    }
 
     vision = VisionComponent(
       sweep: soldier.sweep,
@@ -66,6 +83,13 @@ class SoldierComponent extends EnemyComponent {
       angle: facingAngle,
       rayCasting: rayCasting,
     );
+
+    for (final DebugVisionComponent debugVision in debugVision) {
+      debugVision.show(
+        source: body.position,
+        rayCasting: rayCasting,
+      );
+    }
   }
 
   SoldierMovingState _getMovingState(double angle) {
@@ -158,4 +182,51 @@ enum SoldierMovingState {
       this == SoldierMovingState.idle_down_left ||
       this == SoldierMovingState.idle_left ||
       this == SoldierMovingState.idle_up_left;
+}
+
+class DebugVisionComponent extends Component {
+  final AgentComponent agent;
+  final Paint paint = Palette.paint(
+    style: PaintingStyle.stroke,
+    color: Colors.red,
+    strokeWidth: 0.2,
+  );
+  late final Beam beam;
+
+  DebugVisionComponent({
+    required this.agent,
+  }) {
+    priority = Priority.vision.value;
+
+    beam = Beam(
+      start: Vector2.zero(),
+      end: Vector2.zero(),
+      angle: 0,
+    );
+  }
+
+  void show({
+    required Vector2 source,
+    required RayCasting rayCasting,
+  }) {
+    final Vector2 diff = agent.body.position - source;
+    final double angle = atan2(diff.y, diff.x);
+    final RayCastingResult result = rayCasting.test(
+      source: source,
+      angle: angle,
+      gap: 0,
+      length: 1000,
+    );
+    beam.update(result);
+  }
+
+  void hide() {
+    beam.start = Vector2.zero();
+    beam.end = Vector2.zero();
+  }
+
+  @override
+  void render(Canvas canvas) {
+    canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
+  }
 }

@@ -14,12 +14,6 @@ class Input {
   void onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     lastEvent = event;
 
-    if (keysPressed.isNotEmpty) {
-      print('---------------');
-      print('${event.runtimeType} ${event.logicalKey.debugName}');
-      print(keysPressed.map((key) => key.debugName).join(', '));
-    }
-
     _checkKey(
       input: ActiveInput.left,
       keys: [LogicalKeyboardKey.keyA, LogicalKeyboardKey.arrowLeft],

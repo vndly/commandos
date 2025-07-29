@@ -64,6 +64,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
           initialPosition: soldier.position,
           size: Vector2(15, 15),
           soldier: soldier,
+          agents: agentComponents,
         ),
       );
     }

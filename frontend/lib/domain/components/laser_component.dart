@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:commandos/domain/models/beam.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/utils/palette.dart';
@@ -77,22 +78,5 @@ class LaserComponent extends Component {
     for (final Beam beam in beams) {
       canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
     }
-  }
-}
-
-class Beam {
-  Vector2 start;
-  Vector2 end;
-  final double angle;
-
-  Beam({
-    required this.start,
-    required this.end,
-    required this.angle,
-  });
-
-  void update(RayCastingResult result) {
-    start = result.start;
-    end = result.end;
   }
 }
