@@ -1,5 +1,7 @@
 # Frontend
 
+- Raycast to agents
+
 - Obstacles
   - Doors
   - Barbed wire
