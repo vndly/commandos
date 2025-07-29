@@ -71,8 +71,10 @@ class SoldierComponent extends BodyComponent<GameComponent> {
   }
 }
 
-class SoldierSpriteComponent extends SpriteComponent {
+class SoldierSpriteComponent extends PositionComponent {
   final Soldier soldier;
+  late final SpriteAnimationGroupComponent<SoldierMovingState> spriteAnimation;
+  SoldierMovingState movingState = SoldierMovingState.idle_right;
 
   SoldierSpriteComponent({
     required this.soldier,
@@ -81,8 +83,61 @@ class SoldierSpriteComponent extends SpriteComponent {
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_TURRETS_SINGLE);
+    spriteAnimation = SpriteAnimationGroupComponent<SoldierMovingState>(
+      animations: {
+        SoldierMovingState.idle_up: await _idleAnimation(0),
+        SoldierMovingState.idle_up_right: await _idleAnimation(1),
+        SoldierMovingState.idle_right: await _idleAnimation(2),
+        SoldierMovingState.idle_down_right: await _idleAnimation(3),
+        SoldierMovingState.idle_down: await _idleAnimation(4),
+        SoldierMovingState.idle_down_left: await _idleAnimation(5),
+        SoldierMovingState.idle_left: await _idleAnimation(6),
+        SoldierMovingState.idle_up_left: await _idleAnimation(7),
+      },
+      current: movingState,
+      position: Vector2(0, 0),
+      size: size,
+    );
+
+    add(spriteAnimation);
 
     return super.onLoad();
   }
+
+  Future<SpriteAnimation> _idleAnimation(int range) => SpriteAnimation.load(
+    Assets.IMAGES_ANIMATIONS_SOLDIERS_IDLE,
+    SpriteAnimationData.range(
+      start: range,
+      end: range,
+      amount: 8,
+      stepTimes: [1],
+      textureSize: Vector2(36, 36),
+    ),
+  );
+}
+
+enum SoldierMovingState {
+  idle_up(0, 0 * degrees2Radians),
+  idle_up_right(45, 45 * degrees2Radians),
+  idle_right(90, 90 * degrees2Radians),
+  idle_down_right(135, 135 * degrees2Radians),
+  idle_down(180, 180 * degrees2Radians),
+  idle_down_left(225, 225 * degrees2Radians),
+  idle_left(270, 270 * degrees2Radians),
+  idle_up_left(315, 315 * degrees2Radians);
+
+  final double angle;
+  final double radians;
+
+  const SoldierMovingState(this.angle, this.radians);
+
+  bool get isIdle =>
+      this == SoldierMovingState.idle_up ||
+      this == SoldierMovingState.idle_up_right ||
+      this == SoldierMovingState.idle_right ||
+      this == SoldierMovingState.idle_down_right ||
+      this == SoldierMovingState.idle_down ||
+      this == SoldierMovingState.idle_down_left ||
+      this == SoldierMovingState.idle_left ||
+      this == SoldierMovingState.idle_up_left;
 }

@@ -10,16 +10,7 @@
             "angle": 0,
             "sweep": 20,
             "range": 50,
-            "behaviors": [
-                {
-                    "type": "rotating",
-                    "startAngle": 0,
-                    "speed": 50,
-                    "rotatingDirection": "clockwise",
-                    "minAngle": -15,
-                    "maxAngle": 15
-                }
-            ]
+            "behaviors": []
         },
         {
             "id": "soldier2",
@@ -27,19 +18,10 @@
                 "x": 10,
                 "y": 35
             },
-            "angle": 90,
+            "angle": 0,
             "sweep": 50,
             "range": 50,
-            "behaviors": [
-                {
-                    "type": "rotating",
-                    "startAngle": 0,
-                    "speed": 70,
-                    "rotatingDirection": "counter_clockwise",
-                    "minAngle": -180,
-                    "maxAngle": -90
-                }
-            ]
+            "behaviors": []
         }
     ],
     "turrets": []

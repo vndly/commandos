@@ -41,36 +41,7 @@ class LevelGym {
       "angle": 0.0,
       "sweep": 20.0,
       "range": 50.0,
-      "behaviors": [
-        {
-          "type": "rotating",
-          "trigger": null,
-          "startX": null,
-          "startY": null,
-          "startAngle": 0.0,
-          "speed": 50.0,
-          "speedX": null,
-          "speedY": null,
-          "centerX": null,
-          "centerY": null,
-          "radius": null,
-          "minX": null,
-          "maxX": null,
-          "minY": null,
-          "maxY": null,
-          "minAngle": -15.0,
-          "maxAngle": 15.0,
-          "periodX": null,
-          "periodY": null,
-          "amplitudeX": null,
-          "amplitudeY": null,
-          "timeOn": null,
-          "timeOff": null,
-          "initialTime": null,
-          "rotatingDirection": "clockwise",
-          "intermittentState": null
-        }
-      ]
+      "behaviors": []
     },
     {
       "id": "soldier2",
@@ -81,36 +52,7 @@ class LevelGym {
       "angle": 90.0,
       "sweep": 50.0,
       "range": 50.0,
-      "behaviors": [
-        {
-          "type": "rotating",
-          "trigger": null,
-          "startX": null,
-          "startY": null,
-          "startAngle": 0.0,
-          "speed": 70.0,
-          "speedX": null,
-          "speedY": null,
-          "centerX": null,
-          "centerY": null,
-          "radius": null,
-          "minX": null,
-          "maxX": null,
-          "minY": null,
-          "maxY": null,
-          "minAngle": -180.0,
-          "maxAngle": -90.0,
-          "periodX": null,
-          "periodY": null,
-          "amplitudeX": null,
-          "amplitudeY": null,
-          "timeOn": null,
-          "timeOff": null,
-          "initialTime": null,
-          "rotatingDirection": "counter_clockwise",
-          "intermittentState": null
-        }
-      ]
+      "behaviors": []
     }
   ],
   "walls": [
