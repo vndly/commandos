@@ -10,7 +10,7 @@ class VisionComponent extends Component {
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
     color: Palette.VISION,
-    strokeWidth: 0.3,
+    strokeWidth: 0.2,
   );
   final List<Beam> beams = [];
 

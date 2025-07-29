@@ -62,7 +62,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       await add(
         SoldierComponent(
           initialPosition: soldier.position,
-          size: Vector2(4, 4),
+          size: Vector2(15, 15),
           soldier: soldier,
         ),
       );

@@ -46,7 +46,7 @@ class SoldierComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size),
+    shape: shapeCircle(size / 4),
     center: initialPosition,
     bodyType: BodyType.kinematic,
     angle: soldier.angle,

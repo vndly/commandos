@@ -49,7 +49,7 @@ class LevelGym {
         "x": 10,
         "y": 35
       },
-      "angle": 90.0,
+      "angle": 0.0,
       "sweep": 50.0,
       "range": 50.0,
       "behaviors": []

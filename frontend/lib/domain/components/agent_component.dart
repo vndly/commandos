@@ -87,7 +87,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size * 0.25),
+    shape: shapeCircle(size / 4),
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
