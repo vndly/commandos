@@ -71,7 +71,7 @@ class SoldierComponent extends BodyComponent<GameComponent> {
 
     vision.show(
       source: body.position,
-      angle: body.angle,
+      angle: facingAngle,
       rayCasting: rayCasting,
     );
   }

@@ -39,7 +39,7 @@ class LevelGym {
         "y": 40
       },
       "angle": -90.0,
-      "sweep": 20.0,
+      "sweep": 30.0,
       "range": 50.0,
       "behaviors": []
     },
@@ -50,7 +50,7 @@ class LevelGym {
         "y": 35
       },
       "angle": 0.0,
-      "sweep": 50.0,
+      "sweep": 30.0,
       "range": 50.0,
       "behaviors": []
     }

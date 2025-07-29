@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class RayCasting {
@@ -14,10 +13,9 @@ class RayCasting {
     required double gap,
     required double length,
   }) {
-    final double angleAdustment = radians(-90);
     final Vector2 direction = Vector2(
-      cos(angle + angleAdustment),
-      sin(angle + angleAdustment),
+      cos(angle),
+      sin(angle),
     );
     final Vector2 startPoint = source + direction * gap;
     final Vector2 maxTarget = startPoint + (direction * length);

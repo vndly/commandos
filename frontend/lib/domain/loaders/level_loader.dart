@@ -91,7 +91,7 @@ class LevelLoader {
           id: soldier.id,
           position: _toVector2(soldier.position),
           angle: radians(soldier.angle),
-          sweep: soldier.sweep,
+          sweep: radians(soldier.sweep),
           range: soldier.range,
           behaviors: soldier.behaviors.map(_getBehavior).toList(),
         ),

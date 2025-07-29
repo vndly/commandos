@@ -8,7 +8,7 @@
                 "y": 40
             },
             "angle": -90,
-            "sweep": 20,
+            "sweep": 30,
             "range": 50,
             "behaviors": []
         },
@@ -19,7 +19,7 @@
                 "y": 35
             },
             "angle": 0,
-            "sweep": 50,
+            "sweep": 30,
             "range": 50,
             "behaviors": []
         }
