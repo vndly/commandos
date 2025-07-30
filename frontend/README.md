@@ -1,7 +1,7 @@
 # Frontend
 
+- Implement doors
 - Obstacles
-  - Doors
   - Barbed wire
   - Pressure plates
   - Electrified floor
