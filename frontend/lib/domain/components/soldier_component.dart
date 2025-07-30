@@ -221,6 +221,13 @@ class DebugVisionComponent extends Component {
       gap: 0,
       length: 1000,
     );
+
+    if (result.object is AgentComponent) {
+      paint.color = Colors.red;
+    } else {
+      paint.color = Colors.green;
+    }
+
     beam.update(result);
   }
 
