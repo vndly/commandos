@@ -7,12 +7,14 @@ abstract class EnemyComponent extends BodyComponent<GameComponent> {
   late final RayCasting rayCasting;
   final Vector2 initialPosition;
   final Vector2 size;
-  double facingAngle = 0;
+  double headAngle = 0;
+  double bodyAngle = 0;
 
   EnemyComponent({
     required this.initialPosition,
     required this.size,
-    required this.facingAngle,
+    required this.headAngle,
+    required this.bodyAngle,
     required super.priority,
   });
 

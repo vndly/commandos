@@ -72,7 +72,8 @@ class LevelLoader {
         Turret(
           id: turret.id,
           position: _toVector2(turret.position),
-          angle: radians(turret.angle),
+          headAngle: radians(turret.headAngle),
+          bodyAngle: radians(turret.bodyAngle),
           lasers: turret.lasers.map(_getLaser).toList(),
           behaviors: turret.behaviors.map(_getBehavior).toList(),
         ),
@@ -90,7 +91,8 @@ class LevelLoader {
         Soldier(
           id: soldier.id,
           position: _toVector2(soldier.position),
-          angle: radians(soldier.angle),
+          headAngle: radians(soldier.headAngle),
+          bodyAngle: radians(soldier.bodyAngle),
           sweep: radians(soldier.sweep),
           range: soldier.range,
           behaviors: soldier.behaviors.map(_getBehavior).toList(),
@@ -123,6 +125,7 @@ class LevelLoader {
     switch (jsonBehavior.type) {
       case BehaviorType.rotating:
         return RotatingBehavior(
+          rotatingPart: jsonBehavior.rotatingPart!,
           startAngle: jsonBehavior.startAngle!,
           rotationSpeed: jsonBehavior.speed!,
           direction: jsonBehavior.rotatingDirection!,

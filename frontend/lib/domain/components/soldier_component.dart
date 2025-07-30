@@ -28,7 +28,11 @@ class SoldierComponent extends EnemyComponent {
     required super.size,
     required this.soldier,
     required this.agents,
-  }) : super(priority: Priority.soldier.value, facingAngle: soldier.angle);
+  }) : super(
+         priority: Priority.soldier.value,
+         headAngle: soldier.headAngle,
+         bodyAngle: soldier.bodyAngle,
+       );
 
   @override
   Future onLoad() async {
@@ -72,7 +76,7 @@ class SoldierComponent extends EnemyComponent {
 
     checkDebug();
 
-    movingState = _getMovingState(degrees(facingAngle));
+    movingState = _getMovingState(degrees(bodyAngle));
 
     for (final Behavior behavior in soldier.behaviors) {
       behavior.update(this, dt);
@@ -80,7 +84,7 @@ class SoldierComponent extends EnemyComponent {
 
     vision.show(
       source: body.position,
-      angle: facingAngle,
+      angle: headAngle,
       rayCasting: rayCasting,
     );
 

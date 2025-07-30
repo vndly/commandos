@@ -31,6 +31,10 @@ JsonBehavior _$JsonBehaviorFromJson(Map<String, dynamic> json) => JsonBehavior(
   timeOn: (json['timeOn'] as num?)?.toDouble(),
   timeOff: (json['timeOff'] as num?)?.toDouble(),
   initialTime: (json['initialTime'] as num?)?.toDouble(),
+  rotatingPart: $enumDecodeNullable(
+    _$RotatingPartEnumMap,
+    json['rotatingPart'],
+  ),
   rotatingDirection: $enumDecodeNullable(
     _$RotatingDirectionEnumMap,
     json['rotatingDirection'],
@@ -68,6 +72,7 @@ Map<String, dynamic> _$JsonBehaviorToJson(
   'timeOn': instance.timeOn,
   'timeOff': instance.timeOff,
   'initialTime': instance.initialTime,
+  'rotatingPart': _$RotatingPartEnumMap[instance.rotatingPart],
   'rotatingDirection': _$RotatingDirectionEnumMap[instance.rotatingDirection],
   'intermittentState': _$IntermittentStateEnumMap[instance.intermittentState],
 };
@@ -79,6 +84,11 @@ const _$BehaviorTypeEnumMap = {
   BehaviorType.moving: 'moving',
   BehaviorType.harmonic: 'harmonic',
   BehaviorType.intermittent: 'intermittent',
+};
+
+const _$RotatingPartEnumMap = {
+  RotatingPart.head: 'head',
+  RotatingPart.body: 'body',
 };
 
 const _$RotatingDirectionEnumMap = {

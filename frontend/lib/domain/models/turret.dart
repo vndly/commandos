@@ -5,14 +5,16 @@ import 'package:flame/components.dart';
 class Turret {
   final String id;
   final Vector2 position;
-  final double angle;
+  final double headAngle;
+  final double bodyAngle;
   final List<Laser> lasers;
   final List<Behavior> behaviors;
 
   Turret({
     required this.id,
     required this.position,
-    required this.angle,
+    required this.headAngle,
+    required this.bodyAngle,
     required this.lasers,
     required this.behaviors,
   });

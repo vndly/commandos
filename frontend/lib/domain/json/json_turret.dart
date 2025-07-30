@@ -13,8 +13,11 @@ class JsonTurret {
   @JsonKey(name: 'position')
   final JsonPosition position;
 
-  @JsonKey(name: 'angle')
-  final double angle;
+  @JsonKey(name: 'headAngle')
+  final double headAngle;
+
+  @JsonKey(name: 'bodyAngle')
+  final double bodyAngle;
 
   @JsonKey(name: 'lasers')
   final List<JsonLaser> lasers;
@@ -25,7 +28,8 @@ class JsonTurret {
   JsonTurret({
     required this.id,
     required this.position,
-    required this.angle,
+    required this.headAngle,
+    required this.bodyAngle,
     required this.lasers,
     required this.behaviors,
   });

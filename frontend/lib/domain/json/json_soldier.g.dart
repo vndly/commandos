@@ -9,7 +9,8 @@ part of 'json_soldier.dart';
 JsonSoldier _$JsonSoldierFromJson(Map<String, dynamic> json) => JsonSoldier(
   id: json['id'] as String,
   position: JsonPosition.fromJson(json['position'] as Map<String, dynamic>),
-  angle: (json['angle'] as num).toDouble(),
+  headAngle: (json['headAngle'] as num).toDouble(),
+  bodyAngle: (json['bodyAngle'] as num).toDouble(),
   sweep: (json['sweep'] as num).toDouble(),
   range: (json['range'] as num).toDouble(),
   behaviors: (json['behaviors'] as List<dynamic>)
@@ -21,7 +22,8 @@ Map<String, dynamic> _$JsonSoldierToJson(JsonSoldier instance) =>
     <String, dynamic>{
       'id': instance.id,
       'position': instance.position,
-      'angle': instance.angle,
+      'headAngle': instance.headAngle,
+      'bodyAngle': instance.bodyAngle,
       'sweep': instance.sweep,
       'range': instance.range,
       'behaviors': instance.behaviors,

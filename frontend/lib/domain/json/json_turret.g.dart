@@ -9,7 +9,8 @@ part of 'json_turret.dart';
 JsonTurret _$JsonTurretFromJson(Map<String, dynamic> json) => JsonTurret(
   id: json['id'] as String,
   position: JsonPosition.fromJson(json['position'] as Map<String, dynamic>),
-  angle: (json['angle'] as num).toDouble(),
+  headAngle: (json['headAngle'] as num).toDouble(),
+  bodyAngle: (json['bodyAngle'] as num).toDouble(),
   lasers: (json['lasers'] as List<dynamic>)
       .map((e) => JsonLaser.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -22,7 +23,8 @@ Map<String, dynamic> _$JsonTurretToJson(JsonTurret instance) =>
     <String, dynamic>{
       'id': instance.id,
       'position': instance.position,
-      'angle': instance.angle,
+      'headAngle': instance.headAngle,
+      'bodyAngle': instance.bodyAngle,
       'lasers': instance.lasers,
       'behaviors': instance.behaviors,
     };

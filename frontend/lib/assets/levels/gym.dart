@@ -38,7 +38,8 @@ class LevelGym {
         "x": 60,
         "y": 40
       },
-      "angle": -90.0,
+      "headAngle": -90.0,
+      "bodyAngle": -90.0,
       "sweep": 30.0,
       "range": 50.0,
       "behaviors": [
@@ -67,6 +68,7 @@ class LevelGym {
           "timeOn": null,
           "timeOff": null,
           "initialTime": null,
+          "rotatingPart": "head",
           "rotatingDirection": "clockwise",
           "intermittentState": null
         }
@@ -78,7 +80,8 @@ class LevelGym {
         "x": 10,
         "y": 35
       },
-      "angle": 45.0,
+      "headAngle": 45.0,
+      "bodyAngle": 45.0,
       "sweep": 30.0,
       "range": 50.0,
       "behaviors": [
@@ -107,6 +110,7 @@ class LevelGym {
           "timeOn": null,
           "timeOff": null,
           "initialTime": null,
+          "rotatingPart": "head",
           "rotatingDirection": "counter_clockwise",
           "intermittentState": null
         }
