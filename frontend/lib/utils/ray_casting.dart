@@ -26,6 +26,7 @@ class RayCasting {
     return RayCastingResult(
       start: startPoint,
       end: rayCastCallback.nearestPoint ?? maxTarget,
+      angle: angle,
       object: rayCastCallback.object,
     );
   }
@@ -34,11 +35,13 @@ class RayCasting {
 class RayCastingResult {
   final Vector2 start;
   final Vector2 end;
+  final double angle;
   final Object? object;
 
   const RayCastingResult({
     required this.start,
     required this.end,
+    required this.angle,
     required this.object,
   });
 }

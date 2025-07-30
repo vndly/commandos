@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
@@ -9,6 +8,7 @@ import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
@@ -34,6 +34,13 @@ class SoldierComponent extends EnemyComponent {
          bodyAngle: soldier.bodyAngle,
        );
 
+  bool inFieldOfView(double angle) {
+    final double minAngle = headAngle - soldier.sweep;
+    final double maxAngle = headAngle + soldier.sweep;
+
+    return angle >= minAngle && angle <= maxAngle;
+  }
+
   @override
   Future onLoad() async {
     await super.onLoad();
@@ -48,6 +55,7 @@ class SoldierComponent extends EnemyComponent {
 
     for (final AgentComponent agent in agents) {
       final DebugVisionComponent debugVisionComponent = DebugVisionComponent(
+        soldier: this,
         agent: agent,
       );
       debugVision.add(debugVisionComponent);
@@ -189,15 +197,17 @@ enum SoldierMovingState {
 }
 
 class DebugVisionComponent extends Component {
+  final SoldierComponent soldier;
   final AgentComponent agent;
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
-    color: Colors.red,
-    strokeWidth: 0.2,
+    color: Palette.DETECTED,
+    strokeWidth: 0.5,
   );
   late final Beam beam;
 
   DebugVisionComponent({
+    required this.soldier,
     required this.agent,
   }) {
     priority = Priority.vision.value;
@@ -213,22 +223,19 @@ class DebugVisionComponent extends Component {
     required Vector2 source,
     required RayCasting rayCasting,
   }) {
-    final Vector2 diff = agent.body.position - source;
-    final double angle = atan2(diff.y, diff.x);
     final RayCastingResult result = rayCasting.test(
       source: source,
-      angle: angle,
+      angle: source.angle(agent.body.position),
       gap: 0,
       length: 1000,
     );
 
-    if (result.object is AgentComponent) {
-      paint.color = Colors.red;
+    if ((result.object is AgentComponent) &&
+        soldier.inFieldOfView(result.angle)) {
+      beam.update(result);
     } else {
-      paint.color = Colors.green;
+      hide();
     }
-
-    beam.update(result);
   }
 
   void hide() {

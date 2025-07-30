@@ -8,6 +8,7 @@ class Palette {
 
   static Color LASER = Colors.red.withAlpha(140);
   static Color VISION = Colors.yellow.withAlpha(140);
+  static Color DETECTED = Colors.red.withAlpha(140);
 
   static Paint paint({
     PaintingStyle? style,
