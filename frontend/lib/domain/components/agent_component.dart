@@ -17,10 +17,10 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 class AgentComponent extends BodyComponent<GameComponent> {
   final Vector2 initialPosition;
-  final Vector2 size;
   final Vector2 velocity = Vector2.zero();
   final Input input;
   final Agent agent;
+  late final Vector2 size;
   late final AgentMovement movement;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
@@ -28,11 +28,11 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
   AgentComponent({
     required this.initialPosition,
-    required this.size,
     required this.input,
     required this.agent,
     required this.active,
   }) {
+    size = Vector2(14, 14);
     priority = Priority.agent.value;
     movement = AgentMovement(
       agent: this,
@@ -87,7 +87,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size / 4),
+    shape: shapeCircle(size * 0.35),
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,

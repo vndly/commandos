@@ -25,10 +25,10 @@ class SoldierComponent extends EnemyComponent {
 
   SoldierComponent({
     required super.initialPosition,
-    required super.size,
     required this.soldier,
     required this.agents,
   }) : super(
+         size: Vector2(14, 14),
          priority: Priority.soldier.value,
          headAngle: soldier.headAngle,
          bodyAngle: soldier.bodyAngle,
