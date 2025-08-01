@@ -142,7 +142,7 @@ JsonWall getWall(String wallString) {
 }
 
 List<Vertex> getCoordinates(String pathString) {
-  final RegExp commandRegExp = RegExp(r'[a-zA-Z][^a-zA-Z]*');
+  final RegExp commandRegExp = RegExp(r'[A-Z][^A-Z]*');
   final Iterable<Match> matches = commandRegExp.allMatches(pathString);
   final List<Vertex> result = [];
   double startX = 0;

@@ -1,19 +1,21 @@
 import 'dart:async';
-import 'package:commandos/domain/types/priority.dart';
-import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 
 class MapComponent extends SpriteComponent {
-  MapComponent({required super.size})
-    : super(
-        position: Vector2.zero(),
-        anchor: Anchor.topLeft,
-        priority: Priority.floor.value,
-      );
+  final String path;
+
+  MapComponent({
+    required this.path,
+    required super.priority,
+    required super.size,
+  }) : super(
+         position: Vector2.zero(),
+         anchor: Anchor.topLeft,
+       );
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_LEVELS_GYM);
+    sprite = await Sprite.load(path);
 
     /*decorator.addLast(
       PaintDecorator.tint(
