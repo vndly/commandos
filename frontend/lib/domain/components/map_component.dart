@@ -2,8 +2,6 @@ import 'dart:async';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
-import 'package:flame/rendering.dart';
-import 'package:flutter/rendering.dart';
 
 class MapComponent extends SpriteComponent {
   MapComponent({required super.size})
@@ -17,11 +15,11 @@ class MapComponent extends SpriteComponent {
   FutureOr onLoad() async {
     sprite = await Sprite.load(Assets.IMAGES_LEVELS_GYM);
 
-    decorator.addLast(
+    /*decorator.addLast(
       PaintDecorator.tint(
         const Color(0xbb000000),
       ),
-    );
+    );*/
 
     return super.onLoad();
   }
