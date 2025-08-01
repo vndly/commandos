@@ -4,8 +4,8 @@
         {
             "id": "soldier1",
             "position": {
-                "x": 60,
-                "y": 40
+                "x": 120,
+                "y": 80
             },
             "headAngle": -90,
             "bodyAngle": -90,
@@ -26,8 +26,8 @@
         {
             "id": "soldier2",
             "position": {
-                "x": 10,
-                "y": 35
+                "x": 20,
+                "y": 70
             },
             "headAngle": 45,
             "bodyAngle": 45,

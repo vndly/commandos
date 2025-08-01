@@ -32,7 +32,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
     required this.agent,
     required this.active,
   }) {
-    size = Vector2(14, 14);
+    size = Vector2(28, 28);
     priority = Priority.agent.value;
     movement = AgentMovement(
       agent: this,
