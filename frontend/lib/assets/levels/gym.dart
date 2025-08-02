@@ -77,7 +77,7 @@ class LevelGym {
     {
       "id": "soldier2",
       "position": {
-        "x": 20,
+        "x": 15,
         "y": 70
       },
       "headAngle": 45.0,
