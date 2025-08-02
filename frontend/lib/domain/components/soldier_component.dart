@@ -8,6 +8,7 @@ import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/palette.dart';
@@ -59,14 +60,14 @@ class SoldierComponent extends EnemyComponent {
         agent: agent,
       );
       debugVision.add(debugVisionComponent);
-      await world.add(debugVisionComponent);
+      await level.add(debugVisionComponent);
     }
 
     vision = VisionComponent(
       sweep: soldier.sweep,
       range: soldier.range,
     );
-    await world.add(vision);
+    await level.add(vision);
   }
 
   @override

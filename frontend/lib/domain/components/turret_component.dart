@@ -7,6 +7,7 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -41,7 +42,7 @@ class TurretComponent extends EnemyComponent {
         laser: laser,
       );
       lasers.add(laserComponent);
-      await world.add(laserComponent);
+      await level.add(laserComponent);
     }
   }
 

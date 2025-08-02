@@ -27,6 +27,10 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   late AgentComponent activeAgentComponent;
   int activeAgentIndex = 0;
 
+  LevelComponent() {
+    LevelComponentRef.instance = this;
+  }
+
   @override
   FutureOr onLoad() async {
     final Level level = LevelLoader.load(LevelGym.JSON);
@@ -136,4 +140,10 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     activeAgentComponent.active = true;
     GameComponentRef.instance.camera.follow(activeAgentComponent);
   }
+}
+
+mixin LevelComponentRef {
+  static late LevelComponent instance;
+
+  LevelComponent get game => instance;
 }

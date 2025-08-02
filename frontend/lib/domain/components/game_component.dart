@@ -29,7 +29,7 @@ class GameComponent extends Forge2DGame<LevelComponent>
 
     if (Environment.get.isDebugMode) {
       camera.viewport.add(
-        FpsComponent(position: Vector2(0, 0), size: Vector2(8, 4)),
+        FpsComponent(),
       );
     }
 
@@ -55,8 +55,12 @@ class FpsComponent extends PositionComponent {
     color: Colors.black.withAlpha(128),
   );
 
-  FpsComponent({required super.position, required super.size})
-    : super(anchor: Anchor.topLeft);
+  FpsComponent()
+    : super(
+        anchor: Anchor.topLeft,
+        position: Vector2(0, 0),
+        size: Vector2(16, 8),
+      );
 
   @override
   void update(double dt) {
@@ -64,10 +68,10 @@ class FpsComponent extends PositionComponent {
 
     if (Debug.hasFpsDebug && (fpsTextComponent == null)) {
       fpsTextComponent = FpsTextComponent(
-        position: Vector2(0.7, 0.7),
+        position: Vector2(1.4, 1.4),
         anchor: Anchor.topLeft,
         textRenderer: TextPaint(
-          style: const TextStyle(color: Colors.white, fontSize: 2),
+          style: const TextStyle(color: Colors.white, fontSize: 4),
         ),
       );
       add(fpsTextComponent!);

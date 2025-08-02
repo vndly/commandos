@@ -3,7 +3,7 @@ import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-extension ComponentExtension on BodyComponent {
+extension BodyComponentExtension on BodyComponent {
   Body getBodyFromRelativePosition({
     required Shape shape,
     required Vector2 center,

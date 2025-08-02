@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:commandos/domain/types/priority.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:flame/components.dart';
 
 class DoorComponent extends PositionComponent with HasGameReference {
@@ -17,7 +18,7 @@ class DoorComponent extends PositionComponent with HasGameReference {
 
   @override
   FutureOr onLoad() async {
-    await game.world.add(
+    await level.add(
       DoorSpriteComponent(
         path: pathTop,
         position: position,
@@ -26,7 +27,7 @@ class DoorComponent extends PositionComponent with HasGameReference {
       ),
     );
 
-    await game.world.add(
+    await level.add(
       DoorSpriteComponent(
         path: pathBottom,
         position: position,

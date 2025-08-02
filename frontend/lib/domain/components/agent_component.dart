@@ -9,6 +9,7 @@ import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
@@ -53,7 +54,7 @@ class AgentComponent extends BodyComponent<GameComponent> {
         numberOfBeams: 50,
       ),
     );
-    await world.add(laser);
+    await level.add(laser);
 
     await add(
       AgentSpriteComponent(
