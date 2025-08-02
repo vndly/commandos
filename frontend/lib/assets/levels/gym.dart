@@ -41,7 +41,7 @@ class LevelGym {
       "headAngle": -90.0,
       "bodyAngle": -90.0,
       "sweep": 30.0,
-      "range": 50.0,
+      "range": 100.0,
       "behaviors": [
         {
           "type": "rotating",
@@ -83,7 +83,7 @@ class LevelGym {
       "headAngle": 45.0,
       "bodyAngle": 45.0,
       "sweep": 30.0,
-      "range": 50.0,
+      "range": 100.0,
       "behaviors": [
         {
           "type": "rotating",
