@@ -19,6 +19,7 @@ class Assets {
       'animations/agents/walking_up_right.png';
   static const String IMAGES_ANIMATIONS_SOLDIERS_IDLE =
       'animations/soldiers/idle.png';
+  static const String IMAGES_DOORS_DOOR1 = 'doors/door1.png';
   static const String IMAGES_LEVELS_GYM0 = 'levels/gym0.png';
   static const String IMAGES_LEVELS_GYM1 = 'levels/gym1.png';
   static const String IMAGES_LIGHT_LIGHT = 'light/light.png';

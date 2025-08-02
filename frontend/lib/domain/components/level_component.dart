@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:commandos/app/debug.dart';
 import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
+import 'package:commandos/domain/components/door_component.dart';
 import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/components/soldier_component.dart';
@@ -82,6 +83,14 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
         WallComponent(wall: wall),
       );
     }
+
+    await add(
+      DoorComponent(
+        path: Assets.IMAGES_DOORS_DOOR1,
+        position: Vector2(50, 150),
+        size: Vector2(20, 20),
+      ),
+    );
 
     /*await add(
       LightComponent(

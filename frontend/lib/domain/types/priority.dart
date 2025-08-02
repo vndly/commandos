@@ -2,6 +2,7 @@ enum Priority {
   map_0(0),
   laser(1),
   vision(1),
+  door(1),
   agent(2),
   turret(3),
   soldier(3),
