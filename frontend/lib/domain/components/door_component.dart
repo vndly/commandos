@@ -3,7 +3,7 @@ import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:flame/components.dart';
 
-class DoorComponent extends PositionComponent with HasGameReference {
+class DoorComponent extends PositionComponent {
   final String pathTop;
   final String pathBottom;
 

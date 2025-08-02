@@ -231,8 +231,7 @@ class DebugVisionComponent extends Component {
       length: 1000,
     );
 
-    if ((result.object is AgentComponent) &&
-        soldier.inFieldOfView(result.angle)) {
+    if (isInFieldOfView(result: result)) {
       beam.update(result);
     } else {
       hide();
@@ -242,6 +241,14 @@ class DebugVisionComponent extends Component {
   void hide() {
     beam.start = Vector2.zero();
     beam.end = Vector2.zero();
+  }
+
+  bool isInFieldOfView({
+    required RayCastingResult result,
+  }) {
+    return (result.object is AgentComponent) &&
+        soldier.body.position.distanceTo(result.end) <= soldier.soldier.range &&
+        soldier.inFieldOfView(result.angle);
   }
 
   @override

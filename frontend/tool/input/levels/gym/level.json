@@ -10,7 +10,7 @@
             "headAngle": -90,
             "bodyAngle": -90,
             "sweep": 30,
-            "range": 50,
+            "range": 100,
             "behaviors": [
                 {
                     "type": "rotating",
@@ -32,7 +32,7 @@
             "headAngle": 45,
             "bodyAngle": 45,
             "sweep": 30,
-            "range": 50,
+            "range": 100,
             "behaviors": [
                 {
                     "type": "rotating",
