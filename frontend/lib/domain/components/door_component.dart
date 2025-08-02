@@ -72,6 +72,8 @@ class DoorComponent extends PhysicalComponent {
         body.linearVelocity = Vector2.zero();
         position.x = initialPosition.x;
       }
+    } else if (status == DoorStatus.closed) {
+      position.setFrom(initialPosition);
     }
 
     topDoor.position = position;

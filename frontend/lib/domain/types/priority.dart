@@ -3,13 +3,13 @@ enum Priority {
   laser(1),
   vision(1),
   door_bottom(1),
-  map_1(1),
-  agent(2),
-  turret(2),
-  soldier(2),
+  map_1(2),
+  agent(3),
+  turret(3),
+  soldier(3),
   light(4),
   door_top(5),
-  map_2(5);
+  map_2(6);
 
   final int value;
 
