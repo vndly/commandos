@@ -18,3 +18,5 @@ for file in "$FOLDER"/*; do
 done
 
 cp tool/../lib/domain/json/* tool/json/
+
+cp tool/../lib/domain/types/* tool/types/
