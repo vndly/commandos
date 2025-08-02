@@ -20,7 +20,7 @@ class DoorComponent extends PositionComponent {
 
   @override
   FutureOr onLoad() async {
-    await add(
+    await level.add(
       DoorPanel(
         size: size,
         initialPosition: position,
@@ -74,8 +74,8 @@ class DoorPanel extends BodyComponent {
   Body createBody() {
     final PolygonShape shape = PolygonShape();
     shape.set([
-      Vector2(-size.x / 2, -size.y / 2),
-      Vector2(size.x / 2, -size.y / 2),
+      Vector2(-size.x / 2, 0),
+      Vector2(size.x / 2, 0),
       Vector2(size.x / 2, size.y / 2),
       Vector2(-size.x / 2, size.y / 2),
     ]);
