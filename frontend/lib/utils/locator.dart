@@ -1,4 +1,5 @@
 import 'package:commandos/environments/environment.dart';
+import 'package:commandos/utils/audio.dart';
 import 'package:commandos/utils/navigation.dart';
 import 'package:commandos/utils/platform.dart';
 import 'package:commandos/utils/set_url_strategy.dart';
@@ -44,6 +45,7 @@ class Locator {
 
     locator.registerSingleton<Environment>(environment);
     locator.registerSingleton<Navigation>(Navigation());
+    locator.registerSingleton<Audio>(Audio());
 
     await environment.configure();
   }
