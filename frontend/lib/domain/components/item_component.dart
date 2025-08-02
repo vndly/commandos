@@ -13,7 +13,7 @@ class ItemComponent extends PhysicalComponent {
   ItemComponent({
     required this.item,
   }) : super(
-         size: Vector2(10, 10),
+         size: Vector2(5, 5),
          priority: Priority.item.value,
          position: item.position,
        );
@@ -32,7 +32,7 @@ class ItemComponent extends PhysicalComponent {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size / 4),
+    shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
     angle: 0,
