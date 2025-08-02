@@ -130,7 +130,9 @@ extension BodyComponentExtension on BodyComponent {
     renderBody = Debug.hasBodyDebug;
 
     if (renderBody) {
-      paint.color = const Color(0xff00ff00);
+      paint.color = (body.fixtures[0].isSensor)
+          ? const Color(0xffff0000)
+          : const Color(0xff00ff00);
       paint.style = PaintingStyle.stroke;
       paint.strokeWidth = 0.3;
     }
