@@ -8,7 +8,7 @@ abstract class EnemyComponent extends PhysicalComponent {
   double bodyAngle = 0;
 
   EnemyComponent({
-    required super.initialPosition,
+    required super.position,
     required super.size,
     required this.headAngle,
     required this.bodyAngle,

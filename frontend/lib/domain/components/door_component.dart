@@ -12,7 +12,7 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 class DoorComponent extends PhysicalComponent {
   DoorComponent({
     required super.size,
-    required super.initialPosition,
+    required super.position,
   });
 
   @override
@@ -22,7 +22,7 @@ class DoorComponent extends PhysicalComponent {
     await level.add(
       DoorSpriteComponent(
         path: Assets.IMAGES_DOORS_DOOR_TOP,
-        position: initialPosition,
+        position: position,
         size: size,
         priority: Priority.door_top.value,
       ),
@@ -31,7 +31,7 @@ class DoorComponent extends PhysicalComponent {
     await level.add(
       DoorSpriteComponent(
         path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
-        position: initialPosition,
+        position: position,
         size: size,
         priority: Priority.door_bottom.value,
       ),
@@ -40,7 +40,7 @@ class DoorComponent extends PhysicalComponent {
     await level.add(
       DoorDetector(
         size: size,
-        initialPosition: position,
+        position: position,
         priority: 0,
       ),
     );
@@ -76,7 +76,7 @@ class DoorComponent extends PhysicalComponent {
 class DoorDetector extends PhysicalComponent with ContactCallbacks {
   DoorDetector({
     required super.size,
-    required super.initialPosition,
+    required super.position,
     required super.priority,
   });
 

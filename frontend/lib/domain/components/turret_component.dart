@@ -17,7 +17,7 @@ class TurretComponent extends EnemyComponent {
   final List<LaserComponent> lasers = [];
 
   TurretComponent({
-    required super.initialPosition,
+    required super.position,
     required super.size,
     required this.turret,
   }) : super(

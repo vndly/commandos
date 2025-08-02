@@ -45,7 +45,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
     for (final Agent agent in level.agents) {
       final AgentComponent agentComponent = AgentComponent(
-        initialPosition: agent.position,
+        position: agent.position,
         input: input,
         agent: agent,
         active: false,
@@ -57,7 +57,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     for (final Turret turret in level.turrets) {
       await add(
         TurretComponent(
-          initialPosition: turret.position,
+          position: turret.position,
           size: Vector2(4, 4),
           turret: turret,
         ),
@@ -67,7 +67,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     for (final Soldier soldier in level.soldiers) {
       await add(
         SoldierComponent(
-          initialPosition: soldier.position,
+          position: soldier.position,
           soldier: soldier,
           agents: agentComponents,
         ),
@@ -82,7 +82,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
     await add(
       DoorComponent(
-        initialPosition: Vector2(70, 50),
+        position: Vector2(70, 50),
         size: Vector2(20, 20),
       ),
     );

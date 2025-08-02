@@ -26,7 +26,7 @@ class AgentComponent extends PhysicalComponent {
   bool active;
 
   AgentComponent({
-    required super.initialPosition,
+    required super.position,
     required this.input,
     required this.agent,
     required this.active,
