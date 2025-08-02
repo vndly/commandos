@@ -12,9 +12,7 @@ class DoorComponent extends PositionComponent with HasGameReference {
     required this.pathBottom,
     required super.position,
     required super.size,
-  }) : super(
-         anchor: Anchor.center,
-       );
+  }) : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {
