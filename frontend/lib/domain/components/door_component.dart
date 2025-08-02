@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
@@ -31,7 +32,7 @@ class DoorComponent extends PositionComponent {
   }
 }
 
-class DoorPanel extends BodyComponent {
+class DoorPanel extends BodyComponent with ContactCallbacks {
   final Vector2 size;
   final Vector2 initialPosition;
 
@@ -87,6 +88,20 @@ class DoorPanel extends BodyComponent {
       group: CollisionGroup.DOOR,
       angle: 0,
     );
+  }
+
+  @override
+  void beginContact(Object other, Contact contact) {
+    if (other is AgentComponent) {
+      print('Agent has entered the door.');
+    }
+  }
+
+  @override
+  void endContact(Object other, Contact contact) {
+    if (other is AgentComponent) {
+      print('Agent has exited the door.');
+    }
   }
 }
 
