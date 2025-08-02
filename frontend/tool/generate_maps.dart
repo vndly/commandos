@@ -3,9 +3,11 @@ import 'dart:io';
 import 'package:xml2json/xml2json.dart';
 import 'json/json_agent.dart';
 import 'json/json_extra.dart';
+import 'json/json_item.dart';
 import 'json/json_level.dart';
 import 'json/json_position.dart';
 import 'json/json_wall.dart';
+import 'types/item_type.dart';
 
 typedef Json = Map<String, dynamic>;
 
@@ -33,6 +35,10 @@ Future<void> processFile(String levelFolder) async {
     json: json,
     name: 'walls',
   );
+  final List<JsonItem> items = getItems(
+    json: json,
+    name: 'items',
+  );
 
   final File jsonFile = File('$levelFolder/level.json');
   final String extra = await jsonFile.readAsString();
@@ -48,6 +54,7 @@ Future<void> processFile(String levelFolder) async {
     turrets: jsonExtra.turrets,
     soldiers: jsonExtra.soldiers,
     walls: walls,
+    items: items,
   );
 
   writeLevel(fileName: levelId, level: level);
@@ -100,6 +107,35 @@ List<JsonWall> getWalls({
       for (final Json path in g['path']) {
         final String pathString = path['d'];
         result.add(getWall(pathString));
+      }
+    }
+  }
+
+  return result;
+}
+
+List<JsonItem> getItems({
+  required Json json,
+  required String name,
+}) {
+  final List<JsonItem> result = [];
+
+  for (final Json g in json['svg']['g']) {
+    if (g['id'] == name) {
+      for (final Json item in g['g']) {
+        //final String type = g['type'];
+        final Json rect = item['rect'];
+        final double x = double.parse(rect['x']);
+        final double y = double.parse(rect['y']);
+        result.add(
+          JsonItem(
+            type: ItemType.keycard, // TODO(momo): parse
+            position: JsonPosition(
+              x: x.toInt(),
+              y: y.toInt(),
+            ),
+          ),
+        );
       }
     }
   }

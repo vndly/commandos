@@ -1,3 +1,7 @@
 enum ItemType {
-  keycard,
+  keycard('assets/sprites/items/keycard.png');
+
+  final String sprite;
+
+  const ItemType(this.sprite);
 }
