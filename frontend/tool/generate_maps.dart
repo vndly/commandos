@@ -123,16 +123,17 @@ List<JsonItem> getItems({
   for (final Json g in json['svg']['g']) {
     if (g['id'] == name) {
       for (final Json item in g['g']) {
-        //final String type = g['type'];
         final Json rect = item['rect'];
         final double x = double.parse(rect['x']);
         final double y = double.parse(rect['y']);
+        final double width = double.parse(rect['width']);
+        final double height = double.parse(rect['height']);
         result.add(
           JsonItem(
-            type: ItemType.keycard, // TODO(momo): parse
+            type: ItemType.keycard, // TODO(momo): parse g['type']
             position: JsonPosition(
-              x: x.toInt(),
-              y: y.toInt(),
+              x: (x + (width / 2)).toInt(),
+              y: (y + (height / 2)).toInt(),
             ),
           ),
         );

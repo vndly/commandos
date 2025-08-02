@@ -538,6 +538,22 @@ class LevelGym {
         }
       ]
     }
+  ],
+  "items": [
+    {
+      "type": "keycard",
+      "position": {
+        "x": 37,
+        "y": 122
+      }
+    },
+    {
+      "type": "keycard",
+      "position": {
+        "x": 182,
+        "y": 157
+      }
+    }
   ]
 }
 ''';
