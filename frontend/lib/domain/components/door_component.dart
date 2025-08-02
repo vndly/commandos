@@ -55,8 +55,6 @@ class DoorComponent extends PhysicalComponent {
   void update(double dt) {
     super.update(dt);
 
-    checkDebug();
-
     if (status == DoorStatus.opening) {
       body.linearVelocity = Vector2(-1, 0) * Constants.DOOR_SPEED;
 
@@ -124,13 +122,6 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
     required super.position,
     required super.priority,
   });
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    checkDebug();
-  }
 
   @override
   Body createBody() {

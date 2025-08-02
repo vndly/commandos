@@ -63,8 +63,6 @@ class AgentComponent extends PhysicalComponent {
   void update(double dt) {
     super.update(dt);
 
-    checkDebug();
-
     if (active) {
       movement.update(input);
     }

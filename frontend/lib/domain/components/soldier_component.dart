@@ -83,8 +83,6 @@ class SoldierComponent extends EnemyComponent {
   void update(double dt) {
     super.update(dt);
 
-    checkDebug();
-
     movingState = _getMovingState(degrees(bodyAngle));
 
     for (final Behavior behavior in soldier.behaviors) {

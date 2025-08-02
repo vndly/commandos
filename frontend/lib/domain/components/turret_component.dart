@@ -59,8 +59,6 @@ class TurretComponent extends EnemyComponent {
   void update(double dt) {
     super.update(dt);
 
-    checkDebug();
-
     for (final Behavior behavior in turret.behaviors) {
       behavior.update(this, dt);
     }
