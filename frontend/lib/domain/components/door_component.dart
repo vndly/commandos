@@ -7,6 +7,7 @@ import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/assets.dart';
+import 'package:commandos/utils/audio.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -102,12 +103,14 @@ class DoorComponent extends PhysicalComponent {
   void onAgentEnter() {
     if (status == DoorStatus.closed) {
       status = DoorStatus.opening;
+      Audio.get.playSound(Audio.DOOR);
     }
   }
 
   void onAgentExit() {
     if (status == DoorStatus.open) {
       status = DoorStatus.closing;
+      Audio.get.playSound(Audio.DOOR);
     }
   }
 }

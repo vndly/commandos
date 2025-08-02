@@ -1,3 +1,5 @@
+import 'package:commandos/utils/assets.dart';
+import 'package:commandos/utils/locator.dart';
 import 'package:just_audio/just_audio.dart';
 
 class Audio {
@@ -6,7 +8,7 @@ class Audio {
   bool _enabled = true;
   //AudioPlayer? _playerToResume;
 
-  static const String NEW_TURN = Assets.AUDIO_SOUND_NEWTURN;
+  static const String DOOR = Assets.AUDIO_DOOR;
 
   static Audio get get => locator<Audio>();
 
@@ -14,7 +16,7 @@ class Audio {
 
   void toggle() {
     _enabled = !_enabled;
-    SettingsStorage.saveAudio(_enabled);
+    //SettingsStorage.saveAudio(_enabled);
   }
 
   Future playSound(String sound) async {
@@ -74,8 +76,8 @@ class Audio {
   }
 
   Future load() async {
-    _enabled = await SettingsStorage.loadAudio();
-    _soundPlayers[NEW_TURN] = await _getPlayer(path: NEW_TURN);
+    //_enabled = await SettingsStorage.loadAudio();
+    _soundPlayers[DOOR] = await _getPlayer(path: DOOR);
   }
 
   Future<AudioPlayer> _getPlayer({
