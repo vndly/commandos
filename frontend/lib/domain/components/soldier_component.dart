@@ -30,9 +30,9 @@ class SoldierComponent extends EnemyComponent {
     required this.agents,
   }) : super(
          size: Vector2(28, 28),
-         priority: Priority.soldier.value,
          headAngle: soldier.headAngle,
          bodyAngle: soldier.bodyAngle,
+         priority: Priority.soldier.value,
        );
 
   bool inFieldOfView(double angle) {
@@ -127,7 +127,10 @@ class SoldierSpriteComponent extends PositionComponent {
     required this.soldier,
     required this.soldierComponent,
     required super.size,
-  }) : super(anchor: Anchor.center);
+  }) : super(
+         anchor: Anchor.center,
+         priority: Priority.soldier.value,
+       );
 
   @override
   FutureOr onLoad() async {

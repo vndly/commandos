@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/app/debug.dart';
-import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/components/laser_component.dart';
+import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
@@ -16,28 +16,22 @@ import 'package:flame/components.dart';
 import 'package:flame/rendering.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-class AgentComponent extends BodyComponent<GameComponent> {
-  final Vector2 initialPosition;
+class AgentComponent extends PhysicalComponent {
   final Vector2 velocity = Vector2.zero();
   final Input input;
   final Agent agent;
-  late final Vector2 size;
   late final AgentMovement movement;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
   bool active;
 
   AgentComponent({
-    required this.initialPosition,
+    required super.initialPosition,
     required this.input,
     required this.agent,
     required this.active,
-  }) {
-    size = Vector2(28, 28);
-    priority = Priority.agent.value;
-    movement = AgentMovement(
-      agent: this,
-    );
+  }) : super(size: Vector2(28, 28), priority: Priority.agent.value) {
+    movement = AgentMovement(agent: this);
   }
 
   @override

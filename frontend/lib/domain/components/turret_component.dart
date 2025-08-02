@@ -21,9 +21,9 @@ class TurretComponent extends EnemyComponent {
     required super.size,
     required this.turret,
   }) : super(
-         priority: Priority.turret.value,
          headAngle: turret.headAngle,
          bodyAngle: turret.bodyAngle,
+         priority: Priority.turret.value,
        );
 
   @override
@@ -81,7 +81,10 @@ class TurretSpriteComponent extends SpriteComponent {
   TurretSpriteComponent({
     required this.turret,
     required super.size,
-  }) : super(anchor: Anchor.center);
+  }) : super(
+         anchor: Anchor.center,
+         priority: Priority.turret.value,
+       );
 
   @override
   FutureOr onLoad() async {

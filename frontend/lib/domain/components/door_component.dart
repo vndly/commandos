@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:commandos/domain/components/agent_component.dart';
+import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
@@ -25,6 +26,7 @@ class DoorComponent extends PositionComponent {
       DoorPanel(
         size: size,
         initialPosition: position,
+        priority: 0,
       ),
     );
 
@@ -32,6 +34,7 @@ class DoorComponent extends PositionComponent {
       DoorDetector(
         size: size,
         initialPosition: position,
+        priority: 0,
       ),
     );
 
@@ -39,13 +42,11 @@ class DoorComponent extends PositionComponent {
   }
 }
 
-class DoorDetector extends BodyComponent with ContactCallbacks {
-  final Vector2 size;
-  final Vector2 initialPosition;
-
+class DoorDetector extends PhysicalComponent with ContactCallbacks {
   DoorDetector({
-    required this.size,
-    required this.initialPosition,
+    required super.size,
+    required super.initialPosition,
+    required super.priority,
   });
 
   @override
@@ -89,13 +90,11 @@ class DoorDetector extends BodyComponent with ContactCallbacks {
   }
 }
 
-class DoorPanel extends BodyComponent {
-  final Vector2 size;
-  final Vector2 initialPosition;
-
+class DoorPanel extends PhysicalComponent {
   DoorPanel({
-    required this.size,
-    required this.initialPosition,
+    required super.size,
+    required super.initialPosition,
+    required super.priority,
   });
 
   @override
@@ -156,9 +155,7 @@ class DoorSpriteComponent extends SpriteComponent {
     required super.position,
     required super.size,
     required super.priority,
-  }) : super(
-         anchor: Anchor.center,
-       );
+  }) : super(anchor: Anchor.center);
 
   @override
   FutureOr onLoad() async {
