@@ -22,6 +22,12 @@ class CollisionGroup {
     mask: Groups.WALL | Groups.AGENT,
   );
 
+  static final CollisionGroup DOOR = CollisionGroup(
+    isSensor: false,
+    category: Groups.DOOR,
+    mask: Groups.AGENT | Groups.TURRET | Groups.SOLDIER,
+  );
+
   static final CollisionGroup WALL = CollisionGroup(
     isSensor: false,
     category: Groups.WALL,
@@ -40,4 +46,5 @@ class Groups {
   static const int TURRET = 0x0002; // 0000 0000 0000 0010
   static const int SOLDIER = 0x0004; // 0000 0000 0000 0100
   static const int WALL = 0x0008; // 0000 0000 0000 1000
+  static const int DOOR = 0x0008; // 0000 0000 0000 1000
 }

@@ -84,7 +84,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       DoorComponent(
         pathTop: Assets.IMAGES_DOORS_DOOR_TOP,
         pathBottom: Assets.IMAGES_DOORS_DOOR_BOTTOM,
-        position: Vector2(50, 150),
+        position: Vector2(70, 50),
         size: Vector2(20, 20),
       ),
     );

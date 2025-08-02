@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/types/priority.dart';
+import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 
 class DoorComponent extends PositionComponent {
   final String pathTop;
@@ -16,25 +20,73 @@ class DoorComponent extends PositionComponent {
 
   @override
   FutureOr onLoad() async {
-    await level.add(
-      DoorSpriteComponent(
-        path: pathTop,
-        position: position,
+    await add(
+      DoorPanel(
         size: size,
-        priority: Priority.map_1.value,
-      ),
-    );
-
-    await level.add(
-      DoorSpriteComponent(
-        path: pathBottom,
-        position: position,
-        size: size,
-        priority: Priority.map_0.value,
+        initialPosition: position,
       ),
     );
 
     return super.onLoad();
+  }
+}
+
+class DoorPanel extends BodyComponent {
+  final Vector2 size;
+  final Vector2 initialPosition;
+
+  DoorPanel({
+    required this.size,
+    required this.initialPosition,
+  });
+
+  @override
+  Future onLoad() async {
+    await super.onLoad();
+
+    await level.add(
+      DoorSpriteComponent(
+        path: Assets.IMAGES_DOORS_DOOR_TOP,
+        position: initialPosition,
+        size: size,
+        priority: Priority.door_top.value,
+      ),
+    );
+
+    await level.add(
+      DoorSpriteComponent(
+        path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
+        position: initialPosition,
+        size: size,
+        priority: Priority.door_bottom.value,
+      ),
+    );
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    checkDebug();
+  }
+
+  @override
+  Body createBody() {
+    final PolygonShape shape = PolygonShape();
+    shape.set([
+      Vector2(-size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, -size.y / 2),
+      Vector2(size.x / 2, size.y / 2),
+      Vector2(-size.x / 2, size.y / 2),
+    ]);
+
+    return getBodyFromRelativePosition(
+      shape: shape,
+      center: initialPosition,
+      bodyType: BodyType.kinematic,
+      group: CollisionGroup.DOOR,
+      angle: 0,
+    );
   }
 }
 
