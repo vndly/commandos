@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
@@ -10,6 +11,8 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class DoorComponent extends PhysicalComponent {
+  DoorStatus status = DoorStatus.closed;
+
   DoorComponent({
     required super.size,
     required super.position,
@@ -39,6 +42,7 @@ class DoorComponent extends PhysicalComponent {
 
     await level.add(
       DoorDetector(
+        doorComponent: this,
         size: size,
         position: position,
         priority: 0,
@@ -51,6 +55,14 @@ class DoorComponent extends PhysicalComponent {
     super.update(dt);
 
     checkDebug();
+
+    if (status == DoorStatus.opening) {
+      body.linearVelocity = Vector2(-1, 0) * Constants.DOOR_SPEED;
+    } else if (status == DoorStatus.closing) {
+      body.linearVelocity = Vector2(1, 0) * Constants.DOOR_SPEED;
+    }
+
+    print(body.linearVelocity);
   }
 
   @override
@@ -71,10 +83,25 @@ class DoorComponent extends PhysicalComponent {
       angle: 0,
     );
   }
+
+  void onAgentEnter() {
+    if (status == DoorStatus.closed) {
+      status = DoorStatus.opening;
+    }
+  }
+
+  void onAgentExit() {
+    if (status == DoorStatus.open) {
+      status = DoorStatus.closing;
+    }
+  }
 }
 
 class DoorDetector extends PhysicalComponent with ContactCallbacks {
+  final DoorComponent doorComponent;
+
   DoorDetector({
+    required this.doorComponent,
     required super.size,
     required super.position,
     required super.priority,
@@ -100,8 +127,8 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
     return getBodyFromRelativePosition(
       shape: shape,
       center: initialPosition,
-      bodyType: BodyType.kinematic,
-      group: CollisionGroup.DOOR,
+      bodyType: BodyType.static,
+      group: CollisionGroup.DOOR_DETECTOR,
       angle: 0,
     );
   }
@@ -109,14 +136,14 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
   @override
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      print('Agent has entered the door.');
+      doorComponent.onAgentEnter();
     }
   }
 
   @override
   void endContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      print('Agent has exited the door.');
+      doorComponent.onAgentExit();
     }
   }
 }
@@ -137,4 +164,11 @@ class DoorSpriteComponent extends SpriteComponent {
 
     return super.onLoad();
   }
+}
+
+enum DoorStatus {
+  closed,
+  opening,
+  open,
+  closing,
 }
