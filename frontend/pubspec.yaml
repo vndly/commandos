@@ -45,6 +45,7 @@ flutter:
     - assets/images/animations/agents/
     - assets/images/animations/soldiers/
     - assets/images/doors/
+    - assets/images/items/
     - assets/images/levels/
     - assets/images/light/
     - assets/images/turrets/

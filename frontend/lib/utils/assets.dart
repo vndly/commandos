@@ -22,6 +22,7 @@ class Assets {
       'animations/soldiers/idle.png';
   static const String IMAGES_DOORS_DOOR_BOTTOM = 'doors/door_bottom.png';
   static const String IMAGES_DOORS_DOOR_TOP = 'doors/door_top.png';
+  static const String IMAGES_ITEMS_KEYCARD = 'items/keycard.png';
   static const String IMAGES_LEVELS_GYM0 = 'levels/gym0.png';
   static const String IMAGES_LEVELS_GYM1 = 'levels/gym1.png';
   static const String IMAGES_LEVELS_GYM2 = 'levels/gym2.png';

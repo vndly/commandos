@@ -11,11 +11,11 @@ class ItemComponent extends PhysicalComponent {
   final Item item;
 
   ItemComponent({
-    required super.position,
     required this.item,
   }) : super(
          size: Vector2(10, 10),
          priority: Priority.item.value,
+         position: item.position,
        );
 
   @override
