@@ -12,6 +12,8 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 
 class DoorComponent extends PhysicalComponent {
   DoorStatus status = DoorStatus.closed;
+  late final DoorSpriteComponent topDoor;
+  late final DoorSpriteComponent bottomDoor;
 
   DoorComponent({
     required super.size,
@@ -22,24 +24,22 @@ class DoorComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
-    await add(
-      DoorSpriteComponent(
-        path: Assets.IMAGES_DOORS_DOOR_TOP,
-        position: Vector2(0, 0),
-        size: size,
-        priority: Priority.door_top.value,
-      ),
+    topDoor = DoorSpriteComponent(
+      path: Assets.IMAGES_DOORS_DOOR_TOP,
+      position: position,
+      size: size,
+      priority: Priority.door_top.value,
     );
 
-    await add(
-      DoorSpriteComponent(
-        path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
-        position: Vector2(0, 0),
-        size: size,
-        priority: Priority.door_bottom.value,
-      ),
+    bottomDoor = DoorSpriteComponent(
+      path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
+      position: position,
+      size: size,
+      priority: Priority.door_bottom.value,
     );
 
+    await level.add(topDoor);
+    await level.add(bottomDoor);
     await level.add(
       DoorDetector(
         doorComponent: this,
@@ -58,11 +58,24 @@ class DoorComponent extends PhysicalComponent {
 
     if (status == DoorStatus.opening) {
       body.linearVelocity = Vector2(-1, 0) * Constants.DOOR_SPEED;
+
+      if (position.x <= initialPosition.x - size.x) {
+        status = DoorStatus.open;
+        body.linearVelocity = Vector2.zero();
+        position.x = initialPosition.x - size.x;
+      }
     } else if (status == DoorStatus.closing) {
       body.linearVelocity = Vector2(1, 0) * Constants.DOOR_SPEED;
+
+      if (position.x >= initialPosition.x) {
+        status = DoorStatus.closed;
+        body.linearVelocity = Vector2.zero();
+        position.x = initialPosition.x;
+      }
     }
 
-    print(body.linearVelocity);
+    topDoor.position = position;
+    bottomDoor.position = position;
   }
 
   @override
