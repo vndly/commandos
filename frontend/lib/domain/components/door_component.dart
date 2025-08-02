@@ -22,19 +22,19 @@ class DoorComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
-    await level.add(
+    await add(
       DoorSpriteComponent(
         path: Assets.IMAGES_DOORS_DOOR_TOP,
-        position: position,
+        position: Vector2(0, 0),
         size: size,
         priority: Priority.door_top.value,
       ),
     );
 
-    await level.add(
+    await add(
       DoorSpriteComponent(
         path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
-        position: position,
+        position: Vector2(0, 0),
         size: size,
         priority: Priority.door_bottom.value,
       ),
