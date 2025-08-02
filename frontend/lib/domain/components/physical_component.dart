@@ -8,6 +8,6 @@ abstract class PhysicalComponent extends BodyComponent<GameComponent> {
   PhysicalComponent({
     required this.initialPosition,
     required this.size,
-    required super.priority,
+    super.priority,
   });
 }

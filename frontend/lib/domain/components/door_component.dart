@@ -9,24 +9,31 @@ import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-class DoorComponent extends PositionComponent {
-  final String pathTop;
-  final String pathBottom;
-
+class DoorComponent extends PhysicalComponent {
   DoorComponent({
-    required this.pathTop,
-    required this.pathBottom,
-    required super.position,
     required super.size,
-  }) : super(anchor: Anchor.center);
+    required super.initialPosition,
+  });
 
   @override
-  FutureOr onLoad() async {
+  Future onLoad() async {
+    await super.onLoad();
+
     await level.add(
-      DoorPanel(
+      DoorSpriteComponent(
+        path: Assets.IMAGES_DOORS_DOOR_TOP,
+        position: initialPosition,
         size: size,
-        initialPosition: position,
-        priority: 0,
+        priority: Priority.door_top.value,
+      ),
+    );
+
+    await level.add(
+      DoorSpriteComponent(
+        path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
+        position: initialPosition,
+        size: size,
+        priority: Priority.door_bottom.value,
       ),
     );
 
@@ -37,8 +44,32 @@ class DoorComponent extends PositionComponent {
         priority: 0,
       ),
     );
+  }
 
-    return super.onLoad();
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    checkDebug();
+  }
+
+  @override
+  Body createBody() {
+    final PolygonShape shape = PolygonShape();
+    shape.set([
+      Vector2(-size.x / 2, 0),
+      Vector2(size.x / 2, 0),
+      Vector2(size.x / 2, size.y / 2),
+      Vector2(-size.x / 2, size.y / 2),
+    ]);
+
+    return getBodyFromRelativePosition(
+      shape: shape,
+      center: initialPosition,
+      bodyType: BodyType.kinematic,
+      group: CollisionGroup.DOOR,
+      angle: 0,
+    );
   }
 }
 
@@ -87,63 +118,6 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
     if (other is AgentComponent) {
       print('Agent has exited the door.');
     }
-  }
-}
-
-class DoorPanel extends PhysicalComponent {
-  DoorPanel({
-    required super.size,
-    required super.initialPosition,
-    required super.priority,
-  });
-
-  @override
-  Future onLoad() async {
-    await super.onLoad();
-
-    await level.add(
-      DoorSpriteComponent(
-        path: Assets.IMAGES_DOORS_DOOR_TOP,
-        position: initialPosition,
-        size: size,
-        priority: Priority.door_top.value,
-      ),
-    );
-
-    await level.add(
-      DoorSpriteComponent(
-        path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
-        position: initialPosition,
-        size: size,
-        priority: Priority.door_bottom.value,
-      ),
-    );
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    checkDebug();
-  }
-
-  @override
-  Body createBody() {
-    final PolygonShape shape = PolygonShape();
-    shape.set([
-      Vector2(-size.x / 2, 0),
-      Vector2(size.x / 2, 0),
-      Vector2(size.x / 2, size.y / 2),
-      Vector2(-size.x / 2, size.y / 2),
-    ]);
-
-    return getBodyFromRelativePosition(
-      shape: shape,
-      center: initialPosition,
-      bodyType: BodyType.kinematic,
-      group: CollisionGroup.DOOR,
-      angle: 0,
-    );
   }
 }
 
