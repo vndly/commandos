@@ -28,11 +28,68 @@ class DoorComponent extends PositionComponent {
       ),
     );
 
+    await level.add(
+      DoorDetector(
+        size: size,
+        initialPosition: position,
+      ),
+    );
+
     return super.onLoad();
   }
 }
 
-class DoorPanel extends BodyComponent with ContactCallbacks {
+class DoorDetector extends BodyComponent with ContactCallbacks {
+  final Vector2 size;
+  final Vector2 initialPosition;
+
+  DoorDetector({
+    required this.size,
+    required this.initialPosition,
+  });
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    checkDebug();
+  }
+
+  @override
+  Body createBody() {
+    final PolygonShape shape = PolygonShape();
+    shape.set([
+      Vector2(-size.x / 2, 0),
+      Vector2(size.x / 2, 0),
+      Vector2(size.x / 2, size.y / 2),
+      Vector2(-size.x / 2, size.y / 2),
+    ]);
+
+    return getBodyFromRelativePosition(
+      shape: shape,
+      center: initialPosition,
+      bodyType: BodyType.kinematic,
+      group: CollisionGroup.DOOR,
+      angle: 0,
+    );
+  }
+
+  @override
+  void beginContact(Object other, Contact contact) {
+    if (other is AgentComponent) {
+      print('Agent has entered the door.');
+    }
+  }
+
+  @override
+  void endContact(Object other, Contact contact) {
+    if (other is AgentComponent) {
+      print('Agent has exited the door.');
+    }
+  }
+}
+
+class DoorPanel extends BodyComponent {
   final Vector2 size;
   final Vector2 initialPosition;
 
@@ -88,20 +145,6 @@ class DoorPanel extends BodyComponent with ContactCallbacks {
       group: CollisionGroup.DOOR,
       angle: 0,
     );
-  }
-
-  @override
-  void beginContact(Object other, Contact contact) {
-    if (other is AgentComponent) {
-      print('Agent has entered the door.');
-    }
-  }
-
-  @override
-  void endContact(Object other, Contact contact) {
-    if (other is AgentComponent) {
-      print('Agent has exited the door.');
-    }
   }
 }
 
