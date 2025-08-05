@@ -122,6 +122,7 @@ List<JsonItem> getItems({
   for (final Json g in json['svg']['g']) {
     if (g['id'] == name) {
       for (final Json item in g['g']) {
+        final String type = item['type'];
         final Json rect = item['rect'];
         final double x = double.parse(rect['x']);
         final double y = double.parse(rect['y']);
@@ -129,7 +130,7 @@ List<JsonItem> getItems({
         final double height = double.parse(rect['height']);
         result.add(
           JsonItem(
-            type: ItemType.keycard, // parseItemType(g['type'])!,
+            type: parseItemType(type),
             position: JsonPosition(
               x: (x + (width / 2)).toInt(),
               y: (y + (height / 2)).toInt(),
@@ -143,11 +144,15 @@ List<JsonItem> getItems({
   return result;
 }
 
-/*ItemType? parseItemType(String value) => Enums.parse(
-  value: value,
-  list: ItemType.values,
-  mapper: (e) => e.name,
-);*/
+ItemType parseItemType(String value) {
+  for (final ItemType type in ItemType.values) {
+    if (type.name == value) {
+      return type;
+    }
+  }
+
+  throw Exception('Unknown item type: $value');
+}
 
 JsonWall getWall(String wallString) {
   final List<Vertex> coords = getCoordinates(wallString);
