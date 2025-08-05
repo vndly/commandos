@@ -17,7 +17,6 @@ import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
-import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
@@ -38,9 +37,9 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
     await add(
       MapComponent(
-        path0: Assets.IMAGES_LEVELS_GYM0,
-        path1: Assets.IMAGES_LEVELS_GYM1,
-        path2: Assets.IMAGES_LEVELS_GYM2,
+        path0: '',
+        path1: '',
+        path2: '',
         size: Vector2(level.width.toDouble(), level.height.toDouble()),
       ),
     );

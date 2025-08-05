@@ -10,7 +10,6 @@ import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/extensions/vector2_extension.dart';
-import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
@@ -154,7 +153,7 @@ class SoldierSpriteComponent extends PositionComponent {
   }
 
   Future<SpriteAnimation> _idleAnimation(int range) => SpriteAnimation.load(
-    Assets.IMAGES_ANIMATIONS_SOLDIERS_IDLE,
+    '',
     SpriteAnimationData.range(
       start: range,
       end: range,

@@ -6,7 +6,6 @@ import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/audio.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -26,14 +25,14 @@ class DoorComponent extends PhysicalComponent {
     await super.onLoad();
 
     topDoor = DoorSpriteComponent(
-      path: Assets.IMAGES_DOORS_DOOR_TOP,
+      path: '',
       position: position,
       size: size,
       priority: Priority.door_top.value,
     );
 
     bottomDoor = DoorSpriteComponent(
-      path: Assets.IMAGES_DOORS_DOOR_BOTTOM,
+      path: '',
       position: position,
       size: size,
       priority: Priority.door_bottom.value,

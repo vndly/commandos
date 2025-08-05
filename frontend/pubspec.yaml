@@ -7,9 +7,9 @@ environment:
   sdk: ">=3.8.1 <4.0.0"
 
 dependencies:
-  get_it: ^8.0.3
+  get_it: ^8.2.0
   flame: ^1.30.1
-  logger: ^2.6.0
+  logger: ^2.6.1
   dafluta: ^5.5.1
   just_audio: ^0.10.4
   url_strategy: ^0.3.0
@@ -17,9 +17,9 @@ dependencies:
   json_annotation: ^4.9.0
   shared_preferences: ^2.5.3
 
-  firebase_core: ^3.15.1
-  firebase_analytics: ^11.5.2
-  firebase_crashlytics: ^4.3.9
+  firebase_core: ^4.0.0
+  firebase_analytics: ^12.0.0
+  firebase_crashlytics: ^5.0.0
 
   flutter:
     sdk: flutter
@@ -42,10 +42,3 @@ flutter:
 
   assets:
     - assets/audio/
-    - assets/images/animations/agents/
-    - assets/images/animations/soldiers/
-    - assets/images/doors/
-    - assets/images/items/
-    - assets/images/levels/
-    - assets/images/light/
-    - assets/images/turrets/

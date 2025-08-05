@@ -8,7 +8,6 @@ import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -86,7 +85,7 @@ class TurretSpriteComponent extends SpriteComponent {
 
   @override
   FutureOr onLoad() async {
-    sprite = await Sprite.load(Assets.IMAGES_TURRETS_SINGLE);
+    sprite = await Sprite.load('');
 
     return super.onLoad();
   }

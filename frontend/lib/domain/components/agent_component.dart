@@ -10,7 +10,6 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame/rendering.dart';
@@ -107,71 +106,8 @@ class AgentSpriteComponent extends PositionComponent {
       ),
     );
 
-    spriteAnimation = SpriteAnimationGroupComponent<AgentMovingState>(
-      animations: {
-        AgentMovingState.idle_up: await _idleAnimation(0),
-        AgentMovingState.idle_up_right: await _idleAnimation(1),
-        AgentMovingState.idle_right: await _idleAnimation(2),
-        AgentMovingState.idle_down_right: await _idleAnimation(3),
-        AgentMovingState.idle_down: await _idleAnimation(4),
-        AgentMovingState.idle_down_left: await _idleAnimation(5),
-        AgentMovingState.idle_left: await _idleAnimation(6),
-        AgentMovingState.idle_up_left: await _idleAnimation(7),
-        AgentMovingState.walking_up: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP,
-        ),
-        AgentMovingState.walking_up_right: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP_RIGHT,
-        ),
-        AgentMovingState.walking_right: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_RIGHT,
-        ),
-        AgentMovingState.walking_down_right: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN_RIGHT,
-        ),
-        AgentMovingState.walking_down: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN,
-        ),
-        AgentMovingState.walking_down_left: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_DOWN_LEFT,
-        ),
-        AgentMovingState.walking_left: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_LEFT,
-        ),
-        AgentMovingState.walking_up_left: await _walkingAnimation(
-          Assets.IMAGES_ANIMATIONS_AGENTS_WALKING_UP_LEFT,
-        ),
-      },
-      current: movement.movingState,
-      position: Vector2(0, 0),
-      size: size,
-    );
-
-    add(spriteAnimation);
-
     return super.onLoad();
   }
-
-  Future<SpriteAnimation> _idleAnimation(int range) => SpriteAnimation.load(
-    Assets.IMAGES_ANIMATIONS_AGENTS_IDLE,
-    SpriteAnimationData.range(
-      start: range,
-      end: range,
-      amount: 8,
-      stepTimes: [1],
-      textureSize: Vector2(36, 36),
-    ),
-  );
-
-  Future<SpriteAnimation> _walkingAnimation(String path) =>
-      SpriteAnimation.load(
-        path,
-        SpriteAnimationData.sequenced(
-          amount: 8,
-          stepTime: 0.05,
-          textureSize: Vector2(36, 36),
-        ),
-      );
 
   @override
   void update(double dt) {
