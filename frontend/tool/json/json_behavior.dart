@@ -2,7 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 import '../types/behavior_type.dart';
 import '../types/intermittent_state.dart';
 import '../types/rotating_direction.dart';
-import '../types/rotating_part.dart';
 
 part 'json_behavior.g.dart';
 
@@ -32,7 +31,6 @@ class JsonBehavior {
   final double? timeOn;
   final double? timeOff;
   final double? initialTime;
-  final RotatingPart? rotatingPart;
   final RotatingDirection? rotatingDirection;
   final IntermittentState? intermittentState;
 
@@ -61,7 +59,6 @@ class JsonBehavior {
     required this.timeOn,
     required this.timeOff,
     required this.initialTime,
-    required this.rotatingPart,
     required this.rotatingDirection,
     required this.intermittentState,
   });

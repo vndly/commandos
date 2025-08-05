@@ -7,14 +7,12 @@
                 "x": 120,
                 "y": 80
             },
-            "headAngle": -90,
-            "bodyAngle": -90,
+            "angle": -90,
             "sweep": 30,
             "range": 100,
             "behaviors": [
                 {
                     "type": "rotating",
-                    "rotatingPart": "head",
                     "startAngle": -90,
                     "speed": 50,
                     "rotatingDirection": "clockwise",
@@ -29,14 +27,12 @@
                 "x": 15,
                 "y": 70
             },
-            "headAngle": 45,
-            "bodyAngle": 45,
+            "angle": 45,
             "sweep": 30,
             "range": 100,
             "behaviors": [
                 {
                     "type": "rotating",
-                    "rotatingPart": "head",
                     "startAngle": 45,
                     "speed": 40,
                     "rotatingDirection": "counter_clockwise",

@@ -1,4 +1,0 @@
-enum RotatingPart {
-  head,
-  body,
-}

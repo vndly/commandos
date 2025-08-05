@@ -19,11 +19,7 @@ class TurretComponent extends EnemyComponent {
     required super.position,
     required super.size,
     required this.turret,
-  }) : super(
-         headAngle: turret.headAngle,
-         bodyAngle: turret.bodyAngle,
-         priority: Priority.turret.value,
-       );
+  }) : super(priority: Priority.turret.value);
 
   @override
   Future onLoad() async {
@@ -50,7 +46,7 @@ class TurretComponent extends EnemyComponent {
     shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
-    angle: turret.bodyAngle,
+    angle: turret.angle,
     group: CollisionGroup.TURRET,
   );
 

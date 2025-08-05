@@ -17,7 +17,7 @@ void main(List<String> args) async {
   await processFile('tool/input/levels/gym');
 }
 
-Future<void> processFile(String levelFolder) async {
+Future processFile(String levelFolder) async {
   final File svgFile = File('$levelFolder/level.svg');
   final Json json = await getJson(svgFile);
 
@@ -86,7 +86,6 @@ List<JsonAgent> getAgents({
           JsonAgent(
             id: id,
             position: JsonPosition(x: cx, y: cy),
-            angle: 0,
           ),
         );
       }
@@ -130,7 +129,7 @@ List<JsonItem> getItems({
         final double height = double.parse(rect['height']);
         result.add(
           JsonItem(
-            type: ItemType.keycard, // TODO(momo): parse g['type']
+            type: ItemType.keycard, // parseItemType(g['type'])!,
             position: JsonPosition(
               x: (x + (width / 2)).toInt(),
               y: (y + (height / 2)).toInt(),
@@ -143,6 +142,12 @@ List<JsonItem> getItems({
 
   return result;
 }
+
+/*ItemType? parseItemType(String value) => Enums.parse(
+  value: value,
+  list: ItemType.values,
+  mapper: (e) => e.name,
+);*/
 
 JsonWall getWall(String wallString) {
   final List<Vertex> coords = getCoordinates(wallString);

@@ -9,11 +9,9 @@ part of 'json_agent.dart';
 JsonAgent _$JsonAgentFromJson(Map<String, dynamic> json) => JsonAgent(
   id: json['id'] as String,
   position: JsonPosition.fromJson(json['position'] as Map<String, dynamic>),
-  angle: (json['angle'] as num).toDouble(),
 );
 
 Map<String, dynamic> _$JsonAgentToJson(JsonAgent instance) => <String, dynamic>{
   'id': instance.id,
   'position': instance.position,
-  'angle': instance.angle,
 };

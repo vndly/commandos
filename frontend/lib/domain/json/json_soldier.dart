@@ -12,11 +12,8 @@ class JsonSoldier {
   @JsonKey(name: 'position')
   final JsonPosition position;
 
-  @JsonKey(name: 'headAngle')
-  final double headAngle;
-
-  @JsonKey(name: 'bodyAngle')
-  final double bodyAngle;
+  @JsonKey(name: 'angle')
+  final double angle;
 
   @JsonKey(name: 'sweep')
   final double sweep;
@@ -30,8 +27,7 @@ class JsonSoldier {
   JsonSoldier({
     required this.id,
     required this.position,
-    required this.headAngle,
-    required this.bodyAngle,
+    required this.angle,
     required this.sweep,
     required this.range,
     required this.behaviors,

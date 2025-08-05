@@ -29,14 +29,12 @@ class SoldierComponent extends EnemyComponent {
     required this.agents,
   }) : super(
          size: Vector2(28, 28),
-         headAngle: soldier.headAngle,
-         bodyAngle: soldier.bodyAngle,
          priority: Priority.soldier.value,
        );
 
   bool inFieldOfView(double angle) {
-    final double minAngle = headAngle - soldier.sweep;
-    final double maxAngle = headAngle + soldier.sweep;
+    final double minAngle = body.angle - soldier.sweep;
+    final double maxAngle = body.angle + soldier.sweep;
 
     return angle >= minAngle && angle <= maxAngle;
   }
@@ -74,7 +72,7 @@ class SoldierComponent extends EnemyComponent {
     shape: shapeCircle(size / 4),
     center: initialPosition,
     bodyType: BodyType.kinematic,
-    angle: 0,
+    angle: soldier.angle,
     group: CollisionGroup.SOLDIER,
   );
 
@@ -82,7 +80,7 @@ class SoldierComponent extends EnemyComponent {
   void update(double dt) {
     super.update(dt);
 
-    movingState = _getMovingState(degrees(bodyAngle));
+    movingState = _getMovingState(degrees(body.angle));
 
     for (final Behavior behavior in soldier.behaviors) {
       behavior.update(this, dt);
@@ -90,7 +88,7 @@ class SoldierComponent extends EnemyComponent {
 
     vision.show(
       source: body.position,
-      angle: headAngle,
+      angle: body.angle,
       rayCasting: rayCasting,
     );
 
