@@ -37,9 +37,6 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
     await add(
       MapComponent(
-        path0: '',
-        path1: '',
-        path2: '',
         size: Vector2(level.width.toDouble(), level.height.toDouble()),
       ),
     );

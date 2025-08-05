@@ -1,11 +1,11 @@
-import 'dart:async';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
-import 'package:flame/components.dart';
+import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
 
 class ItemComponent extends PhysicalComponent {
   final Item item;
@@ -19,14 +19,14 @@ class ItemComponent extends PhysicalComponent {
        );
 
   @override
-  Future onLoad() async {
-    await super.onLoad();
+  void render(Canvas canvas) {
+    super.render(canvas);
 
-    await add(
-      ItemSpriteComponent(
-        item: item,
-        size: size,
-      ),
+    canvas.drawText(
+      text: item.type.value,
+      position: position,
+      size: size.x / 10,
+      color: Colors.white,
     );
   }
 
@@ -38,23 +38,4 @@ class ItemComponent extends PhysicalComponent {
     angle: 0,
     group: CollisionGroup.ITEM,
   );
-}
-
-class ItemSpriteComponent extends SpriteComponent {
-  final Item item;
-
-  ItemSpriteComponent({
-    required this.item,
-    required super.size,
-  }) : super(
-         anchor: Anchor.center,
-         priority: Priority.item.value,
-       );
-
-  @override
-  FutureOr onLoad() async {
-    sprite = await Sprite.load(item.type.sprite);
-
-    return super.onLoad();
-  }
 }

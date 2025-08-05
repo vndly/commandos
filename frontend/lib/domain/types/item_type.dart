@@ -1,7 +1,7 @@
 enum ItemType {
   keycard('🔑');
 
-  final String sprite;
+  final String value;
 
-  const ItemType(this.sprite);
+  const ItemType(this.value);
 }

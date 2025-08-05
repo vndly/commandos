@@ -1,19 +1,19 @@
 import 'dart:async';
-import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
-import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/audio.dart';
-import 'package:flame/components.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
 
 class DoorComponent extends PhysicalComponent {
   DoorStatus status = DoorStatus.closed;
-  late final DoorSpriteComponent topDoor;
-  late final DoorSpriteComponent bottomDoor;
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+  );
 
   DoorComponent({
     required super.size,
@@ -24,22 +24,6 @@ class DoorComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
-    topDoor = DoorSpriteComponent(
-      path: '',
-      position: position,
-      size: size,
-      priority: Priority.door_top.value,
-    );
-
-    bottomDoor = DoorSpriteComponent(
-      path: '',
-      position: position,
-      size: size,
-      priority: Priority.door_bottom.value,
-    );
-
-    await level.add(topDoor);
-    await level.add(bottomDoor);
     await level.add(
       DoorDetector(
         doorComponent: this,
@@ -51,31 +35,21 @@ class DoorComponent extends PhysicalComponent {
   }
 
   @override
-  void update(double dt) {
-    super.update(dt);
+  void render(Canvas canvas) {
+    super.render(canvas);
 
-    if (status == DoorStatus.opening) {
-      body.linearVelocity = Vector2(-1, 0) * Constants.DOOR_SPEED;
-
-      if (position.x <= initialPosition.x - size.x) {
-        status = DoorStatus.open;
-        body.linearVelocity = Vector2.zero();
-        position.x = initialPosition.x - size.x;
-      }
-    } else if (status == DoorStatus.closing) {
-      body.linearVelocity = Vector2(1, 0) * Constants.DOOR_SPEED;
-
-      if (position.x >= initialPosition.x) {
-        status = DoorStatus.closed;
-        body.linearVelocity = Vector2.zero();
-        position.x = initialPosition.x;
-      }
-    } else if (status == DoorStatus.closed) {
-      position.setFrom(initialPosition);
+    switch (status) {
+      case DoorStatus.closed:
+        paintFill.color = Colors.red;
+      case DoorStatus.open:
+        paintFill.color = Colors.green;
     }
 
-    topDoor.position = position;
-    bottomDoor.position = position;
+    canvas.drawCircle(
+      Offset(size.x / 2, size.y / 2),
+      size.x / 2,
+      paintFill,
+    );
   }
 
   @override
@@ -99,14 +73,14 @@ class DoorComponent extends PhysicalComponent {
 
   void onAgentEnter() {
     if (status == DoorStatus.closed) {
-      status = DoorStatus.opening;
+      status = DoorStatus.open;
       Audio.get.playSound(Audio.DOOR);
     }
   }
 
   void onAgentExit() {
     if (status == DoorStatus.open) {
-      status = DoorStatus.closing;
+      status = DoorStatus.closed;
       Audio.get.playSound(Audio.DOOR);
     }
   }
@@ -156,27 +130,7 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
   }
 }
 
-class DoorSpriteComponent extends SpriteComponent {
-  final String path;
-
-  DoorSpriteComponent({
-    required this.path,
-    required super.position,
-    required super.size,
-    required super.priority,
-  }) : super(anchor: Anchor.center);
-
-  @override
-  FutureOr onLoad() async {
-    sprite = await Sprite.load(path);
-
-    return super.onLoad();
-  }
-}
-
 enum DoorStatus {
   closed,
-  opening,
   open,
-  closing,
 }

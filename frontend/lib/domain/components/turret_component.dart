@@ -8,12 +8,17 @@ import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:flame/components.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
 
 class TurretComponent extends EnemyComponent {
   final Turret turret;
   final List<LaserComponent> lasers = [];
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+    color: Colors.red,
+  );
 
   TurretComponent({
     required super.position,
@@ -24,13 +29,6 @@ class TurretComponent extends EnemyComponent {
   @override
   Future onLoad() async {
     await super.onLoad();
-
-    await add(
-      TurretSpriteComponent(
-        turret: turret,
-        size: size,
-      ),
-    );
 
     for (final Laser laser in turret.lasers) {
       final LaserComponent laserComponent = LaserComponent(
@@ -66,23 +64,15 @@ class TurretComponent extends EnemyComponent {
       );
     }
   }
-}
-
-class TurretSpriteComponent extends SpriteComponent {
-  final Turret turret;
-
-  TurretSpriteComponent({
-    required this.turret,
-    required super.size,
-  }) : super(
-         anchor: Anchor.center,
-         priority: Priority.turret.value,
-       );
 
   @override
-  FutureOr onLoad() async {
-    sprite = await Sprite.load('');
+  void render(Canvas canvas) {
+    super.render(canvas);
 
-    return super.onLoad();
+    canvas.drawCircle(
+      Offset(size.x / 2, size.y / 2),
+      size.x / 2,
+      paintFill,
+    );
   }
 }

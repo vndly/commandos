@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/components/laser_component.dart';
@@ -10,9 +11,8 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
-import 'package:flame/components.dart';
-import 'package:flame/rendering.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class AgentComponent extends PhysicalComponent {
@@ -22,6 +22,9 @@ class AgentComponent extends PhysicalComponent {
   late final AgentMovement movement;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+  );
   bool active;
 
   AgentComponent({
@@ -38,6 +41,7 @@ class AgentComponent extends PhysicalComponent {
     await super.onLoad();
 
     rayCasting = RayCasting(world);
+    paintFill.color = Constants.AGENT_COLORS[agent.id]!;
 
     laser = LaserComponent(
       laser: const Laser(
@@ -48,14 +52,6 @@ class AgentComponent extends PhysicalComponent {
       ),
     );
     await level.add(laser);
-
-    await add(
-      AgentSpriteComponent(
-        agent: agent,
-        movement: movement,
-        size: size,
-      ),
-    );
   }
 
   @override
@@ -69,12 +65,23 @@ class AgentComponent extends PhysicalComponent {
     if (active && Debug.hasAgentVision) {
       laser.show(
         source: body.position,
-        angle: movement.movingState.radians,
+        angle: body.angle,
         rayCasting: rayCasting,
       );
     } else {
       laser.hide();
     }
+  }
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    canvas.drawCircle(
+      Offset(size.x / 2, size.y / 2),
+      size.x / 2,
+      paintFill,
+    );
   }
 
   @override
@@ -87,73 +94,8 @@ class AgentComponent extends PhysicalComponent {
   );
 }
 
-class AgentSpriteComponent extends PositionComponent {
-  final Agent agent;
-  final AgentMovement movement;
-  late final SpriteAnimationGroupComponent<AgentMovingState> spriteAnimation;
-
-  AgentSpriteComponent({
-    required this.agent,
-    required this.movement,
-    required super.size,
-  }) : super(anchor: Anchor.center);
-
-  @override
-  FutureOr onLoad() async {
-    decorator.addLast(
-      PaintDecorator.tint(
-        Constants.AGENT_COLORS[agent.id]!,
-      ),
-    );
-
-    return super.onLoad();
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    spriteAnimation.current = movement.movingState;
-  }
-}
-
-enum AgentMovingState {
-  idle_up(0, 0 * degrees2Radians),
-  idle_up_right(45, 45 * degrees2Radians),
-  idle_right(90, 90 * degrees2Radians),
-  idle_down_right(135, 135 * degrees2Radians),
-  idle_down(180, 180 * degrees2Radians),
-  idle_down_left(225, 225 * degrees2Radians),
-  idle_left(270, 270 * degrees2Radians),
-  idle_up_left(315, 315 * degrees2Radians),
-  walking_up(0, 0 * degrees2Radians),
-  walking_up_right(45, 45 * degrees2Radians),
-  walking_right(90, 90 * degrees2Radians),
-  walking_down_right(135, 135 * degrees2Radians),
-  walking_down(180, 180 * degrees2Radians),
-  walking_down_left(225, 225 * degrees2Radians),
-  walking_left(270, 270 * degrees2Radians),
-  walking_up_left(315, 315 * degrees2Radians);
-
-  final double angle;
-  final double radians;
-
-  const AgentMovingState(this.angle, this.radians);
-
-  bool get isIdle =>
-      this == AgentMovingState.idle_up ||
-      this == AgentMovingState.idle_up_right ||
-      this == AgentMovingState.idle_right ||
-      this == AgentMovingState.idle_down_right ||
-      this == AgentMovingState.idle_down ||
-      this == AgentMovingState.idle_down_left ||
-      this == AgentMovingState.idle_left ||
-      this == AgentMovingState.idle_up_left;
-}
-
 class AgentMovement {
   final AgentComponent agent;
-  AgentMovingState movingState = AgentMovingState.idle_right;
 
   AgentMovement({
     required this.agent,
@@ -161,64 +103,9 @@ class AgentMovement {
 
   void update(Input input) {
     if (input.hasInput) {
-      movingState = _walkingSate(input.direction);
       agent.body.linearVelocity = input.direction * Constants.AGENT_SPEED;
-    } else if (!movingState.isIdle) {
-      movingState = _idleState(movingState);
-      agent.body.linearVelocity = Vector2.zero();
-    }
-  }
-
-  AgentMovingState _walkingSate(Vector2 direction) {
-    if (direction.x > 0 && direction.y < 0) {
-      return AgentMovingState.walking_up_right;
-    } else if (direction.x > 0 && direction.y > 0) {
-      return AgentMovingState.walking_down_right;
-    } else if (direction.x < 0 && direction.y < 0) {
-      return AgentMovingState.walking_up_left;
-    } else if (direction.x < 0 && direction.y > 0) {
-      return AgentMovingState.walking_down_left;
-    } else if (direction.x > 0) {
-      return AgentMovingState.walking_right;
-    } else if (direction.x < 0) {
-      return AgentMovingState.walking_left;
-    } else if (direction.y > 0) {
-      return AgentMovingState.walking_down;
-    } else if (direction.y < 0) {
-      return AgentMovingState.walking_up;
     } else {
-      return movingState;
-    }
-  }
-
-  AgentMovingState _idleState(AgentMovingState current) {
-    switch (movingState) {
-      case AgentMovingState.walking_up:
-        return AgentMovingState.idle_up;
-
-      case AgentMovingState.walking_up_right:
-        return AgentMovingState.idle_up_right;
-
-      case AgentMovingState.walking_right:
-        return AgentMovingState.idle_right;
-
-      case AgentMovingState.walking_down_right:
-        return AgentMovingState.idle_down_right;
-
-      case AgentMovingState.walking_down:
-        return AgentMovingState.idle_down;
-
-      case AgentMovingState.walking_down_left:
-        return AgentMovingState.idle_down_left;
-
-      case AgentMovingState.walking_left:
-        return AgentMovingState.idle_left;
-
-      case AgentMovingState.walking_up_left:
-        return AgentMovingState.idle_up_left;
-
-      default:
-        return current;
+      agent.body.linearVelocity = Vector2.zero();
     }
   }
 }
