@@ -54,6 +54,7 @@ class CollisionGroup {
 }
 
 class Groups {
+  static const int NONE = 0x0000; // 0000 0000 0000 0000
   static const int AGENT = 0x0001; // 0000 0000 0000 0001
   static const int TURRET = 0x0002; // 0000 0000 0000 0010
   static const int SOLDIER = 0x0004; // 0000 0000 0000 0100

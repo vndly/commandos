@@ -14,7 +14,7 @@ import 'package:flutter/material.dart';
 
 class DoorComponent extends PhysicalComponent {
   final Door door;
-  DoorStatus status = DoorStatus.closed;
+  late DoorStatus status;
 
   DoorComponent({
     required this.door,
@@ -22,19 +22,13 @@ class DoorComponent extends PhysicalComponent {
          position: door.position,
          size: door.size,
          priority: Priority.door.value,
-       );
+       ) {
+    status = door.status;
+  }
 
   @override
   Future onLoad() async {
     await super.onLoad();
-
-    add(
-      DoorSpriteComponent(
-        doorComponent: this,
-        position: size / 2,
-        size: size,
-      ),
-    );
 
     await level.add(
       DoorDetector(
@@ -44,6 +38,15 @@ class DoorComponent extends PhysicalComponent {
         priority: 0,
       ),
     );
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    if (status == DoorStatus.open) {
+      body.setTransform(Vector2(0, 0), angle);
+    }
   }
 
   @override
@@ -63,10 +66,10 @@ class DoorComponent extends PhysicalComponent {
   }
 
   void onAgentExit() {
-    if (status == DoorStatus.open) {
+    /*if (status == DoorStatus.open) {
       status = DoorStatus.closed;
       Audio.get.playSound(Audio.DOOR);
-    }
+    }*/
   }
 }
 
@@ -79,6 +82,19 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
     required super.position,
     required super.priority,
   });
+
+  @override
+  Future onLoad() async {
+    await super.onLoad();
+
+    add(
+      DoorSpriteComponent(
+        doorComponent: doorComponent,
+        position: size / 2,
+        size: size,
+      ),
+    );
+  }
 
   @override
   Body createBody() => getBodyFromRelativePosition(
