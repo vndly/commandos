@@ -81,23 +81,13 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
   });
 
   @override
-  Body createBody() {
-    final PolygonShape shape = PolygonShape();
-    shape.set([
-      Vector2(-size.x / 2, 0),
-      Vector2(size.x / 2, 0),
-      Vector2(size.x / 2, size.y / 2),
-      Vector2(-size.x / 2, size.y / 2),
-    ]);
-
-    return getBodyFromRelativePosition(
-      shape: shape,
-      center: initialPosition,
-      bodyType: BodyType.static,
-      group: CollisionGroup.DOOR_DETECTOR,
-      angle: 0,
-    );
-  }
+  Body createBody() => getBodyFromRelativePosition(
+    shape: shapeSquare(doorComponent.door.size),
+    center: initialPosition,
+    bodyType: BodyType.static,
+    group: CollisionGroup.DOOR_DETECTOR,
+    angle: 0,
+  );
 
   @override
   void beginContact(Object other, Contact contact) {
