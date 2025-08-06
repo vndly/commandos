@@ -58,8 +58,7 @@ class ItemSpriteComponent extends PositionComponent {
     canvas.drawText(
       text: item.type.value,
       position: Vector2.zero(),
-      size: size.x / 1.5,
-      color: Colors.white,
+      size: size.x / 1.2,
     );
   }
 }
