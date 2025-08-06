@@ -22,12 +22,12 @@ class WallComponent extends PhysicalComponent {
         priority: Priority.wall.value,
       );
 
-  /*@override
+  @override
   void render(Canvas canvas) {
     super.render(canvas);
 
-    canvas.drawPath(canvas.path(wall.vertices), paintFill);
-  }*/
+    canvas.drawPath(wall.path, paintFill);
+  }
 
   @override
   Body createBody() => getBodyFromRelativePosition(

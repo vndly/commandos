@@ -47,23 +47,4 @@ extension CanvasExtension on Canvas {
     required Vector2 point,
     required Vector2 size,
   }) => point - (Vector2(anchor.x, anchor.y)..multiply(size));
-
-  Path path(List<Vector2> vertices) {
-    final Path result = Path();
-    result.moveTo(
-      vertices[0].x,
-      vertices[0].y,
-    );
-
-    for (int i = 1; i < vertices.length; i++) {
-      result.lineTo(
-        vertices[i].x,
-        vertices[i].y,
-      );
-    }
-
-    result.close();
-
-    return result;
-  }
 }
