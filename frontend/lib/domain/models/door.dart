@@ -1,14 +1,12 @@
 import 'package:commandos/domain/components/door_component.dart';
+import 'package:commandos/domain/models/polygon.dart';
 import 'package:flame/components.dart';
 
-class Door {
-  final Vector2 position;
-  final Vector2 size;
+class Door extends Polygon {
   final DoorStatus status;
 
-  const Door({
-    required this.position,
-    required this.size,
+  Door({
     required this.status,
-  });
+    required List<Vector2> points,
+  }) : super(points: points);
 }

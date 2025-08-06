@@ -1,13 +1,17 @@
+import 'package:commandos/domain/components/door_component.dart';
 import 'package:commandos/domain/components/wall_component.dart';
+import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:flame/components.dart';
 
 class MapComponent extends PositionComponent {
   final List<Wall> walls;
+  final List<Door> doors;
 
   MapComponent({
     required this.walls,
+    required this.doors,
     required super.size,
   }) : super(
          position: Vector2.zero(),
@@ -22,6 +26,12 @@ class MapComponent extends PositionComponent {
     for (final Wall wall in walls) {
       await add(
         WallComponent(wall: wall),
+      );
+    }
+
+    for (final Door door in doors) {
+      await add(
+        DoorComponent(door: door),
       );
     }
   }

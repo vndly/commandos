@@ -6,8 +6,10 @@ import 'package:commandos/domain/behaviors/moving_behavior.dart';
 import 'package:commandos/domain/behaviors/orbiting_behavior.dart';
 import 'package:commandos/domain/behaviors/oscillating_behavior.dart';
 import 'package:commandos/domain/behaviors/rotating_behavior.dart';
+import 'package:commandos/domain/components/door_component.dart';
 import 'package:commandos/domain/json/json_agent.dart';
 import 'package:commandos/domain/json/json_behavior.dart';
+import 'package:commandos/domain/json/json_door.dart';
 import 'package:commandos/domain/json/json_item.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
@@ -16,6 +18,7 @@ import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
 import 'package:commandos/domain/json/json_wall.dart';
 import 'package:commandos/domain/models/agent.dart';
+import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
@@ -44,6 +47,9 @@ class LevelLoader {
       ),
       walls: _getWalls(
         jsonLevel.walls,
+      ),
+      doors: _getDoors(
+        jsonLevel.doors,
       ),
       items: _getItems(
         jsonLevel.items,
@@ -118,6 +124,22 @@ class LevelLoader {
     for (final JsonWall wall in walls) {
       final List<Vector2> points = wall.vertices.map(_toVector2).toList();
       result.add(Wall(points: points));
+    }
+
+    return result;
+  }
+
+  static List<Door> _getDoors(List<JsonDoor> doors) {
+    final List<Door> result = [];
+
+    for (final JsonDoor door in doors) {
+      final List<Vector2> points = door.vertices.map(_toVector2).toList();
+      result.add(
+        Door(
+          points: points,
+          status: DoorStatus.closed,
+        ),
+      );
     }
 
     return result;

@@ -30,7 +30,7 @@ class DoorComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
-     // TODO(momo): don't add to level
+    // TODO(momo): don't add to level
     await level.add(
       DoorDetector(
         doorComponent: this,
@@ -143,14 +143,7 @@ class DoorSpriteComponent extends PositionComponent {
         paintFill.color = Colors.green;
     }
 
-    canvas.drawRect(
-      Rect.fromCenter(
-        center: Offset.zero,
-        width: doorComponent.door.size.x,
-        height: doorComponent.door.size.y,
-      ),
-      paintFill,
-    );
+    canvas.drawPath(doorComponent.door.path, paintFill);
   }
 }
 

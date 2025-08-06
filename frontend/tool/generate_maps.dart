@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:xml2json/xml2json.dart';
 import 'json/json_agent.dart';
+import 'json/json_door.dart';
 import 'json/json_extra.dart';
 import 'json/json_item.dart';
 import 'json/json_level.dart';
@@ -35,6 +36,10 @@ Future processFile(String levelFolder) async {
     json: json,
     name: 'walls',
   );
+  final List<JsonDoor> doors = getDoors(
+    json: json,
+    name: 'doors',
+  );
   final List<JsonItem> items = getItems(
     json: json,
     name: 'items',
@@ -54,6 +59,7 @@ Future processFile(String levelFolder) async {
     turrets: jsonExtra.turrets,
     soldiers: jsonExtra.soldiers,
     walls: walls,
+    doors: doors,
     items: items,
   );
 
@@ -105,7 +111,27 @@ List<JsonWall> getWalls({
     if (g['id'] == name) {
       for (final Json path in g['path']) {
         final String pathString = path['d'];
-        result.add(getWall(pathString));
+        final List<JsonPosition> vertices = getPositions(pathString);
+        result.add(JsonWall(vertices: vertices));
+      }
+    }
+  }
+
+  return result;
+}
+
+List<JsonDoor> getDoors({
+  required Json json,
+  required String name,
+}) {
+  final List<JsonDoor> result = [];
+
+  for (final Json g in json['svg']['g']) {
+    if (g['id'] == name) {
+      for (final Json path in g['path']) {
+        final String pathString = path['d'];
+        final List<JsonPosition> vertices = getPositions(pathString);
+        result.add(JsonDoor(vertices: vertices));
       }
     }
   }
@@ -154,44 +180,10 @@ ItemType parseItemType(String value) {
   throw Exception('Unknown item type: $value');
 }
 
-JsonWall getWall(String wallString) {
-  final List<Vertex> coords = getCoordinates(wallString);
-
-  if (coords.length != 4) {
-    throw Exception('Wall must have exactly two positions');
-  }
-
-  final Vertex pointA = coords[0];
-  final Vertex pointB = coords[1];
-  final Vertex pointC = coords[2];
-  final Vertex pointD = coords[3];
-
-  return JsonWall(
-    vertices: [
-      JsonPosition(
-        x: pointA[0],
-        y: pointA[1],
-      ),
-      JsonPosition(
-        x: pointB[0],
-        y: pointB[1],
-      ),
-      JsonPosition(
-        x: pointC[0],
-        y: pointC[1],
-      ),
-      JsonPosition(
-        x: pointD[0],
-        y: pointD[1],
-      ),
-    ],
-  );
-}
-
-List<Vertex> getCoordinates(String pathString) {
+List<JsonPosition> getPositions(String pathString) {
   final RegExp commandRegExp = RegExp(r'[A-Z][^A-Z]*');
   final Iterable<Match> matches = commandRegExp.allMatches(pathString);
-  final List<Vertex> result = [];
+  final List<JsonPosition> result = [];
   double startX = 0;
   double startY = 0;
   double currentX = 0;
@@ -214,7 +206,7 @@ List<Vertex> getCoordinates(String pathString) {
         for (int i = 0; i < args.length; i += 2) {
           final double x = args[i];
           final double y = args[i + 1];
-          result.add([x.round(), y.round()]);
+          result.add(JsonPosition(x: x.round(), y: y.round()));
           currentX = x;
           currentY = y;
           if (type == 'M') {
@@ -227,14 +219,14 @@ List<Vertex> getCoordinates(String pathString) {
       case 'H':
         for (final x in args) {
           currentX = x;
-          result.add([currentX.round(), currentY.round()]);
+          result.add(JsonPosition(x: currentX.round(), y: currentY.round()));
         }
         break;
 
       case 'V':
         for (final y in args) {
           currentY = y;
-          result.add([currentX.round(), currentY.round()]);
+          result.add(JsonPosition(x: currentX.round(), y: currentY.round()));
         }
         break;
 
