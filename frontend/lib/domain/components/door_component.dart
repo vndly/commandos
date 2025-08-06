@@ -30,6 +30,7 @@ class DoorComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
+     // TODO(momo): don't add to level
     await level.add(
       DoorDetector(
         doorComponent: this,

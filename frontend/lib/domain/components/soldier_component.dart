@@ -56,14 +56,14 @@ class SoldierComponent extends EnemyComponent {
         agent: agent,
       );
       debugVision.add(debugVisionComponent);
-      await level.add(debugVisionComponent);
+      await level.add(debugVisionComponent); // TODO(momo): don't add to level
     }
 
     vision = VisionComponent(
       sweep: soldier.sweep,
       range: soldier.range,
     );
-    await level.add(vision);
+    await level.add(vision); // TODO(momo): don't add to level
   }
 
   @override

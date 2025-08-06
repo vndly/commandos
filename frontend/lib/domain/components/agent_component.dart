@@ -56,7 +56,7 @@ class AgentComponent extends PhysicalComponent {
         numberOfBeams: 50,
       ),
     );
-    await level.add(laser);
+    await level.add(laser); // TODO(momo): don't add to level
   }
 
   @override
