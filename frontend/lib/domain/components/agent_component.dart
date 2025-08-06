@@ -41,6 +41,7 @@ class AgentComponent extends PhysicalComponent {
       AgentSpriteComponent(
         position: size / 2,
         agent: agent,
+        size: size,
       ),
     );
 
@@ -97,7 +98,8 @@ class AgentSpriteComponent extends PositionComponent {
   AgentSpriteComponent({
     required super.position,
     required this.agent,
-  }) : super(size: Vector2(10, 10));
+    required super.size,
+  });
 
   @override
   Future onLoad() async {
