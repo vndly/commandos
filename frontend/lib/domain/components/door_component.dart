@@ -33,8 +33,8 @@ class DoorComponent extends PhysicalComponent {
     await level.add(
       DoorDetector(
         doorComponent: this,
-        size: size,
         position: position,
+        size: size,
       ),
     );
   }
@@ -52,7 +52,7 @@ class DoorComponent extends PhysicalComponent {
   Body createBody() => getBodyFromRelativePosition(
     shape: shapeSquare(door.size),
     center: initialPosition,
-    bodyType: BodyType.kinematic,
+    bodyType: BodyType.static,
     group: CollisionGroup.DOOR,
     angle: 0,
   );
@@ -77,8 +77,8 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
 
   DoorDetector({
     required this.doorComponent,
-    required super.size,
     required super.position,
+    required super.size,
   });
 
   @override
