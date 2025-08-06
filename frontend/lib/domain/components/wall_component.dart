@@ -2,7 +2,6 @@ import 'package:commandos/domain/components/game_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
-import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +23,12 @@ class WallComponent extends BodyComponent<GameComponent> {
     checkDebug();
   }
 
-  @override
+  /*@override
   void render(Canvas canvas) {
     super.render(canvas);
 
     canvas.drawPath(canvas.path(wall.vertices), paintFill);
-  }
+  }*/
 
   @override
   Body createBody() => getBodyFromRelativePosition(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
+import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/audio.dart';
@@ -18,7 +19,9 @@ class DoorComponent extends PhysicalComponent {
   DoorComponent({
     required super.size,
     required super.position,
-  });
+  }) : super(
+         priority: Priority.door.value,
+       );
 
   @override
   Future onLoad() async {

@@ -1,5 +1,6 @@
 import 'package:commandos/domain/components/wall_component.dart';
 import 'package:commandos/domain/models/wall.dart';
+import 'package:commandos/domain/types/priority.dart';
 import 'package:flame/components.dart';
 
 class MapComponent extends PositionComponent {
@@ -11,6 +12,7 @@ class MapComponent extends PositionComponent {
   }) : super(
          position: Vector2.zero(),
          anchor: Anchor.topLeft,
+         priority: Priority.map.value,
        );
 
   @override
