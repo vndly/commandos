@@ -21,10 +21,6 @@ class SoldierComponent extends EnemyComponent {
   final List<AgentComponent> agents;
   late final VisionComponent vision;
   final List<DebugVisionComponent> debugVision = [];
-  final Paint paintFill = Palette.paint(
-    style: PaintingStyle.fill,
-    color: Colors.red,
-  );
 
   SoldierComponent({
     required super.position,
@@ -46,6 +42,14 @@ class SoldierComponent extends EnemyComponent {
   Future onLoad() async {
     await super.onLoad();
 
+    add(
+      SoldierSpriteComponent(
+        soldier: soldier,
+        position: size / 2,
+        size: size,
+      ),
+    );
+
     for (final AgentComponent agent in agents) {
       final DebugVisionComponent debugVisionComponent = DebugVisionComponent(
         soldier: this,
@@ -64,7 +68,7 @@ class SoldierComponent extends EnemyComponent {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size / 4),
+    shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
     angle: soldier.angle,
@@ -92,13 +96,27 @@ class SoldierComponent extends EnemyComponent {
       );
     }
   }
+}
+
+class SoldierSpriteComponent extends PositionComponent {
+  final Soldier soldier;
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+    color: Colors.red,
+  );
+
+  SoldierSpriteComponent({
+    required this.soldier,
+    required super.position,
+    required super.size,
+  }) : super(anchor: Anchor.center);
 
   @override
   void render(Canvas canvas) {
     super.render(canvas);
 
     canvas.drawCircle(
-      Offset(size.x / 2, size.y / 2),
+      const Offset(0, 0),
       size.x / 2,
       paintFill,
     );
