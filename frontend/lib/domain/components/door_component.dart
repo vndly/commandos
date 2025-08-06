@@ -35,7 +35,6 @@ class DoorComponent extends PhysicalComponent {
         doorComponent: this,
         size: size,
         position: position,
-        priority: 0,
       ),
     );
   }
@@ -80,7 +79,6 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
     required this.doorComponent,
     required super.size,
     required super.position,
-    required super.priority,
   });
 
   @override
