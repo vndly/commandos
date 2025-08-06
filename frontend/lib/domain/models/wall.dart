@@ -56,6 +56,6 @@ class Wall {
     required Vector2 center,
     required Vector2 size,
   }) {
-    return vertices.map((v) => v - center + (size / 2)).toList();
+    return vertices.map((v) => v - center).toList();
   }
 }
