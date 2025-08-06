@@ -26,9 +26,9 @@
          inkscape:deskcolor="#d2d2d2"
          inkscape:document-units="mm"
          showborder="true"
-         inkscape:zoom="0.7071"
-         inkscape:cx="726.91"
-         inkscape:cy="381.13"
+         inkscape:zoom="0.5"
+         inkscape:cx="594.01"
+         inkscape:cy="315"
          inkscape:window-width="1920"
          inkscape:window-height="1016"
          inkscape:window-x="0"
@@ -54,7 +54,8 @@
          inkscape:groupmode="layer"
          id="items"
          inkscape:label="items"
-         style="display:inline"><g
+         style="display:inline"
+         sodipodi:insensitive="true"><g
              type="keycard"
              id="g2"><rect
                  style="font-variation-settings:normal;vector-effect:none;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:1.21136;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none"
