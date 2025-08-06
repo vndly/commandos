@@ -13,9 +13,9 @@ class ItemComponent extends PhysicalComponent {
   ItemComponent({
     required this.item,
   }) : super(
+         position: item.position,
          size: Vector2(5, 5),
          priority: Priority.item.value,
-         position: item.position,
        );
 
   @override
