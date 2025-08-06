@@ -8,6 +8,7 @@ import 'json/json_item.dart';
 import 'json/json_level.dart';
 import 'json/json_position.dart';
 import 'json/json_wall.dart';
+import 'types/door_status.dart';
 import 'types/item_type.dart';
 
 typedef Json = Map<String, dynamic>;
@@ -131,7 +132,12 @@ List<JsonDoor> getDoors({
       for (final Json path in g['path']) {
         final String pathString = path['d'];
         final List<JsonPosition> vertices = getPositions(pathString);
-        result.add(JsonDoor(vertices: vertices));
+        result.add(
+          JsonDoor(
+            status: parseDoorStatus(path['status']),
+            vertices: vertices,
+          ),
+        );
       }
     }
   }
@@ -172,6 +178,16 @@ List<JsonItem> getItems({
 
 ItemType parseItemType(String value) {
   for (final ItemType type in ItemType.values) {
+    if (type.name == value) {
+      return type;
+    }
+  }
+
+  throw Exception('Unknown item type: $value');
+}
+
+DoorStatus parseDoorStatus(String value) {
+  for (final DoorStatus type in DoorStatus.values) {
     if (type.name == value) {
       return type;
     }

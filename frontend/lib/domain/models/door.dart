@@ -1,5 +1,5 @@
-import 'package:commandos/domain/components/door_component.dart';
 import 'package:commandos/domain/models/polygon.dart';
+import 'package:commandos/domain/types/door_status.dart';
 import 'package:flame/components.dart';
 
 class Door extends Polygon {

@@ -6,7 +6,6 @@ import 'package:commandos/domain/behaviors/moving_behavior.dart';
 import 'package:commandos/domain/behaviors/orbiting_behavior.dart';
 import 'package:commandos/domain/behaviors/oscillating_behavior.dart';
 import 'package:commandos/domain/behaviors/rotating_behavior.dart';
-import 'package:commandos/domain/components/door_component.dart';
 import 'package:commandos/domain/json/json_agent.dart';
 import 'package:commandos/domain/json/json_behavior.dart';
 import 'package:commandos/domain/json/json_door.dart';
@@ -137,7 +136,7 @@ class LevelLoader {
       result.add(
         Door(
           points: points,
-          status: DoorStatus.closed,
+          status: door.status,
         ),
       );
     }

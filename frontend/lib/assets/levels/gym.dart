@@ -534,6 +534,7 @@ class LevelGym {
   ],
   "doors": [
     {
+      "status": "closed",
       "vertices": [
         {
           "x": 40,
@@ -554,6 +555,7 @@ class LevelGym {
       ]
     },
     {
+      "status": "closed",
       "vertices": [
         {
           "x": 260,

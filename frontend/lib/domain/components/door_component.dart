@@ -3,6 +3,7 @@ import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/door.dart';
+import 'package:commandos/domain/types/door_status.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
@@ -145,9 +146,4 @@ class DoorSpriteComponent extends PositionComponent {
 
     canvas.drawPath(doorComponent.door.path, paintFill);
   }
-}
-
-enum DoorStatus {
-  closed,
-  open,
 }
