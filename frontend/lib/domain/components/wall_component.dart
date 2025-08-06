@@ -1,12 +1,13 @@
-import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/wall.dart';
+import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class WallComponent extends BodyComponent<GameComponent> {
+class WallComponent extends PhysicalComponent {
   final Wall wall;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.stroke,
@@ -14,14 +15,12 @@ class WallComponent extends BodyComponent<GameComponent> {
     strokeWidth: 0.5,
   );
 
-  WallComponent({required this.wall});
-
-  @override
-  void update(double dt) {
-    super.update(dt);
-
-    checkDebug();
-  }
+  WallComponent({required this.wall})
+    : super(
+        position: wall.position,
+        size: wall.size,
+        priority: Priority.wall.value,
+      );
 
   /*@override
   void render(Canvas canvas) {
