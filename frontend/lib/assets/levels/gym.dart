@@ -32,7 +32,7 @@ class LevelGym {
     {
       "id": "soldier1",
       "position": {
-        "x": 120,
+        "x": 135,
         "y": 80
       },
       "angle": -90.0,
@@ -72,8 +72,8 @@ class LevelGym {
     {
       "id": "soldier2",
       "position": {
-        "x": 15,
-        "y": 70
+        "x": 20,
+        "y": 60
       },
       "angle": 45.0,
       "sweep": 30.0,
