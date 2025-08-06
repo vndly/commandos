@@ -32,7 +32,7 @@ class AgentComponent extends PhysicalComponent {
     required this.input,
     required this.agent,
     required this.active,
-  }) : super(size: Vector2(28, 28), priority: Priority.agent.value) {
+  }) : super(size: Vector2(10, 10), priority: Priority.agent.value) {
     movement = AgentMovement(agent: this);
   }
 
@@ -78,7 +78,7 @@ class AgentComponent extends PhysicalComponent {
     super.render(canvas);
 
     canvas.drawCircle(
-      Offset(size.x / 2, size.y / 2),
+      Offset(position.x, position.y),
       size.x / 2,
       paintFill,
     );
@@ -86,7 +86,7 @@ class AgentComponent extends PhysicalComponent {
 
   @override
   Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size * 0.35),
+    shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,

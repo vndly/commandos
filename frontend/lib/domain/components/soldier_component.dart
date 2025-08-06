@@ -31,7 +31,7 @@ class SoldierComponent extends EnemyComponent {
     required this.soldier,
     required this.agents,
   }) : super(
-         size: Vector2(28, 28),
+         size: Vector2(10, 10),
          priority: Priority.soldier.value,
        );
 

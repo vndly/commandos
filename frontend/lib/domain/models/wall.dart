@@ -1,7 +1,61 @@
 import 'package:flame/components.dart';
 
 class Wall {
-  final List<Vector2> vertices;
+  late final Vector2 position;
+  late final Vector2 size;
+  late final List<Vector2> vertices;
 
-  const Wall({required this.vertices});
+  Wall({required List<Vector2> points}) {
+    position = _center(points);
+    size = _size(points);
+    vertices = _vertices(
+      vertices: points,
+      center: position,
+      size: size,
+    );
+  }
+
+  Vector2 _center(List<Vector2> vertices) {
+    double sumX = 0;
+    double sumY = 0;
+
+    for (final Vector2 vertex in vertices) {
+      sumX += vertex.x;
+      sumY += vertex.y;
+    }
+
+    return Vector2(sumX / vertices.length, sumY / vertices.length);
+  }
+
+  Vector2 _size(List<Vector2> vertices) {
+    double minX = vertices.first.x;
+    double maxX = vertices.first.x;
+    double minY = vertices.first.y;
+    double maxY = vertices.first.y;
+
+    for (final Vector2 vertex in vertices) {
+      if (vertex.x < minX) {
+        minX = vertex.x;
+      }
+      if (vertex.x > maxX) {
+        maxX = vertex.x;
+      }
+      if (vertex.y < minY) {
+        minY = vertex.y;
+      }
+      if (vertex.y > maxY) {
+        maxY = vertex.y;
+      }
+    }
+
+    return Vector2(maxX - minX, maxY - minY);
+  }
+
+  List<Vector2> _vertices({
+    required List<Vector2> vertices,
+    required Vector2 center,
+    required Vector2 size,
+  }) {
+    return vertices.map((v) => v - center + (size / 2)).toList();
+  }
 }

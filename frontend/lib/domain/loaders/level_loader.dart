@@ -116,8 +116,8 @@ class LevelLoader {
     final List<Wall> result = [];
 
     for (final JsonWall wall in walls) {
-      final List<Vector2> vertices = wall.vertices.map(_toVector2).toList();
-      result.add(Wall(vertices: vertices));
+      final List<Vector2> points = wall.vertices.map(_toVector2).toList();
+      result.add(Wall(points: points));
     }
 
     return result;

@@ -126,6 +126,13 @@ extension BodyComponentExtension on BodyComponent {
     return shape;
   }
 
+  PolygonShape shapePolygon(List<Vector2> vertices) {
+    final PolygonShape shape = PolygonShape();
+    shape.set(vertices);
+
+    return shape;
+  }
+
   void checkDebug() {
     renderBody = Debug.hasBodyDebug;
 
