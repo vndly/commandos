@@ -20,7 +20,6 @@ class AgentComponent extends PhysicalComponent {
   final Vector2 velocity = Vector2.zero();
   final Input input;
   final Agent agent;
-  late final AgentMovement movement;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
   bool active;
@@ -30,9 +29,7 @@ class AgentComponent extends PhysicalComponent {
     required this.input,
     required this.agent,
     required this.active,
-  }) : super(size: Vector2(10, 10), priority: Priority.agent.value) {
-    movement = AgentMovement(agent: this);
-  }
+  }) : super(size: Vector2(10, 10), priority: Priority.agent.value);
 
   @override
   Future onLoad() async {
@@ -63,7 +60,11 @@ class AgentComponent extends PhysicalComponent {
     super.update(dt);
 
     if (active) {
-      movement.update(input);
+      if (input.hasInput) {
+        body.linearVelocity = input.direction * Constants.AGENT_SPEED;
+      } else {
+        body.linearVelocity = Vector2.zero();
+      }
     }
 
     if (active && Debug.hasAgentVision) {
@@ -115,21 +116,5 @@ class AgentSpriteComponent extends PositionComponent {
       size.x / 2,
       paintFill,
     );
-  }
-}
-
-class AgentMovement {
-  final AgentComponent agent;
-
-  AgentMovement({
-    required this.agent,
-  });
-
-  void update(Input input) {
-    if (input.hasInput) {
-      agent.body.linearVelocity = input.direction * Constants.AGENT_SPEED;
-    } else {
-      agent.body.linearVelocity = Vector2.zero();
-    }
   }
 }
