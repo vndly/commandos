@@ -8,15 +8,13 @@ import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/audio.dart';
 import 'package:commandos/utils/palette.dart';
+import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
 class DoorComponent extends PhysicalComponent {
   final Door door;
   DoorStatus status = DoorStatus.closed;
-  final Paint paintFill = Palette.paint(
-    style: PaintingStyle.fill,
-  );
 
   DoorComponent({
     required this.door,
@@ -30,6 +28,14 @@ class DoorComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
+    add(
+      DoorSpriteComponent(
+        doorComponent: this,
+        position: size / 2,
+        size: size,
+      ),
+    );
+
     await level.add(
       DoorDetector(
         doorComponent: this,
@@ -41,41 +47,13 @@ class DoorComponent extends PhysicalComponent {
   }
 
   @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-
-    switch (status) {
-      case DoorStatus.closed:
-        paintFill.color = Colors.red;
-      case DoorStatus.open:
-        paintFill.color = Colors.green;
-    }
-
-    /*canvas.drawCircle(
-      Offset(size.x / 2, size.y / 2),
-      size.x / 2,
-      paintFill,
-    );*/
-  }
-
-  @override
-  Body createBody() {
-    final PolygonShape shape = PolygonShape();
-    shape.set([
-      Vector2(-size.x / 2, 0),
-      Vector2(size.x / 2, 0),
-      Vector2(size.x / 2, size.y / 2),
-      Vector2(-size.x / 2, size.y / 2),
-    ]);
-
-    return getBodyFromRelativePosition(
-      shape: shape,
-      center: initialPosition,
-      bodyType: BodyType.kinematic,
-      group: CollisionGroup.DOOR,
-      angle: 0,
-    );
-  }
+  Body createBody() => getBodyFromRelativePosition(
+    shape: shapeSquare(door.size),
+    center: initialPosition,
+    bodyType: BodyType.kinematic,
+    group: CollisionGroup.DOOR,
+    angle: 0,
+  );
 
   void onAgentEnter() {
     if (status == DoorStatus.closed) {
@@ -133,6 +111,41 @@ class DoorDetector extends PhysicalComponent with ContactCallbacks {
     if (other is AgentComponent) {
       doorComponent.onAgentExit();
     }
+  }
+}
+
+class DoorSpriteComponent extends PositionComponent {
+  final DoorComponent doorComponent;
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+    color: Colors.red,
+  );
+
+  DoorSpriteComponent({
+    required this.doorComponent,
+    required super.position,
+    required super.size,
+  }) : super(anchor: Anchor.center);
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    switch (doorComponent.status) {
+      case DoorStatus.closed:
+        paintFill.color = Colors.red;
+      case DoorStatus.open:
+        paintFill.color = Colors.green;
+    }
+
+    canvas.drawRect(
+      Rect.fromCenter(
+        center: doorComponent.door.position.toOffset(),
+        width: doorComponent.door.size.x,
+        height: doorComponent.door.size.y,
+      ),
+      paintFill,
+    );
   }
 }
 

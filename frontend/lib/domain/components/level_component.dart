@@ -77,8 +77,8 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     await add(
       DoorComponent(
         door: Door(
-          position: Vector2(75, 40),
-          size: Vector2(30, 20),
+          position: Vector2(75, 45),
+          size: Vector2(30, 10),
         ),
       ),
     );
