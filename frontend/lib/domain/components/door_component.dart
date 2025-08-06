@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
+import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
@@ -11,15 +12,17 @@ import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
 class DoorComponent extends PhysicalComponent {
+  final Door door;
   DoorStatus status = DoorStatus.closed;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
   );
 
   DoorComponent({
-    required super.size,
-    required super.position,
+    required this.door,
   }) : super(
+         position: door.position,
+         size: door.size,
          priority: Priority.door.value,
        );
 
@@ -48,11 +51,11 @@ class DoorComponent extends PhysicalComponent {
         paintFill.color = Colors.green;
     }
 
-    canvas.drawCircle(
+    /*canvas.drawCircle(
       Offset(size.x / 2, size.y / 2),
       size.x / 2,
       paintFill,
-    );
+    );*/
   }
 
   @override

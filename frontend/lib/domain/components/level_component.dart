@@ -10,6 +10,7 @@ import 'package:commandos/domain/components/soldier_component.dart';
 import 'package:commandos/domain/components/turret_component.dart';
 import 'package:commandos/domain/loaders/level_loader.dart';
 import 'package:commandos/domain/models/agent.dart';
+import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/level.dart';
@@ -79,18 +80,12 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
     await add(
       DoorComponent(
-        position: Vector2(70, 50),
-        size: Vector2(20, 20),
+        door: Door(
+          position: Vector2(75, 40),
+          size: Vector2(30, 20),
+        ),
       ),
     );
-
-    /*await add(
-      LightComponent(
-        path: Assets.IMAGES_LIGHT_LIGHT,
-        position: Vector2(100, 5),
-        size: Vector2(40, 40),
-      ),
-    );*/
 
     activeAgentComponent = agentComponents[activeAgentIndex];
     activeAgentComponent.active = true;
