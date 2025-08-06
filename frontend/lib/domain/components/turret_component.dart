@@ -46,8 +46,8 @@ class TurretComponent extends EnemyComponent {
     shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
-    angle: turret.angle,
     group: CollisionGroup.TURRET,
+    angle: turret.angle,
   );
 
   @override

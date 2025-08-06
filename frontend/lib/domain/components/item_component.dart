@@ -37,8 +37,8 @@ class ItemComponent extends PhysicalComponent {
     shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.static,
-    angle: 0,
     group: CollisionGroup.ITEM,
+    angle: 0,
   );
 }
 

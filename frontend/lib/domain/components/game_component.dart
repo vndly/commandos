@@ -71,7 +71,10 @@ class FpsComponent extends PositionComponent {
         position: Vector2(1.4, 1.4),
         anchor: Anchor.topLeft,
         textRenderer: TextPaint(
-          style: const TextStyle(color: Colors.white, fontSize: 4),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 4,
+          ),
         ),
       );
       add(fpsTextComponent!);

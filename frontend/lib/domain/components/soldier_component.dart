@@ -71,8 +71,8 @@ class SoldierComponent extends EnemyComponent {
     shape: shapeCircle(size),
     center: initialPosition,
     bodyType: BodyType.kinematic,
-    angle: soldier.angle,
     group: CollisionGroup.SOLDIER,
+    angle: soldier.angle,
   );
 
   @override
