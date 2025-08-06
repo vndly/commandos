@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/components/laser_component.dart';
@@ -13,7 +12,9 @@ import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
+import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
+import 'package:flutter/material.dart';
 
 class AgentComponent extends PhysicalComponent {
   final Vector2 velocity = Vector2.zero();
@@ -22,9 +23,6 @@ class AgentComponent extends PhysicalComponent {
   late final AgentMovement movement;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
-  final Paint paintFill = Palette.paint(
-    style: PaintingStyle.fill,
-  );
   bool active;
 
   AgentComponent({
@@ -41,7 +39,13 @@ class AgentComponent extends PhysicalComponent {
     await super.onLoad();
 
     rayCasting = RayCasting(world);
-    paintFill.color = Constants.AGENT_COLORS[agent.id]!;
+
+    add(
+      AgentSpriteComponent(
+        position: size / 2,
+        agent: agent,
+      ),
+    );
 
     laser = LaserComponent(
       laser: const Laser(
@@ -74,6 +78,35 @@ class AgentComponent extends PhysicalComponent {
   }
 
   @override
+  Body createBody() => getBodyFromRelativePosition(
+    shape: shapeCircle(size),
+    center: initialPosition,
+    bodyType: BodyType.dynamic,
+    group: CollisionGroup.AGENT,
+    angle: 0,
+  );
+}
+
+class AgentSpriteComponent extends PositionComponent {
+  final Agent agent;
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+  );
+
+  AgentSpriteComponent({
+    required super.position,
+    required this.agent,
+  }) : super(size: Vector2(10, 10));
+
+  @override
+  Future onLoad() async {
+    await super.onLoad();
+
+    paintFill.color = Colors.white;
+    // Constants.AGENT_COLORS[agent.id]!;
+  }
+
+  @override
   void render(Canvas canvas) {
     super.render(canvas);
 
@@ -83,15 +116,6 @@ class AgentComponent extends PhysicalComponent {
       paintFill,
     );
   }
-
-  @override
-  Body createBody() => getBodyFromRelativePosition(
-    shape: shapeCircle(size),
-    center: initialPosition,
-    bodyType: BodyType.dynamic,
-    group: CollisionGroup.AGENT,
-    angle: 0,
-  );
 }
 
 class AgentMovement {
