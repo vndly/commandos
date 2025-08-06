@@ -140,7 +140,7 @@ class DoorSpriteComponent extends PositionComponent {
 
     canvas.drawRect(
       Rect.fromCenter(
-        center: doorComponent.door.position.toOffset(),
+        center: Offset.zero,
         width: doorComponent.door.size.x,
         height: doorComponent.door.size.y,
       ),

@@ -116,7 +116,7 @@ class SoldierSpriteComponent extends PositionComponent {
     super.render(canvas);
 
     canvas.drawCircle(
-      const Offset(0, 0),
+      Offset.zero,
       size.x / 2,
       paintFill,
     );
