@@ -6,8 +6,8 @@ class Constants {
   static const double DOOR_SPEED = 60;
 
   static const Map<String, Color> AGENT_COLORS = {
-    '1': Color(0x400000ff),
-    '2': Color(0x40ff0000),
-    '3': Color(0x4000ff00),
+    '1': Color(0x800000ff),
+    '2': Color(0x80ff0000),
+    '3': Color(0x8000ff00),
   };
 }

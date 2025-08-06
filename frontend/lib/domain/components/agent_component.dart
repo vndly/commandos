@@ -29,7 +29,10 @@ class AgentComponent extends PhysicalComponent {
     required this.input,
     required this.agent,
     required this.active,
-  }) : super(size: Vector2(10, 10), priority: Priority.agent.value);
+  }) : super(
+         size: Vector2(10, 10),
+         priority: Priority.agent.value,
+       );
 
   @override
   Future onLoad() async {
@@ -39,8 +42,8 @@ class AgentComponent extends PhysicalComponent {
 
     add(
       AgentSpriteComponent(
-        position: size / 2,
         agent: agent,
+        position: size / 2,
         size: size,
       ),
     );
@@ -96,17 +99,16 @@ class AgentSpriteComponent extends PositionComponent {
   );
 
   AgentSpriteComponent({
-    required super.position,
     required this.agent,
+    required super.position,
     required super.size,
-  });
+  }) : super(anchor: Anchor.center);
 
   @override
   Future onLoad() async {
     await super.onLoad();
 
-    paintFill.color = Colors.white;
-    // Constants.AGENT_COLORS[agent.id]!;
+    paintFill.color = Constants.AGENT_COLORS[agent.id]!;
   }
 
   @override
@@ -114,7 +116,7 @@ class AgentSpriteComponent extends PositionComponent {
     super.render(canvas);
 
     canvas.drawCircle(
-      Offset(position.x, position.y),
+      const Offset(0, 0),
       size.x / 2,
       paintFill,
     );
