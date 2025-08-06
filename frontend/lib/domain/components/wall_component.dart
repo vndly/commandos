@@ -4,16 +4,12 @@ import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/palette.dart';
+import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
 class WallComponent extends PhysicalComponent {
   final Wall wall;
-  final Paint paintFill = Palette.paint(
-    style: PaintingStyle.stroke,
-    color: Colors.white,
-    strokeWidth: 0.5,
-  );
 
   WallComponent({required this.wall})
     : super(
@@ -23,10 +19,16 @@ class WallComponent extends PhysicalComponent {
       );
 
   @override
-  void render(Canvas canvas) {
-    super.render(canvas);
+  Future onLoad() async {
+    await super.onLoad();
 
-    canvas.drawPath(wall.path, paintFill);
+    add(
+      WallSpriteComponent(
+        wall: wall,
+        position: size / 2,
+        size: size,
+      ),
+    );
   }
 
   @override
@@ -37,4 +39,26 @@ class WallComponent extends PhysicalComponent {
     group: CollisionGroup.WALL,
     angle: 0,
   );
+}
+
+class WallSpriteComponent extends PositionComponent {
+  final Wall wall;
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.stroke,
+    color: Colors.white,
+    strokeWidth: 0.5,
+  );
+
+  WallSpriteComponent({
+    required this.wall,
+    required super.position,
+    required super.size,
+  }) : super(anchor: Anchor.center);
+
+  @override
+  void render(Canvas canvas) {
+    super.render(canvas);
+
+    canvas.drawPath(wall.path, paintFill);
+  }
 }
