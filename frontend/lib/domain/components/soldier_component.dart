@@ -23,10 +23,10 @@ class SoldierComponent extends EnemyComponent {
   final List<DebugVisionComponent> debugVision = [];
 
   SoldierComponent({
-    required super.position,
     required this.soldier,
     required this.agents,
   }) : super(
+         position: soldier.position,
          size: Vector2(10, 10),
          priority: Priority.soldier.value,
        );

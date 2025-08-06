@@ -21,10 +21,12 @@ class TurretComponent extends EnemyComponent {
   );
 
   TurretComponent({
-    required super.position,
-    required super.size,
     required this.turret,
-  }) : super(priority: Priority.turret.value);
+  }) : super(
+         position: turret.position,
+         size: Vector2(10, 10),
+         priority: Priority.turret.value,
+       );
 
   @override
   Future onLoad() async {

@@ -25,11 +25,11 @@ class AgentComponent extends PhysicalComponent {
   bool active;
 
   AgentComponent({
-    required super.position,
     required this.input,
     required this.agent,
     required this.active,
   }) : super(
+         position: agent.position,
          size: Vector2(10, 10),
          priority: Priority.agent.value,
        );
