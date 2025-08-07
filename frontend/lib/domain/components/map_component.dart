@@ -1,7 +1,9 @@
-import 'package:commandos/domain/components/door_component.dart';
+import 'package:commandos/domain/components/door_closed_component.dart';
+import 'package:commandos/domain/components/door_opened_component.dart';
 import 'package:commandos/domain/components/wall_component.dart';
 import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/wall.dart';
+import 'package:commandos/domain/types/door_status.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:flame/components.dart';
 
@@ -30,9 +32,15 @@ class MapComponent extends PositionComponent {
     }
 
     for (final Door door in doors) {
-      await add(
-        DoorComponent(door: door),
-      );
+      if (door.status == DoorStatus.closed) {
+        await add(
+          DoorClosedComponent(door: door),
+        );
+      } else if (door.status == DoorStatus.opened) {
+        await add(
+          DoorOpenedComponent(door: door),
+        );
+      }
     }
   }
 }

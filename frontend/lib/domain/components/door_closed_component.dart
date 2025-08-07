@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:commandos/domain/components/agent_component.dart';
+import 'package:commandos/domain/components/door_opened_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/door.dart';
-import 'package:commandos/domain/types/door_status.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
@@ -13,29 +13,26 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class DoorComponent extends PhysicalComponent {
+class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
   final Door door;
-  late DoorStatus status;
+  bool toRemove = false;
 
-  DoorComponent({
+  DoorClosedComponent({
     required this.door,
   }) : super(
          position: door.position,
          size: door.size,
          priority: Priority.door.value,
-       ) {
-    status = door.status;
-  }
+       );
 
   @override
   Future onLoad() async {
     await super.onLoad();
 
-    // TODO(momo): don't add to level
-    await level.add(
-      DoorDetector(
+    add(
+      DoorSpriteComponent(
         doorComponent: this,
-        position: position,
+        position: size / 2,
         size: size,
       ),
     );
@@ -45,8 +42,10 @@ class DoorComponent extends PhysicalComponent {
   void update(double dt) {
     super.update(dt);
 
-    if (status == DoorStatus.open) {
-      body.setTransform(Vector2(0, 0), angle);
+    if (toRemove) {
+      toRemove = false;
+      removeFromParent();
+      level.add(DoorOpenedComponent(door: door));
     }
   }
 
@@ -55,73 +54,21 @@ class DoorComponent extends PhysicalComponent {
     shape: shapeSquare(door.size),
     center: initialPosition,
     bodyType: BodyType.static,
-    group: CollisionGroup.DOOR,
-    angle: 0,
-  );
-
-  void onAgentEnter() {
-    if (status == DoorStatus.closed) {
-      status = DoorStatus.open;
-      Audio.get.playSound(Audio.DOOR);
-    }
-  }
-
-  void onAgentExit() {
-    /*if (status == DoorStatus.open) {
-      status = DoorStatus.closed;
-      Audio.get.playSound(Audio.DOOR);
-    }*/
-  }
-}
-
-class DoorDetector extends PhysicalComponent with ContactCallbacks {
-  final DoorComponent doorComponent;
-
-  DoorDetector({
-    required this.doorComponent,
-    required super.position,
-    required super.size,
-  });
-
-  @override
-  Future onLoad() async {
-    await super.onLoad();
-
-    add(
-      DoorSpriteComponent(
-        doorComponent: doorComponent,
-        position: size / 2,
-        size: size,
-      ),
-    );
-  }
-
-  @override
-  Body createBody() => getBodyFromRelativePosition(
-    shape: shapeSquare(doorComponent.door.size),
-    center: initialPosition,
-    bodyType: BodyType.static,
-    group: CollisionGroup.DOOR_DETECTOR,
+    group: CollisionGroup.DOOR_CLOSED,
     angle: 0,
   );
 
   @override
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      doorComponent.onAgentEnter();
-    }
-  }
-
-  @override
-  void endContact(Object other, Contact contact) {
-    if (other is AgentComponent) {
-      doorComponent.onAgentExit();
+      Audio.get.playSound(Audio.DOOR);
+      toRemove = true;
     }
   }
 }
 
 class DoorSpriteComponent extends PositionComponent {
-  final DoorComponent doorComponent;
+  final DoorClosedComponent doorComponent;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
     color: Colors.red,
@@ -136,13 +83,6 @@ class DoorSpriteComponent extends PositionComponent {
   @override
   void render(Canvas canvas) {
     super.render(canvas);
-
-    switch (doorComponent.status) {
-      case DoorStatus.closed:
-        paintFill.color = Colors.red;
-      case DoorStatus.open:
-        paintFill.color = Colors.green;
-    }
 
     canvas.drawPath(doorComponent.door.path, paintFill);
   }
