@@ -34,7 +34,7 @@ class ItemComponent extends PhysicalComponent {
   Body createBody() => getBodyFromRelativePosition(
     shape: shapeCircle(size),
     center: initialPosition,
-    bodyType: BodyType.kinematic,
+    bodyType: BodyType.static,
     group: CollisionGroup.ITEM,
     angle: 0,
   );
