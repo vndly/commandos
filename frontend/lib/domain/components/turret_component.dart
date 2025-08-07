@@ -33,11 +33,9 @@ class TurretComponent extends EnemyComponent {
     await super.onLoad();
 
     for (final Laser laser in turret.lasers) {
-      final LaserComponent laserComponent = LaserComponent(
-        laser: laser,
-      );
+      final LaserComponent laserComponent = LaserComponent(laser: laser);
       lasers.add(laserComponent);
-      await level.add(laserComponent); // TODO(momo): don't add to level
+      await level.add(laserComponent);
     }
   }
 
