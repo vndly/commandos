@@ -8,7 +8,8 @@ class Audio {
   bool _enabled = true;
   //AudioPlayer? _playerToResume;
 
-  static const String UNLOCK_DOOR = Assets.AUDIO_UNLOCK_DOOR;
+  static const String DOOR_LOCKED = Assets.AUDIO_DOOR_LOCKED;
+  static const String DOOR_UNLOCKED = Assets.AUDIO_DOOR_UNLOCKED;
   static const String PICK_ITEM = Assets.AUDIO_PICK_ITEM;
 
   static Audio get get => locator<Audio>();
@@ -78,12 +79,9 @@ class Audio {
 
   Future load() async {
     //_enabled = await SettingsStorage.loadAudio();
-    _soundPlayers[UNLOCK_DOOR] = await _getPlayer(
-      path: Assets.AUDIO_UNLOCK_DOOR,
-    );
-    _soundPlayers[PICK_ITEM] = await _getPlayer(
-      path: Assets.AUDIO_PICK_ITEM,
-    );
+    _soundPlayers[DOOR_UNLOCKED] = await _getPlayer(path: DOOR_UNLOCKED);
+    _soundPlayers[PICK_ITEM] = await _getPlayer(path: PICK_ITEM);
+    _soundPlayers[DOOR_LOCKED] = await _getPlayer(path: DOOR_LOCKED);
   }
 
   Future<AudioPlayer> _getPlayer({

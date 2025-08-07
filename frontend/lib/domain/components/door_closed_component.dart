@@ -4,6 +4,8 @@ import 'package:commandos/domain/components/door_opened_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/door.dart';
+import 'package:commandos/domain/models/item.dart';
+import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
@@ -55,8 +57,15 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
   @override
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      Audio.get.playSound(Audio.UNLOCK_DOOR);
-      Future.delayed(const Duration(milliseconds: 1000), toBeRemoved);
+      final Item? keycard = other.agent.backpack.get(ItemType.keycard);
+
+      if (keycard != null) {
+        other.agent.backpack.remove(keycard);
+        Audio.get.playSound(Audio.DOOR_UNLOCKED);
+        Future.delayed(const Duration(milliseconds: 1000), toBeRemoved);
+      } else {
+        Audio.get.playSound(Audio.DOOR_LOCKED);
+      }
     }
   }
 }

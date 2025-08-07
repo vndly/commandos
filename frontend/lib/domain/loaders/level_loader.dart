@@ -17,6 +17,7 @@ import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
 import 'package:commandos/domain/json/json_wall.dart';
 import 'package:commandos/domain/models/agent.dart';
+import 'package:commandos/domain/models/backpack.dart';
 import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/laser.dart';
@@ -66,6 +67,7 @@ class LevelLoader {
         Agent(
           id: agent.id,
           position: _toVector2(agent.position),
+          backpack: Backpack(items: []),
         ),
       );
     }
