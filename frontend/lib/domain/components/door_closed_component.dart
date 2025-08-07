@@ -7,6 +7,7 @@ import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/audio.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
@@ -61,8 +62,13 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
   @override
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      Audio.get.playSound(Audio.DOOR);
-      toRemove = true;
+      Audio.get.playSound(Audio.UNLOCK_DOOR);
+      Future.delayed(
+        const Duration(milliseconds: 1000),
+        () {
+          toRemove = true;
+        },
+      );
     }
   }
 }
@@ -81,9 +87,35 @@ class DoorSpriteComponent extends PositionComponent {
   }) : super(anchor: Anchor.center);
 
   @override
+  Future onLoad() async {
+    await super.onLoad();
+
+    await add(
+      DoorIconComponent(
+        position: Vector2.zero(),
+        size: Vector2(5, 5),
+      ),
+    );
+  }
+
+  @override
   void render(Canvas canvas) {
     super.render(canvas);
 
     canvas.drawPath(doorComponent.door.path, paintFill);
+  }
+}
+
+class DoorIconComponent extends SpriteComponent {
+  DoorIconComponent({
+    required super.position,
+    required super.size,
+  }) : super(anchor: Anchor.center);
+
+  @override
+  Future onLoad() async {
+    await super.onLoad();
+
+    sprite = await Sprite.load(Assets.IMAGES_ICONS_LOCKED);
   }
 }
