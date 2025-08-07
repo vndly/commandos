@@ -60,8 +60,7 @@ class LaserComponent extends Component {
       final RayCastingResult result = rayCasting.test(
         source: source,
         angle: angle + laser.angle + beam.angle,
-        gap: 0, //size.x / 2,
-        length: laser.range != 0 ? laser.range : 1000,
+        range: laser.range != 0 ? laser.range : 1000,
       );
       beam.update(result);
     }

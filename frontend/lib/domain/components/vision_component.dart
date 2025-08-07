@@ -66,8 +66,7 @@ class VisionComponent extends Component {
       final RayCastingResult result = rayCasting.test(
         source: source,
         angle: angle + beam.angle,
-        gap: 0,
-        length: soldierComponent.soldier.range,
+        range: soldierComponent.soldier.range,
       );
       beam.update(result);
     }
@@ -119,8 +118,7 @@ class AgentDetectorComponent extends Component {
     final RayCastingResult result = rayCasting.test(
       source: source,
       angle: source.angle(agentComponent.body.position),
-      gap: 0,
-      length: soldierComponent.soldier.range,
+      range: soldierComponent.soldier.range,
     );
 
     if (isInFieldOfView(result: result)) {

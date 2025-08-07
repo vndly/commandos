@@ -10,21 +10,16 @@ class RayCasting {
   RayCastingResult test({
     required Vector2 source,
     required double angle,
-    required double gap,
-    required double length,
+    required double range,
   }) {
-    final Vector2 direction = Vector2(
-      cos(angle),
-      sin(angle),
-    );
-    final Vector2 startPoint = source + direction * gap;
-    final Vector2 maxTarget = startPoint + (direction * length);
+    final Vector2 direction = Vector2(cos(angle), sin(angle));
+    final Vector2 maxTarget = source + (direction * range);
 
     rayCastCallback.reset();
-    world.raycast(rayCastCallback, startPoint, maxTarget);
+    world.raycast(rayCastCallback, source, maxTarget);
 
     return RayCastingResult(
-      start: startPoint,
+      start: source,
       end: rayCastCallback.nearestPoint ?? maxTarget,
       angle: angle,
       object: rayCastCallback.object,
