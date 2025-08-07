@@ -1,12 +1,14 @@
+import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/utils/audio.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
-class ItemComponent extends PhysicalComponent {
+class ItemComponent extends PhysicalComponent with ContactCallbacks {
   final Item item;
 
   ItemComponent({
@@ -38,6 +40,14 @@ class ItemComponent extends PhysicalComponent {
     group: CollisionGroup.ITEM,
     angle: 0,
   );
+
+  @override
+  void beginContact(Object other, Contact contact) {
+    if (other is AgentComponent) {
+      Audio.get.playSound(Audio.PICK_ITEM);
+      toBeRemoved();
+    }
+  }
 }
 
 class ItemSpriteComponent extends SpriteComponent {

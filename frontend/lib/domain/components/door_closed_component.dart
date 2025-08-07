@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 
 class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
   final Door door;
-  bool toRemove = false;
 
   DoorClosedComponent({
     required this.door,
@@ -40,14 +39,8 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
   }
 
   @override
-  void update(double dt) {
-    super.update(dt);
-
-    if (toRemove) {
-      toRemove = false;
-      removeFromParent();
-      level.add(DoorOpenedComponent(door: door));
-    }
+  void onRemoved() {
+    level.add(DoorOpenedComponent(door: door));
   }
 
   @override
@@ -63,12 +56,7 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
       Audio.get.playSound(Audio.UNLOCK_DOOR);
-      Future.delayed(
-        const Duration(milliseconds: 1000),
-        () {
-          toRemove = true;
-        },
-      );
+      Future.delayed(const Duration(milliseconds: 1000), toBeRemoved);
     }
   }
 }
