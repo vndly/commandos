@@ -47,8 +47,6 @@ class SoldierComponent extends EnemyComponent {
     );
 
     vision = VisionComponent(
-      sweep: soldier.sweep,
-      range: soldier.range,
       agents: agents,
       soldierComponent: this,
     );
