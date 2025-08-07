@@ -20,7 +20,7 @@ class VisionComponent extends Component {
   final SoldierComponent soldierComponent;
   final List<AgentComponent> agents;
   final List<Beam> beams = [];
-  final List<DebugVisionComponent> debugVision = [];
+  final List<AgentDetectorComponent> debugVision = [];
 
   VisionComponent({
     required this.sweep,
@@ -51,10 +51,12 @@ class VisionComponent extends Component {
     await super.onLoad();
 
     for (final AgentComponent agent in agents) {
-      final DebugVisionComponent debugVisionComponent = DebugVisionComponent(
-        soldier: soldierComponent,
-        agent: agent,
-      );
+      final AgentDetectorComponent debugVisionComponent =
+          AgentDetectorComponent(
+            soldierComponent: soldierComponent,
+            agentComponent: agent,
+            range: range,
+          );
       debugVision.add(debugVisionComponent);
       await level.add(debugVisionComponent);
     }
@@ -75,7 +77,7 @@ class VisionComponent extends Component {
       beam.update(result);
     }
 
-    for (final DebugVisionComponent debugVision in debugVision) {
+    for (final AgentDetectorComponent debugVision in debugVision) {
       debugVision.refresh(
         source: source,
         rayCasting: rayCasting,
@@ -91,20 +93,22 @@ class VisionComponent extends Component {
   }
 }
 
-class DebugVisionComponent extends Component {
-  final SoldierComponent soldier;
-  final AgentComponent agent;
+class AgentDetectorComponent extends Component {
+  final SoldierComponent soldierComponent;
+  final AgentComponent agentComponent;
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
     color: Palette.DETECTED,
     strokeWidth: 0.5,
   );
+  final double range;
   late final Beam beam;
   bool detected = false;
 
-  DebugVisionComponent({
-    required this.soldier,
-    required this.agent,
+  AgentDetectorComponent({
+    required this.soldierComponent,
+    required this.agentComponent,
+    required this.range,
   }) {
     priority = Priority.vision.value;
 
@@ -121,9 +125,9 @@ class DebugVisionComponent extends Component {
   }) {
     final RayCastingResult result = rayCasting.test(
       source: source,
-      angle: source.angle(agent.body.position),
+      angle: source.angle(agentComponent.body.position),
       gap: 0,
-      length: 1000,
+      length: range,
     );
 
     if (isInFieldOfView(result: result)) {
@@ -138,8 +142,9 @@ class DebugVisionComponent extends Component {
     required RayCastingResult result,
   }) {
     return (result.object is AgentComponent) &&
-        soldier.body.position.distanceTo(result.end) <= soldier.soldier.range &&
-        soldier.inFieldOfView(result.angle);
+        soldierComponent.body.position.distanceTo(result.end) <=
+            soldierComponent.soldier.range &&
+        soldierComponent.inFieldOfView(result.angle);
   }
 
   @override
