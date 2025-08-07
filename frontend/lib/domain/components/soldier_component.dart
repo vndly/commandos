@@ -3,15 +3,12 @@ import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/components/vision_component.dart';
-import 'package:commandos/domain/models/beam.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:commandos/utils/palette.dart';
-import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +17,6 @@ class SoldierComponent extends EnemyComponent {
   final Soldier soldier;
   final List<AgentComponent> agents;
   late final VisionComponent vision;
-  final List<DebugVisionComponent> debugVision = [];
 
   SoldierComponent({
     required this.soldier,
@@ -50,20 +46,13 @@ class SoldierComponent extends EnemyComponent {
       ),
     );
 
-    for (final AgentComponent agent in agents) {
-      final DebugVisionComponent debugVisionComponent = DebugVisionComponent(
-        soldier: this,
-        agent: agent,
-      );
-      debugVision.add(debugVisionComponent);
-      await level.add(debugVisionComponent); // TODO(momo): don't add to level
-    }
-
     vision = VisionComponent(
       sweep: soldier.sweep,
       range: soldier.range,
+      agents: agents,
+      soldierComponent: this,
     );
-    await level.add(vision); // TODO(momo): don't add to level
+    await level.add(vision);
   }
 
   @override
@@ -88,13 +77,6 @@ class SoldierComponent extends EnemyComponent {
       angle: body.angle,
       rayCasting: rayCasting,
     );
-
-    for (final DebugVisionComponent debugVision in debugVision) {
-      debugVision.show(
-        source: body.position,
-        rayCasting: rayCasting,
-      );
-    }
   }
 }
 
@@ -120,65 +102,5 @@ class SoldierSpriteComponent extends PositionComponent {
       size.x / 2,
       paintFill,
     );
-  }
-}
-
-class DebugVisionComponent extends Component {
-  final SoldierComponent soldier;
-  final AgentComponent agent;
-  final Paint paint = Palette.paint(
-    style: PaintingStyle.stroke,
-    color: Palette.DETECTED,
-    strokeWidth: 0.5,
-  );
-  late final Beam beam;
-
-  DebugVisionComponent({
-    required this.soldier,
-    required this.agent,
-  }) {
-    priority = Priority.vision.value;
-
-    beam = Beam(
-      start: Vector2.zero(),
-      end: Vector2.zero(),
-      angle: 0,
-    );
-  }
-
-  void show({
-    required Vector2 source,
-    required RayCasting rayCasting,
-  }) {
-    final RayCastingResult result = rayCasting.test(
-      source: source,
-      angle: source.angle(agent.body.position),
-      gap: 0,
-      length: 1000,
-    );
-
-    if (isInFieldOfView(result: result)) {
-      beam.update(result);
-    } else {
-      hide();
-    }
-  }
-
-  void hide() {
-    beam.start = Vector2.zero();
-    beam.end = Vector2.zero();
-  }
-
-  bool isInFieldOfView({
-    required RayCastingResult result,
-  }) {
-    return (result.object is AgentComponent) &&
-        soldier.body.position.distanceTo(result.end) <= soldier.soldier.range &&
-        soldier.inFieldOfView(result.angle);
-  }
-
-  @override
-  void render(Canvas canvas) {
-    canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
   }
 }

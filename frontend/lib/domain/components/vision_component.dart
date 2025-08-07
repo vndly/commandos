@@ -1,6 +1,10 @@
 import 'dart:ui';
+import 'package:commandos/domain/components/agent_component.dart';
+import 'package:commandos/domain/components/soldier_component.dart';
 import 'package:commandos/domain/models/beam.dart';
 import 'package:commandos/domain/types/priority.dart';
+import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
@@ -13,11 +17,16 @@ class VisionComponent extends Component {
     color: Palette.VISION,
     strokeWidth: 0.2,
   );
+  final SoldierComponent soldierComponent;
+  final List<AgentComponent> agents;
   final List<Beam> beams = [];
+  final List<DebugVisionComponent> debugVision = [];
 
   VisionComponent({
     required this.sweep,
     required this.range,
+    required this.agents,
+    required this.soldierComponent,
   }) {
     priority = Priority.vision.value;
 
@@ -37,6 +46,20 @@ class VisionComponent extends Component {
     );
   }
 
+  @override
+  Future onLoad() async {
+    await super.onLoad();
+
+    for (final AgentComponent agent in agents) {
+      final DebugVisionComponent debugVisionComponent = DebugVisionComponent(
+        soldier: soldierComponent,
+        agent: agent,
+      );
+      debugVision.add(debugVisionComponent);
+      await level.add(debugVisionComponent);
+    }
+  }
+
   void show({
     required Vector2 source,
     required double angle,
@@ -50,6 +73,13 @@ class VisionComponent extends Component {
         length: range != 0 ? range : 1000,
       );
       beam.update(result);
+    }
+
+    for (final DebugVisionComponent debugVision in debugVision) {
+      debugVision.show(
+        source: source,
+        rayCasting: rayCasting,
+      );
     }
   }
 
@@ -65,5 +95,65 @@ class VisionComponent extends Component {
     for (final Beam beam in beams) {
       canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
     }
+  }
+}
+
+class DebugVisionComponent extends Component {
+  final SoldierComponent soldier;
+  final AgentComponent agent;
+  final Paint paint = Palette.paint(
+    style: PaintingStyle.stroke,
+    color: Palette.DETECTED,
+    strokeWidth: 0.5,
+  );
+  late final Beam beam;
+
+  DebugVisionComponent({
+    required this.soldier,
+    required this.agent,
+  }) {
+    priority = Priority.vision.value;
+
+    beam = Beam(
+      start: Vector2.zero(),
+      end: Vector2.zero(),
+      angle: 0,
+    );
+  }
+
+  void show({
+    required Vector2 source,
+    required RayCasting rayCasting,
+  }) {
+    final RayCastingResult result = rayCasting.test(
+      source: source,
+      angle: source.angle(agent.body.position),
+      gap: 0,
+      length: 1000,
+    );
+
+    if (isInFieldOfView(result: result)) {
+      beam.update(result);
+    } else {
+      hide();
+    }
+  }
+
+  void hide() {
+    beam.start = Vector2.zero();
+    beam.end = Vector2.zero();
+  }
+
+  bool isInFieldOfView({
+    required RayCastingResult result,
+  }) {
+    return (result.object is AgentComponent) &&
+        soldier.body.position.distanceTo(result.end) <= soldier.soldier.range &&
+        soldier.inFieldOfView(result.angle);
+  }
+
+  @override
+  void render(Canvas canvas) {
+    canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
   }
 }
