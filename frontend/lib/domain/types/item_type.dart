@@ -1,7 +1,9 @@
+import 'package:commandos/utils/assets.dart';
+
 enum ItemType {
-  keycard('🔑');
+  keycard(Assets.IMAGES_ICONS_KEYCARD);
 
-  final String value;
+  final String path;
 
-  const ItemType(this.value);
+  const ItemType(this.path);
 }

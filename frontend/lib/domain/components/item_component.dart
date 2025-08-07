@@ -3,10 +3,8 @@ import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
-import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
-import 'package:flutter/material.dart';
 
 class ItemComponent extends PhysicalComponent {
   final Item item;
@@ -26,8 +24,8 @@ class ItemComponent extends PhysicalComponent {
     add(
       ItemSpriteComponent(
         item: item,
-        position: size / 2,
-        size: size,
+        position: Vector2.zero(),
+        size: Vector2(8, 8),
       ),
     );
   }
@@ -36,13 +34,13 @@ class ItemComponent extends PhysicalComponent {
   Body createBody() => getBodyFromRelativePosition(
     shape: shapeCircle(size),
     center: initialPosition,
-    bodyType: BodyType.static,
+    bodyType: BodyType.kinematic,
     group: CollisionGroup.ITEM,
     angle: 0,
   );
 }
 
-class ItemSpriteComponent extends PositionComponent {
+class ItemSpriteComponent extends SpriteComponent {
   final Item item;
 
   ItemSpriteComponent({
@@ -52,13 +50,9 @@ class ItemSpriteComponent extends PositionComponent {
   }) : super(anchor: Anchor.center);
 
   @override
-  void render(Canvas canvas) {
-    super.render(canvas);
+  Future onLoad() async {
+    await super.onLoad();
 
-    canvas.drawText(
-      text: item.type.value,
-      position: Vector2.zero(),
-      size: size.x / 1.2,
-    );
+    sprite = await Sprite.load(item.type.path);
   }
 }
