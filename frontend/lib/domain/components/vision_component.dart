@@ -60,7 +60,7 @@ class VisionComponent extends Component {
     }
   }
 
-  void show({
+  void refresh({
     required Vector2 source,
     required double angle,
     required RayCasting rayCasting,
@@ -76,17 +76,10 @@ class VisionComponent extends Component {
     }
 
     for (final DebugVisionComponent debugVision in debugVision) {
-      debugVision.show(
+      debugVision.refresh(
         source: source,
         rayCasting: rayCasting,
       );
-    }
-  }
-
-  void hide() {
-    for (final Beam beam in beams) {
-      beam.start = Vector2.zero();
-      beam.end = Vector2.zero();
     }
   }
 
@@ -107,6 +100,7 @@ class DebugVisionComponent extends Component {
     strokeWidth: 0.5,
   );
   late final Beam beam;
+  bool detected = false;
 
   DebugVisionComponent({
     required this.soldier,
@@ -121,7 +115,7 @@ class DebugVisionComponent extends Component {
     );
   }
 
-  void show({
+  void refresh({
     required Vector2 source,
     required RayCasting rayCasting,
   }) {
@@ -134,14 +128,10 @@ class DebugVisionComponent extends Component {
 
     if (isInFieldOfView(result: result)) {
       beam.update(result);
+      detected = true;
     } else {
-      hide();
+      detected = false;
     }
-  }
-
-  void hide() {
-    beam.start = Vector2.zero();
-    beam.end = Vector2.zero();
   }
 
   bool isInFieldOfView({
@@ -154,6 +144,8 @@ class DebugVisionComponent extends Component {
 
   @override
   void render(Canvas canvas) {
-    canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
+    if (detected) {
+      canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
+    }
   }
 }

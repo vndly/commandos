@@ -72,7 +72,7 @@ class SoldierComponent extends EnemyComponent {
       behavior.update(this, dt);
     }
 
-    vision.show(
+    vision.refresh(
       source: body.position,
       angle: body.angle,
       rayCasting: rayCasting,

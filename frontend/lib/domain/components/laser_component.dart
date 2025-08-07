@@ -14,6 +14,7 @@ class LaserComponent extends Component {
     strokeWidth: 0.5,
   );
   final List<Beam> beams = [];
+  bool enabled = true;
 
   LaserComponent({
     required this.laser,
@@ -50,7 +51,7 @@ class LaserComponent extends Component {
     }
   }
 
-  void show({
+  void refresh({
     required Vector2 source,
     required double angle,
     required RayCasting rayCasting,
@@ -64,19 +65,20 @@ class LaserComponent extends Component {
       );
       beam.update(result);
     }
+
+    enabled = true;
   }
 
-  void hide() {
-    for (final Beam beam in beams) {
-      beam.start = Vector2.zero();
-      beam.end = Vector2.zero();
-    }
+  void disable() {
+    enabled = false;
   }
 
   @override
   void render(Canvas canvas) {
-    for (final Beam beam in beams) {
-      canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
+    if (enabled) {
+      for (final Beam beam in beams) {
+        canvas.drawLine(beam.start.toOffset(), beam.end.toOffset(), paint);
+      }
     }
   }
 }

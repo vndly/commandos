@@ -72,13 +72,13 @@ class AgentComponent extends PhysicalComponent {
     }
 
     if (active && Debug.hasAgentVision) {
-      laser.show(
+      laser.refresh(
         source: body.position,
         angle: body.angle,
         rayCasting: rayCasting,
       );
     } else {
-      laser.hide();
+      laser.disable();
     }
   }
 
