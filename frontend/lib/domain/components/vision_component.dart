@@ -18,7 +18,7 @@ class VisionComponent extends Component {
   final SoldierComponent soldierComponent;
   final List<AgentComponent> agents;
   final List<Beam> beams = [];
-  final List<AgentDetectorComponent> debugVision = [];
+  final List<AgentDetectorComponent> agentDetector = [];
 
   VisionComponent({
     required this.agents,
@@ -52,7 +52,7 @@ class VisionComponent extends Component {
             soldierComponent: soldierComponent,
             agentComponent: agent,
           );
-      debugVision.add(debugVisionComponent);
+      agentDetector.add(debugVisionComponent);
       await level.add(debugVisionComponent);
     }
   }
@@ -71,7 +71,7 @@ class VisionComponent extends Component {
       beam.update(result);
     }
 
-    for (final AgentDetectorComponent debugVision in debugVision) {
+    for (final AgentDetectorComponent debugVision in agentDetector) {
       debugVision.refresh(
         source: source,
         rayCasting: rayCasting,
@@ -121,7 +121,7 @@ class AgentDetectorComponent extends Component {
       range: soldierComponent.soldier.range,
     );
 
-    if (isInFieldOfView(result: result)) {
+    if (isInFieldOfView(result)) {
       beam.update(result);
       detected = true;
     } else {
@@ -129,14 +129,11 @@ class AgentDetectorComponent extends Component {
     }
   }
 
-  bool isInFieldOfView({
-    required RayCastingResult result,
-  }) {
-    return (result.object is AgentComponent) &&
-        soldierComponent.body.position.distanceTo(result.end) <=
-            soldierComponent.soldier.range &&
-        soldierComponent.inFieldOfView(result.angle);
-  }
+  bool isInFieldOfView(RayCastingResult result) =>
+      (result.object is AgentComponent) &&
+      soldierComponent.body.position.distanceTo(result.end) <=
+          soldierComponent.soldier.range &&
+      soldierComponent.inFieldOfView(result.angle);
 
   @override
   void render(Canvas canvas) {
