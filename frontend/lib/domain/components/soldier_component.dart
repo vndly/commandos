@@ -71,27 +71,15 @@ class SoldierComponent extends EnemyComponent {
       behavior.update(this, dt);
     }
 
-    vision.refresh(
+    agentInVision = vision.refresh(
       source: body.position,
       angle: body.angle,
       rayCasting: rayCasting,
     );
 
-    print(agentInVision);
-
     if (agentInVision != null) {
       level.onAgentSpotted(dt * 0.1);
     }
-  }
-
-  void onAgentSpotted(AgentComponent agentComponent) {
-    agentInVision = agentComponent;
-    print('SOLDIER ${soldier.id}: ON');
-  }
-
-  void onAgentLost() {
-    agentInVision = null;
-    print('SOLDIER ${soldier.id}: OFF');
   }
 }
 

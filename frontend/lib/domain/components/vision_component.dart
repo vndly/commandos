@@ -57,7 +57,7 @@ class VisionComponent extends Component {
     }
   }
 
-  void refresh({
+  AgentComponent? refresh({
     required Vector2 source,
     required double angle,
     required RayCasting rayCasting,
@@ -71,12 +71,24 @@ class VisionComponent extends Component {
       beam.update(result);
     }
 
+    AgentComponent? closestAgentDetected;
+
     for (final AgentDetectorComponent detector in agentDetector) {
-      detector.refresh(
+      final AgentComponent? detectedAgent = detector.refresh(
         source: source,
         rayCasting: rayCasting,
       );
+
+      if (detectedAgent != null) {
+        if (closestAgentDetected == null ||
+            source.distanceTo(detectedAgent.body.position) <
+                source.distanceTo(closestAgentDetected.body.position)) {
+          closestAgentDetected = detectedAgent;
+        }
+      }
     }
+
+    return closestAgentDetected;
   }
 
   @override
@@ -111,7 +123,7 @@ class AgentDetectorComponent extends Component {
     );
   }
 
-  void refresh({
+  AgentComponent? refresh({
     required Vector2 source,
     required RayCasting rayCasting,
   }) {
@@ -124,10 +136,10 @@ class AgentDetectorComponent extends Component {
     if (_isInFieldOfView(result)) {
       beam.update(result);
       detected = true;
-      soldierComponent.onAgentSpotted(agentComponent);
+      return agentComponent;
     } else {
       detected = false;
-      soldierComponent.onAgentLost();
+      return null;
     }
   }
 
