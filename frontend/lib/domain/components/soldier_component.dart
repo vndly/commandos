@@ -17,6 +17,7 @@ class SoldierComponent extends EnemyComponent {
   final Soldier soldier;
   final List<AgentComponent> agents;
   late final VisionComponent vision;
+  AgentComponent? agentInVision;
 
   SoldierComponent({
     required this.soldier,
@@ -71,11 +72,26 @@ class SoldierComponent extends EnemyComponent {
     }
 
     vision.refresh(
-      dt: dt,
       source: body.position,
       angle: body.angle,
       rayCasting: rayCasting,
     );
+
+    print(agentInVision);
+
+    if (agentInVision != null) {
+      level.onAgentSpotted(dt * 0.1);
+    }
+  }
+
+  void onAgentSpotted(AgentComponent agentComponent) {
+    agentInVision = agentComponent;
+    print('SOLDIER ${soldier.id}: ON');
+  }
+
+  void onAgentLost() {
+    agentInVision = null;
+    print('SOLDIER ${soldier.id}: OFF');
   }
 }
 

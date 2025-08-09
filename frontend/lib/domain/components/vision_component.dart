@@ -47,18 +47,17 @@ class VisionComponent extends Component {
     await super.onLoad();
 
     for (final AgentComponent agent in agents) {
-      final AgentDetectorComponent debugVisionComponent =
+      final AgentDetectorComponent agentDetectorComponent =
           AgentDetectorComponent(
             soldierComponent: soldierComponent,
             agentComponent: agent,
           );
-      agentDetector.add(debugVisionComponent);
-      await level.add(debugVisionComponent);
+      agentDetector.add(agentDetectorComponent);
+      await level.add(agentDetectorComponent);
     }
   }
 
   void refresh({
-    required double dt,
     required Vector2 source,
     required double angle,
     required RayCasting rayCasting,
@@ -72,9 +71,8 @@ class VisionComponent extends Component {
       beam.update(result);
     }
 
-    for (final AgentDetectorComponent debugVision in agentDetector) {
-      debugVision.refresh(
-        dt: dt,
+    for (final AgentDetectorComponent detector in agentDetector) {
+      detector.refresh(
         source: source,
         rayCasting: rayCasting,
       );
@@ -114,7 +112,6 @@ class AgentDetectorComponent extends Component {
   }
 
   void refresh({
-    required double dt,
     required Vector2 source,
     required RayCasting rayCasting,
   }) {
@@ -127,9 +124,10 @@ class AgentDetectorComponent extends Component {
     if (_isInFieldOfView(result)) {
       beam.update(result);
       detected = true;
-      level.onAgentSpotted(dt * 0.1);
+      soldierComponent.onAgentSpotted(agentComponent);
     } else {
       detected = false;
+      soldierComponent.onAgentLost();
     }
   }
 
