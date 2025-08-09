@@ -121,7 +121,7 @@ class AgentDetectorComponent extends Component {
       range: soldierComponent.soldier.range,
     );
 
-    if (isInFieldOfView(result)) {
+    if (_isInFieldOfView(result)) {
       beam.update(result);
       detected = true;
     } else {
@@ -129,7 +129,7 @@ class AgentDetectorComponent extends Component {
     }
   }
 
-  bool isInFieldOfView(RayCastingResult result) =>
+  bool _isInFieldOfView(RayCastingResult result) =>
       (result.object is AgentComponent) &&
       soldierComponent.body.position.distanceTo(result.end) <=
           soldierComponent.soldier.range &&
