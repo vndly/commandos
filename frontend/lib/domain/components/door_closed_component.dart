@@ -62,7 +62,7 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
         other.agent.backpack.remove(ItemType.keycard);
         level.onBackpackUpdated();
         Audio.get.playSound(Audio.DOOR_UNLOCKED);
-        Future.delayed(const Duration(milliseconds: 1000), toBeRemoved);
+        Future.delayed(const Duration(milliseconds: 500), toBeRemoved);
       } else {
         Audio.get.playSound(Audio.DOOR_LOCKED);
       }
