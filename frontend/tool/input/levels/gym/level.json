@@ -14,10 +14,10 @@
                 {
                     "type": "rotating",
                     "startAngle": -90,
-                    "speed": 50,
+                    "speed": 30,
                     "rotatingDirection": "clockwise",
-                    "minAngle": -120,
-                    "maxAngle": -60
+                    "minAngle": -105,
+                    "maxAngle": -75
                 }
             ]
         },
@@ -34,7 +34,7 @@
                 {
                     "type": "rotating",
                     "startAngle": 45,
-                    "speed": 40,
+                    "speed": 20,
                     "rotatingDirection": "counter_clockwise",
                     "minAngle": 25,
                     "maxAngle": 65

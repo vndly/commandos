@@ -1,7 +1,6 @@
 # Frontend
 
 - Alarm level
-- See map
 - Obstacles
   - Barbed wire
   - Electrified floor

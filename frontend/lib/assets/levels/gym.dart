@@ -45,7 +45,7 @@ class LevelGym {
           "startX": null,
           "startY": null,
           "startAngle": -90.0,
-          "speed": 50.0,
+          "speed": 30.0,
           "speedX": null,
           "speedY": null,
           "centerX": null,
@@ -55,8 +55,8 @@ class LevelGym {
           "maxX": null,
           "minY": null,
           "maxY": null,
-          "minAngle": -120.0,
-          "maxAngle": -60.0,
+          "minAngle": -105.0,
+          "maxAngle": -75.0,
           "periodX": null,
           "periodY": null,
           "amplitudeX": null,
@@ -85,7 +85,7 @@ class LevelGym {
           "startX": null,
           "startY": null,
           "startAngle": 45.0,
-          "speed": 40.0,
+          "speed": 20.0,
           "speedX": null,
           "speedY": null,
           "centerX": null,
@@ -587,7 +587,7 @@ class LevelGym {
     {
       "type": "keycard",
       "position": {
-        "x": 34,
+        "x": 44,
         "y": 125
       }
     }
