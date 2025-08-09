@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
@@ -78,7 +79,7 @@ class SoldierComponent extends EnemyComponent {
     );
 
     if (agentInVision != null) {
-      level.onAgentSpotted(dt * 0.1);
+      level.onAgentSpotted(dt * Constants.ALARM_RATIO_SOLDIER);
     }
   }
 }
