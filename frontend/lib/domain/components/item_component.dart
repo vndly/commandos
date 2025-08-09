@@ -2,6 +2,7 @@ import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/item.dart';
+import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/utils/audio.dart';
@@ -25,7 +26,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
 
     add(
       ItemSpriteComponent(
-        item: item,
+        item: item.type,
         position: Vector2.zero(),
         size: Vector2(8, 8),
       ),
@@ -52,7 +53,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
 }
 
 class ItemSpriteComponent extends SpriteComponent {
-  final Item item;
+  final ItemType item;
 
   ItemSpriteComponent({
     required this.item,
@@ -64,6 +65,6 @@ class ItemSpriteComponent extends SpriteComponent {
   Future onLoad() async {
     await super.onLoad();
 
-    sprite = await Sprite.load(item.type.path);
+    sprite = await Sprite.load(item.path);
   }
 }
