@@ -1,11 +1,17 @@
 import 'package:commandos/domain/models/backpack.dart';
+import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
+import 'package:commandos/extensions/canvas_extension.dart';
+import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
 class BackpackComponent extends PositionComponent {
   Backpack? backpack;
-  
+  final Paint paintFill = Palette.paint(
+    style: PaintingStyle.fill,
+    color: Palette.BACKPACK_BACKGROUND,
+  );
 
   BackpackComponent({
     required super.position,
@@ -24,9 +30,25 @@ class BackpackComponent extends PositionComponent {
   void render(Canvas canvas) {
     super.render(canvas);
 
-    canvas.drawRect(
-      const Rect.fromLTRB(0, 0, 50, 10),
-      Paint()..color = Colors.red.withAlpha(150),
-    );
+    if (backpack != null) {
+      final Backpack backpack = this.backpack!;
+
+      canvas.drawRect(
+        Rect.fromLTRB(0, 0, backpack.size * 10, 10),
+        paintFill,
+      );
+
+      int index = 0;
+
+      for (final MapEntry<ItemType, int> item in backpack.items) {
+        canvas.drawText(
+          text: '${item.key.name}: ${item.value}',
+          position: Vector2(index * 10, 5),
+          size: 3,
+          color: Colors.white,
+        );
+        index++;
+      }
+    }
   }
 }
