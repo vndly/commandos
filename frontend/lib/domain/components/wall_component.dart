@@ -44,7 +44,7 @@ class WallComponent extends PhysicalComponent {
 class WallSpriteComponent extends PositionComponent {
   final Wall wall;
   final Paint paintFill = Palette.paint(
-    style: PaintingStyle.stroke,
+    style: PaintingStyle.fill,
     color: Colors.white,
     strokeWidth: 0.5,
   );

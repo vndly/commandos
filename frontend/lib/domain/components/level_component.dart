@@ -76,9 +76,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       );
     }
 
-    activeAgentComponent = agentComponents[activeAgentIndex];
-    activeAgentComponent.active = true;
-    GameComponentRef.instance.camera.follow(activeAgentComponent);
+    _switchToAgent(activeAgentIndex);
 
     return super.onLoad();
   }
@@ -105,8 +103,14 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   }
 
   void _switchAgent(int shift) {
-    activeAgentIndex = (activeAgentIndex + shift) % agentComponents.length;
     activeAgentComponent.active = false;
+
+   final int newIndex = (activeAgentIndex + shift) % agentComponents.length;
+   _switchToAgent(newIndex);
+  }
+
+  void _switchToAgent(int index) {
+    activeAgentIndex = index;
     activeAgentComponent = agentComponents[activeAgentIndex];
     activeAgentComponent.active = true;
     GameComponentRef.instance.camera.follow(activeAgentComponent);
