@@ -23,12 +23,15 @@ class BackpackComponent extends PositionComponent {
 
   void setBackpack(Backpack backpack) {
     this.backpack = backpack;
+    refresh();
+  }
 
+  void refresh() {
     removeAll(children);
 
     int index = 0;
 
-    for (final MapEntry<ItemType, int> item in backpack.items) {
+    for (final MapEntry<ItemType, int> item in backpack!.items) {
       add(
         ItemSpriteComponent(
           item: item.key,

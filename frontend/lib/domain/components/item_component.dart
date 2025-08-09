@@ -5,6 +5,7 @@ import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/audio.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -48,6 +49,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
       Audio.get.playSound(Audio.PICK_ITEM);
       toBeRemoved();
       other.agent.backpack.add(item.type);
+      level.onBackpackUpdated();
     }
   }
 }
