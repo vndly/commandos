@@ -68,10 +68,6 @@ class SoldierComponent extends EnemyComponent {
   void update(double dt) {
     super.update(dt);
 
-    for (final Behavior behavior in soldier.behaviors) {
-      behavior.update(this, dt);
-    }
-
     agentInVision = vision.refresh(
       source: body.position,
       angle: body.angle,
@@ -80,6 +76,10 @@ class SoldierComponent extends EnemyComponent {
 
     if (agentInVision != null) {
       level.onAgentSpotted(dt * Constants.ALARM_RATIO_SOLDIER);
+    } else {
+      for (final Behavior behavior in soldier.behaviors) {
+        behavior.update(this, dt);
+      }
     }
   }
 }
