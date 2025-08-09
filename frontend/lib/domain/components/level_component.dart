@@ -26,6 +26,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   final List<AgentComponent> agentComponents = [];
   late AgentComponent activeAgentComponent;
   late final BackpackComponent backpackComponent;
+  late final AlarmComponent alarmComponent;
   int activeAgentIndex = 0;
 
   LevelComponent() {
@@ -87,9 +88,10 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     );
     await camera.viewport.add(backpackComponent);
 
-    await camera.viewport.add(
-      AlarmComponent(position: Vector2(gameSize.width - 105, 5)),
+    alarmComponent = AlarmComponent(
+      position: Vector2(gameSize.width - 105, 5),
     );
+    await camera.viewport.add(alarmComponent);
 
     _switchToAgent(activeAgentIndex);
 
@@ -133,6 +135,8 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   }
 
   void onBackpackUpdated() => backpackComponent.refresh();
+
+  void onAgentSpotted(double value) => alarmComponent.raise(value);
 }
 
 mixin LevelComponentRef {

@@ -58,6 +58,7 @@ class VisionComponent extends Component {
   }
 
   void refresh({
+    required double dt,
     required Vector2 source,
     required double angle,
     required RayCasting rayCasting,
@@ -73,6 +74,7 @@ class VisionComponent extends Component {
 
     for (final AgentDetectorComponent debugVision in agentDetector) {
       debugVision.refresh(
+        dt: dt,
         source: source,
         rayCasting: rayCasting,
       );
@@ -112,6 +114,7 @@ class AgentDetectorComponent extends Component {
   }
 
   void refresh({
+    required double dt,
     required Vector2 source,
     required RayCasting rayCasting,
   }) {
@@ -124,6 +127,7 @@ class AgentDetectorComponent extends Component {
     if (_isInFieldOfView(result)) {
       beam.update(result);
       detected = true;
+      level.onAgentSpotted(dt * 0.1);
     } else {
       detected = false;
     }

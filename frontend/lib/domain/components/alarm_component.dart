@@ -21,6 +21,10 @@ class AlarmComponent extends PositionComponent {
          priority: Priority.alarm.value,
        );
 
+  void raise(double value) {
+    level = (level + value).clamp(0, 1);
+  }
+
   @override
   void render(Canvas canvas) {
     super.render(canvas);

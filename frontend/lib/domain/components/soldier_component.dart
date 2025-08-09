@@ -71,6 +71,7 @@ class SoldierComponent extends EnemyComponent {
     }
 
     vision.refresh(
+      dt: dt,
       source: body.position,
       angle: body.angle,
       rayCasting: rayCasting,
