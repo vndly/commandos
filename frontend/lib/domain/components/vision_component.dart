@@ -13,7 +13,7 @@ class VisionComponent extends Component {
   final Paint paint = Palette.paint(
     style: PaintingStyle.stroke,
     color: Palette.VISION,
-    strokeWidth: 0.2,
+    strokeWidth: 0.5,
   );
   final SoldierComponent soldierComponent;
   final List<AgentComponent> agents;

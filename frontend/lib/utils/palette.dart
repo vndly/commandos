@@ -7,12 +7,12 @@ class Palette {
   static const Color GAME_BACKGROUND = Colors.black;
 
   static Color LASER = Colors.red.withAlpha(140);
-  static Color SOLDIER = Colors.red.withAlpha(140);
+  static Color SOLDIER = Colors.red;
   static Color TURRET = Colors.red.withAlpha(140);
   static Color VISION = Colors.yellow.withAlpha(140);
   static Color DETECTED = Colors.red.withAlpha(140);
   static Color WALL = Colors.white;
-  static Color DOOR_CLOSED = Colors.red.withAlpha(140);
+  static Color DOOR_CLOSED = Colors.red;
   static Color DOOR_OPEN = Colors.green.withAlpha(140);
 
   static Paint paint({
