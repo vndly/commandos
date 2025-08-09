@@ -16,7 +16,9 @@ class Palette {
   static Color DOOR_CLOSED = Colors.red;
   static Color DOOR_OPEN = Colors.green.withAlpha(140);
   static Color BACKPACK_BACKGROUND = Colors.black.withAlpha(140);
-  static Color BACKPACK_BORDER = Colors.white;
+  static Color BACKPACK_FOREGROUND = Colors.white;
+  static Color ALARM_BORDER = Colors.white;
+  static Color ALARM_FILL = Colors.red.withAlpha(140);
 
   static Paint paint({
     PaintingStyle? style,

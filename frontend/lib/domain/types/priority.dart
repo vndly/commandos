@@ -8,7 +8,8 @@ enum Priority {
   turret(6),
   soldier(7),
   item(8),
-  backpack(9);
+  backpack(9),
+  alarm(10);
 
   final int value;
 

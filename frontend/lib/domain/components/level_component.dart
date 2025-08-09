@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:commandos/app/constants.dart';
 import 'package:commandos/app/debug.dart';
 import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
+import 'package:commandos/domain/components/alarm_component.dart';
 import 'package:commandos/domain/components/backpack_component.dart';
 import 'package:commandos/domain/components/item_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
@@ -16,6 +16,7 @@ import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/utils/dimensions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
@@ -79,10 +80,16 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       );
     }
 
+    final Size gameSize = Dimensions.gameSize();
+
     backpackComponent = BackpackComponent(
-      position: Vector2(5, Constants.UI_HEIGHT - 15),
+      position: Vector2(5, gameSize.height - 15),
     );
     await camera.viewport.add(backpackComponent);
+
+    await camera.viewport.add(
+      AlarmComponent(position: Vector2(gameSize.width - 105, 5)),
+    );
 
     _switchToAgent(activeAgentIndex);
 

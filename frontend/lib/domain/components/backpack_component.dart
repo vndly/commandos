@@ -15,7 +15,7 @@ class BackpackComponent extends PositionComponent {
   );
   final Paint paintBorder = Palette.paint(
     style: PaintingStyle.stroke,
-    color: Palette.BACKPACK_BORDER,
+    color: Palette.BACKPACK_FOREGROUND,
   );
 
   BackpackComponent({
@@ -66,7 +66,7 @@ class BackpackComponent extends PositionComponent {
           text: item.value.toString(),
           position: Vector2((index * 10) + 8, 7),
           size: 3,
-          color: Palette.BACKPACK_BORDER,
+          color: Palette.BACKPACK_FOREGROUND,
         );
         index++;
       }
