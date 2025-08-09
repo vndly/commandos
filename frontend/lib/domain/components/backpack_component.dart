@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class BackpackComponent extends PositionComponent {
   Backpack? backpack;
+  
 
   BackpackComponent({
     required super.position,

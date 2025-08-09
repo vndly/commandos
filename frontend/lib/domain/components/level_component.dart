@@ -122,6 +122,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     activeAgentComponent = agentComponents[activeAgentIndex];
     activeAgentComponent.active = true;
     camera.follow(activeAgentComponent);
+    backpackComponent.setBackpack(activeAgentComponent.agent.backpack);
   }
 }
 
