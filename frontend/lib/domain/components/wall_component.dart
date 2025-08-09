@@ -45,8 +45,7 @@ class WallSpriteComponent extends PositionComponent {
   final Wall wall;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
-    color: Colors.white,
-    strokeWidth: 0.5,
+    color: Palette.WALL,
   );
 
   WallSpriteComponent({

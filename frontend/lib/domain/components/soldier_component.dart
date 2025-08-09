@@ -82,7 +82,7 @@ class SoldierSpriteComponent extends PositionComponent {
   final Soldier soldier;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
-    color: Colors.red,
+    color: Palette.SOLDIER,
   );
 
   SoldierSpriteComponent({

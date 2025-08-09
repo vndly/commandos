@@ -17,7 +17,7 @@ class TurretComponent extends EnemyComponent {
   final List<LaserComponent> lasers = [];
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
-    color: Colors.red,
+    color: Palette.TURRET,
   );
 
   TurretComponent({

@@ -47,7 +47,7 @@ class DoorSpriteComponent extends PositionComponent {
   final DoorOpenedComponent doorComponent;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
-    color: Colors.green,
+    color: Palette.DOOR_OPEN,
   );
 
   DoorSpriteComponent({
