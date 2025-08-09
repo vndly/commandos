@@ -2,6 +2,7 @@ import 'package:commandos/domain/components/item_component.dart';
 import 'package:commandos/domain/models/backpack.dart';
 import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
+import 'package:commandos/extensions/canvas_extension.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +36,7 @@ class BackpackComponent extends PositionComponent {
       add(
         ItemSpriteComponent(
           item: item.key,
-          position: Vector2((index * 10) + 5, 5),
+          position: Vector2((index * 10) + 4, 4),
           size: Vector2(5, 5),
         ),
       );
@@ -57,6 +58,18 @@ class BackpackComponent extends PositionComponent {
         Rect.fromLTRB(0, 0, backpack!.size * 10, 10),
         paintBorder,
       );
+
+      int index = 0;
+
+      for (final MapEntry<ItemType, int> item in backpack!.items) {
+        canvas.drawText(
+          text: item.value.toString(),
+          position: Vector2((index * 10) + 8, 7),
+          size: 3,
+          color: Palette.BACKPACK_BORDER,
+        );
+        index++;
+      }
     }
   }
 }
