@@ -46,7 +46,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
     if (other is AgentComponent) {
       Audio.get.playSound(Audio.PICK_ITEM);
       toBeRemoved();
-      other.agent.backpack.add(item);
+      other.agent.backpack.add(item.type);
     }
   }
 }

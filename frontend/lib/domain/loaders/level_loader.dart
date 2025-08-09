@@ -67,7 +67,7 @@ class LevelLoader {
         Agent(
           id: agent.id,
           position: _toVector2(agent.position),
-          backpack: Backpack(items: []),
+          backpack: Backpack(items: {}),
         ),
       );
     }

@@ -1,28 +1,21 @@
-import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/types/item_type.dart';
 
 class Backpack {
-  final List<Item> items;
+  final Map<ItemType, int> items;
 
   Backpack({required this.items});
 
-  void add(Item item) {
-    items.add(item);
+  void add(ItemType item) {
+    items[item] = (items[item] ?? 0) + 1;
   }
 
-  void remove(Item item) {
-    items.remove(item);
-  }
+  void remove(ItemType item) {
+    items[item] = (items[item] ?? 0) - 1;
 
-  bool contains(ItemType type) => items.any((item) => item.type == type);
-
-  Item? get(ItemType type) {
-    for (final item in items) {
-      if (item.type == type) {
-        return item;
-      }
+    if (items[item] == 0) {
+      items.remove(item);
     }
-
-    return null;
   }
+
+  bool contains(ItemType type) => items.keys.any((item) => item == type);
 }
