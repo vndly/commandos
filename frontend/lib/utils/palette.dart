@@ -6,6 +6,7 @@ class Palette {
 
   static const Color GAME_BACKGROUND = Colors.black;
 
+  static Color MAP_BACKGROUND = const Color(0xff222222);
   static Color LASER = Colors.red.withAlpha(140);
   static Color SOLDIER = Colors.red;
   static Color TURRET = Colors.red.withAlpha(140);
