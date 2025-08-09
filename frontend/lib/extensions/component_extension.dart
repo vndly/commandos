@@ -6,4 +6,6 @@ extension ComponentExtension on Component {
   GameComponent get game => GameComponentRef.instance;
 
   LevelComponent get level => LevelComponentRef.instance;
+
+  CameraComponent get camera => game.camera;
 }

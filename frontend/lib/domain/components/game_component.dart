@@ -42,12 +42,6 @@ class GameComponent extends Forge2DGame<LevelComponent>
   void onLevelRestart() => matchState.restart();
 }
 
-mixin GameComponentRef {
-  static late GameComponent instance;
-
-  GameComponent get game => instance;
-}
-
 class FpsComponent extends PositionComponent {
   FpsTextComponent? fpsTextComponent;
   final Paint paint = Palette.paint(
@@ -92,4 +86,10 @@ class FpsComponent extends PositionComponent {
       canvas.drawRect(size.toRect(), paint);
     }
   }
+}
+
+mixin GameComponentRef {
+  static late GameComponent instance;
+
+  GameComponent get game => instance;
 }

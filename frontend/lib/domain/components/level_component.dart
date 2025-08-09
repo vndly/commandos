@@ -1,8 +1,9 @@
 import 'dart:async';
+import 'package:commandos/app/constants.dart';
 import 'package:commandos/app/debug.dart';
 import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
-import 'package:commandos/domain/components/game_component.dart';
+import 'package:commandos/domain/components/backpack_component.dart';
 import 'package:commandos/domain/components/item_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/components/soldier_component.dart';
@@ -14,6 +15,7 @@ import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +24,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   final Input input = Input();
   final List<AgentComponent> agentComponents = [];
   late AgentComponent activeAgentComponent;
+  late final BackpackComponent backpackComponent;
   int activeAgentIndex = 0;
 
   LevelComponent() {
@@ -76,6 +79,11 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       );
     }
 
+    backpackComponent = BackpackComponent(
+      position: Vector2(5, Constants.UI_HEIGHT - 15),
+    );
+    await camera.viewport.add(backpackComponent);
+
     _switchToAgent(activeAgentIndex);
 
     return super.onLoad();
@@ -105,15 +113,15 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   void _switchAgent(int shift) {
     activeAgentComponent.active = false;
 
-   final int newIndex = (activeAgentIndex + shift) % agentComponents.length;
-   _switchToAgent(newIndex);
+    final int newIndex = (activeAgentIndex + shift) % agentComponents.length;
+    _switchToAgent(newIndex);
   }
 
   void _switchToAgent(int index) {
     activeAgentIndex = index;
     activeAgentComponent = agentComponents[activeAgentIndex];
     activeAgentComponent.active = true;
-    GameComponentRef.instance.camera.follow(activeAgentComponent);
+    camera.follow(activeAgentComponent);
   }
 }
 
