@@ -12,6 +12,10 @@ class BackpackComponent extends PositionComponent {
     style: PaintingStyle.fill,
     color: Palette.BACKPACK_BACKGROUND,
   );
+  final Paint paintBorder = Palette.paint(
+    style: PaintingStyle.stroke,
+    color: Palette.BACKPACK_BORDER,
+  );
 
   BackpackComponent({
     required super.position,
@@ -36,6 +40,11 @@ class BackpackComponent extends PositionComponent {
       canvas.drawRect(
         Rect.fromLTRB(0, 0, backpack.size * 10, 10),
         paintFill,
+      );
+
+      canvas.drawRect(
+        Rect.fromLTRB(0, 0, backpack.size * 10, 10),
+        paintBorder,
       );
 
       int index = 0;
