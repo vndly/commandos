@@ -10,6 +10,7 @@ import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
@@ -23,6 +24,7 @@ class AgentComponent extends PhysicalComponent {
   late final LaserComponent laser;
   late final RayCasting rayCasting;
   bool active;
+  double lastAngle = 0;
 
   AgentComponent({
     required this.input,
@@ -66,6 +68,7 @@ class AgentComponent extends PhysicalComponent {
     if (active) {
       if (input.hasInput) {
         body.linearVelocity = input.direction * Constants.AGENT_SPEED;
+        lastAngle = body.linearVelocity.angled;
       } else {
         body.linearVelocity = Vector2.zero();
       }
@@ -74,7 +77,7 @@ class AgentComponent extends PhysicalComponent {
     if (active && Debug.hasAgentVision) {
       laser.refresh(
         source: body.position,
-        angle: body.angle,
+        angle: lastAngle,
         rayCasting: rayCasting,
       );
     } else {

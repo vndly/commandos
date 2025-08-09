@@ -7,4 +7,6 @@ extension Vector2Extension on Vector2 {
 
     return atan2(diff.y, diff.x);
   }
+
+  double get angled => atan2(y, x);
 }
