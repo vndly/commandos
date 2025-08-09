@@ -1,6 +1,5 @@
 # Frontend
 
-- Backapack
 - Alarm level
 - See map
 - Obstacles
@@ -14,5 +13,6 @@
 - Exit point
 
 Interact:
+
 - Hold E to hack terminal
 - Player can choose what to unlock after hacking
