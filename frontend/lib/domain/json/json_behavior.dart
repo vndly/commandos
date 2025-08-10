@@ -5,33 +5,84 @@ import '../types/rotating_direction.dart';
 
 part 'json_behavior.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(includeIfNull: false)
 class JsonBehavior {
+  @JsonKey(name: 'type')
   final BehaviorType type;
+
+  @JsonKey(name: 'trigger')
   final double? trigger;
+
+  @JsonKey(name: 'startX')
   final double? startX;
+
+  @JsonKey(name: 'startY')
   final double? startY;
+
+  @JsonKey(name: 'startAngle')
   final double? startAngle;
+
+  @JsonKey(name: 'speed')
   final double? speed;
+
+  @JsonKey(name: 'speedX')
   final double? speedX;
+
+  @JsonKey(name: 'speedY')
   final double? speedY;
+
+  @JsonKey(name: 'centerX')
   final double? centerX;
+
+  @JsonKey(name: 'centerY')
   final double? centerY;
+
+  @JsonKey(name: 'radius')
   final double? radius;
+
+  @JsonKey(name: 'minX')
   final double? minX;
+
+  @JsonKey(name: 'maxX')
   final double? maxX;
+
+  @JsonKey(name: 'minY')
   final double? minY;
+
+  @JsonKey(name: 'maxY')
   final double? maxY;
+
+  @JsonKey(name: 'minAngle')
   final double? minAngle;
+
+  @JsonKey(name: 'maxAngle')
   final double? maxAngle;
+
+  @JsonKey(name: 'periodX')
   final double? periodX;
+
+  @JsonKey(name: 'periodY')
   final double? periodY;
+
+  @JsonKey(name: 'amplitudeX')
   final double? amplitudeX;
+
+  @JsonKey(name: 'amplitudeY')
   final double? amplitudeY;
+
+  @JsonKey(name: 'timeOn')
   final double? timeOn;
+
+  @JsonKey(name: 'timeOff')
   final double? timeOff;
+
+  @JsonKey(name: 'initialTime')
   final double? initialTime;
+
+  @JsonKey(name: 'rotatingDirection')
   final RotatingDirection? rotatingDirection;
+
+  @JsonKey(name: 'intermittentState')
   final IntermittentState? intermittentState;
 
   const JsonBehavior({

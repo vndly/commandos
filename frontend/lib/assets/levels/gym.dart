@@ -41,31 +41,11 @@ class LevelGym {
       "behaviors": [
         {
           "type": "rotating",
-          "trigger": null,
-          "startX": null,
-          "startY": null,
           "startAngle": -45.0,
           "speed": 20.0,
-          "speedX": null,
-          "speedY": null,
-          "centerX": null,
-          "centerY": null,
-          "radius": null,
-          "minX": null,
-          "maxX": null,
-          "minY": null,
-          "maxY": null,
           "minAngle": 25.0,
           "maxAngle": 65.0,
-          "periodX": null,
-          "periodY": null,
-          "amplitudeX": null,
-          "amplitudeY": null,
-          "timeOn": null,
-          "timeOff": null,
-          "initialTime": null,
-          "rotatingDirection": "counter_clockwise",
-          "intermittentState": null
+          "rotatingDirection": "counter_clockwise"
         }
       ]
     },
@@ -81,31 +61,11 @@ class LevelGym {
       "behaviors": [
         {
           "type": "rotating",
-          "trigger": null,
-          "startX": null,
-          "startY": null,
           "startAngle": -90.0,
           "speed": 30.0,
-          "speedX": null,
-          "speedY": null,
-          "centerX": null,
-          "centerY": null,
-          "radius": null,
-          "minX": null,
-          "maxX": null,
-          "minY": null,
-          "maxY": null,
           "minAngle": -105.0,
           "maxAngle": -75.0,
-          "periodX": null,
-          "periodY": null,
-          "amplitudeX": null,
-          "amplitudeY": null,
-          "timeOn": null,
-          "timeOff": null,
-          "initialTime": null,
-          "rotatingDirection": "clockwise",
-          "intermittentState": null
+          "rotatingDirection": "clockwise"
         }
       ]
     }
