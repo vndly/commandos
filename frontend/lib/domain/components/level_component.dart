@@ -111,7 +111,9 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   bool onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     input.onKeyEvent(event, keysPressed);
 
-    if (input.isSwitchingAgentForward(event, keysPressed)) {
+    if (input.isInteracting(event, keysPressed)) {
+      activeAgentComponent.onInteract();
+    } else if (input.isSwitchingAgentForward(event, keysPressed)) {
       _switchAgent(1);
     } else if (input.isSwitchingAgentBackward(event, keysPressed)) {
       _switchAgent(-1);
@@ -146,25 +148,6 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   void onBackpackUpdated() => backpackComponent.refresh();
 
   void onAgentSpotted(double value) => alarmComponent.raise(value);
-
-  void onEnterPortal({
-    required AgentComponent agentComponent,
-    required Portal portal,
-  }) {
-    if (activePortal != portal.id) {
-      activePortal = portal.id;
-      agentComponent.teleport(portal.destination.polygon.position);
-    }
-  }
-
-  void onExitPortal({
-    required AgentComponent agentComponent,
-    required Portal portal,
-  }) {
-    if (activePortal != portal.id) {
-      activePortal = '';
-    }
-  }
 }
 
 mixin LevelComponentRef {

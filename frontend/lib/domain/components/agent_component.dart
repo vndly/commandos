@@ -7,6 +7,7 @@ import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/laser.dart';
+import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
@@ -27,7 +28,7 @@ class AgentComponent extends PhysicalComponent {
   late final RayCasting rayCasting;
   bool active;
   double lastAngle = 0;
-  Vector2? pendingPortal;
+  Portal? inPortal;
 
   AgentComponent({
     required this.input,
@@ -88,10 +89,12 @@ class AgentComponent extends PhysicalComponent {
     } else {
       laser.disable();
     }
+  }
 
-    if (pendingPortal != null) {
-      body.setTransform(pendingPortal!, body.angle);
-      pendingPortal = null;
+  void onInteract() {
+    if (inPortal != null) {
+      body.setTransform(inPortal!.destination.polygon.position, angle);
+      inPortal = inPortal!.destination;
     }
   }
 
@@ -104,8 +107,14 @@ class AgentComponent extends PhysicalComponent {
     angle: 0,
   );
 
-  void teleport(Vector2 position) {
-    pendingPortal = position;
+  void onEnterPortal(Portal portal) {
+    inPortal = portal;
+  }
+
+  void onExitPortal(Portal portal) {
+    if (inPortal == portal) {
+      inPortal = null;
+    }
   }
 }
 

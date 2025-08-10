@@ -57,6 +57,15 @@ class Input {
     required LogicalKeyboardKey key,
   }) => (event is KeyDownEvent) && keysPressed.contains(key);
 
+  bool isInteracting(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.keyE,
+  );
+
   bool isSwitchingAgentForward(
     KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
@@ -162,4 +171,9 @@ class Input {
   }
 }
 
-enum ActiveInput { left, right, up, down }
+enum ActiveInput {
+  left,
+  right,
+  up,
+  down,
+}

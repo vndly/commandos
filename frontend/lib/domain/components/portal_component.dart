@@ -3,7 +3,6 @@ import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
-import 'package:commandos/extensions/component_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class PortalComponent extends PhysicalComponent with ContactCallbacks {
@@ -27,14 +26,14 @@ class PortalComponent extends PhysicalComponent with ContactCallbacks {
   @override
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      level.onEnterPortal(agentComponent: other, portal: portal);
+      other.onEnterPortal(portal);
     }
   }
 
   @override
   void endContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      level.onExitPortal(agentComponent: other, portal: portal);
+      other.onExitPortal(portal);
     }
   }
 }
