@@ -7,11 +7,9 @@ part of 'json_wall.dart';
 // **************************************************************************
 
 JsonWall _$JsonWallFromJson(Map<String, dynamic> json) => JsonWall(
-  vertices: (json['vertices'] as List<dynamic>)
-      .map((e) => JsonPosition.fromJson(e as Map<String, dynamic>))
-      .toList(),
+  polygon: JsonPolygon.fromJson(json['polygon'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$JsonWallToJson(JsonWall instance) => <String, dynamic>{
-  'vertices': instance.vertices,
+  'polygon': instance.polygon,
 };

@@ -1,15 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'json_position.dart';
+import 'json_polygon.dart';
 
 part 'json_wall.g.dart';
 
 @JsonSerializable()
 class JsonWall {
-  @JsonKey(name: 'vertices')
-  final List<JsonPosition> vertices;
+  @JsonKey(name: 'polygon')
+  final JsonPolygon polygon;
 
   JsonWall({
-    required this.vertices,
+    required this.polygon,
   });
 
   factory JsonWall.fromJson(Map<String, dynamic> json) =>

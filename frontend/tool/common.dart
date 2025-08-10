@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:xml2json/xml2json.dart';
 import 'json/json_behavior.dart';
 import 'json/json_level.dart';
+import 'json/json_polygon.dart';
 import 'json/json_position.dart';
 import 'types/behavior_type.dart';
 import 'types/door_status.dart';
@@ -147,10 +148,10 @@ IntermittentState? parseIntermittentState(String? value) {
   return null;
 }
 
-List<JsonPosition> getPositions(String pathString) {
+JsonPolygon getPolygon(String pathString) {
   final RegExp commandRegExp = RegExp(r'[A-Z][^A-Z]*');
   final Iterable<Match> matches = commandRegExp.allMatches(pathString);
-  final List<JsonPosition> result = [];
+  final List<JsonPosition> vertices = [];
   double startX = 0;
   double startY = 0;
   double currentX = 0;
@@ -173,7 +174,7 @@ List<JsonPosition> getPositions(String pathString) {
         for (int i = 0; i < args.length; i += 2) {
           final double x = args[i];
           final double y = args[i + 1];
-          result.add(JsonPosition(x: x.round(), y: y.round()));
+          vertices.add(JsonPosition(x: round(x), y: round(y)));
           currentX = x;
           currentY = y;
           if (type == 'M') {
@@ -186,14 +187,14 @@ List<JsonPosition> getPositions(String pathString) {
       case 'H':
         for (final x in args) {
           currentX = x;
-          result.add(JsonPosition(x: currentX.round(), y: currentY.round()));
+          vertices.add(JsonPosition(x: round(currentX), y: round(currentY)));
         }
         break;
 
       case 'V':
         for (final y in args) {
           currentY = y;
-          result.add(JsonPosition(x: currentX.round(), y: currentY.round()));
+          vertices.add(JsonPosition(x: round(currentX), y: round(currentY)));
         }
         break;
 
@@ -208,7 +209,7 @@ List<JsonPosition> getPositions(String pathString) {
     }
   }
 
-  return result;
+  return JsonPolygon(vertices: vertices);
 }
 
 void writeLevel({required String fileName, required JsonLevel level}) {
@@ -230,3 +231,5 @@ $json
 
 String capitalize(String value) =>
     '${value[0].toUpperCase()}${value.substring(1)}';
+
+double round(double value) => (value * 100).round() / 100;

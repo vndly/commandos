@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import '../types/door_status.dart';
-import 'json_position.dart';
+import 'json_polygon.dart';
 
 part 'json_door.g.dart';
 
@@ -9,12 +9,12 @@ class JsonDoor {
   @JsonKey(name: 'status')
   final DoorStatus status;
 
-  @JsonKey(name: 'vertices')
-  final List<JsonPosition> vertices;
+  @JsonKey(name: 'polygon')
+  final JsonPolygon polygon;
 
   JsonDoor({
     required this.status,
-    required this.vertices,
+    required this.polygon,
   });
 
   factory JsonDoor.fromJson(Map<String, dynamic> json) =>

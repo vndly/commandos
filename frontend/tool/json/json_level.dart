@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'json_agent.dart';
 import 'json_door.dart';
 import 'json_item.dart';
+import 'json_portal.dart';
 import 'json_soldier.dart';
 import 'json_turret.dart';
 import 'json_wall.dart';
@@ -37,6 +38,9 @@ class JsonLevel {
   @JsonKey(name: 'items')
   final List<JsonItem> items;
 
+  @JsonKey(name: 'portals')
+  final List<JsonPortal> portals;
+
   const JsonLevel({
     required this.id,
     required this.width,
@@ -47,6 +51,7 @@ class JsonLevel {
     required this.walls,
     required this.doors,
     required this.items,
+    required this.portals,
   });
 
   factory JsonLevel.fromJson(Map<String, dynamic> json) =>

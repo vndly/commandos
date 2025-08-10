@@ -5,10 +5,10 @@ part 'json_position.g.dart';
 @JsonSerializable()
 class JsonPosition {
   @JsonKey(name: 'x')
-  final int x;
+  final double x;
 
   @JsonKey(name: 'y')
-  final int y;
+  final double y;
 
   const JsonPosition({required this.x, required this.y});
 

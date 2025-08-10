@@ -28,6 +28,8 @@ import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/domain/types/behavior_type.dart';
 import 'package:flame/components.dart';
 
+import '../json/json_polygon.dart';
+
 class LevelLoader {
   static Level load(String json) {
     final JsonLevel jsonLevel = JsonLevel.fromJson(jsonDecode(json));
@@ -123,7 +125,7 @@ class LevelLoader {
     final List<Wall> result = [];
 
     for (final JsonWall wall in walls) {
-      final List<Vector2> points = wall.vertices.map(_toVector2).toList();
+      final List<Vector2> points = _getPolygon(wall.polygon);
       result.add(Wall(points: points));
     }
 
@@ -134,7 +136,7 @@ class LevelLoader {
     final List<Door> result = [];
 
     for (final JsonDoor door in doors) {
-      final List<Vector2> points = door.vertices.map(_toVector2).toList();
+      final List<Vector2> points = _getPolygon(door.polygon);
       result.add(
         Door(
           points: points,
@@ -226,6 +228,9 @@ class LevelLoader {
         );
     }
   }
+
+  static List<Vector2> _getPolygon(JsonPolygon jsonPolygon) =>
+      jsonPolygon.vertices.map(_toVector2).toList();
 
   static Vector2 _toVector2(JsonPosition position) =>
       Vector2(position.x.toDouble(), position.y.toDouble());

@@ -1,6 +1,5 @@
 # Frontend
 
-- Teleport
 - Multi vision
 
 - Obstacles
