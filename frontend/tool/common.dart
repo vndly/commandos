@@ -15,6 +15,18 @@ extension JsonExtensions on Json {
   int integer(String key) => double.parse(string(key)).round();
 
   double decimal(String key) => double.parse(string(key));
+
+  List<Json> list(String key) {
+    final dynamic value = this[key];
+    
+    if (value is List) {
+      return value.cast<Json>();
+    } else if (value is Json) {
+      return [value];
+    } else {
+      throw Exception('Expected a list for key: $key');
+    }
+  }
 }
 
 Future<Json> getJson(String path) async {
