@@ -24,17 +24,27 @@ mixin Sound {
     loop: true,
   );
 
+  static const List<AudioSpec> ALL_SOUNDS = [
+    DOOR_LOCKED,
+    DOOR_UNLOCKED,
+    PICK_ITEM,
+    DETECTION,
+    STEP,
+  ];
+
   Future playSound(AudioSpec spec) async {
     if (Audio.enabled) {
       if (spec.loop) {
-        await playLoopableSound(spec);
+        await _playLoopableSound(spec);
       } else {
-        await playEmphirealSound(spec);
+        await _playEmphirealSound(spec);
       }
     }
   }
 
-  Future playLoopableSound(AudioSpec spec) async {
+  Future stopSound(AudioSpec spec) async => _soundPlayers[spec.path]?.stop();
+
+  Future _playLoopableSound(AudioSpec spec) async {
     final AudioPlayer player = _soundPlayers[spec.path]!;
 
     if (!player.playing) {
@@ -43,15 +53,13 @@ mixin Sound {
     }
   }
 
-  Future playEmphirealSound(AudioSpec spec) async {
+  Future _playEmphirealSound(AudioSpec spec) async {
     final AudioPlayer player = await _getPlayer(spec);
     await player.play();
     await player.stop();
 
     _freePlayers.add(player);
   }
-
-  Future stopSound(AudioSpec spec) async => _soundPlayers[spec.path]?.stop();
 
   Future<AudioPlayer> _getFreePlayer(AudioSpec spec) async {
     if (_freePlayers.isNotEmpty) {
@@ -70,7 +78,11 @@ mixin Sound {
   }
 
   Future loadSound() async {
-    _soundPlayers[STEP.path] = await _getPlayer(STEP);
+    for (final AudioSpec spec in ALL_SOUNDS) {
+      if (spec.loop) {
+        _soundPlayers[spec.path] = await _getPlayer(spec);
+      }
+    }
   }
 
   void soundSpeed(double value) {

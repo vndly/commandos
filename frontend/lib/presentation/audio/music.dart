@@ -13,7 +13,7 @@ mixin Music {
     }
   }
 
-  void pauseMusic() {
+  Future pauseMusic() async {
     for (final AudioPlayer player in _musicPlayers.values) {
       if (player.playing) {
         _playerToResume = player;
@@ -21,7 +21,7 @@ mixin Music {
       }
     }
 
-    _playerToResume?.pause();
+    await _playerToResume?.pause();
   }
 
   void resumeMusic() {
@@ -41,7 +41,6 @@ mixin Music {
   }
 
   void disposeMusic() {
-    stopMusic();
     _musicPlayers.forEach((key, player) => player.dispose());
   }
 }
