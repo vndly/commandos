@@ -39,7 +39,7 @@ List<JsonAgent> getAgents(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'agents') {
       for (final Json circle in g['circle']) {
-        final String id = parseString(circle['id']);
+        final String id = circle.string('id');
         final int cx = parseInt(circle['cx']);
         final int cy = parseInt(circle['cy']);
         result.add(
@@ -98,7 +98,7 @@ List<JsonItem> getItems(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'items') {
       for (final Json item in g['g']) {
-        final String type = parseString(item['type']);
+        final String type = item.string('type');
         final Json rect = item['rect'];
         final double x = parseDouble(rect['x']);
         final double y = parseDouble(rect['y']);
@@ -126,7 +126,7 @@ List<JsonSoldier> getSoldiers(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'soldiers') {
       for (final Json circle in g['circle']) {
-        final String id = parseString(circle['id']);
+        final String id = circle.string('id');
         final int cx = parseInt(circle['cx']);
         final int cy = parseInt(circle['cy']);
         final double angle = parseDouble(circle['angle']);
