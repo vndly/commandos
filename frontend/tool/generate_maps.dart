@@ -15,8 +15,8 @@ Future processFile(String levelFolder) async {
   final Json json = await getJson('$levelFolder/level.svg');
   final Json svg = json['svg'];
   final String id = svg.string('id');
-  final int width = parseInt(svg.string('width').replaceAll('mm', ''));
-  final int height = parseInt(svg.string('height').replaceAll('mm', ''));
+  final int width = int.parse(svg.string('width').replaceAll('mm', ''));
+  final int height = int.parse(svg.string('height').replaceAll('mm', ''));
 
   final JsonLevel level = JsonLevel(
     id: id,
@@ -40,8 +40,8 @@ List<JsonAgent> getAgents(Json json) {
     if (g['id'] == 'agents') {
       for (final Json circle in g['circle']) {
         final String id = circle.string('id');
-        final int cx = parseInt(circle['cx']);
-        final int cy = parseInt(circle['cy']);
+        final int cx = circle.integer('cx');
+        final int cy = circle.integer('cy');
         result.add(
           JsonAgent(
             id: id,
@@ -127,8 +127,8 @@ List<JsonSoldier> getSoldiers(Json json) {
     if (g['id'] == 'soldiers') {
       for (final Json circle in g['circle']) {
         final String id = circle.string('id');
-        final int cx = parseInt(circle['cx']);
-        final int cy = parseInt(circle['cy']);
+        final int cx = circle.integer('cx');
+        final int cy = circle.integer('cy');
         final double angle = parseDouble(circle['angle']);
         final double sweep = parseDouble(circle['sweep']);
         final double range = parseDouble(circle['range']);

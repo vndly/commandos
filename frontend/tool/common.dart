@@ -11,6 +11,8 @@ typedef Json = Map<String, dynamic>;
 
 extension JsonExtensions on Json {
   String string(String key) => this[key] as String;
+
+  int integer(String key) => double.parse(string(key)).round();
 }
 
 Future<Json> getJson(String path) async {
@@ -23,8 +25,6 @@ Future<Json> getJson(String path) async {
 
   return jsonDecode(gdata);
 }
-
-int parseInt(dynamic value) => double.parse(value as String).round();
 
 double parseDouble(dynamic value) => double.parse(value as String);
 
