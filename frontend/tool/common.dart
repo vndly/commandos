@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:xml2json/xml2json.dart';
+import 'json/json_behavior.dart';
 import 'json/json_level.dart';
 import 'json/json_position.dart';
 import 'types/door_status.dart';
@@ -17,6 +18,14 @@ Future<Json> getJson(String path) async {
   final String gdata = xml2json.toGData();
 
   return jsonDecode(gdata);
+}
+
+double parseDouble(dynamic value) => double.parse(value as String);
+
+List<JsonBehavior> getBehaviors(Json json) {
+  final List<JsonBehavior> result = [];
+
+  return result;
 }
 
 ItemType parseItemType(String value) {

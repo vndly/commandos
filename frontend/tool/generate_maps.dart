@@ -133,9 +133,9 @@ List<JsonSoldier> getSoldiers(Json json) {
         final String id = circle['id'];
         final int cx = double.parse(circle['cx'] as String).round();
         final int cy = double.parse(circle['cy'] as String).round();
-        final double angle = double.parse(circle['angle'] as String);
-        final double sweep = double.parse(circle['sweep'] as String);
-        final double range = double.parse(circle['range'] as String);
+        final double angle = parseDouble(circle['angle']);
+        final double sweep = parseDouble(circle['sweep']);
+        final double range = parseDouble(circle['range']);
 
         result.add(
           JsonSoldier(
@@ -144,7 +144,7 @@ List<JsonSoldier> getSoldiers(Json json) {
             angle: angle,
             sweep: sweep,
             range: range,
-            behaviors: [],
+            behaviors: getBehaviors(circle['behaviors']),
           ),
         );
       }
