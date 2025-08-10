@@ -1,6 +1,5 @@
 # Frontend
 
-- Declare soldiers in svg
 - Run and walk with sounds
 - Teleport
 - Multi vision

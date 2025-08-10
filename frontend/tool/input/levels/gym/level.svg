@@ -103,30 +103,10 @@
      cx="14.903"
      cy="50.01"
      r="5.001"
-     angle="-90"
-     sweep="30"
-     range="100"
-     inkscape:label="soldier1">
-             <behaviors>
-                <behavior
-     type="rotating"
-     startAngle="-90"
-     speed="30"
-     rotatingDirection="clockwise"
-     minAngle="-105"
-     maxAngle="-75" />
-             </behaviors>
-             </circle>
-             <circle
-     style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:6.56484;stroke-linecap:round;stroke-miterlimit:3"
-     id="soldier2"
-     cx="134.93"
-     cy="85.017"
-     r="5.001"
      angle="45"
      sweep="30"
-     range="110"
-     inkscape:label="soldier2">
+     range="120"
+     inkscape:label="soldier1">
              <behaviors>
                 <behavior
      type="rotating"
@@ -135,6 +115,26 @@
      rotatingDirection="counter_clockwise"
      minAngle="25"
      maxAngle="65" />
+             </behaviors>
+             </circle>
+             <circle
+     style="display:inline;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:6.56484;stroke-linecap:round;stroke-miterlimit:3"
+     id="soldier2"
+     cx="134.93"
+     cy="85.017"
+     r="5.001"
+     angle="-90"
+     sweep="30"
+     range="100"
+     inkscape:label="soldier2">
+             <behaviors>
+                <behavior
+     type="rotating"
+     startAngle="-90"
+     speed="30"
+     rotatingDirection="clockwise"
+     minAngle="-105"
+     maxAngle="-75" />
              </behaviors>
              </circle>
              </g><g

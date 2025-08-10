@@ -32,82 +32,24 @@ class LevelGym {
     {
       "id": "soldier1",
       "position": {
-        "x": 135,
-        "y": 80
-      },
-      "angle": -90.0,
-      "sweep": 30.0,
-      "range": 100.0,
-      "behaviors": [
-        {
-          "type": "rotating",
-          "trigger": null,
-          "startX": null,
-          "startY": null,
-          "startAngle": -90.0,
-          "speed": 30.0,
-          "speedX": null,
-          "speedY": null,
-          "centerX": null,
-          "centerY": null,
-          "radius": null,
-          "minX": null,
-          "maxX": null,
-          "minY": null,
-          "maxY": null,
-          "minAngle": -105.0,
-          "maxAngle": -75.0,
-          "periodX": null,
-          "periodY": null,
-          "amplitudeX": null,
-          "amplitudeY": null,
-          "timeOn": null,
-          "timeOff": null,
-          "initialTime": null,
-          "rotatingDirection": "clockwise",
-          "intermittentState": null
-        }
-      ]
-    },
-    {
-      "id": "soldier2",
-      "position": {
-        "x": 20,
-        "y": 60
+        "x": 15,
+        "y": 50
       },
       "angle": 45.0,
       "sweep": 30.0,
       "range": 110.0,
-      "behaviors": [
-        {
-          "type": "rotating",
-          "trigger": null,
-          "startX": null,
-          "startY": null,
-          "startAngle": 45.0,
-          "speed": 20.0,
-          "speedX": null,
-          "speedY": null,
-          "centerX": null,
-          "centerY": null,
-          "radius": null,
-          "minX": null,
-          "maxX": null,
-          "minY": null,
-          "maxY": null,
-          "minAngle": 25.0,
-          "maxAngle": 65.0,
-          "periodX": null,
-          "periodY": null,
-          "amplitudeX": null,
-          "amplitudeY": null,
-          "timeOn": null,
-          "timeOff": null,
-          "initialTime": null,
-          "rotatingDirection": "counter_clockwise",
-          "intermittentState": null
-        }
-      ]
+      "behaviors": []
+    },
+    {
+      "id": "soldier2",
+      "position": {
+        "x": 135,
+        "y": 85
+      },
+      "angle": -90.0,
+      "sweep": 30.0,
+      "range": 100.0,
+      "behaviors": []
     }
   ],
   "walls": [
