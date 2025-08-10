@@ -77,7 +77,7 @@ class LevelGym {
       },
       "angle": 45.0,
       "sweep": 30.0,
-      "range": 100.0,
+      "range": 110.0,
       "behaviors": [
         {
           "type": "rotating",

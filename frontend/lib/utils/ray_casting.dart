@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:commandos/domain/components/item_component.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class RayCasting {
@@ -59,6 +60,11 @@ class NearestBoxRayCastCallback extends RayCastCallback {
   ) {
     nearestPoint = point.clone();
     object = fixture.userData;
+
+    if (object is ItemComponent) {
+      nearestPoint = null;
+      object = null;
+    }
 
     // Returning fraction implies that we care only about fixtures
     // that are closer to the ray start point than the current fixture
