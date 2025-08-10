@@ -10,7 +10,8 @@
   - Lasers
 - Interact
   - Carry object
-  - Switch
+  - Switch (e.g. cut off laser, power, etc)
+  - Terminal
 - Exit point
 
 Interact:
