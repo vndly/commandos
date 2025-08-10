@@ -173,15 +173,18 @@ class LevelLoader {
     final List<Portal> result = [];
 
     for (final JsonPortal portal in portals) {
-      final List<Vector2> entrance = _getPolygon(portal.entrance);
-      final List<Vector2> exit = _getPolygon(portal.exit);
-      result.add(
-        Portal(
-          id: portal.id,
-          entrance: Polygon(points: entrance),
-          exit: Polygon(points: exit),
-        ),
+      final Portal entrance = Portal(
+        polygon: Polygon(points: _getPolygon(portal.entrance)),
       );
+      final Portal exit = Portal(
+        polygon: Polygon(points: _getPolygon(portal.exit)),
+      );
+
+      entrance.destination = exit;
+      exit.destination = entrance;
+
+      result.add(entrance);
+      result.add(exit);
     }
 
     return result;

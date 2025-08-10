@@ -12,7 +12,8 @@ class CollisionGroup {
         Groups.TURRET |
         Groups.SOLDIER |
         Groups.DOOR_CLOSED |
-        Groups.ITEM,
+        Groups.ITEM |
+        Groups.PORTAL,
   );
 
   static final CollisionGroup TURRET = CollisionGroup(
@@ -51,6 +52,12 @@ class CollisionGroup {
     mask: Groups.AGENT | Groups.TURRET | Groups.SOLDIER,
   );
 
+  static final CollisionGroup PORTAL = CollisionGroup(
+    isSensor: true,
+    category: Groups.PORTAL,
+    mask: Groups.AGENT,
+  );
+
   CollisionGroup({
     required this.isSensor,
     required this.category,
@@ -67,4 +74,5 @@ class Groups {
   static const int DOOR_CLOSED = 0x0010; // 0000 0000 0001 0000
   static const int DOOR_OPENED = 0x0020; // 0000 0000 0010 0000
   static const int ITEM = 0x0040; // 0000 0000 0100 0000
+  static const int PORTAL = 0x0080; // 0000 0000 1000 0000
 }

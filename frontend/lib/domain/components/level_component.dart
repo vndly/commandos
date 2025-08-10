@@ -6,6 +6,7 @@ import 'package:commandos/domain/components/alarm_component.dart';
 import 'package:commandos/domain/components/backpack_component.dart';
 import 'package:commandos/domain/components/item_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
+import 'package:commandos/domain/components/portal_component.dart';
 import 'package:commandos/domain/components/soldier_component.dart';
 import 'package:commandos/domain/components/turret_component.dart';
 import 'package:commandos/domain/loaders/level_loader.dart';
@@ -13,6 +14,7 @@ import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/level.dart';
+import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/extensions/component_extension.dart';
@@ -78,6 +80,12 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     for (final Item item in level.items) {
       await add(
         ItemComponent(item: item),
+      );
+    }
+
+    for (final Portal portal in level.portals) {
+      await add(
+        PortalComponent(portal: portal),
       );
     }
 
