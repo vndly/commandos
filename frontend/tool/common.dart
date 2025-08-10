@@ -13,6 +13,8 @@ extension JsonExtensions on Json {
   String string(String key) => this[key] as String;
 
   int integer(String key) => double.parse(string(key)).round();
+
+  double decimal(String key) => double.parse(string(key));
 }
 
 Future<Json> getJson(String path) async {
@@ -25,8 +27,6 @@ Future<Json> getJson(String path) async {
 
   return jsonDecode(gdata);
 }
-
-double parseDouble(dynamic value) => double.parse(value as String);
 
 List<JsonBehavior> getBehaviors(Json json) {
   final List<JsonBehavior> result = [];

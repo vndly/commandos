@@ -100,10 +100,10 @@ List<JsonItem> getItems(Json json) {
       for (final Json item in g['g']) {
         final String type = item.string('type');
         final Json rect = item['rect'];
-        final double x = parseDouble(rect['x']);
-        final double y = parseDouble(rect['y']);
-        final double width = parseDouble(rect['width']);
-        final double height = parseDouble(rect['height']);
+        final double x = rect.decimal('x');
+        final double y = rect.decimal('y');
+        final double width = rect.decimal('width');
+        final double height = rect.decimal('height');
         result.add(
           JsonItem(
             type: parseItemType(type),
@@ -129,9 +129,9 @@ List<JsonSoldier> getSoldiers(Json json) {
         final String id = circle.string('id');
         final int cx = circle.integer('cx');
         final int cy = circle.integer('cy');
-        final double angle = parseDouble(circle['angle']);
-        final double sweep = parseDouble(circle['sweep']);
-        final double range = parseDouble(circle['range']);
+        final double angle = circle.decimal('angle');
+        final double sweep = circle.decimal('sweep');
+        final double range = circle.decimal('range');
 
         result.add(
           JsonSoldier(
