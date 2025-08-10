@@ -13,7 +13,7 @@ void main(List<String> args) async {
 
 Future processFile(String levelFolder) async {
   final Json json = await getJson('$levelFolder/level.svg');
-  final Json svg = json['svg'];
+  final Json svg = json.json('svg');
   final String id = svg.string('id');
   final int width = int.parse(svg.string('width').replaceAll('mm', ''));
   final int height = int.parse(svg.string('height').replaceAll('mm', ''));

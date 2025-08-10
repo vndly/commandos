@@ -10,6 +10,8 @@ import 'types/item_type.dart';
 typedef Json = Map<String, dynamic>;
 
 extension JsonExtensions on Json {
+  Json json(String key) => this[key] as Json;
+
   String string(String key) => this[key] as String;
 
   int integer(String key) => double.parse(string(key)).round();
