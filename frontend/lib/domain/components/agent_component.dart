@@ -11,6 +11,7 @@ import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/extensions/vector2_extension.dart';
+import 'package:commandos/utils/audio.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
@@ -69,8 +70,10 @@ class AgentComponent extends PhysicalComponent {
       if (input.hasInput) {
         body.linearVelocity = input.direction * Constants.AGENT_SPEED;
         lastAngle = body.linearVelocity.angled;
+        Audio.get.playSound(Audio.STEP);
       } else {
         body.linearVelocity = Vector2.zero();
+        Audio.get.stopSound(Audio.STEP);
       }
     }
 

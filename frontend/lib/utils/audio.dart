@@ -12,6 +12,7 @@ class Audio {
   static const String DOOR_UNLOCKED = Assets.AUDIO_DOOR_UNLOCKED;
   static const String PICK_ITEM = Assets.AUDIO_PICK_ITEM;
   static const String DETECTION = Assets.AUDIO_DETECTION;
+  static const String STEP = Assets.AUDIO_STEP;
 
   static Audio get get => locator<Audio>();
 
@@ -24,8 +25,13 @@ class Audio {
 
   Future playSound(String sound) async {
     if (enabled) {
-      await stopSound(sound);
-      await _soundPlayers[sound]?.play();
+      final bool isPlaying = _soundPlayers[sound]?.playing ?? false;
+
+      if (!isPlaying) {
+        await stopSound(sound);
+        await _soundPlayers[sound]?.play();
+        await _soundPlayers[sound]?.play();
+      }
     }
   }
 
@@ -84,6 +90,7 @@ class Audio {
     _soundPlayers[DOOR_UNLOCKED] = await _getPlayer(path: DOOR_UNLOCKED);
     _soundPlayers[PICK_ITEM] = await _getPlayer(path: PICK_ITEM);
     _soundPlayers[DETECTION] = await _getPlayer(path: DETECTION);
+    _soundPlayers[STEP] = await _getPlayer(path: STEP, loopMode: LoopMode.all);
   }
 
   Future<AudioPlayer> _getPlayer({
