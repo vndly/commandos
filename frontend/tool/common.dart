@@ -21,7 +21,12 @@ extension JsonExtensions on Json {
 
   int integer(String key) => double.parse(string(key)).round();
 
+  int? integerOrNull(String key) =>
+      double.tryParse(stringOrNull(key) ?? '')?.round();
+
   double decimal(String key) => double.parse(string(key));
+
+  double? decimalOrNull(String key) => double.tryParse(stringOrNull(key) ?? '');
 
   List<Json> list(String key) {
     final dynamic value = this[key];
@@ -56,29 +61,29 @@ List<JsonBehavior> getBehaviors(List<Json> json) {
     result.add(
       JsonBehavior(
         type: parseBehaviorType(behavior.string('type')),
-        trigger: 0,
-        startX: 0,
-        startY: 0,
-        startAngle: 0,
-        speed: 0,
-        speedX: 0,
-        speedY: 0,
-        centerX: 0,
-        centerY: 0,
-        radius: 0,
-        minX: 0,
-        maxX: 0,
-        minY: 0,
-        maxY: 0,
-        minAngle: 0,
-        maxAngle: 0,
-        periodX: 0,
-        periodY: 0,
-        amplitudeX: 0,
-        amplitudeY: 0,
-        timeOn: 0,
-        timeOff: 0,
-        initialTime: 0,
+        trigger: behavior.decimalOrNull('trigger'),
+        startX: behavior.decimalOrNull('startX'),
+        startY: behavior.decimalOrNull('startY'),
+        startAngle: behavior.decimalOrNull('startAngle'),
+        speed: behavior.decimalOrNull('speed'),
+        speedX: behavior.decimalOrNull('speedX'),
+        speedY: behavior.decimalOrNull('speedY'),
+        centerX: behavior.decimalOrNull('centerX'),
+        centerY: behavior.decimalOrNull('centerY'),
+        radius: behavior.decimalOrNull('radius'),
+        minX: behavior.decimalOrNull('minX'),
+        maxX: behavior.decimalOrNull('maxX'),
+        minY: behavior.decimalOrNull('minY'),
+        maxY: behavior.decimalOrNull('maxY'),
+        minAngle: behavior.decimalOrNull('minAngle'),
+        maxAngle: behavior.decimalOrNull('maxAngle'),
+        periodX: behavior.decimalOrNull('periodX'),
+        periodY: behavior.decimalOrNull('periodY'),
+        amplitudeX: behavior.decimalOrNull('amplitudeX'),
+        amplitudeY: behavior.decimalOrNull('amplitudeY'),
+        timeOn: behavior.decimalOrNull('timeOn'),
+        timeOff: behavior.decimalOrNull('timeOff'),
+        initialTime: behavior.decimalOrNull('initialTime'),
         rotatingDirection: parseRotatingDirection(
           behavior.stringOrNull('rotatingDirection'),
         ),
