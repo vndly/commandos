@@ -174,9 +174,11 @@ class LevelLoader {
 
     for (final JsonPortal portal in portals) {
       final Portal entrance = Portal(
+        id: portal.id,
         polygon: Polygon(points: _getPolygon(portal.entrance)),
       );
       final Portal exit = Portal(
+        id: portal.id,
         polygon: Polygon(points: _getPolygon(portal.exit)),
       );
 

@@ -27,6 +27,7 @@ class AgentComponent extends PhysicalComponent {
   late final RayCasting rayCasting;
   bool active;
   double lastAngle = 0;
+  Vector2? pendingPortal;
 
   AgentComponent({
     required this.input,
@@ -87,6 +88,11 @@ class AgentComponent extends PhysicalComponent {
     } else {
       laser.disable();
     }
+
+    if (pendingPortal != null) {
+      body.setTransform(pendingPortal!, body.angle);
+      pendingPortal = null;
+    }
   }
 
   @override
@@ -97,6 +103,10 @@ class AgentComponent extends PhysicalComponent {
     group: CollisionGroup.AGENT,
     angle: 0,
   );
+
+  void teleport(Vector2 position) {
+    pendingPortal = position;
+  }
 }
 
 class AgentSpriteComponent extends PositionComponent {
