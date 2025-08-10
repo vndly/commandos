@@ -1,12 +1,13 @@
+import 'package:commandos/presistence/storage/saved_matches_storage.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/locator.dart';
 import 'package:just_audio/just_audio.dart';
 
 class Audio {
   final Map<String, AudioPlayer> _soundPlayers = {};
-  //final Map<String, AudioPlayer> _musicPlayers = {};
+  final Map<String, AudioPlayer> _musicPlayers = {};
   bool _enabled = true;
-  //AudioPlayer? _playerToResume;
+  AudioPlayer? _playerToResume;
 
   static const String DOOR_LOCKED = Assets.AUDIO_DOOR_LOCKED;
   static const String DOOR_UNLOCKED = Assets.AUDIO_DOOR_UNLOCKED;
@@ -20,7 +21,7 @@ class Audio {
 
   void toggle() {
     _enabled = !_enabled;
-    //SettingsStorage.saveAudio(_enabled);
+    AudioStorage.save(_enabled);
   }
 
   Future playSound(String sound) async {
@@ -29,7 +30,6 @@ class Audio {
 
       if (!isPlaying) {
         await stopSound(sound);
-        await _soundPlayers[sound]?.play();
         await _soundPlayers[sound]?.play();
       }
     }
@@ -40,15 +40,15 @@ class Audio {
     await _soundPlayers[sound]?.seek(Duration.zero);
   }
 
-  /*Future playMusic(String music) async {
-    if (_isEnabled) {
+  Future playMusic(String music) async {
+    if (enabled) {
       await stopMusic();
       await _musicPlayers[music]?.seek(const Duration(seconds: 0));
-      _musicPlayers[music]?.play();
+      await _musicPlayers[music]?.play();
     }
-  }*/
+  }
 
-  /*void pauseMusic() {
+  void pauseMusic() {
     for (final AudioPlayer player in _musicPlayers.values) {
       if (player.playing) {
         _playerToResume = player;
@@ -57,35 +57,35 @@ class Audio {
     }
 
     _playerToResume?.pause();
-  }*/
+  }
 
-  /*void resumeMusic() {
+  void resumeMusic() {
     _playerToResume?.play();
     _playerToResume = null;
-  }*/
+  }
 
-  /*Future stopMusic() async {
+  Future stopMusic() async {
     for (final AudioPlayer player in _musicPlayers.values) {
       await player.stop();
     }
-  }*/
+  }
 
-  /*void volumeSound(String id, double volume) =>
-      _soundPlayers[id]!.setVolume(volume);*/
+  void volumeSound(String id, double volume) =>
+      _soundPlayers[id]!.setVolume(volume);
 
-  /*void speed(double value) {
+  void speed(double value) {
     _soundPlayers.forEach((key, player) => player.setSpeed(value));
     _musicPlayers.forEach((key, player) => player.setSpeed(value));
-  }*/
+  }
 
   void dispose() {
-    //stopMusic();
+    stopMusic();
     _soundPlayers.forEach((key, player) => player.dispose());
-    //_musicPlayers.forEach((key, player) => player.dispose());
+    _musicPlayers.forEach((key, player) => player.dispose());
   }
 
   Future load() async {
-    //_enabled = await SettingsStorage.loadAudio();
+    _enabled = await AudioStorage.load();
     _soundPlayers[DOOR_LOCKED] = await _getPlayer(path: DOOR_LOCKED);
     _soundPlayers[DOOR_UNLOCKED] = await _getPlayer(path: DOOR_UNLOCKED);
     _soundPlayers[PICK_ITEM] = await _getPlayer(path: PICK_ITEM);
