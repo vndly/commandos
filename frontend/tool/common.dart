@@ -42,7 +42,7 @@ Future<Json> getJson(String path) async {
   return jsonDecode(gdata);
 }
 
-List<JsonBehavior> getBehaviors(Json json) {
+List<JsonBehavior> getBehaviors(List<Json> json) {
   final List<JsonBehavior> result = [];
 
   return result;

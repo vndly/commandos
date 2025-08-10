@@ -99,7 +99,7 @@ List<JsonItem> getItems(Json svg) {
     if (g.string('id') == 'items') {
       for (final Json item in g.list('g')) {
         final String type = item.string('type');
-        final Json rect = item['rect'];
+        final Json rect = item.json('rect');
         final double x = rect.decimal('x');
         final double y = rect.decimal('y');
         final double width = rect.decimal('width');
@@ -140,7 +140,7 @@ List<JsonSoldier> getSoldiers(Json svg) {
             angle: angle,
             sweep: sweep,
             range: range,
-            behaviors: getBehaviors(circle['behaviors']),
+            behaviors: getBehaviors(circle.list('behaviors')),
           ),
         );
       }
