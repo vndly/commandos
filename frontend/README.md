@@ -1,6 +1,5 @@
 # Frontend
 
-- Run and walk with sounds
 - Teleport
 - Multi vision
 

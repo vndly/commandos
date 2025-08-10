@@ -8,8 +8,9 @@ import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
+import 'package:commandos/presentation/audio/audio.dart';
+import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/assets.dart';
-import 'package:commandos/utils/audio.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -61,10 +62,10 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
       if (hasKeycard) {
         other.agent.backpack.remove(ItemType.keycard);
         level.onBackpackUpdated();
-        Audio.get.playSound(Audio.DOOR_UNLOCKED);
+        Audio.get.playSound(Sound.DOOR_UNLOCKED);
         Future.delayed(const Duration(milliseconds: 500), toBeRemoved);
       } else {
-        Audio.get.playSound(Audio.DOOR_LOCKED);
+        Audio.get.playSound(Sound.DOOR_LOCKED);
       }
     }
   }

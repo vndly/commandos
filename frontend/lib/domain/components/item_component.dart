@@ -6,7 +6,8 @@ import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/utils/audio.dart';
+import 'package:commandos/presentation/audio/audio.dart';
+import 'package:commandos/presentation/audio/sound.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -46,7 +47,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
   @override
   void beginContact(Object other, Contact contact) {
     if (other is AgentComponent) {
-      Audio.get.playSound(Audio.PICK_ITEM);
+      Audio.get.playSound(Sound.PICK_ITEM);
       toBeRemoved();
       other.agent.backpack.add(item.type);
       level.onBackpackUpdated();

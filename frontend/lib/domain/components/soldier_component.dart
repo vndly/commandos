@@ -9,7 +9,8 @@ import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/utils/audio.dart';
+import 'package:commandos/presentation/audio/audio.dart';
+import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -85,7 +86,7 @@ class SoldierComponent extends EnemyComponent {
       level.onAgentSpotted(dt * Constants.ALARM_RATIO_SOLDIER);
 
       if (hadNoDetection) {
-        Audio.get.playSound(Audio.DETECTION);
+        Audio.get.playSound(Sound.DETECTION);
       }
     }
   }
