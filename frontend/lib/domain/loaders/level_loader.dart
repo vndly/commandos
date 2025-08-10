@@ -12,6 +12,7 @@ import 'package:commandos/domain/json/json_door.dart';
 import 'package:commandos/domain/json/json_item.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
+import 'package:commandos/domain/json/json_portal.dart';
 import 'package:commandos/domain/json/json_position.dart';
 import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
@@ -22,6 +23,8 @@ import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
+import 'package:commandos/domain/models/polygon.dart';
+import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
@@ -55,6 +58,9 @@ class LevelLoader {
       ),
       items: _getItems(
         jsonLevel.items,
+      ),
+      portals: _getPortals(
+        jsonLevel.portals,
       ),
     );
   }
@@ -156,6 +162,24 @@ class LevelLoader {
         Item(
           type: item.type,
           position: _toVector2(item.position),
+        ),
+      );
+    }
+
+    return result;
+  }
+
+  static List<Portal> _getPortals(List<JsonPortal> portals) {
+    final List<Portal> result = [];
+
+    for (final JsonPortal portal in portals) {
+      final List<Vector2> entrance = _getPolygon(portal.entrance);
+      final List<Vector2> exit = _getPolygon(portal.exit);
+      result.add(
+        Portal(
+          id: portal.id,
+          entrance: Polygon(points: entrance),
+          exit: Polygon(points: exit),
         ),
       );
     }

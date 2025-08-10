@@ -1,6 +1,7 @@
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/item.dart';
+import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
@@ -15,6 +16,7 @@ class Level {
   final List<Wall> walls;
   final List<Door> doors;
   final List<Item> items;
+  final List<Portal> portals;
 
   const Level({
     required this.id,
@@ -26,5 +28,6 @@ class Level {
     required this.walls,
     required this.doors,
     required this.items,
+    required this.portals,
   });
 }
