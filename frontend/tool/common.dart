@@ -9,6 +9,10 @@ import 'types/item_type.dart';
 
 typedef Json = Map<String, dynamic>;
 
+extension JsonExtensions on Json {
+  String string(String key) => this[key] as String;
+}
+
 Future<Json> getJson(String path) async {
   final File file = File(path);
   final String contents = await file.readAsString();
