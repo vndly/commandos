@@ -37,7 +37,7 @@ List<JsonAgent> getAgents(Json svg) {
   final List<JsonAgent> result = [];
 
   for (final Json g in svg['g']) {
-    if (g['id'] == 'agents') {
+    if (g.string('id') == 'agents') {
       for (final Json circle in g['circle']) {
         final String id = circle.string('id');
         final int cx = circle.integer('cx');
@@ -59,7 +59,7 @@ List<JsonWall> getWalls(Json svg) {
   final List<JsonWall> result = [];
 
   for (final Json g in svg['g']) {
-    if (g['id'] == 'walls') {
+    if (g.string('id') == 'walls') {
       for (final Json path in g['path']) {
         result.add(
           JsonWall(
@@ -77,7 +77,7 @@ List<JsonDoor> getDoors(Json svg) {
   final List<JsonDoor> result = [];
 
   for (final Json g in svg['g']) {
-    if (g['id'] == 'doors') {
+    if (g.string('id') == 'doors') {
       for (final Json path in g['path']) {
         result.add(
           JsonDoor(
@@ -96,7 +96,7 @@ List<JsonItem> getItems(Json svg) {
   final List<JsonItem> result = [];
 
   for (final Json g in svg['g']) {
-    if (g['id'] == 'items') {
+    if (g.string('id') == 'items') {
       for (final Json item in g['g']) {
         final String type = item.string('type');
         final Json rect = item['rect'];
@@ -124,7 +124,7 @@ List<JsonSoldier> getSoldiers(Json svg) {
   final List<JsonSoldier> result = [];
 
   for (final Json g in svg['g']) {
-    if (g['id'] == 'soldiers') {
+    if (g.string('id') == 'soldiers') {
       for (final Json circle in g['circle']) {
         final String id = circle.string('id');
         final int cx = circle.integer('cx');
