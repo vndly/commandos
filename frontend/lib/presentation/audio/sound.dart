@@ -38,8 +38,7 @@ mixin Sound {
     final AudioPlayer player = _soundPlayers[spec.path]!;
 
     if (!player.playing) {
-      await player.pause();
-      await player.seek(Duration.zero);
+      await player.stop();
       await player.play();
     }
   }
@@ -47,24 +46,12 @@ mixin Sound {
   Future playEmphirealSound(AudioSpec spec) async {
     final AudioPlayer player = await _getPlayer(spec);
     await player.play();
-    await stopPlayer(player);
+    await player.stop();
 
     _freePlayers.add(player);
   }
 
-  Future stopSound(AudioSpec spec) async {
-    final AudioPlayer? player = _soundPlayers[spec.path];
-
-    if (player != null) {
-      await stopPlayer(player);
-    }
-  }
-
-  // TODO(momo): use stop?
-  Future stopPlayer(AudioPlayer player) async {
-    await player.pause();
-    await player.seek(Duration.zero);
-  }
+  Future stopSound(AudioSpec spec) async => _soundPlayers[spec.path]?.stop();
 
   Future<AudioPlayer> _getFreePlayer(AudioSpec spec) async {
     if (_freePlayers.isNotEmpty) {
