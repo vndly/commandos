@@ -1,5 +1,6 @@
 # Frontend
 
+- Teleport
 - Obstacles
   - Barbed wire
   - Electrified floor
