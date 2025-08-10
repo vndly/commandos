@@ -64,10 +64,13 @@ class NearestBoxRayCastCallback extends RayCastCallback {
     if (object is ItemComponent) {
       nearestPoint = null;
       object = null;
-    }
 
-    // Returning fraction implies that we care only about fixtures
-    // that are closer to the ray start point than the current fixture
-    return fraction;
+      // Ignore fixture
+      return -1;
+    } else {
+      // Returning fraction implies that we care only about fixtures
+      // that are closer to the ray start point than the current fixture
+      return fraction;
+    }
   }
 }

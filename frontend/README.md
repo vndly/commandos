@@ -1,6 +1,5 @@
 # Frontend
 
-- Thinner walls
 - Declare soldiers in svg
 - Run and walk with sounds
 - Teleport
