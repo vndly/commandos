@@ -174,7 +174,7 @@ JsonPolygon getPolygon(String pathString) {
         for (int i = 0; i < args.length; i += 2) {
           final double x = args[i];
           final double y = args[i + 1];
-          vertices.add(JsonPosition(x: round(x), y: round(y)));
+          vertices.add(JsonPosition.create(x, y));
           currentX = x;
           currentY = y;
           if (type == 'M') {
@@ -187,14 +187,14 @@ JsonPolygon getPolygon(String pathString) {
       case 'H':
         for (final x in args) {
           currentX = x;
-          vertices.add(JsonPosition(x: round(currentX), y: round(currentY)));
+          vertices.add(JsonPosition.create(currentX, currentY));
         }
         break;
 
       case 'V':
         for (final y in args) {
           currentY = y;
-          vertices.add(JsonPosition(x: round(currentX), y: round(currentY)));
+          vertices.add(JsonPosition.create(currentX, currentY));
         }
         break;
 
@@ -231,5 +231,3 @@ $json
 
 String capitalize(String value) =>
     '${value[0].toUpperCase()}${value.substring(1)}';
-
-double round(double value) => (value * 100).round() / 100;

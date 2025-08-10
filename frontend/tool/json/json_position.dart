@@ -12,6 +12,11 @@ class JsonPosition {
 
   const JsonPosition({required this.x, required this.y});
 
+  factory JsonPosition.create(double x, double y) =>
+      JsonPosition(x: round(x), y: round(y));
+
+  static double round(double value) => (value * 10).round() / 10;
+
   factory JsonPosition.fromJson(Map<String, dynamic> json) =>
       _$JsonPositionFromJson(json);
 

@@ -48,7 +48,7 @@ List<JsonAgent> getAgents(Json svg) {
         result.add(
           JsonAgent(
             id: id,
-            position: JsonPosition(x: cx, y: cy),
+            position: JsonPosition.create(cx, cy),
           ),
         );
       }
@@ -110,9 +110,9 @@ List<JsonItem> getItems(Json svg) {
         result.add(
           JsonItem(
             type: parseItemType(type),
-            position: JsonPosition(
-              x: x + (width / 2),
-              y: y + (height / 2),
+            position: JsonPosition.create(
+              x + (width / 2),
+              y + (height / 2),
             ),
           ),
         );
@@ -139,7 +139,7 @@ List<JsonSoldier> getSoldiers(Json svg) {
         result.add(
           JsonSoldier(
             id: id,
-            position: JsonPosition(x: cx, y: cy),
+            position: JsonPosition.create(cx, cy),
             angle: angle,
             sweep: sweep,
             range: range,
@@ -186,10 +186,10 @@ JsonPolygon getPortalPolygon(Json json) {
 
   return JsonPolygon(
     vertices: [
-      JsonPosition(x: x, y: y),
-      JsonPosition(x: x + width, y: y),
-      JsonPosition(x: x + width, y: y + height),
-      JsonPosition(x: x, y: y + height),
+      JsonPosition.create(x, y),
+      JsonPosition.create(x + width, y),
+      JsonPosition.create(x + width, y + height),
+      JsonPosition.create(x, y + height),
     ],
   );
 }
