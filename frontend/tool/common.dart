@@ -20,6 +20,10 @@ Future<Json> getJson(String path) async {
   return jsonDecode(gdata);
 }
 
+String parseString(dynamic value) => value as String;
+
+int parseInt(dynamic value) => double.parse(value as String).round();
+
 double parseDouble(dynamic value) => double.parse(value as String);
 
 List<JsonBehavior> getBehaviors(Json json) {

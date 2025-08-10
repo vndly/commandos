@@ -522,14 +522,14 @@ class LevelGym {
     {
       "type": "keycard",
       "position": {
-        "x": 204,
+        "x": 205,
         "y": 145
       }
     },
     {
       "type": "keycard",
       "position": {
-        "x": 44,
+        "x": 45,
         "y": 125
       }
     }

@@ -14,12 +14,12 @@ void main(List<String> args) async {
 Future processFile(String levelFolder) async {
   final Json json = await getJson('$levelFolder/level.svg');
 
-  final String id = json['svg']['id'] as String;
-  final int width = int.parse(
-    (json['svg']['width'] as String).replaceAll('mm', ''),
+  final String id = parseString(json['svg']['id']);
+  final int width = parseInt(
+    parseString(json['svg']['width']).replaceAll('mm', ''),
   );
-  final int height = int.parse(
-    (json['svg']['height'] as String).replaceAll('mm', ''),
+  final int height = parseInt(
+    parseString(json['svg']['height']).replaceAll('mm', ''),
   );
 
   final JsonLevel level = JsonLevel(
@@ -43,9 +43,9 @@ List<JsonAgent> getAgents(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'agents') {
       for (final Json circle in g['circle']) {
-        final String id = circle['id'];
-        final int cx = double.parse(circle['cx'] as String).round();
-        final int cy = double.parse(circle['cy'] as String).round();
+        final String id = parseString(circle['id']);
+        final int cx = parseInt(circle['cx']);
+        final int cy = parseInt(circle['cy']);
         result.add(
           JsonAgent(
             id: id,
@@ -65,9 +65,11 @@ List<JsonWall> getWalls(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'walls') {
       for (final Json path in g['path']) {
-        final String pathString = path['d'];
-        final List<JsonPosition> vertices = getPositions(pathString);
-        result.add(JsonWall(vertices: vertices));
+        result.add(
+          JsonWall(
+            vertices: getPositions(path['d']),
+          ),
+        );
       }
     }
   }
@@ -81,12 +83,10 @@ List<JsonDoor> getDoors(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'doors') {
       for (final Json path in g['path']) {
-        final String pathString = path['d'];
-        final List<JsonPosition> vertices = getPositions(pathString);
         result.add(
           JsonDoor(
             status: parseDoorStatus(path['status']),
-            vertices: vertices,
+            vertices: getPositions(path['d']),
           ),
         );
       }
@@ -102,18 +102,18 @@ List<JsonItem> getItems(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'items') {
       for (final Json item in g['g']) {
-        final String type = item['type'];
+        final String type = parseString(item['type']);
         final Json rect = item['rect'];
-        final double x = double.parse(rect['x']);
-        final double y = double.parse(rect['y']);
-        final double width = double.parse(rect['width']);
-        final double height = double.parse(rect['height']);
+        final double x = parseDouble(rect['x']);
+        final double y = parseDouble(rect['y']);
+        final double width = parseDouble(rect['width']);
+        final double height = parseDouble(rect['height']);
         result.add(
           JsonItem(
             type: parseItemType(type),
             position: JsonPosition(
-              x: (x + (width / 2)).toInt(),
-              y: (y + (height / 2)).toInt(),
+              x: (x + (width / 2)).round(),
+              y: (y + (height / 2)).round(),
             ),
           ),
         );
@@ -130,9 +130,9 @@ List<JsonSoldier> getSoldiers(Json json) {
   for (final Json g in json['svg']['g']) {
     if (g['id'] == 'soldiers') {
       for (final Json circle in g['circle']) {
-        final String id = circle['id'];
-        final int cx = double.parse(circle['cx'] as String).round();
-        final int cy = double.parse(circle['cy'] as String).round();
+        final String id = parseString(circle['id']);
+        final int cx = parseInt(circle['cx']);
+        final int cy = parseInt(circle['cy']);
         final double angle = parseDouble(circle['angle']);
         final double sweep = parseDouble(circle['sweep']);
         final double range = parseDouble(circle['range']);
