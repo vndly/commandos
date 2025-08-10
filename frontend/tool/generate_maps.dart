@@ -155,35 +155,41 @@ List<JsonSoldier> getSoldiers(Json svg) {
 
 List<JsonPortal> getPortals(Json svg) {
   final List<JsonPortal> result = [];
-  final Map<String, List<JsonPortal>> portalMap = {};
 
   for (final Json g in svg.list('g')) {
     if (g.string('id') == 'portals') {
-      for (final Json rect in g.list('rect')) {
-        final String id = rect.string('id');
-        final double x = rect.decimal('x');
-        final double y = rect.decimal('y');
-        final double width = rect.decimal('width');
-        final double height = rect.decimal('height');
+      for (final Json portal in g.list('g')) {
+        final String id = portal.string('id');
+        final List<Json> rects = portal.list('rect');
+        final Json portalA = rects[0];
+        final Json portalB = rects[1];
 
-        final JsonPortal portal = JsonPortal(
-          id: id,
-          entrance: const JsonPosition(x: 0, y: 0),
-          exit: const JsonPosition(x: 0, y: 0),
-          polygon: JsonPolygon(
-            vertices: [
-              JsonPosition(x: x, y: y),
-              JsonPosition(x: x + width, y: y),
-              JsonPosition(x: x + width, y: y + height),
-              JsonPosition(x: x, y: y + height),
-            ],
+        result.add(
+          JsonPortal(
+            id: id,
+            entrance: getPortalPolygon(portalA),
+            exit: getPortalPolygon(portalB),
           ),
         );
-
-        portalMap[id] = [portal];
       }
     }
   }
 
   return result;
+}
+
+JsonPolygon getPortalPolygon(Json json) {
+  final double x = json.decimal('x');
+  final double y = json.decimal('y');
+  final double width = json.decimal('width');
+  final double height = json.decimal('height');
+
+  return JsonPolygon(
+    vertices: [
+      JsonPosition(x: x, y: y),
+      JsonPosition(x: x + width, y: y),
+      JsonPosition(x: x + width, y: y + height),
+      JsonPosition(x: x, y: y + height),
+    ],
+  );
 }

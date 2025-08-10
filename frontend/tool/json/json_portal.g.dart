@@ -8,9 +8,8 @@ part of 'json_portal.dart';
 
 JsonPortal _$JsonPortalFromJson(Map<String, dynamic> json) => JsonPortal(
   id: json['id'] as String,
-  entrance: JsonPosition.fromJson(json['entrance'] as Map<String, dynamic>),
-  exit: JsonPosition.fromJson(json['exit'] as Map<String, dynamic>),
-  polygon: JsonPolygon.fromJson(json['polygon'] as Map<String, dynamic>),
+  entrance: JsonPolygon.fromJson(json['entrance'] as Map<String, dynamic>),
+  exit: JsonPolygon.fromJson(json['exit'] as Map<String, dynamic>),
 );
 
 Map<String, dynamic> _$JsonPortalToJson(JsonPortal instance) =>
@@ -18,5 +17,4 @@ Map<String, dynamic> _$JsonPortalToJson(JsonPortal instance) =>
       'id': instance.id,
       'entrance': instance.entrance,
       'exit': instance.exit,
-      'polygon': instance.polygon,
     };
