@@ -29,6 +29,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   late AgentComponent activeAgentComponent;
   late final BackpackComponent backpackComponent;
   late final AlarmComponent alarmComponent;
+  Portal? activePortal;
   int activeAgentIndex = 0;
 
   LevelComponent() {
@@ -145,6 +146,26 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
   void onBackpackUpdated() => backpackComponent.refresh();
 
   void onAgentSpotted(double value) => alarmComponent.raise(value);
+
+  void onEnterPortal({
+    required AgentComponent agentComponent,
+    required Portal portal,
+  }) {
+    if (activePortal != portal) {
+      activePortal = portal;
+      agentComponent.body.setTransform(
+        portal.destination.polygon.position,
+        agentComponent.body.angle,
+      );
+    }
+  }
+
+  void onExitPortal({
+    required AgentComponent agentComponent,
+    required Portal portal,
+  }) {
+    activePortal = null;
+  }
 }
 
 mixin LevelComponentRef {
