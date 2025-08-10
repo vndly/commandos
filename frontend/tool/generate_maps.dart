@@ -22,21 +22,21 @@ Future processFile(String levelFolder) async {
     id: id,
     width: width,
     height: height,
-    agents: getAgents(json),
+    agents: getAgents(svg),
     turrets: [],
-    soldiers: getSoldiers(json),
-    walls: getWalls(json),
-    doors: getDoors(json),
-    items: getItems(json),
+    soldiers: getSoldiers(svg),
+    walls: getWalls(svg),
+    doors: getDoors(svg),
+    items: getItems(svg),
   );
 
   writeLevel(fileName: id, level: level);
 }
 
-List<JsonAgent> getAgents(Json json) {
+List<JsonAgent> getAgents(Json svg) {
   final List<JsonAgent> result = [];
 
-  for (final Json g in json['svg']['g']) {
+  for (final Json g in svg['g']) {
     if (g['id'] == 'agents') {
       for (final Json circle in g['circle']) {
         final String id = circle.string('id');
@@ -55,10 +55,10 @@ List<JsonAgent> getAgents(Json json) {
   return result;
 }
 
-List<JsonWall> getWalls(Json json) {
+List<JsonWall> getWalls(Json svg) {
   final List<JsonWall> result = [];
 
-  for (final Json g in json['svg']['g']) {
+  for (final Json g in svg['g']) {
     if (g['id'] == 'walls') {
       for (final Json path in g['path']) {
         result.add(
@@ -73,10 +73,10 @@ List<JsonWall> getWalls(Json json) {
   return result;
 }
 
-List<JsonDoor> getDoors(Json json) {
+List<JsonDoor> getDoors(Json svg) {
   final List<JsonDoor> result = [];
 
-  for (final Json g in json['svg']['g']) {
+  for (final Json g in svg['g']) {
     if (g['id'] == 'doors') {
       for (final Json path in g['path']) {
         result.add(
@@ -92,10 +92,10 @@ List<JsonDoor> getDoors(Json json) {
   return result;
 }
 
-List<JsonItem> getItems(Json json) {
+List<JsonItem> getItems(Json svg) {
   final List<JsonItem> result = [];
 
-  for (final Json g in json['svg']['g']) {
+  for (final Json g in svg['g']) {
     if (g['id'] == 'items') {
       for (final Json item in g['g']) {
         final String type = item.string('type');
@@ -120,10 +120,10 @@ List<JsonItem> getItems(Json json) {
   return result;
 }
 
-List<JsonSoldier> getSoldiers(Json json) {
+List<JsonSoldier> getSoldiers(Json svg) {
   final List<JsonSoldier> result = [];
 
-  for (final Json g in json['svg']['g']) {
+  for (final Json g in svg['g']) {
     if (g['id'] == 'soldiers') {
       for (final Json circle in g['circle']) {
         final String id = circle.string('id');
