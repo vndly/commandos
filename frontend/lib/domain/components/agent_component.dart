@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:commandos/app/constants.dart';
 import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/components/laser_component.dart';
@@ -26,6 +27,7 @@ class AgentComponent extends PhysicalComponent {
   final Agent agent;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
+  final List<Vector2> detectionPoints = [];
   bool active;
   double lastAngle = 0;
   Portal? inPortal;
@@ -63,6 +65,15 @@ class AgentComponent extends PhysicalComponent {
       ),
     );
     await level.add(laser);
+
+    const int numberOfPoints = 6;
+    const double angleStep = 360 / numberOfPoints;
+
+    for (int i = 0; i < numberOfPoints; i++) {
+      final double angle = radians(i * angleStep);
+      final Vector2 point = Vector2(cos(angle), sin(angle)) * (size.x / 2);
+      detectionPoints.add(point);
+    }
   }
 
   @override
