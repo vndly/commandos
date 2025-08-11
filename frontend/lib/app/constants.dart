@@ -4,7 +4,7 @@ class Constants {
   static const double UI_HEIGHT = 200;
   static const double AGENT_SPEED = 60;
 
-  static const double ALARM_RATIO_SOLDIER = 0.1;
+  static const double ALARM_RATIO_SOLDIER = 0.2;
 
   static const Map<String, Color> AGENT_COLORS = {
     '1': Color(0x80ffff00), // 0x800000ff

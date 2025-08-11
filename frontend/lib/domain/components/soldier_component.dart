@@ -83,7 +83,12 @@ class SoldierComponent extends EnemyComponent {
     );
 
     if (agentInVision != null) {
-      level.onAgentSpotted(dt * Constants.ALARM_RATIO_SOLDIER);
+      final double distance = body.position.distanceTo(
+        agentInVision!.body.position,
+      );
+      final double score = (1 - (distance / soldier.range)).clamp(0, 1);
+
+      level.onAgentSpotted(dt * Constants.ALARM_RATIO_SOLDIER * score);
 
       if (hadNoDetection) {
         Audio.get.playSound(Sound.DETECTION);
