@@ -5,17 +5,12 @@ import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/domain/types/door_status.dart';
 import 'package:commandos/domain/types/priority.dart';
-import 'package:commandos/utils/palette.dart';
+import 'package:commandos/utils/assets.dart';
 import 'package:flame/components.dart';
-import 'package:flutter/material.dart';
 
-class MapComponent extends PositionComponent {
+class MapComponent extends SpriteComponent {
   final List<Wall> walls;
   final List<Door> doors;
-  final Paint paintFill = Palette.paint(
-    style: PaintingStyle.fill,
-    color: Palette.MAP_BACKGROUND,
-  );
 
   MapComponent({
     required this.walls,
@@ -30,6 +25,8 @@ class MapComponent extends PositionComponent {
   @override
   Future onLoad() async {
     await super.onLoad();
+
+    sprite = await Sprite.load(Assets.IMAGES_MAPS_GYM);
 
     for (final Wall wall in walls) {
       await add(
@@ -48,15 +45,5 @@ class MapComponent extends PositionComponent {
         );
       }
     }
-  }
-
-  @override
-  void render(Canvas canvas) {
-    super.render(canvas);
-
-    canvas.drawRect(
-      Rect.fromLTRB(0, 0, size.x, size.y),
-      paintFill,
-    );
   }
 }

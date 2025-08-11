@@ -6,4 +6,5 @@ class Assets {
   static const String AUDIO_STEP = 'assets/audio/step.mp3';
   static const String IMAGES_ICONS_KEYCARD = 'icons/keycard.png';
   static const String IMAGES_ICONS_LOCKED = 'icons/locked.png';
+  static const String IMAGES_MAPS_GYM = 'maps/gym.png';
 }
