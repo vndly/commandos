@@ -33,6 +33,24 @@ class VisionComponent extends Component {
         angle: -soldierComponent.soldier.sweep,
       ),
     );
+
+    /*const int extraBeams = 1000;
+
+    for (int i = 1; i <= extraBeams; i++) {
+      final double angle = lerpDouble(
+        -soldierComponent.soldier.sweep,
+        soldierComponent.soldier.sweep,
+        i / (extraBeams + 1),
+      )!;
+      beams.add(
+        Beam(
+          start: Vector2.zero(),
+          end: Vector2.zero(),
+          angle: angle,
+        ),
+      );
+    }*/
+
     beams.add(
       Beam(
         start: Vector2.zero(),
