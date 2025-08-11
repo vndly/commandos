@@ -126,16 +126,23 @@ class AgentDetectorComponent extends Component {
     required Vector2 source,
     required RayCasting rayCasting,
   }) {
-    final RayCastingResult result = rayCasting.test(
-      source: source,
-      angle: source.angle(agentComponent.body.position),
-      range: soldierComponent.soldier.range,
-    );
+    final double distance = source.distanceTo(agentComponent.body.position);
 
-    if (_isInFieldOfView(result)) {
-      beam.update(result);
-      detected = true;
-      return agentComponent;
+    if (distance <= soldierComponent.soldier.range) {
+      final RayCastingResult result = rayCasting.test(
+        source: source,
+        angle: source.angle(agentComponent.body.position),
+        range: soldierComponent.soldier.range,
+      );
+
+      if (_isInFieldOfView(result)) {
+        beam.update(result);
+        detected = true;
+        return agentComponent;
+      } else {
+        detected = false;
+        return null;
+      }
     } else {
       detected = false;
       return null;
@@ -144,8 +151,6 @@ class AgentDetectorComponent extends Component {
 
   bool _isInFieldOfView(RayCastingResult result) =>
       (result.object == agentComponent) &&
-      soldierComponent.body.position.distanceTo(result.end) <=
-          soldierComponent.soldier.range &&
       soldierComponent.inFieldOfView(result.angle);
 
   @override
