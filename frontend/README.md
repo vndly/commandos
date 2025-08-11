@@ -1,7 +1,5 @@
 # Frontend
 
-- Multi vision
-
 - Obstacles
   - Barbed wire
   - Electrified floor
