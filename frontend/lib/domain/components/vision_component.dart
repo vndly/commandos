@@ -79,12 +79,11 @@ class VisionComponent extends Component {
         rayCasting: rayCasting,
       );
 
-      if (detectedAgent != null) {
-        if (closestAgentDetected == null ||
-            source.distanceTo(detectedAgent.body.position) <
-                source.distanceTo(closestAgentDetected.body.position)) {
-          closestAgentDetected = detectedAgent;
-        }
+      if ((detectedAgent != null) &&
+          (closestAgentDetected == null ||
+              source.distanceTo(detectedAgent.body.position) <
+                  source.distanceTo(closestAgentDetected.body.position))) {
+        closestAgentDetected = detectedAgent;
       }
     }
 
@@ -144,7 +143,7 @@ class AgentDetectorComponent extends Component {
   }
 
   bool _isInFieldOfView(RayCastingResult result) =>
-      (result.object is AgentComponent) &&
+      (result.object == agentComponent) &&
       soldierComponent.body.position.distanceTo(result.end) <=
           soldierComponent.soldier.range &&
       soldierComponent.inFieldOfView(result.angle);
