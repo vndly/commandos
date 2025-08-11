@@ -1,6 +1,5 @@
 # Frontend
 
-- Map sprite with background color and stairs
 - Multi vision
 
 - Obstacles
