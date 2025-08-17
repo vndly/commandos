@@ -87,7 +87,7 @@ class AgentComponent extends PhysicalComponent {
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
-    angle: 0,
+    angle: radians(90),
   );
 }
 
@@ -152,7 +152,18 @@ class AgentMovement {
 
   void update(Input input) {
     if (input.hasInput && !isMoving) {
-      nextNode = currentNode.nodeAt(input.direction);
+      final Vector2 direction = input.direction;
+      nextNode = currentNode.nodeAt(direction);
+
+      if (direction.x > 0) {
+        agent.body.setTransform(agent.body.position, radians(90));
+      } else if (direction.x < 0) {
+        agent.body.setTransform(agent.body.position, radians(270));
+      } else if (direction.y > 0) {
+        agent.body.setTransform(agent.body.position, radians(180));
+      } else if (direction.y < 0) {
+        agent.body.setTransform(agent.body.position, radians(0));
+      }
 
       if (nextNode != null) {
         isMoving = true;

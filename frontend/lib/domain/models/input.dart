@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
@@ -142,40 +141,16 @@ class Input {
   );
 
   Vector2 get direction {
-    double x = 0;
-    double y = 0;
-
     if (hasActiveInput(ActiveInput.left)) {
-      x = -1;
+      return Vector2(-1, 0);
     } else if (hasActiveInput(ActiveInput.right)) {
-      x = 1;
-    }
-
-    if (hasActiveInput(ActiveInput.up)) {
-      y = -1;
+      return Vector2(1, 0);
+    } else if (hasActiveInput(ActiveInput.up)) {
+      return Vector2(0, -1);
     } else if (hasActiveInput(ActiveInput.down)) {
-      y = 1;
-    }
-
-    if (x != 0 && y != 0) {
-      return previousDirection = Vector2(x / sqrt2, y / sqrt2);
-    } else if (x == 0 && y == 0) {
-      return previousDirection = Vector2.zero();
+      return Vector2(0, 1);
     } else {
-      // This is to fix an error in the input delivery. When releasing two keys
-      // at the same time, the framework still signals that there is still one
-      // of the two keys pressed.
-      if (previousDirection.x != 0 && previousDirection.y != 0) {
-        final Vector2 result = Vector2(
-          previousDirection.x,
-          previousDirection.y,
-        );
-        previousDirection = Vector2(x, y);
-
-        return result;
-      } else {
-        return previousDirection = Vector2(x, y);
-      }
+      return Vector2(0, 0);
     }
   }
 }
