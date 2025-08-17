@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:commandos/app/debug.dart';
 import 'package:commandos/domain/components/door_closed_component.dart';
 import 'package:commandos/domain/components/door_opened_component.dart';
 import 'package:commandos/domain/components/wall_component.dart';
@@ -68,9 +69,11 @@ class PathsComponent extends PositionComponent {
 
   @override
   void render(Canvas canvas) {
-    for (final Node node in nodes) {
-      final Vector2 position = node.position;
-      canvas.drawCircle(position.toOffset(), 0.5, paint);
+    if (Debug.hasNodeDebug) {
+      for (final Node node in nodes) {
+        final Vector2 position = node.position;
+        canvas.drawCircle(position.toOffset(), 0.5, paint);
+      }
     }
 
     super.render(canvas);

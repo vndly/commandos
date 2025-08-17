@@ -132,6 +132,15 @@ class Input {
     key: LogicalKeyboardKey.digit3,
   );
 
+  bool isDebugMode4(
+    KeyEvent event,
+    Set<LogicalKeyboardKey> keysPressed,
+  ) => _isPressing(
+    event: event,
+    keysPressed: keysPressed,
+    key: LogicalKeyboardKey.digit4,
+  );
+
   Vector2 get direction {
     double x = 0;
     double y = 0;

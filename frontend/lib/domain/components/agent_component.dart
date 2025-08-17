@@ -96,7 +96,7 @@ class AgentComponent extends PhysicalComponent {
       movement.update(input);
     }
 
-    if (active && Debug.hasAgentVision) {
+    if (active && Debug.hasAgentDebug) {
       laser.refresh(
         source: body.position,
         angle: lastAngle,
