@@ -37,7 +37,7 @@ extension JsonExtensions on Json {
     } else if (value is Json) {
       return [value];
     } else {
-      throw Exception('Expected a list for key: $key');
+      return [];
     }
   }
 }

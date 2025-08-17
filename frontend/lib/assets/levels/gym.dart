@@ -1535,30 +1535,24 @@ class LevelGym {
           "rotatingDirection": "counter_clockwise"
         }
       ]
-    }
-  ],
-  "soldiers": [
+    },
     {
-      "id": "soldier1",
+      "id": "turret2",
       "position": {
         "x": 110.0,
         "y": 50.0
       },
-      "angle": -90.0,
-      "sweep": 30.0,
-      "range": 100.0,
-      "behaviors": [
+      "angle": 0.0,
+      "lasers": [
         {
-          "type": "rotating",
-          "startAngle": -90.0,
-          "speed": 30.0,
-          "minAngle": -105.0,
-          "maxAngle": -75.0,
-          "rotatingDirection": "clockwise"
+          "angle": 0.0,
+          "range": 100.0
         }
-      ]
+      ],
+      "behaviors": []
     }
   ],
+  "soldiers": [],
   "walls": [
     {
       "polygon": {
