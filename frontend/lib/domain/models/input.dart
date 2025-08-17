@@ -6,7 +6,7 @@ class Input {
 
   bool get hasInput => activeInputs.isNotEmpty;
 
-  bool hasActiveInput(ActiveInput input) => activeInputs.contains(input);
+  bool _hasActiveInput(ActiveInput input) => activeInputs.contains(input);
 
   void onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _checkKey(
@@ -137,13 +137,13 @@ class Input {
   );
 
   Vector2 get direction {
-    if (hasActiveInput(ActiveInput.left)) {
+    if (_hasActiveInput(ActiveInput.left)) {
       return Vector2(-1, 0);
-    } else if (hasActiveInput(ActiveInput.right)) {
+    } else if (_hasActiveInput(ActiveInput.right)) {
       return Vector2(1, 0);
-    } else if (hasActiveInput(ActiveInput.up)) {
+    } else if (_hasActiveInput(ActiveInput.up)) {
       return Vector2(0, -1);
-    } else if (hasActiveInput(ActiveInput.down)) {
+    } else if (_hasActiveInput(ActiveInput.down)) {
       return Vector2(0, 1);
     } else {
       return Vector2(0, 0);
