@@ -2,11 +2,11 @@ import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 class Input {
-  final Set<ActiveInput> activeInputs = {};
+  final Set<ActiveInput> _activeInputs = {};
 
-  bool get hasInput => activeInputs.isNotEmpty;
+  bool get hasInput => _activeInputs.isNotEmpty;
 
-  bool _hasActiveInput(ActiveInput input) => activeInputs.contains(input);
+  bool _hasActiveInput(ActiveInput input) => _activeInputs.contains(input);
 
   void onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _checkKey(
@@ -40,21 +40,9 @@ class Input {
     required Set<LogicalKeyboardKey> keysPressed,
   }) {
     if (keysPressed.contains(key)) {
-      activeInputs.add(input);
+      _activeInputs.add(input);
     } else {
-      activeInputs.remove(input);
-    }
-  }
-
-  void _checkKeys({
-    required ActiveInput input,
-    required List<LogicalKeyboardKey> keys,
-    required Set<LogicalKeyboardKey> keysPressed,
-  }) {
-    if (keysPressed.any((key) => keys.contains(key))) {
-      activeInputs.add(input);
-    } else {
-      activeInputs.remove(input);
+      _activeInputs.remove(input);
     }
   }
 
@@ -164,8 +152,12 @@ class Input {
 }
 
 enum ActiveInput {
-  left,
-  right,
   up,
   down,
+  left,
+  right,
+  up_right,
+  up_left,
+  down_right,
+  down_left,
 }
