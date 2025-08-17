@@ -12,6 +12,7 @@ import 'package:commandos/domain/json/json_door.dart';
 import 'package:commandos/domain/json/json_item.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
+import 'package:commandos/domain/json/json_path.dart';
 import 'package:commandos/domain/json/json_position.dart';
 import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
@@ -22,6 +23,9 @@ import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
+import 'package:commandos/domain/models/node.dart';
+import 'package:commandos/domain/models/nodes.dart';
+import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
@@ -33,13 +37,20 @@ import '../json/json_polygon.dart';
 class LevelLoader {
   static Level load(String json) {
     final JsonLevel jsonLevel = JsonLevel.fromJson(jsonDecode(json));
+    final Nodes nodes = _getNodes(jsonLevel);
 
     return Level(
       id: jsonLevel.id,
       width: jsonLevel.width,
       height: jsonLevel.height,
+      nodes: nodes,
+      portals: _getPortals(
+        portals: jsonLevel.portals,
+        nodes: nodes,
+      ),
       agents: _getAgents(
-        jsonLevel.agents,
+        agents: jsonLevel.agents,
+        nodes: nodes,
       ),
       turrets: _getTurrets(
         jsonLevel.turrets,
@@ -56,15 +67,65 @@ class LevelLoader {
       items: _getItems(
         jsonLevel.items,
       ),
-      portals: [] /*_getPortals(
-        jsonLevel.portals,
-      ),*/,
     );
   }
 
-  static List<Agent> _getAgents(
-    List<JsonAgent> agents,
-  ) {
+  static Nodes _getNodes(JsonLevel jsonLevel) {
+    final Map<String, Node> result = {};
+
+    for (final JsonPath path in jsonLevel.paths) {
+      final Node nodeA = _addNode(
+        result: result,
+        position: _toVector2(path.a),
+      );
+      final Node nodeB = _addNode(
+        result: result,
+        position: _toVector2(path.b),
+      );
+
+      nodeA.addConnection(nodeB);
+      nodeB.addConnection(nodeA);
+    }
+
+    return Nodes(nodes: result.values.toList());
+  }
+
+  static Node _addNode({
+    required Map<String, Node> result,
+    required Vector2 position,
+  }) {
+    final String id = '${position.x.toInt()},${position.y.toInt()}';
+
+    if (result.containsKey(id)) {
+      return result[id]!;
+    } else {
+      final Node node = Node(position: position);
+      result[id] = node;
+
+      return node;
+    }
+  }
+
+  static List<Portal> _getPortals({
+    required List<JsonPath> portals,
+    required Nodes nodes,
+  }) {
+    final List<Portal> result = [];
+
+    for (final JsonPath path in portals) {
+      final Node nodeA = nodes.nodeAt(_toVector2(path.a));
+      final Node nodeB = nodes.nodeAt(_toVector2(path.b));
+
+      result.add(Portal(a: nodeA, b: nodeB));
+    }
+
+    return result;
+  }
+
+  static List<Agent> _getAgents({
+    required List<JsonAgent> agents,
+    required Nodes nodes,
+  }) {
     final List<Agent> result = [];
 
     for (final JsonAgent agent in agents) {
