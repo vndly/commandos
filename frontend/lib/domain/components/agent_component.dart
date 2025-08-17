@@ -138,6 +138,7 @@ class AgentMovement {
   final Nodes nodes;
   final List<Portal> portals;
   late Node currentNode;
+  AgentOrientation orientation = AgentOrientation.right;
   bool isMoving = false;
   Node? nextNode;
 
@@ -155,15 +156,11 @@ class AgentMovement {
       final Vector2 direction = input.direction;
       nextNode = currentNode.nodeAt(direction);
 
-      if (direction.x > 0) {
-        agent.body.setTransform(agent.body.position, radians(90));
-      } else if (direction.x < 0) {
-        agent.body.setTransform(agent.body.position, radians(270));
-      } else if (direction.y > 0) {
-        agent.body.setTransform(agent.body.position, radians(180));
-      } else if (direction.y < 0) {
-        agent.body.setTransform(agent.body.position, radians(0));
-      }
+      orientation = AgentOrientation.fromDirection(direction);
+      agent.body.setTransform(
+        agent.body.position,
+        radians(orientation.angle),
+      );
 
       if (nextNode != null) {
         isMoving = true;
@@ -207,5 +204,39 @@ class AgentMovement {
     }
 
     return null;
+  }
+}
+
+enum AgentOrientation {
+  up,
+  down,
+  left,
+  right;
+
+  double get angle {
+    switch (this) {
+      case AgentOrientation.up:
+        return 0;
+      case AgentOrientation.down:
+        return 180;
+      case AgentOrientation.left:
+        return 270;
+      case AgentOrientation.right:
+        return 90;
+    }
+  }
+
+  static AgentOrientation fromDirection(Vector2 direction) {
+    if (direction.x > 0) {
+      return AgentOrientation.right;
+    } else if (direction.x < 0) {
+      return AgentOrientation.left;
+    } else if (direction.y > 0) {
+      return AgentOrientation.down;
+    } else if (direction.y < 0) {
+      return AgentOrientation.up;
+    } else {
+      throw ArgumentError('Invalid direction: $direction');
+    }
   }
 }
