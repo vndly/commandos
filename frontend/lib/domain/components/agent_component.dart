@@ -8,6 +8,8 @@ import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/laser.dart';
+import 'package:commandos/domain/models/node.dart';
+import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
@@ -25,8 +27,11 @@ class AgentComponent extends PhysicalComponent {
   final Vector2 velocity = Vector2.zero();
   final Input input;
   final Agent agent;
+  final Nodes nodes;
+  final List<Portal> portals;
   late final LaserComponent laser;
   late final RayCasting rayCasting;
+  late final AgentMovement movement;
   final List<Vector2> detectionPoints = [];
   bool active;
   double lastAngle = 0;
@@ -35,6 +40,8 @@ class AgentComponent extends PhysicalComponent {
   AgentComponent({
     required this.input,
     required this.agent,
+    required this.nodes,
+    required this.portals,
     required this.active,
   }) : super(
          position: agent.position,
@@ -103,10 +110,7 @@ class AgentComponent extends PhysicalComponent {
   }
 
   void onInteract() {
-    if (inPortal != null) {
-      body.setTransform(inPortal!.destination.polygon.position, angle);
-      inPortal = inPortal!.destination;
-    }
+    // TODO(momo): interact with objects
   }
 
   @override
@@ -157,5 +161,68 @@ class AgentSpriteComponent extends PositionComponent {
       size.x / 2,
       paintFill,
     );
+  }
+}
+
+class AgentMovement {
+  final AgentComponent agent;
+  final Nodes nodes;
+  final List<Portal> portals;
+  late Node currentNode;
+  bool isMoving = false;
+  Node? nextNode;
+
+  AgentMovement({
+    required this.agent,
+    required this.nodes,
+    required this.portals,
+    required Vector2 initialPosition,
+  }) {
+    currentNode = nodes.nodeAt(initialPosition);
+  }
+
+  void update(Input input) {
+    if (input.hasInput && !isMoving) {
+      nextNode = currentNode.nodeAt(input.direction);
+
+      if (nextNode != null) {
+        isMoving = true;
+        final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
+        agent.body.linearVelocity = velocity;
+      }
+    }
+
+    if (isMoving) {
+      final Vector2 currentPosition = agent.body.position;
+      final Vector2 targetPosition = nextNode!.position;
+      final Vector2 toTarget = targetPosition - currentPosition;
+
+      if (toTarget.length < 0.1) {
+        agent.body.linearVelocity = Vector2.zero();
+        agent.body.setTransform(targetPosition, agent.body.angle);
+        isMoving = false;
+        currentNode = nextNode!;
+        nextNode = null;
+
+        final Node? teleportTo = getTeleportTo(currentNode);
+
+        if (teleportTo != null) {
+          currentNode = teleportTo;
+          agent.body.setTransform(teleportTo.position, agent.body.angle);
+        }
+      }
+    }
+  }
+
+  Node? getTeleportTo(Node node) {
+    for (final Portal portal in portals) {
+      if (portal.a == node) {
+        return portal.b;
+      } else if (portal.b == node) {
+        return portal.a;
+      }
+    }
+
+    return null;
   }
 }
