@@ -1511,7 +1511,32 @@ class LevelGym {
       }
     }
   ],
-  "turrets": [],
+  "turrets": [
+    {
+      "id": "turret1",
+      "position": {
+        "x": 10.0,
+        "y": 30.0
+      },
+      "angle": 0.0,
+      "lasers": [
+        {
+          "angle": 0.0,
+          "range": 120.0
+        }
+      ],
+      "behaviors": [
+        {
+          "type": "rotating",
+          "startAngle": 0.0,
+          "speed": 20.0,
+          "minAngle": 0.0,
+          "maxAngle": -90.0,
+          "rotatingDirection": "counter_clockwise"
+        }
+      ]
+    }
+  ],
   "soldiers": [
     {
       "id": "soldier1",
