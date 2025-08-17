@@ -87,7 +87,7 @@ class AgentComponent extends PhysicalComponent {
     center: initialPosition,
     bodyType: BodyType.dynamic,
     group: CollisionGroup.AGENT,
-    angle: radians(90),
+    angle: radians(movement.orientation.angle),
   );
 }
 
