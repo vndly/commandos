@@ -1,6 +1,7 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/types/intermittent_state.dart';
+import 'package:commandos/extensions/body_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class IntermittentBehavior extends Behavior {
@@ -40,11 +41,11 @@ class IntermittentBehavior extends Behavior {
   void updatePosition(EnemyComponent enemy) {
     switch (currentState) {
       case IntermittentState.on:
-        enemy.body.setTransform(positionOn, enemy.body.angle);
+        enemy.body.setPosition(positionOn);
         break;
 
       case IntermittentState.off:
-        enemy.body.setTransform(positionOff, enemy.body.angle);
+        enemy.body.setPosition(positionOff);
         break;
     }
   }

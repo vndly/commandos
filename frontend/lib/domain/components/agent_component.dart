@@ -10,6 +10,7 @@ import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
+import 'package:commandos/extensions/body_extension.dart';
 import 'package:commandos/presentation/audio/audio.dart';
 import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/palette.dart';
@@ -157,10 +158,7 @@ class AgentMovement {
       nextNode = currentNode.nodeAt(direction);
 
       orientation = AgentOrientation.fromDirection(direction);
-      agent.body.setTransform(
-        agent.body.position,
-        radians(orientation.angle),
-      );
+      agent.body.setAngle(radians(orientation.angle));
 
       if (nextNode != null) {
         isMoving = true;
@@ -177,7 +175,7 @@ class AgentMovement {
 
       if (toTarget.length < 0.1) {
         agent.body.linearVelocity = Vector2.zero();
-        agent.body.setTransform(targetPosition, agent.body.angle);
+        agent.body.setPosition(targetPosition);
         isMoving = false;
         currentNode = nextNode!;
         nextNode = null;
@@ -186,7 +184,7 @@ class AgentMovement {
 
         if (teleportTo != null) {
           currentNode = teleportTo;
-          agent.body.setTransform(teleportTo.position, agent.body.angle);
+          agent.body.setPosition(teleportTo.position);
         }
       }
     } else {

@@ -1,5 +1,6 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
+import 'package:commandos/extensions/body_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class OscillatingBehavior extends Behavior {
@@ -40,19 +41,19 @@ class OscillatingBehavior extends Behavior {
     }
 
     if (isMinX(position.x)) {
-      enemy.body.setTransform(Vector2(minX!, position.y), enemy.body.angle);
+      enemy.body.setPosition(Vector2(minX!, position.y));
     }
 
     if (isMaxX(position.x)) {
-      enemy.body.setTransform(Vector2(maxX!, position.y), enemy.body.angle);
+      enemy.body.setPosition(Vector2(maxX!, position.y));
     }
 
     if (isMinY(position.y)) {
-      enemy.body.setTransform(Vector2(position.x, minY!), enemy.body.angle);
+      enemy.body.setPosition(Vector2(position.x, minY!));
     }
 
     if (isMaxY(position.y)) {
-      enemy.body.setTransform(Vector2(position.x, maxY!), enemy.body.angle);
+      enemy.body.setPosition(Vector2(position.x, maxY!));
     }
 
     double velocityX = 0;

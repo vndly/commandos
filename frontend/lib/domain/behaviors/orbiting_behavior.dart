@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
+import 'package:commandos/extensions/body_extension.dart';
 import 'package:flame/game.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
@@ -43,7 +44,7 @@ class OrbitingBehavior extends Behavior {
     final double x = (cos(angleRadians) * radius) + centerX;
     final double y = (sin(angleRadians) * radius) + centerY;
     position.setValues(x, y);
-    body.setTransform(position, body.angle);
+    body.setPosition(position);
   }
 
   @override

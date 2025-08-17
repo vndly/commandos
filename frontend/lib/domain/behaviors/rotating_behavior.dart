@@ -1,6 +1,7 @@
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
 import 'package:commandos/domain/types/rotating_direction.dart';
+import 'package:commandos/extensions/body_extension.dart';
 import 'package:flame/game.dart';
 
 class RotatingBehavior extends Behavior {
@@ -33,7 +34,7 @@ class RotatingBehavior extends Behavior {
       }
     }
 
-    enemy.body.setTransform(enemy.body.position, radians(angle));
+    enemy.body.setAngle(radians(angle));
   }
 
   @override

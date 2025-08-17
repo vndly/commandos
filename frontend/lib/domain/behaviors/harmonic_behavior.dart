@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:commandos/domain/behaviors/behavior.dart';
 import 'package:commandos/domain/components/enemy_component.dart';
+import 'package:commandos/extensions/body_extension.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 
 class HarmonicBehavior extends Behavior {
@@ -42,7 +43,7 @@ class HarmonicBehavior extends Behavior {
     }
 
     position.setValues(startX + x, startY - y);
-    enemy.body.setTransform(position, enemy.body.angle);
+    enemy.body.setPosition(position);
   }
 
   @override
