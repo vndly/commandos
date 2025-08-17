@@ -14,7 +14,6 @@ import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:commandos/presentation/audio/audio.dart';
 import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/palette.dart';
@@ -35,7 +34,6 @@ class AgentComponent extends PhysicalComponent {
   final List<Vector2> detectionPoints = [];
   bool active;
   double lastAngle = 0;
-  Portal? inPortal;
 
   AgentComponent({
     required this.input,
@@ -88,14 +86,7 @@ class AgentComponent extends PhysicalComponent {
     super.update(dt);
 
     if (active) {
-      if (input.hasInput) {
-        body.linearVelocity = input.direction * Constants.AGENT_SPEED;
-        lastAngle = body.linearVelocity.angled;
-        Audio.get.playSound(Sound.STEP);
-      } else {
-        body.linearVelocity = Vector2.zero();
-        Audio.get.stopSound(Sound.STEP);
-      }
+      movement.update(input);
     }
 
     if (active && Debug.hasAgentVision) {
@@ -121,16 +112,6 @@ class AgentComponent extends PhysicalComponent {
     group: CollisionGroup.AGENT,
     angle: 0,
   );
-
-  void onEnterPortal(Portal portal) {
-    inPortal = portal;
-  }
-
-  void onExitPortal(Portal portal) {
-    if (inPortal == portal) {
-      inPortal = null;
-    }
-  }
 }
 
 class AgentSpriteComponent extends PositionComponent {
@@ -193,6 +174,7 @@ class AgentMovement {
     }
 
     if (isMoving) {
+      Audio.get.playSound(Sound.STEP);
       final Vector2 currentPosition = agent.body.position;
       final Vector2 targetPosition = nextNode!.position;
       final Vector2 toTarget = targetPosition - currentPosition;
@@ -211,6 +193,8 @@ class AgentMovement {
           agent.body.setTransform(teleportTo.position, agent.body.angle);
         }
       }
+    } else {
+      Audio.get.stopSound(Sound.STEP);
     }
   }
 
