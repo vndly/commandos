@@ -2228,15 +2228,15 @@ class LevelGym {
     {
       "type": "keycard",
       "position": {
-        "x": 204.9,
-        "y": 145.0
+        "x": 170.0,
+        "y": 90.0
       }
     },
     {
       "type": "keycard",
       "position": {
-        "x": 44.9,
-        "y": 125.0
+        "x": 50.0,
+        "y": 70.0
       }
     }
   ]
