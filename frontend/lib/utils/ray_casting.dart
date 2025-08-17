@@ -18,11 +18,13 @@ class RayCasting {
 
     rayCastCallback.reset();
     world.raycast(rayCastCallback, source, maxTarget);
+    final Vector2 endPoint = rayCastCallback.nearestPoint ?? maxTarget;
 
     return RayCastingResult(
       start: source,
-      end: rayCastCallback.nearestPoint ?? maxTarget,
+      end: endPoint,
       angle: angle,
+      distance: source.distanceTo(endPoint),
       object: rayCastCallback.object,
     );
   }
@@ -32,12 +34,14 @@ class RayCastingResult {
   final Vector2 start;
   final Vector2 end;
   final double angle;
+  final double distance;
   final Object? object;
 
   const RayCastingResult({
     required this.start,
     required this.end,
     required this.angle,
+    required this.distance,
     required this.object,
   });
 }
