@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 class Input {
-  Vector2 previousDirection = Vector2.zero();
   final Set<ActiveInput> activeInputs = {};
 
   bool get hasInput => activeInputs.isNotEmpty;
