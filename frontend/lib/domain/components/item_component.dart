@@ -18,7 +18,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
     required this.item,
   }) : super(
          position: item.position,
-         size: Vector2(10, 10),
+         size: Vector2(7, 7),
          priority: Priority.item.value,
        );
 
@@ -30,7 +30,7 @@ class ItemComponent extends PhysicalComponent with ContactCallbacks {
       ItemSpriteComponent(
         item: item.type,
         position: Vector2.zero(),
-        size: Vector2(8, 8),
+        size: Vector2(6, 6),
       ),
     );
   }
