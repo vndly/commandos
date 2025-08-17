@@ -34,7 +34,7 @@ class RotatingBehavior extends Behavior {
       }
     }
 
-    enemy.body.setAngle(radians(angle));
+    enemy.body.setAngle(angle);
   }
 
   @override

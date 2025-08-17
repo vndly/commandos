@@ -158,7 +158,7 @@ class AgentMovement {
       nextNode = currentNode.nodeAt(direction);
 
       orientation = AgentOrientation.fromDirection(direction);
-      agent.body.setAngle(radians(orientation.angle));
+      agent.body.setAngle(orientation.angle);
 
       if (nextNode != null) {
         isMoving = true;
