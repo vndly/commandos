@@ -2,7 +2,6 @@ import 'package:flame/components.dart';
 import 'package:flutter/services.dart';
 
 class Input {
-  KeyEvent? lastEvent;
   Vector2 previousDirection = Vector2.zero();
   final Set<ActiveInput> activeInputs = {};
 
@@ -11,8 +10,6 @@ class Input {
   bool hasActiveInput(ActiveInput input) => activeInputs.contains(input);
 
   void onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
-    lastEvent = event;
-
     _checkKey(
       input: ActiveInput.left,
       keys: [LogicalKeyboardKey.keyA, LogicalKeyboardKey.arrowLeft],
