@@ -15,3 +15,8 @@ Interact:
 
 - Hold E to hack terminal
 - Player can choose what to unlock after hacking
+
+# Angles
+
+- Flame 0º points up
+- Forge 2D 0º points right
