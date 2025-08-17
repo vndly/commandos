@@ -40,6 +40,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
     await add(
       MapComponent(
+        nodes: level.nodes,
         walls: level.walls,
         doors: level.doors,
         size: Vector2(
