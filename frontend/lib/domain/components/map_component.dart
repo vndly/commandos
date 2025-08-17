@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:commandos/app/debug.dart';
-import 'package:commandos/domain/components/door_closed_component.dart';
-import 'package:commandos/domain/components/door_opened_component.dart';
+import 'package:commandos/domain/components/door_locked_component.dart';
+import 'package:commandos/domain/components/door_unlocked_component.dart';
 import 'package:commandos/domain/components/wall_component.dart';
 import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/node.dart';
@@ -42,13 +42,13 @@ class MapComponent extends SpriteComponent {
     }
 
     for (final Door door in doors) {
-      if (door.status == DoorStatus.closed) {
+      if (door.status == DoorStatus.locked) {
         await add(
-          DoorClosedComponent(door: door),
+          DoorLockedComponent(door: door),
         );
-      } else if (door.status == DoorStatus.opened) {
+      } else if (door.status == DoorStatus.unlocked) {
         await add(
-          DoorOpenedComponent(door: door),
+          DoorUnlockedComponent(door: door),
         );
       }
     }

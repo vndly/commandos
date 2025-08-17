@@ -11,7 +11,7 @@ class CollisionGroup {
         Groups.WALL |
         Groups.TURRET |
         Groups.SOLDIER |
-        Groups.DOOR_CLOSED |
+        Groups.DOOR_LOCKED |
         Groups.ITEM,
   );
 
@@ -33,15 +33,15 @@ class CollisionGroup {
     mask: Groups.AGENT,
   );
 
-  static final CollisionGroup DOOR_CLOSED = CollisionGroup(
+  static final CollisionGroup DOOR_LOCKED = CollisionGroup(
     isSensor: false,
-    category: Groups.DOOR_CLOSED,
+    category: Groups.DOOR_LOCKED,
     mask: Groups.AGENT | Groups.TURRET | Groups.SOLDIER,
   );
 
-  static final CollisionGroup DOOR_OPENED = CollisionGroup(
+  static final CollisionGroup DOOR_UNLOCKED = CollisionGroup(
     isSensor: false,
-    category: Groups.DOOR_OPENED,
+    category: Groups.DOOR_UNLOCKED,
     mask: Groups.NONE,
   );
 
@@ -64,7 +64,7 @@ class Groups {
   static const int TURRET = 0x0002; // 0000 0000 0000 0010
   static const int SOLDIER = 0x0004; // 0000 0000 0000 0100
   static const int WALL = 0x0008; // 0000 0000 0000 1000
-  static const int DOOR_CLOSED = 0x0010; // 0000 0000 0001 0000
-  static const int DOOR_OPENED = 0x0020; // 0000 0000 0010 0000
+  static const int DOOR_LOCKED = 0x0010; // 0000 0000 0001 0000
+  static const int DOOR_UNLOCKED = 0x0020; // 0000 0000 0010 0000
   static const int ITEM = 0x0040; // 0000 0000 0100 0000
 }

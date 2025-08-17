@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:commandos/domain/components/agent_component.dart';
-import 'package:commandos/domain/components/door_opened_component.dart';
+import 'package:commandos/domain/components/door_unlocked_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/door.dart';
@@ -16,10 +16,10 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
+class DoorLockedComponent extends PhysicalComponent with ContactCallbacks {
   final Door door;
 
-  DoorClosedComponent({
+  DoorLockedComponent({
     required this.door,
   }) : super(
          position: door.position,
@@ -42,7 +42,7 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
 
   @override
   void onRemoved() {
-    level.add(DoorOpenedComponent(door: door));
+    level.add(DoorUnlockedComponent(door: door));
   }
 
   @override
@@ -50,7 +50,7 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
     shape: shapeSquare(door.size),
     center: initialPosition,
     bodyType: BodyType.static,
-    group: CollisionGroup.DOOR_CLOSED,
+    group: CollisionGroup.DOOR_LOCKED,
     angle: 0,
   );
 
@@ -72,10 +72,10 @@ class DoorClosedComponent extends PhysicalComponent with ContactCallbacks {
 }
 
 class DoorSpriteComponent extends PositionComponent {
-  final DoorClosedComponent doorComponent;
+  final DoorLockedComponent doorComponent;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
-    color: Palette.DOOR_CLOSED,
+    color: Palette.DOOR_LOCKED,
   );
 
   DoorSpriteComponent({

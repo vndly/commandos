@@ -9,10 +9,10 @@ import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class DoorOpenedComponent extends PhysicalComponent {
+class DoorUnlockedComponent extends PhysicalComponent {
   final Door door;
 
-  DoorOpenedComponent({
+  DoorUnlockedComponent({
     required this.door,
   }) : super(
          position: door.position,
@@ -38,16 +38,16 @@ class DoorOpenedComponent extends PhysicalComponent {
     shape: shapeSquare(door.size),
     center: initialPosition,
     bodyType: BodyType.static,
-    group: CollisionGroup.DOOR_OPENED,
+    group: CollisionGroup.DOOR_UNLOCKED,
     angle: 0,
   );
 }
 
 class DoorSpriteComponent extends PositionComponent {
-  final DoorOpenedComponent doorComponent;
+  final DoorUnlockedComponent doorComponent;
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
-    color: Palette.DOOR_OPEN,
+    color: Palette.DOOR_UNLOCKED,
   );
 
   DoorSpriteComponent({

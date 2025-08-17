@@ -17,6 +17,6 @@ Map<String, dynamic> _$JsonDoorToJson(JsonDoor instance) => <String, dynamic>{
 };
 
 const _$DoorStatusEnumMap = {
-  DoorStatus.closed: 'closed',
-  DoorStatus.opened: 'opened',
+  DoorStatus.locked: 'locked',
+  DoorStatus.unlocked: 'unlocked',
 };

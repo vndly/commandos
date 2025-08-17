@@ -21,7 +21,7 @@ class AlarmComponent extends PositionComponent {
          priority: Priority.alarm.value,
        );
 
-  void raise(double value) {
+  void decrease(double value) {
     level = (level + value).clamp(0, 1);
   }
 

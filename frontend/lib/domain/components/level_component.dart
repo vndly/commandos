@@ -142,7 +142,7 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
 
   void onBackpackUpdated() => backpackComponent.refresh();
 
-  void onAgentSpotted(double value) => alarmComponent.raise(value);
+  void onAgentSpotted(double value) => alarmComponent.decrease(value);
 }
 
 mixin LevelComponentRef {

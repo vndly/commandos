@@ -2177,7 +2177,7 @@ class LevelGym {
   ],
   "doors": [
     {
-      "status": "closed",
+      "status": "locked",
       "polygon": {
         "vertices": [
           {
@@ -2200,7 +2200,7 @@ class LevelGym {
       }
     },
     {
-      "status": "closed",
+      "status": "locked",
       "polygon": {
         "vertices": [
           {
