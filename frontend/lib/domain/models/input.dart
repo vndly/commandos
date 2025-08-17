@@ -11,30 +11,42 @@ class Input {
   void onKeyEvent(KeyEvent event, Set<LogicalKeyboardKey> keysPressed) {
     _checkKey(
       input: ActiveInput.left,
-      keys: [LogicalKeyboardKey.keyA, LogicalKeyboardKey.arrowLeft],
+      key: LogicalKeyboardKey.arrowLeft,
       keysPressed: keysPressed,
     );
 
     _checkKey(
       input: ActiveInput.right,
-      keys: [LogicalKeyboardKey.keyD, LogicalKeyboardKey.arrowRight],
+      key: LogicalKeyboardKey.arrowRight,
       keysPressed: keysPressed,
     );
 
     _checkKey(
       input: ActiveInput.up,
-      keys: [LogicalKeyboardKey.keyW, LogicalKeyboardKey.arrowUp],
+      key: LogicalKeyboardKey.arrowUp,
       keysPressed: keysPressed,
     );
 
     _checkKey(
       input: ActiveInput.down,
-      keys: [LogicalKeyboardKey.keyS, LogicalKeyboardKey.arrowDown],
+      key: LogicalKeyboardKey.arrowDown,
       keysPressed: keysPressed,
     );
   }
 
   void _checkKey({
+    required ActiveInput input,
+    required LogicalKeyboardKey key,
+    required Set<LogicalKeyboardKey> keysPressed,
+  }) {
+    if (keysPressed.contains(key)) {
+      activeInputs.add(input);
+    } else {
+      activeInputs.remove(input);
+    }
+  }
+
+  void _checkKeys({
     required ActiveInput input,
     required List<LogicalKeyboardKey> keys,
     required Set<LogicalKeyboardKey> keysPressed,
