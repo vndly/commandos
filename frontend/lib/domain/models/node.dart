@@ -2,27 +2,29 @@ import 'package:flame/components.dart';
 
 class Node implements Comparable<Node> {
   late final String id;
-  final Vector2 position;
+  late final int x;
+  late final int y;
   Node? up;
   Node? down;
   Node? left;
   Node? right;
 
-  Node({required this.position}) {
-    id = '${position.x.toInt()},${position.y.toInt()}';
+  Node({required Vector2 position}) {
+    x = position.x.toInt();
+    y = position.y.toInt();
+    id = '$x,$y';
   }
 
+  Vector2 get position => Vector2(x.toDouble(), y.toDouble());
+
   void addConnection(Node node) {
-    if ((node.position.x > position.x) && (node.position.y == position.y)) {
+    if ((node.x > x) && (node.y == y)) {
       right = node;
-    } else if ((node.position.x < position.x) &&
-        (node.position.y == position.y)) {
+    } else if ((node.x < x) && (node.y == y)) {
       left = node;
-    } else if ((node.position.y > position.y) &&
-        (node.position.x == position.x)) {
+    } else if ((node.y > y) && (node.x == x)) {
       down = node;
-    } else if ((node.position.y < position.y) &&
-        (node.position.x == position.x)) {
+    } else if ((node.y < y) && (node.x == x)) {
       up = node;
     } else {
       throw Exception('Cannot connect nodes: $this to $node');
@@ -43,15 +45,19 @@ class Node implements Comparable<Node> {
     }
   }
 
+  bool inPosition(Vector2 position) {
+    return (x == position.x.toInt()) && (y == position.y.toInt());
+  }
+
   @override
-  String toString() => 'Node: ($id, $position)';
+  String toString() => 'Node: ($id, $x, $y)';
 
   @override
   int compareTo(Node other) {
-    if (position == other.position) {
+    if ((x == other.x) && (y == other.y)) {
       return 0;
     } else {
-      return position.normalize().compareTo(other.position.normalize());
+      return (x + y).compareTo(other.x + other.y);
     }
   }
 }

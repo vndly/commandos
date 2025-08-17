@@ -8,7 +8,7 @@ class Nodes extends Iterable<Node> {
 
   Node nodeAt(Vector2 position) {
     for (final Node node in nodes) {
-      if (node.position == position) {
+      if (node.inPosition(position)) {
         return node;
       }
     }
