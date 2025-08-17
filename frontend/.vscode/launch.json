@@ -7,7 +7,10 @@
             "type": "dart",
             "program": "lib/main/main_local.dart",
             "flutterMode": "debug",
-            "preLaunchTask": "run_tools"
+            "preLaunchTask": "run_tools",
+            "args": [
+                "--no-web-experimental-hot-reload"
+            ]
         },
         {
             "name": "Run (REMOTE)",

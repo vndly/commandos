@@ -45,7 +45,14 @@ class AgentComponent extends PhysicalComponent {
          position: agent.position,
          size: Vector2(10, 10),
          priority: Priority.agent.value,
-       );
+       ) {
+    movement = AgentMovement(
+      agent: this,
+      nodes: nodes,
+      portals: portals,
+      initialPosition: initialPosition,
+    );
+  }
 
   @override
   Future onLoad() async {

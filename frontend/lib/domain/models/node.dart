@@ -53,11 +53,5 @@ class Node implements Comparable<Node> {
   String toString() => 'Node: ($id, $x, $y)';
 
   @override
-  int compareTo(Node other) {
-    if ((x == other.x) && (y == other.y)) {
-      return 0;
-    } else {
-      return (x + y).compareTo(other.x + other.y);
-    }
-  }
+  int compareTo(Node other) => id.compareTo(other.id);
 }
