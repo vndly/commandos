@@ -2,11 +2,13 @@ import 'common.dart';
 import 'json/json_agent.dart';
 import 'json/json_door.dart';
 import 'json/json_item.dart';
+import 'json/json_laser.dart';
 import 'json/json_level.dart';
 import 'json/json_path.dart';
 import 'json/json_polygon.dart';
 import 'json/json_position.dart';
 import 'json/json_soldier.dart';
+import 'json/json_turret.dart';
 import 'json/json_wall.dart';
 
 void main(List<String> args) async {
@@ -27,7 +29,7 @@ Future processFile(String levelFolder) async {
     paths: getPaths(svg),
     portals: getPortals(svg),
     agents: getAgents(svg),
-    turrets: [],
+    turrets: getTurrets(svg),
     soldiers: getSoldiers(svg),
     walls: getWalls(svg),
     doors: getDoors(svg),
@@ -97,6 +99,39 @@ List<JsonAgent> getAgents(Json svg) {
           JsonAgent(
             id: id,
             position: JsonPosition.create(cx, cy),
+          ),
+        );
+      }
+    }
+  }
+
+  return result;
+}
+
+List<JsonTurret> getTurrets(Json svg) {
+  final List<JsonTurret> result = [];
+
+  for (final Json g in svg.list('g')) {
+    if (g.string('id') == 'turrets') {
+      for (final Json circle in g.list('circle')) {
+        final String id = circle.string('id');
+        final double cx = circle.decimal('cx');
+        final double cy = circle.decimal('cy');
+        final double angle = circle.decimal('angle');
+        final double range = circle.decimal('range');
+
+        result.add(
+          JsonTurret(
+            id: id,
+            position: JsonPosition.create(cx, cy),
+            angle: angle,
+            lasers: [
+              JsonLaser(
+                angle: 0, // TODO(momo): add children tags to add more lasers
+                range: range,
+              ),
+            ],
+            behaviors: getBehaviors(circle.list('behaviors')),
           ),
         );
       }

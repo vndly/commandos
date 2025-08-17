@@ -180,9 +180,7 @@ class LevelLoader {
 
   static Laser _getLaser(JsonLaser jsonLaser) => Laser(
     angle: radians(jsonLaser.angle),
-    sweep: jsonLaser.sweep,
     range: jsonLaser.range,
-    numberOfBeams: jsonLaser.numberOfBeams,
   );
 
   static List<Wall> _getWalls(List<JsonWall> walls) {

@@ -1516,26 +1516,6 @@ class LevelGym {
     {
       "id": "soldier1",
       "position": {
-        "x": 10.0,
-        "y": 30.0
-      },
-      "angle": 45.0,
-      "sweep": 30.0,
-      "range": 120.0,
-      "behaviors": [
-        {
-          "type": "rotating",
-          "startAngle": -45.0,
-          "speed": 20.0,
-          "minAngle": 25.0,
-          "maxAngle": 65.0,
-          "rotatingDirection": "counter_clockwise"
-        }
-      ]
-    },
-    {
-      "id": "soldier2",
-      "position": {
         "x": 110.0,
         "y": 50.0
       },

@@ -20,35 +20,14 @@ class LaserComponent extends Component {
     required this.laser,
   }) {
     priority = Priority.laser.value;
-    final double delta = laser.sweep / laser.numberOfBeams;
 
-    if ((laser.numberOfBeams == 1) || (laser.numberOfBeams > 2)) {
-      beams.add(
-        Beam(
-          start: Vector2.zero(),
-          end: Vector2.zero(),
-          angle: 0,
-        ),
-      );
-    }
-
-    for (int i = 1; i < laser.numberOfBeams; i++) {
-      beams.add(
-        Beam(
-          start: Vector2.zero(),
-          end: Vector2.zero(),
-          angle: radians(i * delta),
-        ),
-      );
-
-      beams.add(
-        Beam(
-          start: Vector2.zero(),
-          end: Vector2.zero(),
-          angle: -radians(i * delta),
-        ),
-      );
-    }
+    beams.add(
+      Beam(
+        start: Vector2.zero(),
+        end: Vector2.zero(),
+        angle: 0,
+      ),
+    );
   }
 
   void refresh({

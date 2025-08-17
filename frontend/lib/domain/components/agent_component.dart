@@ -1,23 +1,18 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:commandos/app/constants.dart';
-import 'package:commandos/app/debug.dart';
-import 'package:commandos/domain/components/laser_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/input.dart';
-import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
-import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/presentation/audio/audio.dart';
 import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/palette.dart';
-import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
@@ -28,12 +23,9 @@ class AgentComponent extends PhysicalComponent {
   final Agent agent;
   final Nodes nodes;
   final List<Portal> portals;
-  late final LaserComponent laser;
-  late final RayCasting rayCasting;
   late final AgentMovement movement;
   final List<Vector2> detectionPoints = [];
   bool active;
-  double lastAngle = 0;
 
   AgentComponent({
     required this.input,
@@ -58,8 +50,6 @@ class AgentComponent extends PhysicalComponent {
   Future onLoad() async {
     await super.onLoad();
 
-    rayCasting = RayCasting(world);
-
     add(
       AgentSpriteComponent(
         agent: agent,
@@ -67,16 +57,6 @@ class AgentComponent extends PhysicalComponent {
         size: size,
       ),
     );
-
-    laser = LaserComponent(
-      laser: const Laser(
-        angle: 0,
-        sweep: 22.5,
-        range: 0,
-        numberOfBeams: 50,
-      ),
-    );
-    await level.add(laser);
 
     const int numberOfPoints = 6;
     const double angleStep = 360 / numberOfPoints;
@@ -94,16 +74,6 @@ class AgentComponent extends PhysicalComponent {
 
     if (active) {
       movement.update(input);
-    }
-
-    if (active && Debug.hasAgentDebug) {
-      laser.refresh(
-        source: body.position,
-        angle: lastAngle,
-        rayCasting: rayCasting,
-      );
-    } else {
-      laser.disable();
     }
   }
 
