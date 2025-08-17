@@ -91,7 +91,7 @@ class DoorSpriteComponent extends PositionComponent {
     await add(
       DoorIconComponent(
         position: Vector2.zero(),
-        size: Vector2(3, 3),
+        size: Vector2(7, 7),
       ),
     );
   }
