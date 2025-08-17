@@ -19,6 +19,11 @@ class TurretComponent extends EnemyComponent {
     style: PaintingStyle.fill,
     color: Palette.TURRET,
   );
+  final Paint paintOrientation = Palette.paint(
+    style: PaintingStyle.stroke,
+    strokeWidth: 0.5,
+    color: Palette.ORIENTATION,
+  );
 
   TurretComponent({
     required this.turret,
@@ -56,13 +61,13 @@ class TurretComponent extends EnemyComponent {
       behavior.update(this, dt);
     }
 
-    for (final LaserComponent laser in lasers) {
+    /*for (final LaserComponent laser in lasers) {
       laser.refresh(
         source: body.position,
         angle: body.angle,
         rayCasting: rayCasting,
       );
-    }
+    }*/
   }
 
   @override
@@ -70,9 +75,15 @@ class TurretComponent extends EnemyComponent {
     super.render(canvas);
 
     canvas.drawCircle(
-      Offset(size.x / 2, size.y / 2),
+      Offset.zero,
       size.x / 2,
       paintFill,
+    );
+
+    canvas.drawLine(
+      Offset.zero,
+      Offset(0, -size.y / 2),
+      paintOrientation,
     );
   }
 }

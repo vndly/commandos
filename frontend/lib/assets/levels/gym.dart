@@ -1518,7 +1518,7 @@ class LevelGym {
         "x": 10.0,
         "y": 30.0
       },
-      "angle": 0.0,
+      "angle": 90.0,
       "lasers": [
         {
           "angle": 0.0,
@@ -1528,10 +1528,10 @@ class LevelGym {
       "behaviors": [
         {
           "type": "rotating",
-          "startAngle": 0.0,
-          "speed": 20.0,
-          "minAngle": 0.0,
-          "maxAngle": -90.0,
+          "startAngle": 90.0,
+          "speed": 50.0,
+          "minAngle": 90.0,
+          "maxAngle": 180.0,
           "rotatingDirection": "counter_clockwise"
         }
       ]

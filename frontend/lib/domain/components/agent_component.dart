@@ -96,6 +96,11 @@ class AgentSpriteComponent extends PositionComponent {
   final Paint paintFill = Palette.paint(
     style: PaintingStyle.fill,
   );
+  final Paint paintOrientation = Palette.paint(
+    style: PaintingStyle.stroke,
+    strokeWidth: 0.5,
+    color: Palette.ORIENTATION,
+  );
 
   AgentSpriteComponent({
     required this.agent,
@@ -118,6 +123,12 @@ class AgentSpriteComponent extends PositionComponent {
       Offset.zero,
       size.x / 2,
       paintFill,
+    );
+
+    canvas.drawLine(
+      Offset.zero,
+      Offset(0, -size.y / 2),
+      paintOrientation,
     );
   }
 }

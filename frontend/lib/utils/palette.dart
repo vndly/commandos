@@ -8,6 +8,7 @@ class Palette {
 
   static Color LASER = Colors.red.withAlpha(140);
   static Color SOLDIER = Colors.red;
+  static Color ORIENTATION = Colors.black;
   static Color TURRET = Colors.red.withAlpha(140);
   static Color VISION = Colors.yellow.withAlpha(140);
   static Color DETECTED = Colors.red.withAlpha(140);

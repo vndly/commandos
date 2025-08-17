@@ -8303,18 +8303,18 @@
              id="turret1"
              cx="10"
              cy="30"
-             angle="0"
+             angle="90"
              range="120"
              inkscape:label="turret1"
              r="5">
              <behaviors>
                 <behavior
      type="rotating"
-     startAngle="0"
-     speed="20"
+     startAngle="90"
+     speed="50"
      rotatingDirection="counter_clockwise"
-     minAngle="0"
-     maxAngle="-90" />
+     minAngle="90"
+     maxAngle="180" />
              </behaviors>
              </circle></g><g
          inkscape:groupmode="layer"
