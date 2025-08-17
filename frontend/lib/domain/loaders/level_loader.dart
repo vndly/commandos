@@ -12,7 +12,6 @@ import 'package:commandos/domain/json/json_door.dart';
 import 'package:commandos/domain/json/json_item.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
-import 'package:commandos/domain/json/json_portal.dart';
 import 'package:commandos/domain/json/json_position.dart';
 import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
@@ -23,8 +22,6 @@ import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/models/level.dart';
-import 'package:commandos/domain/models/polygon.dart';
-import 'package:commandos/domain/models/portal.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
@@ -59,9 +56,9 @@ class LevelLoader {
       items: _getItems(
         jsonLevel.items,
       ),
-      portals: _getPortals(
+      portals: [] /*_getPortals(
         jsonLevel.portals,
-      ),
+      ),*/,
     );
   }
 
@@ -169,7 +166,7 @@ class LevelLoader {
     return result;
   }
 
-  static List<Portal> _getPortals(List<JsonPortal> portals) {
+  /*static List<Portal> _getPortals(List<JsonPortal> portals) {
     final List<Portal> result = [];
 
     for (final JsonPortal portal in portals) {
@@ -192,7 +189,7 @@ class LevelLoader {
     }
 
     return result;
-  }
+  }*/
 
   static Behavior _getBehavior(JsonBehavior jsonBehavior) {
     switch (jsonBehavior.type) {

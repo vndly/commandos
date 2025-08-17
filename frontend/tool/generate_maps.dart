@@ -3,8 +3,8 @@ import 'json/json_agent.dart';
 import 'json/json_door.dart';
 import 'json/json_item.dart';
 import 'json/json_level.dart';
+import 'json/json_path.dart';
 import 'json/json_polygon.dart';
-import 'json/json_portal.dart';
 import 'json/json_position.dart';
 import 'json/json_soldier.dart';
 import 'json/json_wall.dart';
@@ -24,16 +24,64 @@ Future processFile(String levelFolder) async {
     id: id,
     width: width,
     height: height,
+    paths: getPaths(svg),
+    portals: getPortals(svg),
     agents: getAgents(svg),
     turrets: [],
     soldiers: getSoldiers(svg),
     walls: getWalls(svg),
     doors: getDoors(svg),
     items: getItems(svg),
-    portals: getPortals(svg),
   );
 
   writeLevel(fileName: id, level: level);
+}
+
+List<JsonPath> getPaths(Json svg) {
+  final List<JsonPath> result = [];
+
+  for (final Json g in svg.list('g')) {
+    if (g.string('id') == 'paths') {
+      for (final Json path in g.list('path')) {
+        result.add(getPath(path.string('d')));
+      }
+    }
+  }
+
+  return result;
+}
+
+List<JsonPath> getPortals(Json svg) {
+  final List<JsonPath> result = [];
+
+  for (final Json g in svg.list('g')) {
+    if (g.string('id') == 'portals') {
+      for (final Json path in g.list('path')) {
+        result.add(getPath(path.string('d')));
+      }
+    }
+  }
+
+  return result;
+}
+
+JsonPath getPath(String pathString) {
+  final JsonPolygon polygon = getPolygon(pathString);
+
+  if (polygon.vertices.length != 2) {
+    throw Exception('Path must have exactly two positions');
+  }
+
+  return JsonPath(
+    a: JsonPosition(
+      x: polygon.vertices[0].x,
+      y: polygon.vertices[0].y,
+    ),
+    b: JsonPosition(
+      x: polygon.vertices[1].x,
+      y: polygon.vertices[1].y,
+    ),
+  );
 }
 
 List<JsonAgent> getAgents(Json svg) {
@@ -49,6 +97,36 @@ List<JsonAgent> getAgents(Json svg) {
           JsonAgent(
             id: id,
             position: JsonPosition.create(cx, cy),
+          ),
+        );
+      }
+    }
+  }
+
+  return result;
+}
+
+List<JsonSoldier> getSoldiers(Json svg) {
+  final List<JsonSoldier> result = [];
+
+  for (final Json g in svg.list('g')) {
+    if (g.string('id') == 'soldiers') {
+      for (final Json circle in g.list('circle')) {
+        final String id = circle.string('id');
+        final double cx = circle.decimal('cx');
+        final double cy = circle.decimal('cy');
+        final double angle = circle.decimal('angle');
+        final double sweep = circle.decimal('sweep');
+        final double range = circle.decimal('range');
+
+        result.add(
+          JsonSoldier(
+            id: id,
+            position: JsonPosition.create(cx, cy),
+            angle: angle,
+            sweep: sweep,
+            range: range,
+            behaviors: getBehaviors(circle.list('behaviors')),
           ),
         );
       }
@@ -121,75 +199,4 @@ List<JsonItem> getItems(Json svg) {
   }
 
   return result;
-}
-
-List<JsonSoldier> getSoldiers(Json svg) {
-  final List<JsonSoldier> result = [];
-
-  for (final Json g in svg.list('g')) {
-    if (g.string('id') == 'soldiers') {
-      for (final Json circle in g.list('circle')) {
-        final String id = circle.string('id');
-        final double cx = circle.decimal('cx');
-        final double cy = circle.decimal('cy');
-        final double angle = circle.decimal('angle');
-        final double sweep = circle.decimal('sweep');
-        final double range = circle.decimal('range');
-
-        result.add(
-          JsonSoldier(
-            id: id,
-            position: JsonPosition.create(cx, cy),
-            angle: angle,
-            sweep: sweep,
-            range: range,
-            behaviors: getBehaviors(circle.list('behaviors')),
-          ),
-        );
-      }
-    }
-  }
-
-  return result;
-}
-
-List<JsonPortal> getPortals(Json svg) {
-  final List<JsonPortal> result = [];
-
-  for (final Json g in svg.list('g')) {
-    if (g.string('id') == 'portals') {
-      for (final Json portal in g.list('g')) {
-        final String id = portal.string('id');
-        final List<Json> rects = portal.list('rect');
-        final Json portalA = rects[0];
-        final Json portalB = rects[1];
-
-        result.add(
-          JsonPortal(
-            id: id,
-            entrance: getPortalPolygon(portalA),
-            exit: getPortalPolygon(portalB),
-          ),
-        );
-      }
-    }
-  }
-
-  return result;
-}
-
-JsonPolygon getPortalPolygon(Json json) {
-  final double x = json.decimal('x');
-  final double y = json.decimal('y');
-  final double width = json.decimal('width');
-  final double height = json.decimal('height');
-
-  return JsonPolygon(
-    vertices: [
-      JsonPosition.create(x, y),
-      JsonPosition.create(x + width, y),
-      JsonPosition.create(x + width, y + height),
-      JsonPosition.create(x, y + height),
-    ],
-  );
 }

@@ -7294,7 +7294,7 @@
              enabled="true"
              visible="true" /></sodipodi:namedview><g
          inkscape:groupmode="layer"
-         id="layer1"
+         id="sprite"
          inkscape:label="sprite"
          inkscape:highlight-color="#ff0000"
          transform="scale(0.99999)"><rect
@@ -7343,7 +7343,7 @@
              id="path3-8-3"
              sodipodi:nodetypes="cc" /></g><g
          inkscape:groupmode="layer"
-         id="layer2"
+         id="paths"
          inkscape:label="paths"
          inkscape:highlight-color="#ff0700"
          transform="scale(0.99999)"
