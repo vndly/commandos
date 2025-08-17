@@ -61,13 +61,13 @@ class TurretComponent extends EnemyComponent {
       behavior.update(this, dt);
     }
 
-    /*for (final LaserComponent laser in lasers) {
+    for (final LaserComponent laser in lasers) {
       laser.refresh(
         source: body.position,
         angle: body.angle,
         rayCasting: rayCasting,
       );
-    }*/
+    }
   }
 
   @override

@@ -25,7 +25,7 @@ class LaserComponent extends Component {
       Beam(
         start: Vector2.zero(),
         end: Vector2.zero(),
-        angle: 0,
+        angle: radians(-90),
       ),
     );
   }
