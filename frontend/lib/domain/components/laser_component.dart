@@ -5,8 +5,6 @@ import 'package:commandos/domain/models/beam.dart';
 import 'package:commandos/domain/models/laser.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/presentation/audio/audio.dart';
-import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:commandos/utils/ray_casting.dart';
 import 'package:flame/components.dart';
@@ -58,9 +56,9 @@ class LaserComponent extends Component {
         final double score = (1 - (result.distance / laser.range)).clamp(0, 1);
         level.onAgentSpotted(dt * Constants.ALARM_RATIO_SOLDIER * score);
 
-        if (agentInVision == null) {
+        /*if (agentInVision == null) {
           Audio.get.playSound(Sound.DETECTION);
-        }
+        }*/
         break;
       }
     }

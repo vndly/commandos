@@ -4,17 +4,21 @@ import 'package:commandos/assets/levels/gym.dart';
 import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/alarm_component.dart';
 import 'package:commandos/domain/components/backpack_component.dart';
+import 'package:commandos/domain/components/door_locked_component.dart';
+import 'package:commandos/domain/components/door_unlocked_component.dart';
 import 'package:commandos/domain/components/item_component.dart';
 import 'package:commandos/domain/components/map_component.dart';
 import 'package:commandos/domain/components/soldier_component.dart';
 import 'package:commandos/domain/components/turret_component.dart';
 import 'package:commandos/domain/loaders/level_loader.dart';
 import 'package:commandos/domain/models/agent.dart';
+import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/item.dart';
 import 'package:commandos/domain/models/level.dart';
 import 'package:commandos/domain/models/soldier.dart';
 import 'package:commandos/domain/models/turret.dart';
+import 'package:commandos/domain/types/door_status.dart';
 import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/utils/dimensions.dart';
 import 'package:flame/components.dart';
@@ -24,6 +28,7 @@ import 'package:flutter/services.dart';
 class LevelComponent extends Forge2DWorld with KeyboardHandler {
   final Input input = Input();
   final List<AgentComponent> agentComponents = [];
+  final List<DoorLockedComponent> doorLockedComponents = [];
   late AgentComponent activeAgentComponent;
   late final BackpackComponent backpackComponent;
   late final AlarmComponent alarmComponent;
@@ -42,13 +47,24 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
       MapComponent(
         nodes: level.nodes,
         walls: level.walls,
-        doors: level.doors,
         size: Vector2(
           level.width.toDouble(),
           level.height.toDouble(),
         ),
       ),
     );
+
+    for (final Door door in level.doors) {
+      if (door.status == DoorStatus.locked) {
+        final DoorLockedComponent doorLockedComponent = DoorLockedComponent(
+          door: door,
+        );
+        doorLockedComponents.add(doorLockedComponent);
+        await add(doorLockedComponent);
+      } else if (door.status == DoorStatus.unlocked) {
+        await add(DoorUnlockedComponent(door: door));
+      }
+    }
 
     for (final Agent agent in level.agents) {
       final AgentComponent agentComponent = AgentComponent(
@@ -138,6 +154,16 @@ class LevelComponent extends Forge2DWorld with KeyboardHandler {
     activeAgentComponent.active = true;
     camera.follow(activeAgentComponent);
     backpackComponent.setBackpack(activeAgentComponent.agent.backpack);
+  }
+
+  void onUnlockDoor(Door door) {
+    for (final DoorLockedComponent doorLockedComponent
+        in doorLockedComponents) {
+      if (doorLockedComponent.door == door) {
+        doorLockedComponent.toBeRemoved();
+        break;
+      }
+    }
   }
 
   void onBackpackUpdated() => backpackComponent.refresh();

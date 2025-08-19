@@ -4,13 +4,17 @@ import 'package:commandos/app/constants.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/agent.dart';
 import 'package:commandos/domain/models/collision_group.dart';
+import 'package:commandos/domain/models/door.dart';
 import 'package:commandos/domain/models/input.dart';
 import 'package:commandos/domain/models/node.dart';
 import 'package:commandos/domain/models/nodes.dart';
 import 'package:commandos/domain/models/portal.dart';
+import 'package:commandos/domain/types/door_status.dart';
+import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/body_extension.dart';
+import 'package:commandos/extensions/component_extension.dart';
 import 'package:commandos/presentation/audio/audio.dart';
 import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/palette.dart';
@@ -79,11 +83,21 @@ class AgentComponent extends PhysicalComponent {
   }
 
   void onInteract() {
-    // TODO(momo): interact with objects
-    if (movement.objectFacing != null) {
-      print('Interacting with: ${movement.objectFacing}');
-    } else {
-      print('No object to interact with');
+    final Object? object = movement.objectFacing;
+
+    if (object != null) {
+      if ((object is Door) && object.status == DoorStatus.locked) {
+        final bool hasKeycard = agent.backpack.contains(ItemType.keycard);
+
+        if (hasKeycard) {
+          agent.backpack.remove(ItemType.keycard);
+          level.onBackpackUpdated();
+          Audio.get.playSound(Sound.DOOR_UNLOCKED);
+          level.onUnlockDoor(object);
+        } else {
+          Audio.get.playSound(Sound.DOOR_LOCKED);
+        }
+      }
     }
   }
 

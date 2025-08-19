@@ -1,22 +1,18 @@
 import 'dart:async';
-import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/domain/components/door_unlocked_component.dart';
 import 'package:commandos/domain/components/physical_component.dart';
 import 'package:commandos/domain/models/collision_group.dart';
 import 'package:commandos/domain/models/door.dart';
-import 'package:commandos/domain/types/item_type.dart';
 import 'package:commandos/domain/types/priority.dart';
 import 'package:commandos/extensions/body_component_extension.dart';
 import 'package:commandos/extensions/component_extension.dart';
-import 'package:commandos/presentation/audio/audio.dart';
-import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/utils/assets.dart';
 import 'package:commandos/utils/palette.dart';
 import 'package:flame/components.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
 
-class DoorLockedComponent extends PhysicalComponent with ContactCallbacks {
+class DoorLockedComponent extends PhysicalComponent {
   final Door door;
 
   DoorLockedComponent({
@@ -53,22 +49,6 @@ class DoorLockedComponent extends PhysicalComponent with ContactCallbacks {
     group: CollisionGroup.DOOR_LOCKED,
     angle: 0,
   );
-
-  @override
-  void beginContact(Object other, Contact contact) {
-    if (other is AgentComponent) {
-      final bool hasKeycard = other.agent.backpack.contains(ItemType.keycard);
-
-      if (hasKeycard) {
-        other.agent.backpack.remove(ItemType.keycard);
-        level.onBackpackUpdated();
-        Audio.get.playSound(Sound.DOOR_UNLOCKED);
-        Future.delayed(const Duration(milliseconds: 500), toBeRemoved);
-      } else {
-        Audio.get.playSound(Sound.DOOR_LOCKED);
-      }
-    }
-  }
 }
 
 class DoorSpriteComponent extends PositionComponent {
