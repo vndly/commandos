@@ -175,7 +175,7 @@ class AgentMovement {
   void update(Input input) {
     if (input.hasInput && !isMoving) {
       final Vector2 direction = input.direction;
-      objectFacing = currentNode.objectAt(direction);
+      objectFacing = currentNode.objectAt(orientation);
       orientation = AgentOrientation.fromDirection(direction);
       agent.body.setAngle(orientation.angle);
 
@@ -211,6 +211,7 @@ class AgentMovement {
         }
       }
     } else {
+      objectFacing = currentNode.objectAt(orientation);
       Audio.get.stopSound(Sound.STEP);
     }
   }

@@ -1,4 +1,5 @@
 import 'package:commandos/app/constants.dart';
+import 'package:commandos/domain/components/agent_component.dart';
 import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:flame/components.dart';
 
@@ -94,17 +95,16 @@ class Node implements Comparable<Node> {
     }
   }
 
-  Object? objectAt(Vector2 direction) {
-    if (direction.x > 0 && _objectRight != null) {
-      return _objectRight;
-    } else if (direction.x < 0 && _objectLeft != null) {
-      return _objectLeft;
-    } else if (direction.y > 0 && _objectDown != null) {
-      return _objectDown;
-    } else if (direction.y < 0 && _objectUp != null) {
-      return _objectUp;
-    } else {
-      return null;
+  Object? objectAt(AgentOrientation orientation) {
+    switch (orientation) {
+      case AgentOrientation.up:
+        return _objectUp;
+      case AgentOrientation.down:
+        return _objectDown;
+      case AgentOrientation.left:
+        return _objectLeft;
+      case AgentOrientation.right:
+        return _objectRight;
     }
   }
 
