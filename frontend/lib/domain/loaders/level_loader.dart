@@ -36,7 +36,11 @@ import 'package:flame/components.dart';
 class LevelLoader {
   static Level load(String json) {
     final JsonLevel jsonLevel = JsonLevel.fromJson(jsonDecode(json));
-    final Nodes nodes = _getNodes(jsonLevel);
+    final List<Door> doors = _getDoors(jsonLevel.doors);
+    final Nodes nodes = _getNodes(
+      jsonLevel: jsonLevel,
+      doors: doors,
+    );
 
     return Level(
       id: jsonLevel.id,
@@ -60,18 +64,18 @@ class LevelLoader {
       walls: _getWalls(
         jsonLevel.walls,
       ),
-      doors: _getDoors(
-        jsonLevel.doors,
-      ),
+      doors: doors,
       items: _getItems(
         jsonLevel.items,
       ),
     );
   }
 
-  static Nodes _getNodes(JsonLevel jsonLevel) {
+  static Nodes _getNodes({
+    required JsonLevel jsonLevel,
+    required List<Door> doors,
+  }) {
     final Map<String, Node> result = {};
-    final List<Door> doors = _getDoors(jsonLevel.doors);
 
     for (final JsonPath path in jsonLevel.paths) {
       final Node nodeA = _addNode(
