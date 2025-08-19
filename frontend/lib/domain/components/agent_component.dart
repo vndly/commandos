@@ -90,6 +90,7 @@ class AgentComponent extends PhysicalComponent {
         final bool hasKeycard = agent.backpack.contains(ItemType.keycard);
 
         if (hasKeycard) {
+          object.unlock();
           agent.backpack.remove(ItemType.keycard);
           level.onBackpackUpdated();
           Audio.get.playSound(Sound.DOOR_UNLOCKED);
