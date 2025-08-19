@@ -80,6 +80,11 @@ class AgentComponent extends PhysicalComponent {
 
   void onInteract() {
     // TODO(momo): interact with objects
+    if (movement.objectFacing != null) {
+      print('Interacting with: ${movement.objectFacing}');
+    } else {
+      print('No object to interact with');
+    }
   }
 
   @override
@@ -142,6 +147,7 @@ class AgentMovement {
   AgentOrientation orientation = AgentOrientation.right;
   bool isMoving = false;
   Node? nextNode;
+  Object? objectFacing;
 
   AgentMovement({
     required this.agent,
@@ -155,11 +161,11 @@ class AgentMovement {
   void update(Input input) {
     if (input.hasInput && !isMoving) {
       final Vector2 direction = input.direction;
-      final Object? object = currentNode.objectAt(direction);
+      objectFacing = currentNode.objectAt(direction);
       orientation = AgentOrientation.fromDirection(direction);
       agent.body.setAngle(orientation.angle);
 
-      if (canTraverseObject(object)) {
+      if (canTraverseObject(objectFacing)) {
         nextNode = currentNode.nodeAt(direction);
 
         if (nextNode != null) {
