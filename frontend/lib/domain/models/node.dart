@@ -23,12 +23,6 @@ class Node implements Comparable<Node> {
 
   Vector2 get position => Vector2(x.toDouble(), y.toDouble());
 
-  bool get hasObject =>
-      _objectUp != null ||
-      _objectDown != null ||
-      _objectLeft != null ||
-      _objectRight != null;
-
   void addConnection(Node node) {
     if ((node.x > x) && (node.y == y)) {
       _nodeRight = node;
