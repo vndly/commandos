@@ -13,6 +13,7 @@ import 'package:commandos/domain/json/json_item.dart';
 import 'package:commandos/domain/json/json_laser.dart';
 import 'package:commandos/domain/json/json_level.dart';
 import 'package:commandos/domain/json/json_path.dart';
+import 'package:commandos/domain/json/json_polygon.dart';
 import 'package:commandos/domain/json/json_position.dart';
 import 'package:commandos/domain/json/json_soldier.dart';
 import 'package:commandos/domain/json/json_turret.dart';
@@ -31,8 +32,6 @@ import 'package:commandos/domain/models/turret.dart';
 import 'package:commandos/domain/models/wall.dart';
 import 'package:commandos/domain/types/behavior_type.dart';
 import 'package:flame/components.dart';
-
-import '../json/json_polygon.dart';
 
 class LevelLoader {
   static Level load(String json) {
@@ -72,6 +71,7 @@ class LevelLoader {
 
   static Nodes _getNodes(JsonLevel jsonLevel) {
     final Map<String, Node> result = {};
+    final List<Door> doors = _getDoors(jsonLevel.doors);
 
     for (final JsonPath path in jsonLevel.paths) {
       final Node nodeA = _addNode(
@@ -85,6 +85,11 @@ class LevelLoader {
 
       nodeA.addConnection(nodeB);
       nodeB.addConnection(nodeA);
+
+      for (final Door door in doors) {
+        nodeA.addObject(object: door, position: door.position);
+        nodeB.addObject(object: door, position: door.position);
+      }
     }
 
     return Nodes(nodes: result.values.toList());

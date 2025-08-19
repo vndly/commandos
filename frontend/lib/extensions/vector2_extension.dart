@@ -9,4 +9,9 @@ extension Vector2Extension on Vector2 {
   }
 
   double get angled => atan2(y, x);
+
+  bool around({
+    required Vector2 point,
+    required double epsilon,
+  }) => ((point.x - x).abs() < epsilon) && ((point.y - y).abs() < epsilon);
 }

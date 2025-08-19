@@ -1,3 +1,5 @@
+import 'package:commandos/app/constants.dart';
+import 'package:commandos/extensions/vector2_extension.dart';
 import 'package:flame/components.dart';
 
 class Node implements Comparable<Node> {
@@ -21,6 +23,12 @@ class Node implements Comparable<Node> {
 
   Vector2 get position => Vector2(x.toDouble(), y.toDouble());
 
+  bool get hasObject =>
+      _objectUp != null ||
+      _objectDown != null ||
+      _objectLeft != null ||
+      _objectRight != null;
+
   void addConnection(Node node) {
     if ((node.x > x) && (node.y == y)) {
       _nodeRight = node;
@@ -39,16 +47,42 @@ class Node implements Comparable<Node> {
     required Object object,
     required Vector2 position,
   }) {
-    if ((position.x > x) && (position.y == y)) {
-      _objectRight = object;
-    } else if ((position.x < x) && (position.y == y)) {
-      _objectLeft = object;
-    } else if ((position.y > y) && (position.x == x)) {
-      _objectDown = object;
-    } else if ((position.y < y) && (position.x == x)) {
-      _objectUp = object;
-    } else {
-      throw Exception('Cannot add object: $this to $object');
+    if (position.around(
+      point: Vector2(x + Constants.HALF_GRID, y.toDouble()),
+      epsilon: 1,
+    )) {
+      if ((_objectRight != null) && (_objectRight != object)) {
+        throw Exception('Cannot add object: $object to $_objectRight');
+      } else {
+        _objectRight = object;
+      }
+    } else if (position.around(
+      point: Vector2(x - Constants.HALF_GRID, y.toDouble()),
+      epsilon: 1,
+    )) {
+      if ((_objectLeft != null) && (_objectLeft != object)) {
+        throw Exception('Cannot add object: $object to $_objectLeft');
+      } else {
+        _objectLeft = object;
+      }
+    } else if (position.around(
+      point: Vector2(x.toDouble(), y + Constants.HALF_GRID),
+      epsilon: 1,
+    )) {
+      if ((_objectDown != null) && (_objectDown != object)) {
+        throw Exception('Cannot add object: $object to $_objectDown');
+      } else {
+        _objectDown = object;
+      }
+    } else if (position.around(
+      point: Vector2(x.toDouble(), y - Constants.HALF_GRID),
+      epsilon: 1,
+    )) {
+      if ((_objectUp != null) && (_objectUp != object)) {
+        throw Exception('Cannot add object: $object to $_objectUp');
+      } else {
+        _objectUp = object;
+      }
     }
   }
 

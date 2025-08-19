@@ -3,6 +3,7 @@ import 'dart:ui';
 class Constants {
   static const double UI_HEIGHT = 200;
   static const double AGENT_SPEED = 60;
+  static const double HALF_GRID = 10;
 
   static const double ALARM_RATIO_SOLDIER = 0.2;
 
