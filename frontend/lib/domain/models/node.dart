@@ -8,6 +8,10 @@ class Node implements Comparable<Node> {
   Node? _nodeDown;
   Node? _nodeLeft;
   Node? _nodeRight;
+  Object? _objectUp;
+  Object? _objectDown;
+  Object? _objectLeft;
+  Object? _objectRight;
 
   Node({required Vector2 position}) {
     x = position.x.toInt();
@@ -31,6 +35,23 @@ class Node implements Comparable<Node> {
     }
   }
 
+  void addObject({
+    required Object object,
+    required Vector2 position,
+  }) {
+    if ((position.x > x) && (position.y == y)) {
+      _objectRight = object;
+    } else if ((position.x < x) && (position.y == y)) {
+      _objectLeft = object;
+    } else if ((position.y > y) && (position.x == x)) {
+      _objectDown = object;
+    } else if ((position.y < y) && (position.x == x)) {
+      _objectUp = object;
+    } else {
+      throw Exception('Cannot add object: $this to $object');
+    }
+  }
+
   Node? nodeAt(Vector2 direction) {
     if (direction.x > 0 && _nodeRight != null) {
       return _nodeRight;
@@ -45,9 +66,22 @@ class Node implements Comparable<Node> {
     }
   }
 
-  bool inPosition(Vector2 position) {
-    return (x == position.x.toInt()) && (y == position.y.toInt());
+  Object? objectAt(Vector2 direction) {
+    if (direction.x > 0 && _objectRight != null) {
+      return _objectRight;
+    } else if (direction.x < 0 && _objectLeft != null) {
+      return _objectLeft;
+    } else if (direction.y > 0 && _objectDown != null) {
+      return _objectDown;
+    } else if (direction.y < 0 && _objectUp != null) {
+      return _objectUp;
+    } else {
+      return null;
+    }
   }
+
+  bool inPosition(Vector2 position) =>
+      (x == position.x.toInt()) && (y == position.y.toInt());
 
   @override
   String toString() => 'Node: ($id, $x, $y)';
