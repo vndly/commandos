@@ -4,10 +4,10 @@ class Node implements Comparable<Node> {
   late final String id;
   late final int x;
   late final int y;
-  Node? up;
-  Node? down;
-  Node? left;
-  Node? right;
+  Node? _nodeUp;
+  Node? _nodeDown;
+  Node? _nodeLeft;
+  Node? _nodeRight;
 
   Node({required Vector2 position}) {
     x = position.x.toInt();
@@ -19,27 +19,27 @@ class Node implements Comparable<Node> {
 
   void addConnection(Node node) {
     if ((node.x > x) && (node.y == y)) {
-      right = node;
+      _nodeRight = node;
     } else if ((node.x < x) && (node.y == y)) {
-      left = node;
+      _nodeLeft = node;
     } else if ((node.y > y) && (node.x == x)) {
-      down = node;
+      _nodeDown = node;
     } else if ((node.y < y) && (node.x == x)) {
-      up = node;
+      _nodeUp = node;
     } else {
       throw Exception('Cannot connect nodes: $this to $node');
     }
   }
 
   Node? nodeAt(Vector2 direction) {
-    if (direction.x > 0 && right != null) {
-      return right;
-    } else if (direction.x < 0 && left != null) {
-      return left;
-    } else if (direction.y > 0 && down != null) {
-      return down;
-    } else if (direction.y < 0 && up != null) {
-      return up;
+    if (direction.x > 0 && _nodeRight != null) {
+      return _nodeRight;
+    } else if (direction.x < 0 && _nodeLeft != null) {
+      return _nodeLeft;
+    } else if (direction.y > 0 && _nodeDown != null) {
+      return _nodeDown;
+    } else if (direction.y < 0 && _nodeUp != null) {
+      return _nodeUp;
     } else {
       return null;
     }
