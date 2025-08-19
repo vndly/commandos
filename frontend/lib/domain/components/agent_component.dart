@@ -220,6 +220,8 @@ class AgentMovement {
   bool canTraverseObject(Object? object) {
     if (object == null) {
       return true;
+    } else if (object is Door) {
+      return object.status == DoorStatus.unlocked;
     } else {
       return false;
     }
