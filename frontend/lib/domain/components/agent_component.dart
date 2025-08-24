@@ -187,6 +187,7 @@ class AgentMovement {
           isMoving = true;
           final Vector2 velocity = input.direction * Constants.AGENT_SPEED;
           agent.body.linearVelocity = velocity;
+          objectFacing = null;
         }
       }
     }
@@ -200,10 +201,10 @@ class AgentMovement {
       if (toTarget.length < 0.1) {
         agent.body.linearVelocity = Vector2.zero();
         agent.body.setPosition(targetPosition);
-        objectFacing = currentNode.objectAt(orientation);
         isMoving = false;
         currentNode = nextNode!;
         nextNode = null;
+        objectFacing = currentNode.objectAt(orientation);
 
         final Node? teleportTo = getTeleportTo(currentNode);
 
