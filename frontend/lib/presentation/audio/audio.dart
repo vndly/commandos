@@ -1,3 +1,4 @@
+import 'package:commandos/environments/environment.dart';
 import 'package:commandos/presentation/audio/music.dart';
 import 'package:commandos/presentation/audio/sound.dart';
 import 'package:commandos/presistence/storage/saved_matches_storage.dart';
@@ -24,7 +25,7 @@ class Audio with Music, Sound {
   }
 
   Future load() async {
-    enabled = await AudioStorage.load();
+    enabled = Environment.get.isReleaseMode && await AudioStorage.load();
     await loadSound();
     await loadMusic();
   }
